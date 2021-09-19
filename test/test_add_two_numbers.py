@@ -3,7 +3,7 @@ from solution import Solution, ListNode
 solution = Solution()
 
 
-def test_input_two_same_length_lists():
+def test_input_two_same_length_lists_should_ok():
     l1 = ListNode(2)
     l1.next = ListNode(4)
     l1.next.next = ListNode(3)
@@ -23,7 +23,7 @@ def test_input_two_same_length_lists():
     assert actual.next.next.val == expect.next.next.val
 
 
-def test_input_two_zero_same_length_lists():
+def test_input_two_zero_same_length_lists_should_ok():
     l1 = ListNode(0)
     l2 = ListNode(0)
     actual = solution.addTwoNumbers(l1, l2)
@@ -31,7 +31,7 @@ def test_input_two_zero_same_length_lists():
     assert actual.val == expect.val
 
 
-def test_input_two_lists_with_carry():
+def test_input_two_lists_with_carry_should_ok():
     l1 = ListNode(9)
     l1.next = ListNode(9)
     l1.next.next = ListNode(9)

@@ -4,7 +4,7 @@ from solution import Solution
 solution = Solution()
 
 
-def test_input_valid_data():
+def test_input_valid_data_should_ok():
     actual = solution.twoSum([2, 7, 11, 15], 9)
     expect = [0, 1]
     assert len(actual) == len(expect)

@@ -189,6 +189,9 @@ class Solution:
         return circles
 
     def rotate(self, nums: List[int], k: int) -> None:
+        """
+        189. Rotate Array
+        """
         # def reverse(nums: List[int], start: int, end: int):
         #     while start < end:
         #         nums[start], nums[end] = nums[end], nums[start]
@@ -205,12 +208,12 @@ class Solution:
 
         n = len(nums)
         k = k % n
-        count: int = gcd(k, n)
+        count = gcd(k, n)
         for start in range(0, count):
-            current: int = start
-            prev: int = nums[start]
+            current = start
+            prev = nums[start]
             while True:
-                next: int = (current + k) % n
+                next = (current + k) % n
                 nums[next], prev = prev, nums[next]
                 current = next
                 if start == current:
