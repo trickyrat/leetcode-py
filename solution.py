@@ -260,3 +260,20 @@ class Solution:
                 nums[slow] = item
                 slow += 1
         return slow
+
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        """
+        977. Squares of a Sorted Array
+        """
+        n = len(nums)
+        ans = [0] * n
+        i, j, pos = 0, n - 1, n - 1
+        while i <= j:
+            if nums[i] * nums[i] > nums[j] * nums[j]:
+                ans[pos] = nums[i] * nums[i]
+                i += 1
+            else:
+                ans[pos] = nums[j] * nums[j]
+                j -= 1
+            pos -= 1
+        return ans
