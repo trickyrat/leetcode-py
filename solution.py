@@ -122,6 +122,22 @@ class Solution:
                     begin = i
         return s[begin : begin + max_len]
 
+    def twoSumII(self, numbers: List[int], target: int) -> List[int]:
+        """
+        167. Two Sum II - Input array is sorted
+        """
+        left = 0
+        right = len(numbers) - 1
+        while left < right:
+            sum = numbers[left] + numbers[right]
+            if sum == target:
+                return [left + 1, right + 1]
+            elif sum > target:
+                right -= 1
+            else:
+                left += 1
+        return [-1, -1]
+
     def validIpAddress(self, IP: str) -> str:
         """
         Valid IP address
@@ -219,7 +235,7 @@ class Solution:
                 if start == current:
                     break
 
-    def moveZeroes(self, nums: List[int]):
+    def moveZeroes(self, nums: List[int]) -> None:
         """
         283. Move Zeroes
         """
