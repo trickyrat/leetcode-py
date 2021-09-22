@@ -292,6 +292,16 @@ class Solution:
                 slow += 1
         return slow
 
+    def middleNode(self, head: ListNode) -> ListNode:
+        """
+        876. Middle of the Linked List
+        """
+        slow = fast = head
+        while slow != None and fast != None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
         977. Squares of a Sorted Array
