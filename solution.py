@@ -247,6 +247,16 @@ class Solution:
                 left += 1
             right += 1
 
+    def countSegment(self, s: str) -> int:
+        """
+        434. Number of Segments in a String
+        """
+        segmentCount = 0
+        for i in range(0, len(s)):
+            if (i == 0 or s[i - 1] == " ") and s[i] != " ":
+                segmentCount += 1
+        return segmentCount
+
     def search_v1(self, nums: List[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
