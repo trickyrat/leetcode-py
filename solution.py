@@ -291,7 +291,7 @@ class Solution:
 
     def countSegment(self, s: str) -> int:
         """
-        434. Number of Segments in a String
+        434 Number of Segments in a String
         """
         segmentCount = 0
         for i in range(0, len(s)):

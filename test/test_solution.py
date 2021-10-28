@@ -127,6 +127,12 @@ def test_get_sum(test_input: List[int], expected: int):
     assert expected == actual
 
 
+@pytest.mark.parametrize("test_input, expected", [("Hello, my name is John", 5)])
+def test_count_segment(test_input: str, expected: int):
+    actual = solution.countSegment("Hello, my name is John")
+    assert expected == actual
+
+
 @pytest.mark.parametrize(
     "test_input, expected",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
