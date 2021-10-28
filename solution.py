@@ -12,6 +12,17 @@ class ListNode:
         self.next = next
 
 
+class TreeNode:
+    """
+    Definition for a binary tree node.
+    """
+
+    def __init__(self, val=0, left=None, right=None) -> None:
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
     def __init__(self) -> None:
         super().__init__()
@@ -65,7 +76,7 @@ class Solution:
 
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         """
-        4. Median of Two Sorted Arrays
+        4 Median of Two Sorted Arrays
         """
 
         def getKthElement(k):
@@ -97,6 +108,9 @@ class Solution:
             ) / 2
 
     def longestPalindrome(self, s: str) -> str:
+        """
+        5.Longest Palindromic Substring
+        """
         n = len(s)
         if n < 2:
             return s
@@ -122,9 +136,50 @@ class Solution:
                     begin = i
         return s[begin : begin + max_len]
 
+    def search(self, nums: List[int], target: int) -> int:
+        """
+        33 Search in Rotated Sorted Array
+        """
+        n = len(nums)
+        if n == 0:
+            return -1
+        if n == 1:
+            return 0 if nums[0] == target else -1
+        l = 0
+        r = n - 1
+        while l <= r:
+            mid = l + (r - l) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[0] <= nums[mid]:
+                if nums[0] <= target and target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+                if nums[mid] < target and target <= nums[n - 1]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1
+
+    def search_insert(self, nums: List[int], target: int):
+        """
+        35.Search Insert Position
+        """
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = left + (right - left) // 2
+            if nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid
+        return left + 1 if nums[left] < target else left
+
     def twoSumII(self, numbers: List[int], target: int) -> List[int]:
         """
-        167. Two Sum II - Input array is sorted
+        167 Two Sum II - Input array is sorted
         """
         left = 0
         right = len(numbers) - 1
@@ -137,51 +192,6 @@ class Solution:
             else:
                 left += 1
         return [-1, -1]
-
-    def validIpAddress(self, IP: str) -> str:
-        """
-        Valid IP address
-        """
-        ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
-        ipv6_chunk = r"([0-9a-fA-F]{1,4})"
-        ipv4_pattern = re.compile(r"^(" + ipv4_chunk + r"\.){3}" + ipv4_chunk + r"$")
-        ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r"\:){7}" + ipv6_chunk + r"$")
-        if "." in IP:
-            return "IPv4" if ipv4_pattern.match(IP) else "Neither"
-        if ":" in IP:
-            return "IPv6" if ipv6_pattern.match(IP) else "Neither"
-        return "Neither"
-
-    def calculate(self, s: str) -> int:
-        """
-        simple calculator
-        """
-        stack = []
-        operand = 0
-        res = 0
-        sign = 1
-        for chr in s:
-            if chr.isdigit():
-                operand = (operand * 10) + int(chr)
-            elif chr == "+":
-                res += sign * operand
-                sign = 1
-                operand = 0
-            elif chr == "-":
-                res += sign * operand
-                sign = -1
-                operand = 0
-            elif chr == "(":
-                stack.append(res)
-                stack.append(sign)
-                sign = 1
-                res = 0
-            elif chr == ")":
-                res += sign * operand
-                res *= stack.pop()  # sign * res
-                res += stack.pop()  # res + res
-                operand = 0
-        return res + sign * operand
 
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         """
@@ -206,7 +216,7 @@ class Solution:
 
     def rotate(self, nums: List[int], k: int) -> None:
         """
-        189. Rotate Array
+        189 Rotate Array
         """
         # def reverse(nums: List[int], start: int, end: int):
         #     while start < end:
@@ -235,9 +245,41 @@ class Solution:
                 if start == current:
                     break
 
+    def calculate(self, s: str) -> int:
+        """
+        224.Basic Calculator
+        """
+        ops = [1]
+        i = 0
+        n = len(s)
+        ret = 0
+        sign = 1
+        while i < n:
+            if s[i] == " ":
+                i += 1
+            elif s[i] == "+":
+                sign = ops[-1]
+                i += 1
+            elif s[i] == "-":
+                sign = -ops[-1]
+                i += 1
+            elif s[i] == "(":
+                ops.append(sign)
+                i += 1
+            elif s[i] == ")":
+                ops.pop()
+                i += 1
+            else:
+                num = 0
+                while i < n and s[i].isdigit():
+                    num = num * 10 + ord(s[i]) - ord("0")
+                    i += 1
+                ret += num * sign
+        return ret
+
     def moveZeroes(self, nums: List[int]) -> None:
         """
-        283. Move Zeroes
+        283 Move Zeroes
         """
         n = len(nums)
         left = right = 0
@@ -273,17 +315,6 @@ class Solution:
                 return mid
         return -1
 
-    def search_insert(self, nums: List[int], target: int):
-        left = 0
-        right = len(nums) - 1
-        while left < right:
-            mid = left + (right - left) // 2
-            if nums[mid] < target:
-                left = mid + 1
-            else:
-                right = mid
-        return left + 1 if nums[left] < target else left
-
     def removeElement(self, nums: List[int], val: int) -> int:
         slow = 0
         for item in nums:
@@ -292,19 +323,49 @@ class Solution:
                 slow += 1
         return slow
 
+    def getSum(self, a: int, b: int) -> int:
+        """
+        371.Sum of Two Integers
+        """
+        MASK1 = 4294967296  # 2^32
+        MASK2 = 2147483648  # 2^31
+        MASK3 = 2147483647  # 2^31-1
+        while b != 0:
+            carry = ((a & b) << 1) % MASK1
+            a = (a ^ b) % MASK1
+            b = carry
+        if a & MASK2:  # 负数
+            return ~((a ^ MASK2) ^ MASK3)
+        else:
+            return a
+
+    def validIpAddress(self, IP: str) -> str:
+        """
+        468.Valid IP address
+        """
+        ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
+        ipv6_chunk = r"([0-9a-fA-F]{1,4})"
+        ipv4_pattern = re.compile(r"^(" + ipv4_chunk + r"\.){3}" + ipv4_chunk + r"$")
+        ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r"\:){7}" + ipv6_chunk + r"$")
+        if "." in IP:
+            return "IPv4" if ipv4_pattern.match(IP) else "Neither"
+        if ":" in IP:
+            return "IPv6" if ipv6_pattern.match(IP) else "Neither"
+        return "Neither"
+
     def middleNode(self, head: ListNode) -> ListNode:
         """
-        876. Middle of the Linked List
+        876 Middle of the Linked List
         """
         slow = fast = head
-        while slow != None and fast != None:
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
         return slow
 
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
-        977. Squares of a Sorted Array
+        977 Squares of a Sorted Array
         """
         n = len(nums)
         ans = [0] * n
