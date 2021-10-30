@@ -89,6 +89,18 @@ def test_eval(test_input: List[int], target: int, expected: int):
 
 
 @pytest.mark.parametrize(
+    "matrix, target, expected",
+    [
+        ([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 3, True),
+        ([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 13, False),
+    ],
+)
+def test_search_matrix(matrix: List[List[int]], target: int, expected: bool):
+    actual = solution.searchMatrix(matrix, target)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, target, expected",
     [([2, 7, 11, 15], 9, [1, 2]), ([2, 3, 4], 6, [1, 3]), ([-1, 0], -1, [1, 2])],
 )
