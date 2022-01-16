@@ -136,6 +136,17 @@ class Solution:
                     begin = i
         return s[begin : begin + max_len]
 
+    def removeElement(self, nums: List[int], val: int) -> int:
+        """
+        27 Remove Element
+        """
+        slow = 0
+        for item in nums:
+            if item != val:
+                nums[slow] = item
+                slow += 1
+        return slow
+
     def search(self, nums: List[int], target: int) -> int:
         """
         33 Search in Rotated Sorted Array
@@ -212,27 +223,6 @@ class Solution:
                 left += 1
         return [-1, -1]
 
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        """
-        Number of Provinces
-        """
-
-        def dfs(i: int):
-            for j in range(provinces):
-                if isConnected[i][j] == 1 and j not in visited:
-                    visited.add(j)
-                    dfs(j)
-
-        provinces = len(isConnected)
-        visited: set = set()
-        circles = 0
-
-        for i in range(provinces):
-            if i not in visited:
-                dfs(i)
-                circles += 1
-        return circles
-
     def rotate(self, nums: List[int], k: int) -> None:
         """
         189 Rotate Array
@@ -308,16 +298,6 @@ class Solution:
                 left += 1
             right += 1
 
-    def countSegment(self, s: str) -> int:
-        """
-        434 Number of Segments in a String
-        """
-        segmentCount = 0
-        for i in range(0, len(s)):
-            if (i == 0 or s[i - 1] == " ") and s[i] != " ":
-                segmentCount += 1
-        return segmentCount
-
     def search_v1(self, nums: List[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
@@ -344,14 +324,6 @@ class Solution:
                 return mid
         return -1
 
-    def removeElement(self, nums: List[int], val: int) -> int:
-        slow = 0
-        for item in nums:
-            if item != val:
-                nums[slow] = item
-                slow += 1
-        return slow
-
     def getSum(self, a: int, b: int) -> int:
         """
         371.Sum of Two Integers
@@ -368,6 +340,16 @@ class Solution:
         else:
             return a
 
+    def countSegment(self, s: str) -> int:
+        """
+        434 Number of Segments in a String
+        """
+        segmentCount = 0
+        for i in range(0, len(s)):
+            if (i == 0 or s[i - 1] == " ") and s[i] != " ":
+                segmentCount += 1
+        return segmentCount
+
     def validIpAddress(self, IP: str) -> str:
         """
         468.Valid IP address
@@ -381,6 +363,63 @@ class Solution:
         if ":" in IP:
             return "IPv6" if ipv6_pattern.match(IP) else "Neither"
         return "Neither"
+
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        """
+        547 Number of Provinces
+        """
+
+        def dfs(i: int):
+            for j in range(provinces):
+                if isConnected[i][j] == 1 and j not in visited:
+                    visited.add(j)
+                    dfs(j)
+
+        provinces = len(isConnected)
+        visited: set = set()
+        circles = 0
+
+        for i in range(provinces):
+            if i not in visited:
+                dfs(i)
+                circles += 1
+        return circles
+
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        """ "
+        844 Backspace String Compare
+        """
+        i = len(s) - 1
+        j = len(t) - 1
+        skipS = skipT = 0
+        while i >= 0 or j >= 0:
+            while i >= 0:
+                if s[i] == "#":
+                    skipS += 1
+                    i -= 1
+                elif skipS > 0:
+                    skipS -= 1
+                    i -= 1
+                else:
+                    break
+            while j >= 0:
+                if t[j] == "#":
+                    skipT += 1
+                    j -= 1
+                elif skipT > 0:
+                    skipT -= 1
+                    j -= 1
+                else:
+                    break
+            if i >= 0 and j >= 0:
+                if s[i] != t[j]:
+                    return False
+            else:
+                if i >= 0 or j >= 0:
+                    return False
+            i -= 1
+            j -= 1
+        return True
 
     def middleNode(self, head: ListNode) -> ListNode:
         """
@@ -408,3 +447,17 @@ class Solution:
                 j -= 1
             pos -= 1
         return ans
+
+    def modifyString(self, s: str) -> str:
+        """
+        1576 替换所有的问号
+        """
+        n = len(s)
+        arr = list(s)
+        for i in range(n):
+            if arr[i] == '?':
+                for ch in "abc":
+                    if not (i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch):
+                        arr[i] = ch
+                        break
+        return ''.join(arr)
