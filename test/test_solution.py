@@ -146,6 +146,15 @@ def test_count_segment(test_input: str, expected: int):
 
 
 @pytest.mark.parametrize(
+    "input1, input2, expected",
+    [("1+1i", "1+1i", "0+2i"), ("1+-1i", "1+-1i", "0+-2i")],
+)
+def test_complex_number_multiply(input1: str, input2: str, expected: str):
+    actual = solution.complexNumberMultiply(input1, input2)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expected",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )

@@ -1,6 +1,8 @@
 from typing import List
 import re
 
+from cv2 import split
+
 
 class ListNode:
     """
@@ -352,7 +354,7 @@ class Solution:
 
     def validIpAddress(self, IP: str) -> str:
         """
-        468.Valid IP address
+        468 Valid IP address
         """
         ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
         ipv6_chunk = r"([0-9a-fA-F]{1,4})"
@@ -363,6 +365,14 @@ class Solution:
         if ":" in IP:
             return "IPv6" if ipv6_pattern.match(IP) else "Neither"
         return "Neither"
+
+    def complexNumberMultiply(self, num1: str, num2: str) -> str:
+        """
+        537 Complex Number Multiply
+        """
+        real1, imag1 = map(int, num1[:-1].split("+"))
+        real2, imag2 = map(int, num2[:-1].split("+"))
+        return f"{real1 * real2 - imag1 * imag2}+{real1 * imag2 + imag1 * real2}i"
 
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         """
@@ -455,9 +465,11 @@ class Solution:
         n = len(s)
         arr = list(s)
         for i in range(n):
-            if arr[i] == '?':
+            if arr[i] == "?":
                 for ch in "abc":
-                    if not (i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch):
+                    if not (
+                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                    ):
                         arr[i] = ch
                         break
-        return ''.join(arr)
+        return "".join(arr)
