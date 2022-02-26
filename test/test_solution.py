@@ -155,6 +155,15 @@ def test_complex_number_multiply(input1: str, input2: str, expected: str):
 
 
 @pytest.mark.parametrize(
+    "input, expected",
+    [([1000, 100, 10, 2], "1000/(100/10/2)")],
+)
+def test_optimal_division(input: List[int], expected: str):
+    actual = solution.optimalDivision(input)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expected",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )

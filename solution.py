@@ -395,6 +395,16 @@ class Solution:
                 circles += 1
         return circles
 
+    def optimalDivision(self, nums: List[int]) -> str:
+        """
+        553 最优除法
+        """
+        if len(nums) == 1:
+            return str(nums[0])
+        if len(nums) == 2:
+            return str(nums[0]) + "/" + str(nums[1])
+        return str(nums[0]) + "/(" + "/".join(map(str, nums[1:])) + ")"
+
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "
         844 Backspace String Compare
