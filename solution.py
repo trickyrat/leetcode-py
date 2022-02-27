@@ -2,6 +2,7 @@ from typing import List
 import re
 
 from cv2 import split
+from collections import Counter
 
 
 class ListNode:
@@ -483,3 +484,14 @@ class Solution:
                         arr[i] = ch
                         break
         return "".join(arr)
+
+    def countKDifference(self, nums: List[int], k: int) -> int:
+        """
+        2006 差值绝对值为k的数对数目
+        """
+        res = 0
+        cnt = Counter()
+        for num in nums:
+            res += cnt[num - k] + cnt[num + k]
+            cnt[num] += 1
+        return res

@@ -184,3 +184,16 @@ def test_sorted_squares(test_input: List[int], expected: List[int]):
     actual = solution.sortedSquares(test_input)
     for i in range(0, len(expected)):
         assert actual[i] == expected[i]
+
+
+@pytest.mark.parametrize(
+    "test_input, k, expected",
+    [
+        ([1, 2, 2, 1], 1, 4),
+        ([1, 3], 3, 0),
+        ([3, 2, 1, 5, 4], 2, 3),
+    ],
+)
+def test_count_k_difference(test_input: List[int], k: int, expected: int):
+    actual = solution.countKDifference(test_input, k)
+    assert actual == expected
