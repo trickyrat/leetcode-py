@@ -495,3 +495,16 @@ class Solution:
             res += cnt[num - k] + cnt[num + k]
             cnt[num] += 1
         return res
+
+    def maximumDifference(self, nums: List[int]) -> int:
+        """
+        2016 增量元素之间的最大差值
+        """
+        n = len(nums)
+        ans, premin = -1, nums[0]
+        for i in range(1, n):
+            if nums[i] > premin:
+                ans = max(ans, nums[i] - premin)
+            else:
+                premin = nums[i]
+        return ans
