@@ -76,6 +76,19 @@ def test_longest_palindrome(test_input: str, expected: str):
 
 
 @pytest.mark.parametrize(
+    "test_input, numRows, expected",
+    [
+        ("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR"),
+        ("PAYPALISHIRING", 4, "PINALSIGYAHRPI"),
+        ("A", 1, "A"),
+    ],
+)
+def test_zconvert(test_input: str, numRows: int, expected: str):
+    actual = solution.zconvert(test_input, numRows)
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
     "test_input, target, expected",
     [
         ([4, 5, 6, 7, 0, 1, 2], 0, 4),

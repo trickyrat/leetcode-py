@@ -139,6 +139,22 @@ class Solution:
                     begin = i
         return s[begin : begin + max_len]
 
+    def zconvert(self, s: str, numRows: int) -> str:
+        """
+        6 z字形转换
+        """
+        n, r = len(s), numRows
+        if r == 1 or r >= n:
+            return s
+        t = r * 2 - 2
+        ans = []
+        for i in range(r):
+            for j in range(0, n - i, t):
+                ans.append(s[j + i])
+                if 0 < i < r - 1 and j + t - i < n:
+                    ans.append(s[j + t - i])
+        return "".join(ans)
+
     def removeElement(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
