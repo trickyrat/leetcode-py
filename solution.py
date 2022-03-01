@@ -1,5 +1,6 @@
 from typing import List
 import re
+from xmlrpc.client import MAXINT
 
 from cv2 import split
 from collections import Counter
@@ -154,6 +155,22 @@ class Solution:
                 if 0 < i < r - 1 and j + t - i < n:
                     ans.append(s[j + t - i])
         return "".join(ans)
+
+    def reverseInt(self, x: int) -> int:
+        """
+        7 整数反转
+        """
+        res = 0
+        INT_MIN, INT_MAX = -(2 ** 31), 2 ** 31 - 1
+        while x != 0:
+            if res < INT_MIN // 10 + 1 or res > INT_MAX // 10:
+                return 0
+            digit = x % 10
+            if x < 0 and digit > 0:
+                digit -= 10
+            x = (x - digit) // 10
+            res = res * 10 + digit
+        return res
 
     def removeElement(self, nums: List[int], val: int) -> int:
         """

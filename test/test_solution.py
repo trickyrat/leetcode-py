@@ -89,6 +89,23 @@ def test_zconvert(test_input: str, numRows: int, expected: str):
 
 
 @pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        (123, 321),
+        (-123, -321),
+        (120, 21),
+        (100, 1),
+        (120, 21),
+        (-(2 ** 31), 0),
+        (2 ** 31 - 1, 0),
+    ],
+)
+def test_reverse_int(test_input: int, expected: str):
+    actual = solution.reverseInt(test_input)
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
     "test_input, target, expected",
     [
         ([4, 5, 6, 7, 0, 1, 2], 0, 4),
