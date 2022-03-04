@@ -243,6 +243,27 @@ class Solution:
                 return True
         return False
 
+    def pathSum(self, root: TreeNode, targetNum: int) -> List[List[int]]:
+        """
+        113 路径总和
+        """
+        ret = list()
+        path = list()
+
+        def dfs(root: TreeNode, targetNum: int):
+            if not root:
+                return
+            path.append(root.val)
+            targetNum -= root.val
+            if not root.left and not root.right and targetNum == 0:
+                ret.append(path[:])
+            dfs(root.left, targetNum)
+            dfs(root.right, targetNum)
+            path.pop()
+
+        dfs(root, targetNum)
+        return ret
+
     def twoSumII(self, numbers: List[int], target: int) -> List[int]:
         """
         167 Two Sum II - Input array is sorted

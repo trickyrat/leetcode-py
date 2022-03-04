@@ -1,6 +1,6 @@
 from typing import List
-from utils import initListNode, printListNode
-from solution import Solution
+from utils import createTreeNodeWithBFS, initListNode, printListNode
+from solution import Solution, TreeNode
 
 import pytest
 
@@ -128,6 +128,24 @@ def test_eval(test_input: List[int], target: int, expected: int):
 def test_search_matrix(matrix: List[List[int]], target: int, expected: bool):
     actual = solution.searchMatrix(matrix, target)
     assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, targetNum, expected",
+    [
+        (
+            createTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"),
+            22,
+            [[5, 4, 11, 2], [5, 8, 4, 5]],
+        ),
+        (createTreeNodeWithBFS("1,2,3"), 5, []),
+    ],
+)
+def test_path_sum(test_input: TreeNode, targetNum: int, expected: List[List[int]]):
+    actual = solution.pathSum(test_input, targetNum)
+    for i in range(0, len(actual)):
+        for j in range(0, len(expected[i])):
+            assert actual[j] == expected[j]
 
 
 @pytest.mark.parametrize(
