@@ -189,7 +189,15 @@ def test_get_sum(test_input: List[int], expected: int):
 
 @pytest.mark.parametrize("test_input, expected", [("Hello, my name is John", 5)])
 def test_count_segment(test_input: str, expected: int):
-    actual = solution.countSegment("Hello, my name is John")
+    actual = solution.countSegment(test_input)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "a, b, expected", [("aba", "cdc", 3), ("aaa", "bbb", 3), ("aaa", "aaa", -1)]
+)
+def test_findLUSLength(a: str, b: str, expected: int):
+    actual = solution.findLUSLength(a, b)
     assert expected == actual
 
 

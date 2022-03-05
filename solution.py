@@ -421,6 +421,9 @@ class Solution:
             return "IPv6" if ipv6_pattern.match(IP) else "Neither"
         return "Neither"
 
+    def findLUSLength(self, a: str, b: str) -> int:
+        return -1 if a == b else max(len(a), len(b))
+
     def complexNumberMultiply(self, num1: str, num2: str) -> str:
         """
         537 Complex Number Multiply
