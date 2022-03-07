@@ -193,6 +193,12 @@ def test_count_segment(test_input: str, expected: int):
     assert expected == actual
 
 
+@pytest.mark.parametrize("input, expected", [(100, "202"), (-7, "-10")])
+def test_convertToBase7(input: int, expected: int):
+    actual = solution.convertToBase7(input)
+    assert expected == actual
+
+
 @pytest.mark.parametrize(
     "a, b, expected", [("aba", "cdc", 3), ("aaa", "bbb", 3), ("aaa", "aaa", -1)]
 )

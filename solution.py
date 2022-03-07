@@ -421,7 +421,26 @@ class Solution:
             return "IPv6" if ipv6_pattern.match(IP) else "Neither"
         return "Neither"
 
+    def convertToBase7(self, num: int) -> str:
+        """
+        504 七进制数
+        """
+        if num == 0:
+            return "0"
+        negative = num < 0
+        num = abs(num)
+        digits = []
+        while num:
+            digits.append(str(num % 7))
+            num //= 7
+        if negative:
+            digits.append("-")
+        return "".join(reversed(digits))
+
     def findLUSLength(self, a: str, b: str) -> int:
+        """
+        521 最长特殊序列
+        """
         return -1 if a == b else max(len(a), len(b))
 
     def complexNumberMultiply(self, num1: str, num2: str) -> str:
