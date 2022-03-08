@@ -272,3 +272,21 @@ def test_count_k_difference(test_input: List[int], k: int, expected: int):
 def test_maximum_difference(test_input: List[int], expected: int):
     actual = solution.maximumDifference(test_input)
     assert actual == expected
+
+
+@pytest.mark.parametrize(
+    "test_input, queries, expected",
+    [
+        ("**|**|***|", [[2, 5], [5, 9]], [2, 3]),
+        (
+            "***|**|*****|**||**|*",
+            [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]],
+            [9, 0, 0, 0, 0],
+        ),
+    ],
+)
+def test_platesBetweenCandles(
+    test_input: str, queries: List[List[int]], expected: List[int]
+):
+    actual = solution.platesBetweenCandles(test_input, queries)
+    assert actual == expected
