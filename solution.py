@@ -16,6 +16,10 @@ class ListNode:
         self.val = val
         self.next = next
 
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
 
 class TreeNode:
     """
@@ -482,6 +486,20 @@ class Solution:
         if len(nums) == 2:
             return str(nums[0]) + "/" + str(nums[1])
         return str(nums[0]) + "/(" + "/".join(map(str, nums[1:])) + ")"
+
+    def preorder(self, root: Node) -> List[int]:
+        """
+        589 N叉树的前序遍历
+        """
+        ans = []
+        def dfs(node: Node):
+            if node is None:
+                return None
+            ans.append(node.val)
+            for ch in node.children:
+                dfs(ch)
+        dfs(root)
+        return ans
 
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "

@@ -3,16 +3,16 @@ from typing import List, Optional
 import queue
 
 
-def initListNode(nodes: List[int]) -> Optional[ListNode]:
+def create_list_node(nodes: List[int]) -> Optional[ListNode]:
     head = ListNode(0)
     dummy = head
     for node in nodes:
-        dummy = ListNode(node)
+        dummy.next = ListNode(node)
         dummy = dummy.next
     return head.next
 
 
-def printListNode(head: ListNode) -> str:
+def print_list_node(head: ListNode) -> str:
     res = ""
     while head is not None:
         res += head.val
@@ -21,7 +21,15 @@ def printListNode(head: ListNode) -> str:
     return res
 
 
-def createTreeNodeWithBFS(data: str) -> Optional[TreeNode]:
+def list_node_to_list(head: ListNode) -> List[int]:
+    res = []
+    while head:
+        res.append(head.val)
+        head = head.next
+    return res
+
+
+def create_treenode_with_bfs(data: str) -> Optional[TreeNode]:
     nums = data.split(",")
     n = len(nums)
     if n == 0:
@@ -34,34 +42,34 @@ def createTreeNodeWithBFS(data: str) -> Optional[TreeNode]:
     index = 1
     while index < n:
         node = q.get()
-        leftVal, rightVal = nums[index], nums[index + 1]
-        if leftVal != "null":
-            leftNode = TreeNode(int(leftVal))
-            if not leftNode:
-                node.left = leftNode
-            q.put(leftNode)
-        if rightVal != "null":
-            rightNode = TreeNode(int(rightVal))
-            if not rightNode:
-                node.right = rightNode
-            q.put(rightNode)
+        left_val, right_val = nums[index], nums[index + 1]
+        if left_val != "null":
+            left_node = TreeNode(int(left_val))
+            if left_node is not None:
+                node.left = left_node
+            q.put(left_node)
+        if right_val != "null":
+            right_node = TreeNode(int(right_val))
+            if right_node is not None:
+                node.right = right_node
+            q.put(right_node)
         index += 2
     return root
 
 
-def createTreeNodeWithDFS(data: str) -> Optional[TreeNode]:
-    list = data.split(",")
+def create_treenode_with_dfs(data: str) -> Optional[TreeNode]:
+    str_list = data.split(",")
 
-    def dfs(dataList: List[str]):
-        if len(dataList) == 0:
+    def dfs(data_list: List[str]):
+        if len(data_list) == 0:
             return None
-        if dataList[0] == "null":
-            dataList.pop(0)
+        if data_list[0] == "null":
+            data_list.pop(0)
             return None
-        root = TreeNode(int(dataList[0]))
-        dataList.pop(0)
-        root.left = dfs(dataList)
-        root.right = dfs(dataList)
+        root = TreeNode(int(data_list[0]))
+        data_list.pop(0)
+        root.left = dfs(data_list)
+        root.right = dfs(data_list)
         return root
 
-    return dfs(list)
+    return dfs(str_list)
