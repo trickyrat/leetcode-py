@@ -1,9 +1,6 @@
-from operator import le
 from typing import List
 import re
-from xmlrpc.client import MAXINT
 
-from cv2 import split
 from collections import Counter
 
 
@@ -16,10 +13,12 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 class Node:
     def __init__(self, val=None, children=None):
         self.val = val
         self.children = children
+
 
 class TreeNode:
     """
@@ -498,6 +497,20 @@ class Solution:
             ans.append(node.val)
             for ch in node.children:
                 dfs(ch)
+        dfs(root)
+        return ans
+
+    def postorder(self, root: Node) -> List[int]:
+        """
+        590 N叉树的后序遍历
+        """
+        ans = []
+        def dfs(node: Node):
+            if node is None:
+                return
+            for ch in node.children:
+                dfs(ch)
+            ans.append(node.val)
         dfs(root)
         return ans
 
