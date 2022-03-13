@@ -222,6 +222,17 @@ def test_optimal_division(test_input: List[int], expect: str):
 
 
 @pytest.mark.parametrize(
+    "l1, l2, expect",
+    [(["Shogun", "Tapioca Express", "Burger King", "KFC"],
+      ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"], ["Shogun"]),
+     (["Shogun", "Tapioca Express", "Burger King", "KFC"], ["KFC", "Shogun", "Burger King"], ["Shogun"])],
+)
+def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
+    actual = solution.findRestaurant(l1, l2)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expect",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )
