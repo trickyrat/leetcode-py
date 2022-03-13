@@ -112,8 +112,8 @@ class Solution:
             return getKthElement((totalLength + 1) // 2)
         else:
             return (
-                getKthElement(totalLength // 2) + getKthElement(totalLength // 2 + 1)
-            ) / 2
+                           getKthElement(totalLength // 2) + getKthElement(totalLength // 2 + 1)
+                   ) / 2
 
     def longestPalindrome(self, s: str) -> str:
         """
@@ -142,7 +142,7 @@ class Solution:
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
                     begin = i
-        return s[begin : begin + max_len]
+        return s[begin: begin + max_len]
 
     def zconvert(self, s: str, numRows: int) -> str:
         """
@@ -288,6 +288,7 @@ class Solution:
         """
         189 Rotate Array
         """
+
         # def reverse(nums: List[int], start: int, end: int):
         #     while start < end:
         #         nums[start], nums[end] = nums[end], nums[start]
@@ -401,6 +402,28 @@ class Solution:
         else:
             return a
 
+    def validUtf8(self, data: List[int]) -> bool:
+        """
+        393 UTF-8编码验证
+        """
+        n = 0
+        for i in range(0, len(data)):
+            if n > 0:
+                if data[i] >> 6 != 2:
+                    return False;
+                n -= 1
+            elif data[i] >> 7 == 0:
+                n = 0
+            elif data[i] >> 5 == 0b110:
+                n = 1
+            elif data[i] >> 4 == 0b1110:
+                n = 2
+            elif data[i] >> 5 == 0b11110:
+                n = 3
+            else:
+                return False
+        return n == 0
+
     def countSegment(self, s: str) -> int:
         """
         434 Number of Segments in a String
@@ -491,12 +514,14 @@ class Solution:
         589 N叉树的前序遍历
         """
         ans = []
+
         def dfs(node: Node):
             if node is None:
                 return None
             ans.append(node.val)
             for ch in node.children:
                 dfs(ch)
+
         dfs(root)
         return ans
 
@@ -505,12 +530,14 @@ class Solution:
         590 N叉树的后序遍历
         """
         ans = []
+
         def dfs(node: Node):
             if node is None:
                 return
             for ch in node.children:
                 dfs(ch)
             ans.append(node.val)
+
         dfs(root)
         return ans
 
@@ -587,7 +614,7 @@ class Solution:
             if arr[i] == "?":
                 for ch in "abc":
                     if not (
-                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                            i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
                     ):
                         arr[i] = ch
                         break

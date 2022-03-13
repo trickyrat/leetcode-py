@@ -24,7 +24,7 @@ def test_two_sum(test_input: List[int], target: int, expect: List[int]):
     ],
 )
 def test_add_two_numbers(
-    test_input1: ListNode, test_input2: ListNode, expect: List[int]
+        test_input1: ListNode, test_input2: ListNode, expect: List[int]
 ):
     actual = list_node_to_list(solution.addTwoNumbers(test_input1, test_input2))
     assert expect == actual
@@ -49,7 +49,7 @@ def test_longest_substring_without_repeat(test_input: str, expect: int):
     ],
 )
 def test_find_median_sorted_arrays(
-    test_input1: List[int], test_input2: List[int], expect: float
+        test_input1: List[int], test_input2: List[int], expect: float
 ):
     actual = solution.findMedianSortedArrays(test_input1, test_input2)
     assert expect == actual
@@ -177,6 +177,12 @@ def test_get_sum(test_input: List[int], expect: int):
     assert expect == actual
 
 
+@pytest.mark.parametrize("test_input, expect", [([197, 130, 1], True), ([235, 140, 4], False)])
+def test_valid_utf8(test_input: List[int], expect: bool):
+    actual = solution.validUtf8(test_input)
+    assert expect == actual
+
+
 @pytest.mark.parametrize("test_input, expect", [("Hello, my name is John", 5)])
 def test_count_segment(test_input: str, expect: int):
     actual = solution.countSegment(test_input)
@@ -267,14 +273,14 @@ def test_maximum_difference(test_input: List[int], expect: int):
     [
         ("**|**|***|", [[2, 5], [5, 9]], [2, 3]),
         (
-            "***|**|*****|**||**|*",
-            [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]],
-            [9, 0, 0, 0, 0],
+                "***|**|*****|**||**|*",
+                [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]],
+                [9, 0, 0, 0, 0],
         ),
     ],
 )
 def test_plates_between_candles(
-    test_input: str, queries: List[List[int]], expect: List[int]
+        test_input: str, queries: List[List[int]], expect: List[int]
 ):
     actual = solution.platesBetweenCandles(test_input, queries)
     assert actual == expect
