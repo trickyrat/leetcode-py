@@ -663,7 +663,28 @@ class Solution:
                 premin = nums[i]
         return ans
 
+    def countMaxOrSubsets(self, nums: List[int]) -> int:
+        """
+        2044 统计按位或能得到最大值的子集数目
+        """
+        maxOr, cnt = 0, 0
+        def dfs(pos: int, orVal: int) -> None:
+            if pos == len(nums):
+                nonlocal maxOr, cnt
+                if orVal > maxOr:
+                    maxOr, cnt = orVal, 1
+                elif orVal == maxOr:
+                    cnt += 1
+                return
+            dfs(pos + 1, orVal | nums[pos])
+            dfs(pos + 1, orVal)
+        dfs(0, 0)
+        return cnt
+
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
+        """
+        2055 蜡烛之间的盘子
+        """
         n = len(s)
         preSum, sum = [0] * n, 0
         left, l = [0] * n, -1

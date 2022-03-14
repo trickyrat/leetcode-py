@@ -280,6 +280,19 @@ def test_maximum_difference(test_input: List[int], expect: int):
 
 
 @pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ([3, 1], 2),
+        ([2, 2, 2], 7),
+        ([3, 2, 1, 5], 6),
+    ],
+)
+def test_count_max_or_subsets(test_input: List[int], expect: int):
+    actual = solution.countMaxOrSubsets(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
     "test_input, queries, expect",
     [
         ("**|**|***|", [[2, 5], [5, 9]], [2, 3]),
