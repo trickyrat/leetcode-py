@@ -641,7 +641,7 @@ class Solution:
 
     def pivotIndex(self, nums: List[int]) -> int:
         """
-        1991 寻找数组的中间位置
+        1991 寻找数组的中位索引
         """
         total = sum(nums)
         sum_tmp = 0
