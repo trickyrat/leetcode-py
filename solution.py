@@ -639,6 +639,18 @@ class Solution:
                         break
         return "".join(arr)
 
+    def pivotIndex(self, nums: List[int]) -> int:
+        """
+        1991 寻找数组的中间位置
+        """
+        total = sum(nums)
+        sum_tmp = 0
+        for i, num in enumerate(nums):
+            if 2 * sum_tmp + num == total:
+                return i
+            sum_tmp += num
+        return -1
+
     def countKDifference(self, nums: List[int], k: int) -> int:
         """
         2006 差值绝对值为k的数对数目

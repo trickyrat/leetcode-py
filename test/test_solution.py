@@ -252,6 +252,18 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
     actual = solution.sortedSquares(test_input)
     assert actual == expect
 
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ([2, 3, -1, 8, 4], 3),
+        ([1, -1, 4], 2),
+        ([2, 5], -1),
+    ],
+)
+def test_pivot_index(test_input: List[int], expect: int):
+    actual = solution.pivotIndex(test_input)
+    assert actual == expect
+
 
 @pytest.mark.parametrize(
     "test_input, k, expect",
