@@ -255,6 +255,19 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
 @pytest.mark.parametrize(
     "test_input, expect",
     [
+        ("lee(t(c)o)de)", "lee(t(c)o)de"),
+        ("a)b(c)d", "ab(c)d"),
+        ("))((", ""),
+    ],
+)
+def test_min_remove_to_make_valid(test_input: str, expect: str):
+    actual = solution.minRemoveToMakeValid(test_input)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
         ([2, 3, -1, 8, 4], 3),
         ([1, -1, 4], 2),
         ([2, 5], -1),

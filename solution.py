@@ -623,6 +623,34 @@ class Solution:
             pos -= 1
         return ans
 
+    def minRemoveToMakeValid(self, s: str) -> str:
+        """
+        1249 移除无效括号
+        """
+        first_parse_chars = []
+        balance = 0
+        open_seen = 0
+        for c in s:
+            if c == '(':
+                balance += 1
+                open_seen += 1
+            if c == ')':
+                if balance == 0:
+                    continue
+                balance -= 1
+            first_parse_chars.append(c)
+
+        res = []
+        open_to_keep = open_seen - balance
+        for c in first_parse_chars:
+            if c == '(':
+                open_to_keep -= 1
+                if open_to_keep < 0:
+                    continue
+            res.append(c)
+
+        return "".join(res)
+
     def modifyString(self, s: str) -> str:
         """
         1576 替换所有的问号
