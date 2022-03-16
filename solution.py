@@ -229,6 +229,19 @@ class Solution:
                 right = mid
         return left + 1 if nums[left] < target else left
 
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        """
+        56 合并区间
+        """
+        intervals.sort(key=lambda x: x[0])
+        merged = []
+        for interval in intervals:
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        return merged
+
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         """
         74 Search in 2D Matrix

@@ -98,6 +98,16 @@ def test_reverse_int(test_input: int, expect: str):
     actual = solution.reverseInt(test_input)
     assert actual == expect
 
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ([[1,3],[2,6],[8,10],[15,18]], [[1,6],[8,10],[15,18]]),
+        ([[1,4],[4,5]], [[1,5]]),
+    ],
+)
+def test_merge(test_input: List[List[int]], expect: List[List[int]]):
+    actual = solution.merge(test_input)
+    assert expect == actual
 
 @pytest.mark.parametrize(
     "test_input, target, expect",
