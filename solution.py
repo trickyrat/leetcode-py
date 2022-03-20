@@ -759,3 +759,16 @@ class Solution:
             if x >= 0 and y >= 0 and x < y:
                 ans[i] = preSum[y] - preSum[x]
         return ans
+
+    def rotate_matrix(self, matrix: List[List[int]]):
+        """
+        面试题01.07 Rotate Matrix LCCI
+        """
+
+        N = len(matrix)
+        for i in range(N):
+            for j in range(0, i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+        for i in range(N):
+            matrix[i][:] = matrix[i][::-1]

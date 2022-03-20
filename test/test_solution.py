@@ -98,16 +98,18 @@ def test_reverse_int(test_input: int, expect: str):
     actual = solution.reverseInt(test_input)
     assert actual == expect
 
+
 @pytest.mark.parametrize(
     "test_input, expect",
     [
-        ([[1,3],[2,6],[8,10],[15,18]], [[1,6],[8,10],[15,18]]),
-        ([[1,4],[4,5]], [[1,5]]),
+        ([[1, 3], [2, 6], [8, 10], [15, 18]], [[1, 6], [8, 10], [15, 18]]),
+        ([[1, 4], [4, 5]], [[1, 5]]),
     ],
 )
 def test_merge(test_input: List[List[int]], expect: List[List[int]]):
     actual = solution.merge(test_input)
     assert expect == actual
+
 
 @pytest.mark.parametrize(
     "test_input, target, expect",
@@ -262,6 +264,7 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
     actual = solution.sortedSquares(test_input)
     assert actual == expect
 
+
 @pytest.mark.parametrize(
     "test_input, expect",
     [
@@ -343,3 +346,41 @@ def test_plates_between_candles(
 ):
     actual = solution.platesBetweenCandles(test_input, queries)
     assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        (
+                [
+                    [1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9]
+                ],
+                [
+                    [7, 4, 1],
+                    [8, 5, 2],
+                    [9, 6, 3]
+                ]
+        ),
+        (
+                [
+                    [5, 1, 9, 11],
+                    [2, 4, 8, 10],
+                    [13, 3, 6, 7],
+                    [15, 14, 12, 16]
+                ],
+                [
+                    [15, 13, 2, 5],
+                    [14, 3, 4, 1],
+                    [12, 6, 8, 9],
+                    [16, 7, 10, 11]
+                ]
+        )
+    ],
+)
+def test_rotate(
+        test_input: List[List[int]], expect: List[List[int]]
+):
+    solution.rotate_matrix(test_input)
+    assert test_input == expect
