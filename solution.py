@@ -88,7 +88,7 @@ class Solution:
         4 Median of Two Sorted Arrays
         """
 
-        def getKthElement(k):
+        def getKthElement(k) -> None:
             index1, index2 = 0, 0
             while True:
                 if index1 == m:
@@ -241,6 +241,26 @@ class Solution:
             else:
                 merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
+
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        73 矩阵置零
+        """
+        rows, cols = len(matrix), len(matrix[0])
+        col0 = 1
+        for i in range(0, rows):
+            if matrix[i][0] == 0:
+                col0 = 0
+            for j in range(1, cols):
+                if matrix[i][j] == 0:
+                    matrix[i][0] = matrix[0][j] = 0
+        for i in range(rows-1, -1, -1):
+            for j in range(cols-1, 0, -1):
+                if matrix[i][0] == 0 or matrix[0][j] == 0:
+                    matrix[i][j] = 0
+            if col0 == 0:
+                matrix[i][0] = 0
+
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         """
@@ -424,7 +444,7 @@ class Solution:
         for i in range(0, len(data)):
             if n > 0:
                 if data[i] >> 6 != 2:
-                    return False;
+                    return False
                 n -= 1
             elif data[i] >> 7 == 0:
                 n = 0
@@ -455,7 +475,7 @@ class Solution:
         ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
         ipv6_chunk = r"([0-9a-fA-F]{1,4})"
         ipv4_pattern = re.compile(r"^(" + ipv4_chunk + r"\.){3}" + ipv4_chunk + r"$")
-        ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r"\:){7}" + ipv6_chunk + r"$")
+        ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r":){7}" + ipv6_chunk + r"$")
         if "." in IP:
             return "IPv4" if ipv4_pattern.match(IP) else "Neither"
         if ":" in IP:
@@ -497,7 +517,7 @@ class Solution:
         547 Number of Provinces
         """
 
-        def dfs(i: int):
+        def dfs(i: int) -> None:
             for j in range(provinces):
                 if isConnected[i][j] == 1 and j not in visited:
                     visited.add(j)
@@ -529,7 +549,7 @@ class Solution:
         """
         ans = []
 
-        def dfs(node: Node):
+        def dfs(node: Node) -> None:
             if node is None:
                 return None
             ans.append(node.val)
