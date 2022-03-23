@@ -122,6 +122,7 @@ def test_set_zeroes(test_input: List[List[int]], expect: List[List[int]]):
     solution.setZeroes(test_input)
     assert expect == test_input
 
+
 @pytest.mark.parametrize(
     "test_input, target, expect",
     [
@@ -210,6 +211,16 @@ def test_valid_utf8(test_input: List[int], expect: bool):
 def test_count_segment(test_input: str, expect: int):
     actual = solution.countSegment(test_input)
     assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 4, 7, 5, 3, 6, 8, 9]),
+     ([[1, 2], [3, 4]], [1, 2, 3, 4])]
+)
+def test_find_diagonal_order(test_input: List[List[int]], expect: List[int]):
+    actual = solution.findDiagonalOrder(test_input)
+    assert actual == expect
 
 
 @pytest.mark.parametrize("test_input, expect", [(100, "202"), (-7, "-10")])

@@ -482,6 +482,36 @@ class Solution:
             return "IPv6" if ipv6_pattern.match(IP) else "Neither"
         return "Neither"
 
+    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
+        """
+        498 对角线遍历
+        """
+        if matrix is None or len(matrix) == 0:
+            return []
+        N, M = len(matrix), len(matrix[0])
+        row = col = 0
+        direction = 1
+        res = [0]*N*M
+        r = 0
+        while row < N and col < M:
+            res[r] = matrix[row][col]
+            r += 1
+            new_row = row + (-1 if direction == 1 else 1)
+            new_col = col + (1 if direction == 1 else -1)
+            if new_row < 0 or new_row == N or new_col < 0 or new_col == M:
+                if direction == 1:
+                    row += (1 if col == M - 1 else 0)
+                    col += (1 if col < M - 1 else 0)
+                else:
+                    col += (1 if row == N - 1 else 0)
+                    row += (1 if row < N - 1 else 0)
+                direction = 1 - direction
+            else:
+                row = new_row
+                col = new_col
+        return res
+
+
     def convertToBase7(self, num: int) -> str:
         """
         504 七进制数
