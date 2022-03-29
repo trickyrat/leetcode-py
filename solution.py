@@ -394,6 +394,22 @@ class Solution:
                 left += 1
             right += 1
 
+    def findDuplicate(self, nums: List[int]) -> int:
+        """
+        287 寻找重复数
+        """
+        slow = fast = 0
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        slow = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
+
     def search_v1(self, nums: List[int], target: int) -> int:
         left = 0
         right = len(nums) - 1

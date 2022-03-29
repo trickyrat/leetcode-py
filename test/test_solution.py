@@ -192,6 +192,14 @@ def test_move_zeroes(test_input: List[int], expect: List[int]):
     solution.moveZeroes(test_input)
     assert test_input == expect
 
+@pytest.mark.parametrize(
+    "test_input, expect", [([1,3,4,2,2], 2), ([3,1,3,4,2], 3)]
+)
+def test_find_duplicate(test_input: List[int], expect: int):
+    actual = solution.findDuplicate(test_input)
+    assert expect == actual
+
+
 
 @pytest.mark.parametrize(
     "test_input, expect", [([1, 9], 10), ([-1, 9], 8), ([1, 2], 3)]
