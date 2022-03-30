@@ -2,7 +2,7 @@ from math import inf
 from typing import List
 import re
 
-from collections import Counter
+from collections import Counter, deque
 
 
 class ListNode:
@@ -254,13 +254,12 @@ class Solution:
             for j in range(1, cols):
                 if matrix[i][j] == 0:
                     matrix[i][0] = matrix[0][j] = 0
-        for i in range(rows-1, -1, -1):
-            for j in range(cols-1, 0, -1):
+        for i in range(rows - 1, -1, -1):
+            for j in range(cols - 1, 0, -1):
                 if matrix[i][0] == 0 or matrix[0][j] == 0:
                     matrix[i][j] = 0
             if col0 == 0:
                 matrix[i][0] = 0
-
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         """
@@ -280,6 +279,23 @@ class Solution:
             else:
                 return True
         return False
+
+    def minDepth(self, root: TreeNode) -> int:
+        """
+        111 二叉树的最小深度
+        """
+        if not root:
+            return 0
+        q = deque([(root, 1)])
+        while q:
+            curr, depth = q.popleft()
+            if not curr.left and not curr.right:
+                return depth
+            if curr.left:
+                q.append((curr.left, depth + 1))
+            if curr.right:
+                q.append((curr.right, depth + 1))
+        return 0
 
     def pathSum(self, root: TreeNode, targetNum: int) -> List[List[int]]:
         """
@@ -507,7 +523,7 @@ class Solution:
         N, M = len(matrix), len(matrix[0])
         row = col = 0
         direction = 1
-        res = [0]*N*M
+        res = [0] * N * M
         r = 0
         while row < N and col < M:
             res[r] = matrix[row][col]
@@ -526,7 +542,6 @@ class Solution:
                 row = new_row
                 col = new_col
         return res
-
 
     def convertToBase7(self, num: int) -> str:
         """
@@ -637,7 +652,6 @@ class Solution:
                 elif i + j == indexSum:
                     ans.append(s)
         return ans
-
 
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "
@@ -787,6 +801,7 @@ class Solution:
         2044 统计按位或能得到最大值的子集数目
         """
         maxOr, cnt = 0, 0
+
         def dfs(pos: int, orVal: int) -> None:
             if pos == len(nums):
                 nonlocal maxOr, cnt
@@ -797,6 +812,7 @@ class Solution:
                 return
             dfs(pos + 1, orVal | nums[pos])
             dfs(pos + 1, orVal)
+
         dfs(0, 0)
         return cnt
 

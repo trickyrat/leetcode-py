@@ -42,15 +42,18 @@ def create_treenode_with_bfs(data: str) -> Optional[TreeNode]:
     index = 1
     while index < n:
         node = q.get()
-        left_val, right_val = nums[index], nums[index + 1]
-        if left_val != "null":
-            left_node = TreeNode(int(left_val))
-            if left_node is not None:
+        if index > len(nums) - 1 or nums[index] == "null":
+            node.left = None
+        else:
+            left_node = TreeNode(int(nums[index]))
+            if left_node:
                 node.left = left_node
             q.put(left_node)
-        if right_val != "null":
-            right_node = TreeNode(int(right_val))
-            if right_node is not None:
+        if index + 1 > len(nums) - 1 or nums[index+1] == "null":
+            node.right = None
+        else:
+            right_node = TreeNode(int(nums[index+1]))
+            if right_node:
                 node.right = right_node
             q.put(right_node)
         index += 2

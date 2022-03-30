@@ -149,6 +149,18 @@ def test_search_matrix(matrix: List[List[int]], target: int, expect: bool):
 
 
 @pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        (create_treenode_with_bfs("3,9,20,null,null,15,7"), 2),
+        (create_treenode_with_bfs("2,null,3,null,4,null,5,null,6"), 5),
+    ],
+)
+def test_min_depth(test_input: TreeNode, expect: int):
+    actual = solution.minDepth(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
     "test_input, target_num, expect",
     [
         (
@@ -192,13 +204,13 @@ def test_move_zeroes(test_input: List[int], expect: List[int]):
     solution.moveZeroes(test_input)
     assert test_input == expect
 
+
 @pytest.mark.parametrize(
-    "test_input, expect", [([1,3,4,2,2], 2), ([3,1,3,4,2], 3)]
+    "test_input, expect", [([1, 3, 4, 2, 2], 2), ([3, 1, 3, 4, 2], 3)]
 )
 def test_find_duplicate(test_input: List[int], expect: int):
     actual = solution.findDuplicate(test_input)
     assert expect == actual
-
 
 
 @pytest.mark.parametrize(
