@@ -653,6 +653,19 @@ class Solution:
                     ans.append(s)
         return ans
 
+    def selfDividingNumber(self, left: int, right: int) -> List[int]:
+        """
+        728 自除数
+        """
+        def isSelfDividing(num: int) -> bool:
+            x = num
+            while x:
+                x, d = divmod(x, 10)
+                if d == 0 or num % d:
+                    return False
+            return True
+        return [i for i in range(left, right + 1) if isSelfDividing(i)]
+
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "
         844 Backspace String Compare

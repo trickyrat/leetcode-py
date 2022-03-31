@@ -287,6 +287,15 @@ def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
 
 
 @pytest.mark.parametrize(
+    "left, right, expect",
+    [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
+)
+def test_self_dividing_number(left: int, right: int, expect: List[int]):
+    actual = solution.selfDividingNumber(left, right)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expect",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )
