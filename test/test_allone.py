@@ -1,5 +1,5 @@
 import pytest
-from allOne import AllOne
+from AllOne import AllOne
 
 
 def test_all_one():

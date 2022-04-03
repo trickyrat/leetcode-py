@@ -1,35 +1,13 @@
+from bisect import bisect_right
 from math import inf
 from typing import List
 import re
 
 from collections import Counter, deque
 
-
-class ListNode:
-    """
-    Definition fro singly-linked list.
-    """
-
-    def __init__(self, val=0, next=None) -> None:
-        self.val = val
-        self.next = next
-
-
-class Node:
-    def __init__(self, val=None, children=None):
-        self.val = val
-        self.children = children
-
-
-class TreeNode:
-    """
-    Definition for a binary tree node.
-    """
-
-    def __init__(self, val=0, left=None, right=None) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+from ListNode import ListNode
+from TreeNode import TreeNode
+from Node import Node
 
 
 class Solution:
@@ -665,6 +643,12 @@ class Solution:
                     return False
             return True
         return [i for i in range(left, right + 1) if isSelfDividing(i)]
+
+    def nextGreatestLetter(self,  letters: List[str], target: str) -> str:
+        """
+        744.寻找比目标字母大的最小字母
+        """
+        return letters[bisect_right(letters, target)] if target < letters[-1] else letters[0]
 
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "

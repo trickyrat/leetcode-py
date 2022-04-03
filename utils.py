@@ -1,4 +1,5 @@
-from solution import ListNode, TreeNode
+from ListNode import ListNode
+from TreeNode import TreeNode
 from typing import List, Optional
 import queue
 
@@ -49,10 +50,10 @@ def create_treenode_with_bfs(data: str) -> Optional[TreeNode]:
             if left_node:
                 node.left = left_node
             q.put(left_node)
-        if index + 1 > len(nums) - 1 or nums[index+1] == "null":
+        if index + 1 > len(nums) - 1 or nums[index + 1] == "null":
             node.right = None
         else:
-            right_node = TreeNode(int(nums[index+1]))
+            right_node = TreeNode(int(nums[index + 1]))
             if right_node:
                 node.right = right_node
             q.put(right_node)

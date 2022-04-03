@@ -296,6 +296,15 @@ def test_self_dividing_number(left: int, right: int, expect: List[int]):
 
 
 @pytest.mark.parametrize(
+    "letters, target, expect",
+    [(["c", "f", "j"], "a", "c"), (["c", "f", "j"], "c", "f"), (["c", "f", "j"], "d", "f")],
+)
+def test_next_greatest_letter(letters: List[str], target: str, expect: str):
+    actual = solution.nextGreatestLetter(letters, target)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expect",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )
