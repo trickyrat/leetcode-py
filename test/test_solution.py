@@ -212,6 +212,12 @@ def test_find_duplicate(test_input: List[int], expect: int):
     actual = solution.findDuplicate(test_input)
     assert expect == actual
 
+@pytest.mark.parametrize(
+    "test_input, expect", [(2, 91), (0, 1)]
+)
+def test_count_numbers_with_unique_digits(test_input: int, expect: int):
+    actual = solution.countNumbersWithUniqueDigits(test_input)
+    assert expect == actual
 
 @pytest.mark.parametrize(
     "test_input, expect", [([1, 9], 10), ([-1, 9], 8), ([1, 2], 3)]

@@ -430,6 +430,20 @@ class Solution:
                 return mid
         return -1
 
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        """
+        357 统计各位数字都不同的数字个数
+        """
+        if n == 0:
+            return 1
+        if n == 1:
+            return 10
+        res, cur = 10, 9
+        for i in range(n-1):
+            cur *= 9 - i
+            res += cur
+        return res
+
     def getSum(self, a: int, b: int) -> int:
         """
         371.Sum of Two Integers
