@@ -305,6 +305,15 @@ def test_next_greatest_letter(letters: List[str], target: str, expect: str):
 
 
 @pytest.mark.parametrize(
+    "words, expect",
+    [(["gin", "zen", "gig", "msg"], 2), (["a"], 1)],
+)
+def test_unique_morse_representations(words: List[str], expect: int):
+    actual = solution.uniqueMorseRepresentations(words)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expect",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )

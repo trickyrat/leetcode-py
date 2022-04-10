@@ -650,6 +650,16 @@ class Solution:
         """
         return letters[bisect_right(letters, target)] if target < letters[-1] else letters[0]
 
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        """
+        804. 唯一摩尔斯密码词
+        """
+        morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+         "....", "..", ".---", "-.-", ".-..", "--", "-.",
+         "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+         "...-", ".--", "-..-", "-.--", "--.."]
+        return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
+
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "
         844 Backspace String Compare
