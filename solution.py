@@ -674,6 +674,20 @@ class Solution:
          "...-", ".--", "-..-", "-.--", "--.."]
         return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
 
+    def numberOfLines(self, widths: List[int], s: str) -> List[int]:
+        """
+        806 写字符串需要的行数
+        """
+        MAX_WIDTH = 100
+        lines, width = 1, 0
+        for c in s:
+            need = widths[ord(c) - ord('a')]
+            width += need
+            if width > 100:
+                width = need
+                lines += 1
+        return [lines, width]
+
     def backspaceCompare(self, s: str, t: str) -> bool:
         """ "
         844 Backspace String Compare

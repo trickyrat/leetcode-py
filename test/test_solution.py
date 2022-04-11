@@ -318,6 +318,17 @@ def test_unique_morse_representations(words: List[str], expect: int):
     actual = solution.uniqueMorseRepresentations(words)
     assert expect == actual
 
+@pytest.mark.parametrize(
+    "widths, s, expect",
+    [([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+      "abcdefghijklmnopqrstuvwxyz",
+      [3, 60]), (
+     [4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+     "bbbcccdddaaa", [2, 4])],
+)
+def test_number_of_lines(widths: List[int], s: str, expect: List[int]):
+    actual = solution.numberOfLines(widths, s)
+    assert expect == actual
 
 @pytest.mark.parametrize(
     "test_input, expect",
