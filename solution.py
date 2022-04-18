@@ -460,6 +460,22 @@ class Solution:
         else:
             return a
 
+    def lexicalOrder(self, n: int) -> List[int]:
+        """
+        386. 字典序排数
+        """
+        ret = [0]*n
+        num = 1
+        for i in range(n):
+            ret[i] = num
+            if num * 10 <= n:
+                num *= 10
+            else:
+                while num % 10 == 9 or num + 1 > n:
+                    num //= 10
+                num += 1
+        return ret
+
     def validUtf8(self, data: List[int]) -> bool:
         """
         393 UTF-8编码验证

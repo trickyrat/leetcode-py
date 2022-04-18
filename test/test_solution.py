@@ -212,6 +212,7 @@ def test_find_duplicate(test_input: List[int], expect: int):
     actual = solution.findDuplicate(test_input)
     assert expect == actual
 
+
 @pytest.mark.parametrize(
     "test_input, expect", [(2, 91), (0, 1)]
 )
@@ -219,11 +220,20 @@ def test_count_numbers_with_unique_digits(test_input: int, expect: int):
     actual = solution.countNumbersWithUniqueDigits(test_input)
     assert expect == actual
 
+
 @pytest.mark.parametrize(
     "test_input, expect", [([1, 9], 10), ([-1, 9], 8), ([1, 2], 3)]
 )
 def test_get_sum(test_input: List[int], expect: int):
     actual = solution.getSum(test_input[0], test_input[1])
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, expect", [(13, [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]), (2, [1, 2])]
+)
+def test_lexical_order(test_input: int, expect: List[int]):
+    actual = solution.lexicalOrder(test_input)
     assert expect == actual
 
 
@@ -318,17 +328,19 @@ def test_unique_morse_representations(words: List[str], expect: int):
     actual = solution.uniqueMorseRepresentations(words)
     assert expect == actual
 
+
 @pytest.mark.parametrize(
     "widths, s, expect",
     [([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
       "abcdefghijklmnopqrstuvwxyz",
       [3, 60]), (
-     [4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-     "bbbcccdddaaa", [2, 4])],
+             [4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+             "bbbcccdddaaa", [2, 4])],
 )
 def test_number_of_lines(widths: List[int], s: str, expect: List[int]):
     actual = solution.numberOfLines(widths, s)
     assert expect == actual
+
 
 @pytest.mark.parametrize(
     "test_input, expect",
