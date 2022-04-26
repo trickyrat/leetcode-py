@@ -750,6 +750,16 @@ class Solution:
             fast = fast.next.next
         return slow
 
+    def projectionArea(self, grid: List[List[int]]) -> int:
+        """
+        883. 三维形体投影面积
+        """
+        xyArea = sum(v > 0 for row in grid for v in row)
+        yzArea = sum(map(max, zip(*grid)))
+        zxArea = sum(map(max, grid))
+        return xyArea + yzArea + zxArea
+
+
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
         977 Squares of a Sorted Array

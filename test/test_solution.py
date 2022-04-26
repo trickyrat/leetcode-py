@@ -353,6 +353,15 @@ def test_middle_node(test_input: List[int], expect: List[int]):
 
 @pytest.mark.parametrize(
     "test_input, expect",
+    [([[1, 2], [3, 4]], 17), ([[2]], 5), ([[1, 0], [0, 2]], 8)],
+)
+def test_projection_area(test_input: List[List[int]], expect: int):
+    actual = solution.projectionArea(test_input)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
     [
         ([-4, -1, 0, 3, 10], [0, 1, 9, 16, 100]),
         ([-7, -3, 2, 3, 11], [4, 9, 9, 49, 121]),
