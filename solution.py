@@ -759,6 +759,21 @@ class Solution:
         zxArea = sum(map(max, grid))
         return xyArea + yzArea + zxArea
 
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        """
+        905. 按奇偶排序数组
+        """
+        left, right = 0, len(nums) - 1
+        while left < right:
+            while left < right and nums[left] % 2 == 0:
+                left += 1
+            while left < right and nums[right] % 2 == 1:
+                right -= 1
+            if left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+        return nums
 
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
@@ -820,6 +835,15 @@ class Solution:
                         arr[i] = ch
                         break
         return "".join(arr)
+
+    def findTheWinner(self, n: int, k: int) -> int:
+        """
+        1823. Find the Winner of the Circular Game
+        """
+        winner = 1
+        for i in range(2, n+1):
+            winner = (winner + k - 1) % i + 1
+        return winner
 
     def pivotIndex(self, nums: List[int]) -> int:
         """
