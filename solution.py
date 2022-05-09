@@ -439,7 +439,7 @@ class Solution:
         if n == 1:
             return 10
         res, cur = 10, 9
-        for i in range(n-1):
+        for i in range(n - 1):
             cur *= 9 - i
             res += cur
         return res
@@ -464,7 +464,7 @@ class Solution:
         """
         386. 字典序排数
         """
-        ret = [0]*n
+        ret = [0] * n
         num = 1
         for i in range(n):
             ret[i] = num
@@ -665,6 +665,7 @@ class Solution:
         """
         728 自除数
         """
+
         def isSelfDividing(num: int) -> bool:
             x = num
             while x:
@@ -672,9 +673,10 @@ class Solution:
                 if d == 0 or num % d:
                     return False
             return True
+
         return [i for i in range(left, right + 1) if isSelfDividing(i)]
 
-    def nextGreatestLetter(self,  letters: List[str], target: str) -> str:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         """
         744.寻找比目标字母大的最小字母
         """
@@ -685,9 +687,9 @@ class Solution:
         804. 唯一摩尔斯密码词
         """
         morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-         "....", "..", ".---", "-.-", ".-..", "--", "-.",
-         "---", ".--.", "--.-", ".-.", "...", "-", "..-",
-         "...-", ".--", "-..-", "-.--", "--.."]
+                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                 "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+                 "...-", ".--", "-..-", "-.--", "--.."]
         return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
 
     def numberOfLines(self, widths: List[int], s: str) -> List[int]:
@@ -761,7 +763,7 @@ class Solution:
 
     def sortArrayByParity(self, nums: List[int]) -> List[int]:
         """
-        905. 按奇偶排序数组
+        905. Sort Array By Parity
         """
         left, right = 0, len(nums) - 1
         while left < right:
@@ -774,6 +776,23 @@ class Solution:
                 left += 1
                 right -= 1
         return nums
+
+    def diStringMatch(self, s: str) -> List[int]:
+        """
+        942. DI String Match
+        """
+        n = len(s)
+        lo, hi = 0, n
+        perm = [0] * (n + 1)
+        for i, ch in enumerate(s):
+            if ch == 'I':
+                perm[i] = lo
+                lo += 1
+            else:
+                perm[i] = hi
+                hi -= 1
+        perm[n + 1] = lo
+        return perm
 
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
@@ -841,7 +860,7 @@ class Solution:
         1823. Find the Winner of the Circular Game
         """
         winner = 1
-        for i in range(2, n+1):
+        for i in range(2, n + 1):
             winner = (winner + k - 1) % i + 1
         return winner
 

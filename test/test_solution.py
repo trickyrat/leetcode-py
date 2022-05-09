@@ -384,6 +384,7 @@ def test_min_remove_to_make_valid(test_input: str, expect: str):
     actual = solution.minRemoveToMakeValid(test_input)
     assert expect == actual
 
+
 @pytest.mark.parametrize(
     "n, k, expect",
     [
@@ -394,6 +395,7 @@ def test_min_remove_to_make_valid(test_input: str, expect: str):
 def test_find_the_winner(n: int, k: int, expect: int):
     actual = solution.findTheWinner(n, k)
     assert expect == actual
+
 
 @pytest.mark.parametrize(
     "test_input, expect",
@@ -433,6 +435,7 @@ def test_maximum_difference(test_input: List[int], expect: int):
     actual = solution.maximumDifference(test_input)
     assert actual == expect
 
+
 @pytest.mark.parametrize(
     "test_input, expect",
     [
@@ -443,6 +446,20 @@ def test_maximum_difference(test_input: List[int], expect: int):
 def test_sort_array_by_parity(test_input: List[int], expect: List[int]):
     actual = solution.sortArrayByParity(test_input)
     assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "s, expect",
+    [
+        ("IDID", [0, 4, 1, 3, 2]),
+        ("III", [0, 1, 2, 3]),
+        ("DDI", [3, 2, 0, 1]),
+    ],
+)
+def test_count_max_or_subsets(s: str, expect: List[int]):
+    actual = solution.diStringMatch(s)
+    assert actual == expect
+
 
 @pytest.mark.parametrize(
     "test_input, expect",
