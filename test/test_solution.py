@@ -456,8 +456,21 @@ def test_sort_array_by_parity(test_input: List[int], expect: List[int]):
         ("DDI", [3, 2, 0, 1]),
     ],
 )
-def test_count_max_or_subsets(s: str, expect: List[int]):
+def test_di_string_match(s: str, expect: List[int]):
     actual = solution.diStringMatch(s)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "strs, expect",
+    [
+        (["cba", "daf", "ghi"], 1),
+        (["a", "b"], 0),
+        (["zyx", "wvu", "tsr"], 3),
+    ],
+)
+def test_min_deletion_size(strs: List[str], expect: int):
+    actual = solution.minDeletionSize(strs)
     assert actual == expect
 
 

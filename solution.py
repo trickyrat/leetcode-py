@@ -1,4 +1,5 @@
 from bisect import bisect_right
+from itertools import pairwise
 from math import inf
 from typing import List
 import re
@@ -791,8 +792,14 @@ class Solution:
             else:
                 perm[i] = hi
                 hi -= 1
-        perm[n + 1] = lo
+        perm[n] = lo
         return perm
+
+    def minDeletionSize(self, strs:List[str]) -> int:
+        """
+        944. Delete Columns to Make Sorted
+        """
+        return sum(any(x > y for x,y in pairwise(col)) for col in zip(*strs))
 
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
