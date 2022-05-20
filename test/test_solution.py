@@ -475,6 +475,19 @@ def test_min_deletion_size(strs: List[str], expect: int):
 
 
 @pytest.mark.parametrize(
+    "nums, expect",
+    [
+        ([1, 2, 3, 3], 3),
+        ([2, 1, 2, 5, 3, 2], 2),
+        ([5, 1, 5, 2, 5, 3, 5, 4], 5),
+    ],
+)
+def test_repeated_n_times(nums: List[int], expect: int):
+    actual = solution.repeatedNTimes(nums)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
     "test_input, expect",
     [
         ([3, 1], 2),
