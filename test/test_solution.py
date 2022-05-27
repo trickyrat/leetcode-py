@@ -249,6 +249,12 @@ def test_count_segment(test_input: str, expect: int):
     assert expect == actual
 
 
+@pytest.mark.parametrize("p, expect", [("a", 1), ("cac", 2), ("zab", 6)])
+def test_find_substring_wraparound_string(p: str, expect: int):
+    actual = solution.findSubstringWraparoundString(p)
+    assert expect == actual
+
+
 @pytest.mark.parametrize(
     "test_input, expect",
     [([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 4, 7, 5, 3, 6, 8, 9]),

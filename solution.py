@@ -4,7 +4,7 @@ from math import inf
 from typing import List
 import re
 
-from collections import Counter, deque
+from collections import Counter, deque, defaultdict
 
 from ListNode import ListNode
 from TreeNode import TreeNode
@@ -508,6 +508,20 @@ class Solution:
             if (i == 0 or s[i - 1] == " ") and s[i] != " ":
                 segmentCount += 1
         return segmentCount
+
+    def findSubstringWraparoundString(self, p: str) -> int:
+        """
+        467. Unique Substrings in Wraparound String
+        """
+        dp = defaultdict(int)
+        k = 0
+        for i, ch in enumerate(p):
+            if i > 0 and (ord(ch) - ord(p[i - 1])) % 26 == 1:
+                k += 1
+            else:
+                k = 1
+            dp[ch] = max(dp[ch], k)
+        return sum(dp.values())
 
     def validIpAddress(self, IP: str) -> str:
         """
