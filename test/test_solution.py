@@ -381,6 +381,18 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
 @pytest.mark.parametrize(
     "test_input, expect",
     [
+        ([3, 5, 1], True),
+        ([1, 2, 4], False),
+    ],
+)
+def test_canMakeArithmeticProgression(test_input: List[int], expect: bool):
+    actual = solution.canMakeArithmeticProgression(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
         ("lee(t(c)o)de)", "lee(t(c)o)de"),
         ("a)b(c)d", "ab(c)d"),
         ("))((", ""),

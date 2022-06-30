@@ -843,6 +843,16 @@ class Solution:
             pos -= 1
         return ans
 
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        """
+        1502 Can Make Arithmetic Progression From Sequence
+        """
+        arr.sort()
+        for i in range(1, len(arr) - 1):
+            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
+                return False
+        return True
+
     def minRemoveToMakeValid(self, s: str) -> str:
         """
         1249 移除无效括号
