@@ -1,9 +1,10 @@
+from itertools import pairwise
 from bisect import bisect_right
 from math import inf
 from typing import List
 import re
 
-from collections import Counter, deque
+from collections import Counter, deque, defaultdict
 
 from ListNode import ListNode
 from TreeNode import TreeNode
@@ -439,7 +440,7 @@ class Solution:
         if n == 1:
             return 10
         res, cur = 10, 9
-        for i in range(n-1):
+        for i in range(n - 1):
             cur *= 9 - i
             res += cur
         return res
@@ -464,7 +465,7 @@ class Solution:
         """
         386. 字典序排数
         """
-        ret = [0]*n
+        ret = [0] * n
         num = 1
         for i in range(n):
             ret[i] = num
@@ -507,6 +508,20 @@ class Solution:
             if (i == 0 or s[i - 1] == " ") and s[i] != " ":
                 segmentCount += 1
         return segmentCount
+
+    def findSubstringWraparoundString(self, p: str) -> int:
+        """
+        467. Unique Substrings in Wraparound String
+        """
+        dp = defaultdict(int)
+        k = 0
+        for i, ch in enumerate(p):
+            if i > 0 and (ord(ch) - ord(p[i - 1])) % 26 == 1:
+                k += 1
+            else:
+                k = 1
+            dp[ch] = max(dp[ch], k)
+        return sum(dp.values())
 
     def validIpAddress(self, IP: str) -> str:
         """
@@ -665,6 +680,7 @@ class Solution:
         """
         728 自除数
         """
+
         def isSelfDividing(num: int) -> bool:
             x = num
             while x:
@@ -672,9 +688,10 @@ class Solution:
                 if d == 0 or num % d:
                     return False
             return True
+
         return [i for i in range(left, right + 1) if isSelfDividing(i)]
 
-    def nextGreatestLetter(self,  letters: List[str], target: str) -> str:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         """
         744.寻找比目标字母大的最小字母
         """
@@ -685,9 +702,9 @@ class Solution:
         804. 唯一摩尔斯密码词
         """
         morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-         "....", "..", ".---", "-.-", ".-..", "--", "-.",
-         "---", ".--.", "--.-", ".-.", "...", "-", "..-",
-         "...-", ".--", "-..-", "-.--", "--.."]
+                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                 "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+                 "...-", ".--", "-..-", "-.--", "--.."]
         return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
 
     def numberOfLines(self, widths: List[int], s: str) -> List[int]:
@@ -750,6 +767,65 @@ class Solution:
             fast = fast.next.next
         return slow
 
+    def projectionArea(self, grid: List[List[int]]) -> int:
+        """
+        883. 三维形体投影面积
+        """
+        xyArea = sum(v > 0 for row in grid for v in row)
+        yzArea = sum(map(max, zip(*grid)))
+        zxArea = sum(map(max, grid))
+        return xyArea + yzArea + zxArea
+
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        """
+        905. Sort Array By Parity
+        """
+        left, right = 0, len(nums) - 1
+        while left < right:
+            while left < right and nums[left] % 2 == 0:
+                left += 1
+            while left < right and nums[right] % 2 == 1:
+                right -= 1
+            if left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+        return nums
+
+    def diStringMatch(self, s: str) -> List[int]:
+        """
+        942. DI String Match
+        """
+        n = len(s)
+        lo, hi = 0, n
+        perm = [0] * (n + 1)
+        for i, ch in enumerate(s):
+            if ch == 'I':
+                perm[i] = lo
+                lo += 1
+            else:
+                perm[i] = hi
+                hi -= 1
+        perm[n] = lo
+        return perm
+
+    def minDeletionSize(self, strs: List[str]) -> int:
+        """
+        944. Delete Columns to Make Sorted
+        """
+        return sum(any(x > y for x, y in pairwise(col)) for col in zip(*strs))
+
+    def repeatedNTimes(self, nums: List[int]) -> int:
+        """
+        961. N-Repeated Element in Size 2N Array
+        """
+        found = set()
+        for num in nums:
+            if num in found:
+                return num
+            found.add(num)
+        return -1
+
     def sortedSquares(self, nums: List[int]) -> List[int]:
         """
         977 Squares of a Sorted Array
@@ -766,6 +842,16 @@ class Solution:
                 j -= 1
             pos -= 1
         return ans
+
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        """
+        1502 Can Make Arithmetic Progression From Sequence
+        """
+        arr.sort()
+        for i in range(1, len(arr) - 1):
+            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
+                return False
+        return True
 
     def minRemoveToMakeValid(self, s: str) -> str:
         """
@@ -810,6 +896,15 @@ class Solution:
                         arr[i] = ch
                         break
         return "".join(arr)
+
+    def findTheWinner(self, n: int, k: int) -> int:
+        """
+        1823. Find the Winner of the Circular Game
+        """
+        winner = 1
+        for i in range(2, n + 1):
+            winner = (winner + k - 1) % i + 1
+        return winner
 
     def pivotIndex(self, nums: List[int]) -> int:
         """

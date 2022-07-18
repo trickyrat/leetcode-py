@@ -249,6 +249,12 @@ def test_count_segment(test_input: str, expect: int):
     assert expect == actual
 
 
+@pytest.mark.parametrize("p, expect", [("a", 1), ("cac", 2), ("zab", 6)])
+def test_find_substring_wraparound_string(p: str, expect: int):
+    actual = solution.findSubstringWraparoundString(p)
+    assert expect == actual
+
+
 @pytest.mark.parametrize(
     "test_input, expect",
     [([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 2, 4, 7, 5, 3, 6, 8, 9]),
@@ -353,6 +359,15 @@ def test_middle_node(test_input: List[int], expect: List[int]):
 
 @pytest.mark.parametrize(
     "test_input, expect",
+    [([[1, 2], [3, 4]], 17), ([[2]], 5), ([[1, 0], [0, 2]], 8)],
+)
+def test_projection_area(test_input: List[List[int]], expect: int):
+    actual = solution.projectionArea(test_input)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
     [
         ([-4, -1, 0, 3, 10], [0, 1, 9, 16, 100]),
         ([-7, -3, 2, 3, 11], [4, 9, 9, 49, 121]),
@@ -366,6 +381,18 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
 @pytest.mark.parametrize(
     "test_input, expect",
     [
+        ([3, 5, 1], True),
+        ([1, 2, 4], False),
+    ],
+)
+def test_canMakeArithmeticProgression(test_input: List[int], expect: bool):
+    actual = solution.canMakeArithmeticProgression(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
         ("lee(t(c)o)de)", "lee(t(c)o)de"),
         ("a)b(c)d", "ab(c)d"),
         ("))((", ""),
@@ -373,6 +400,18 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
 )
 def test_min_remove_to_make_valid(test_input: str, expect: str):
     actual = solution.minRemoveToMakeValid(test_input)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "n, k, expect",
+    [
+        (5, 2, 3),
+        (6, 5, 1),
+    ],
+)
+def test_find_the_winner(n: int, k: int, expect: int):
+    actual = solution.findTheWinner(n, k)
     assert expect == actual
 
 
@@ -412,6 +451,57 @@ def test_count_k_difference(test_input: List[int], k: int, expect: int):
 )
 def test_maximum_difference(test_input: List[int], expect: int):
     actual = solution.maximumDifference(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ([3, 1, 4, 2], [2, 4, 1, 3]),
+        ([0], [0]),
+    ],
+)
+def test_sort_array_by_parity(test_input: List[int], expect: List[int]):
+    actual = solution.sortArrayByParity(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "s, expect",
+    [
+        ("IDID", [0, 4, 1, 3, 2]),
+        ("III", [0, 1, 2, 3]),
+        ("DDI", [3, 2, 0, 1]),
+    ],
+)
+def test_di_string_match(s: str, expect: List[int]):
+    actual = solution.diStringMatch(s)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "strs, expect",
+    [
+        (["cba", "daf", "ghi"], 1),
+        (["a", "b"], 0),
+        (["zyx", "wvu", "tsr"], 3),
+    ],
+)
+def test_min_deletion_size(strs: List[str], expect: int):
+    actual = solution.minDeletionSize(strs)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "nums, expect",
+    [
+        ([1, 2, 3, 3], 3),
+        ([2, 1, 2, 5, 3, 2], 2),
+        ([5, 1, 5, 2, 5, 3, 5, 4], 5),
+    ],
+)
+def test_repeated_n_times(nums: List[int], expect: int):
+    actual = solution.repeatedNTimes(nums)
     assert actual == expect
 
 
