@@ -1,7 +1,7 @@
 import pytest
 
-from solution import Solution
-from utils import *
+from Solution import Solution
+from Utils import *
 
 solution = Solution()
 
@@ -375,6 +375,19 @@ def test_projection_area(test_input: List[List[int]], expect: int):
 )
 def test_sorted_squares(test_input: List[int], expect: List[int]):
     actual = solution.sortedSquares(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ([4, 3, 10, 9, 8], [10, 9]),
+        ([4, 4, 7, 6, 7], [7, 7, 6]),
+        ([6], [6]),
+    ],
+)
+def test_minSubsequence(test_input: List[int], expect: List[int]):
+    actual = solution.minSubsequence(test_input)
     assert actual == expect
 
 

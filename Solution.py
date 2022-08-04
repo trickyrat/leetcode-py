@@ -843,16 +843,6 @@ class Solution:
             pos -= 1
         return ans
 
-    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
-        """
-        1502 Can Make Arithmetic Progression From Sequence
-        """
-        arr.sort()
-        for i in range(1, len(arr) - 1):
-            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
-                return False
-        return True
-
     def minRemoveToMakeValid(self, s: str) -> str:
         """
         1249 移除无效括号
@@ -880,6 +870,27 @@ class Solution:
             res.append(c)
 
         return "".join(res)
+
+    def minSubsequence(self, nums: List[int]) -> List[int]:
+        """
+        1403 Minimum Subsequence in Non-Increasing Order
+        """
+        nums.sort(reverse=True)
+        total, curr = sum(nums), 0
+        for i, num in enumerate(nums):
+            curr += num
+            if total - curr < curr:
+                return nums[:i + 1]
+
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        """
+        1502 Can Make Arithmetic Progression From Sequence
+        """
+        arr.sort()
+        for i in range(1, len(arr) - 1):
+            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
+                return False
+        return True
 
     def modifyString(self, s: str) -> str:
         """
