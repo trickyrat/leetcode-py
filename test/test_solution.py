@@ -309,6 +309,18 @@ def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
 
 
 @pytest.mark.parametrize(
+    "root, val, depth, expect",
+    [(create_treenode_with_bfs("4,2,6,3,1,5"), 1, 2, create_treenode_with_bfs("4,1,1,2,null,null,6,3,1,5")),
+     (create_treenode_with_bfs("4,2,null,3,1"), 1, 3, create_treenode_with_bfs("4,2,null,1,1,3,null,null,1"))]
+)
+def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNode | None):
+    actual = solution.addOneRow(root, val, depth)
+    expect = preorder_traversal(expect)
+    actual = preorder_traversal(actual)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "left, right, expect",
     [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
 )
