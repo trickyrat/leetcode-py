@@ -1,4 +1,4 @@
-from randomizedSet import RandomizedSet
+from RandomizedSet import RandomizedSet
 
 def test_randomize_set():
     randomizedSet  = RandomizedSet()

@@ -1,6 +1,6 @@
 from random import randrange
 
-from solution import ListNode
+from Solution import ListNode
 from typing import Optional
 
 class RandomNode():

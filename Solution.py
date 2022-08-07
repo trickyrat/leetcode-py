@@ -1,7 +1,7 @@
 from itertools import pairwise
 from bisect import bisect_right
 from math import inf
-from typing import List
+from typing import List, Optional
 import re
 
 from collections import Counter, deque, defaultdict
@@ -676,6 +676,22 @@ class Solution:
                     ans.append(s)
         return ans
 
+    def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+        """
+        623 Add One Row to Tree
+        """
+        if root is None:
+            return
+        if depth == 1:
+            return TreeNode(val, root, None)
+        if depth == 2:
+            root.left = TreeNode(val, root.left, None)
+            root.right = TreeNode(val, None, root.right)
+        else:
+            root.left = self.addOneRow(root.left, val, depth - 1)
+            root.right = self.addOneRow(root.right, val, depth - 1)
+        return root
+
     def selfDividingNumber(self, left: int, right: int) -> List[int]:
         """
         728 自除数
@@ -843,16 +859,6 @@ class Solution:
             pos -= 1
         return ans
 
-    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
-        """
-        1502 Can Make Arithmetic Progression From Sequence
-        """
-        arr.sort()
-        for i in range(1, len(arr) - 1):
-            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
-                return False
-        return True
-
     def minRemoveToMakeValid(self, s: str) -> str:
         """
         1249 移除无效括号
@@ -880,6 +886,27 @@ class Solution:
             res.append(c)
 
         return "".join(res)
+
+    def minSubsequence(self, nums: List[int]) -> List[int]:
+        """
+        1403 Minimum Subsequence in Non-Increasing Order
+        """
+        nums.sort(reverse=True)
+        total, curr = sum(nums), 0
+        for i, num in enumerate(nums):
+            curr += num
+            if total - curr < curr:
+                return nums[:i + 1]
+
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        """
+        1502 Can Make Arithmetic Progression From Sequence
+        """
+        arr.sort()
+        for i in range(1, len(arr) - 1):
+            if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
+                return False
+        return True
 
     def modifyString(self, s: str) -> str:
         """
