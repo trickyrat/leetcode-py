@@ -898,6 +898,24 @@ class Solution:
             if total - curr < curr:
                 return nums[:i + 1]
 
+    def reformat(self, s: str) -> str:
+        """
+        1417 Reformat The String
+        """
+        sum_digit = sum(c.isdigit() for c in s)
+        sum_alpha = len(s) - sum_digit
+        if abs(sum_digit - sum_alpha) > 1:
+            return ""
+        flag = sum_digit > sum_alpha
+        t = list(s)
+        j = 1
+        for i in range(0, len(t), 2):
+            if t[i].isdigit() != flag:
+                while t[j].isdigit() != flag:
+                    j += 2
+                t[i], t[j] = t[j], t[i]
+        return "".join(t)
+
     def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
         """
         1502 Can Make Arithmetic Progression From Sequence

@@ -406,6 +406,19 @@ def test_minSubsequence(test_input: List[int], expect: List[int]):
 @pytest.mark.parametrize(
     "test_input, expect",
     [
+        ("a0b1c2", ["0a1b2c", "a0b1c2", "0a1b2c", "0c2a1b"]),
+        ("leetcode", [""]),
+        ("1229857369", [""]),
+    ],
+)
+def test_reformat(test_input: str, expect: List[str]):
+    actual = solution.reformat(test_input)
+    assert actual in expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
         ([3, 5, 1], True),
         ([1, 2, 4], False),
     ],
