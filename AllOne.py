@@ -1,4 +1,4 @@
-class Node:
+class Node(object):
     def __init__(self, key="", count=0):
         self.prev = None
         self.next = None
@@ -17,7 +17,7 @@ class Node:
         self.next.prev = self.prev
 
 
-class AllOne:
+class AllOne(object):
     def __init__(self):
         self.root = Node()
         self.root.prev = self.root
@@ -58,10 +58,10 @@ class AllOne:
         if len(curr.keys) == 0:
             curr.remove()
 
-    def getMaxKey(self) -> str:
+    def get_max_key(self) -> str:
         return next(iter(self.root.prev.keys)) if self.root.prev is not self.root else ""
 
-    def getMinKey(self) -> str:
+    def get_min_key(self) -> str:
         return next(iter(self.root.next.keys)) if self.root.next is not self.root else ""
 
 
