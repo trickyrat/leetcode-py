@@ -398,7 +398,7 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
         ([6], [6]),
     ],
 )
-def test_minSubsequence(test_input: List[int], expect: List[int]):
+def test_min_subsequence(test_input: List[int], expect: List[int]):
     actual = solution.min_subsequence(test_input)
     assert actual == expect
 
@@ -423,7 +423,7 @@ def test_reformat(test_input: str, expect: List[str]):
         ([1, 2, 4], False),
     ],
 )
-def test_canMakeArithmeticProgression(test_input: List[int], expect: bool):
+def test_can_make_arithmetic_progression(test_input: List[int], expect: bool):
     actual = solution.can_make_arithmetic_progression(test_input)
     assert actual == expect
 
