@@ -61,6 +61,34 @@ def create_treenode_with_bfs(data: str) -> Optional[TreeNode]:
     return root
 
 
+def create_treenode(nums: List[int | None]) -> Optional[TreeNode]:
+    n = len(nums)
+    if n == 0 or nums[0] is None:
+        return None
+    root = TreeNode(nums[0])
+    q = queue.Queue()
+    q.put(root)
+    index = 1
+    while index < n:
+        node = q.get()
+        if index > len(nums) - 1 or nums[index] is None:
+            node.left = None
+        else:
+            left_node = TreeNode(int(nums[index]))
+            if left_node:
+                node.left = left_node
+            q.put(left_node)
+        if index + 1 > len(nums) - 1 or nums[index + 1] is None:
+            node.right = None
+        else:
+            right_node = TreeNode(int(nums[index + 1]))
+            if right_node:
+                node.right = right_node
+            q.put(right_node)
+        index += 2
+    return root
+
+
 def create_treenode_with_dfs(data: str) -> Optional[TreeNode]:
     str_list = data.split(",")
 
