@@ -816,6 +816,10 @@ class Solution:
                 t[i], t[j] = t[j], t[i]
         return "".join(t)
 
+    def busy_student(self, start_time: List[int], end_time: List[int], query_time: int) -> int:
+        """1450. Number of Students Doing Homework at a Given Time"""
+        return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
+
     def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
         """1502. Can Make Arithmetic Progression From Sequence"""
         arr.sort()
