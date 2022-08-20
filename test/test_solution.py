@@ -427,6 +427,18 @@ def test_busy_student(start_time: List[int], end_time: List[int], query_time: in
     actual = solution.busy_student(start_time, end_time, query_time)
     assert actual == expect
 
+@pytest.mark.parametrize(
+    "sentence, search_word, expect",
+    [
+        ("i love eating burger", "burg", 4),
+        ("this problem is an easy problem", "pro", 2),
+        ("i am tired", "you", -1),
+    ],
+)
+def test_is_prefix_of_word(sentence: str, search_word: str,  expect: int):
+    actual = solution.is_prefix_of_word(sentence, search_word)
+    assert actual == expect
+
 
 @pytest.mark.parametrize(
     "test_input, expect",

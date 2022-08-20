@@ -820,6 +820,20 @@ class Solution:
         """1450. Number of Students Doing Homework at a Given Time"""
         return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
 
+    def is_prefix_of_word(self, sentence: str, search_word: str) -> int:
+        """1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence"""
+        i, index, n, = 0, 1, len(sentence)
+        while i < n:
+            start = i
+            while i < n and sentence[i] != ' ':
+                i += 1
+            end = i
+            if sentence[start:end].startswith(search_word):
+                return index
+            index += 1
+            i += 1
+        return -1
+
     def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
         """1502. Can Make Arithmetic Progression From Sequence"""
         arr.sort()
