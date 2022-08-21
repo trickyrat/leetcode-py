@@ -6,9 +6,9 @@ import re
 
 from collections import Counter, deque, defaultdict
 
-from ListNode import ListNode
-from TreeNode import TreeNode
-from Node import Node
+from leetcode.data_structures.list_node import ListNode
+from leetcode.data_structures.tree_node import TreeNode
+from leetcode.data_structures.node import Node
 
 
 class Solution:

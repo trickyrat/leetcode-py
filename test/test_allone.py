@@ -1,4 +1,4 @@
-from AllOne import AllOne
+from leetcode.all_one import AllOne
 
 
 def test_all_one():

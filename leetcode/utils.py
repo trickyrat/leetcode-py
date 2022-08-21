@@ -1,5 +1,5 @@
-from ListNode import ListNode
-from TreeNode import TreeNode
+from leetcode.data_structures.list_node import ListNode
+from leetcode.data_structures.tree_node import TreeNode
 from typing import List, Optional
 import queue
 

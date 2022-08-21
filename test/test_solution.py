@@ -1,7 +1,6 @@
 import pytest
-
-from Solution import Solution
-from Utils import *
+from leetcode.solution import Solution
+from leetcode.utils import *
 
 solution = Solution()
 

@@ -1,6 +1,6 @@
 from random import randrange
 
-from Solution import ListNode
+from solution import ListNode
 from typing import Optional
 
 

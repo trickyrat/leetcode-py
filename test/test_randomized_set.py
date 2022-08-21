@@ -1,4 +1,4 @@
-from RandomizedSet import RandomizedSet
+from leetcode.randomized_set import RandomizedSet
 
 
 def test_randomize_set():
