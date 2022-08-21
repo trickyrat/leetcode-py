@@ -321,6 +321,18 @@ def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNo
 
 
 @pytest.mark.parametrize(
+    "root, expect",
+    [(create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
+     (create_treenode([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
+                                            ["", "2", "", "", "", "3", ""],
+                                            ["", "", "4", "", "", "", ""]]
+      )])
+def test_print_tree(root: TreeNode | None, expect: List[List[str]]):
+    actual = solution.print_tree(root)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "left, right, expect",
     [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
 )
@@ -427,6 +439,7 @@ def test_busy_student(start_time: List[int], end_time: List[int], query_time: in
     actual = solution.busy_student(start_time, end_time, query_time)
     assert actual == expect
 
+
 @pytest.mark.parametrize(
     "sentence, search_word, expect",
     [
@@ -435,7 +448,7 @@ def test_busy_student(start_time: List[int], end_time: List[int], query_time: in
         ("i am tired", "you", -1),
     ],
 )
-def test_is_prefix_of_word(sentence: str, search_word: str,  expect: int):
+def test_is_prefix_of_word(sentence: str, search_word: str, expect: int):
     actual = solution.is_prefix_of_word(sentence, search_word)
     assert actual == expect
 

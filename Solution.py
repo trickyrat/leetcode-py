@@ -622,6 +622,36 @@ class Solution:
             root.right = self.add_one_row(root.right, val, depth - 1)
         return root
 
+    def print_tree(self, root: Optional[TreeNode]) -> List[List[str]]:
+        """655. Print Binary Tree"""
+        def calculate_depth(root: Optional[TreeNode]) -> int:
+            height = -1
+            queue = [root]
+            while queue:
+                height += 1
+                temp = queue
+                queue = []
+                for node in temp:
+                    if node.left:
+                        queue.append(node.left)
+                    if node.right:
+                        queue.append(node.right)
+            return height
+
+        height = calculate_depth(root)
+        m = height + 1
+        n = 2 ** m - 1
+        res = [[''] * n for _ in range(m)]
+        queue = deque([(root, 0, (n - 1) // 2)])
+        while queue:
+            node, row, column = queue.popleft()
+            res[row][column] = str(node.val)
+            if node.left:
+                queue.append((node.left, row + 1, column - 2 ** (height - row - 1)))
+            if node.right:
+                queue.append((node.right, row + 1, column + 2 ** (height - row - 1)))
+        return res
+
     def self_dividing_number(self, left: int, right: int) -> List[int]:
         """728. Self Dividing Numbers"""
 
