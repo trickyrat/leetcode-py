@@ -864,6 +864,12 @@ class Solution:
             i += 1
         return -1
 
+    def can_be_equal(self, target: List[int], arr: List[int]) -> bool:
+        """1460. Make Two Arrays Equal by Reversing Sub-arrays"""
+        target.sort()
+        arr.sort()
+        return target == arr
+
     def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
         """1502. Can Make Arithmetic Progression From Sequence"""
         arr.sort()

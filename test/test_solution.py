@@ -451,6 +451,17 @@ def test_is_prefix_of_word(sentence: str, search_word: str, expect: int):
     actual = solution.is_prefix_of_word(sentence, search_word)
     assert actual == expect
 
+@pytest.mark.parametrize(
+    "target, arr, expect",
+    [
+        ([1, 2, 3, 4], [2, 4, 1, 3], True),
+        ([7], [7], True),
+        ([3, 7, 9], [3, 7, 11], False),
+    ],
+)
+def test_can_be_equal(target: List[int], arr: List[int], expect: bool):
+    actual = solution.can_be_equal(target, arr)
+    assert actual == expect
 
 @pytest.mark.parametrize(
     "test_input, expect",
