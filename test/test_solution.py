@@ -332,6 +332,15 @@ def test_print_tree(root: TreeNode | None, expect: List[List[str]]):
 
 
 @pytest.mark.parametrize(
+    "arr, k, x, expect",
+    [([1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4]), ([1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4])],
+)
+def test_self_dividing_number(arr: List[int], k: int, x: int, expect: List[int]):
+    actual = solution.find_closest_elements(arr, k, x)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "left, right, expect",
     [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
 )
@@ -451,6 +460,7 @@ def test_is_prefix_of_word(sentence: str, search_word: str, expect: int):
     actual = solution.is_prefix_of_word(sentence, search_word)
     assert actual == expect
 
+
 @pytest.mark.parametrize(
     "target, arr, expect",
     [
@@ -462,6 +472,7 @@ def test_is_prefix_of_word(sentence: str, search_word: str, expect: int):
 def test_can_be_equal(target: List[int], arr: List[int], expect: bool):
     actual = solution.can_be_equal(target, arr)
     assert actual == expect
+
 
 @pytest.mark.parametrize(
     "test_input, expect",

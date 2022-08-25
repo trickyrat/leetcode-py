@@ -1,5 +1,5 @@
 from itertools import pairwise
-from bisect import bisect_right
+from bisect import bisect_right, bisect_left
 from math import inf
 from typing import List, Optional
 import re
@@ -624,6 +624,7 @@ class Solution:
 
     def print_tree(self, root: Optional[TreeNode]) -> List[List[str]]:
         """655. Print Binary Tree"""
+
         def calculate_depth(root: Optional[TreeNode]) -> int:
             height = -1
             queue = [root]
@@ -651,6 +652,20 @@ class Solution:
             if node.right:
                 queue.append((node.right, row + 1, column + 2 ** (height - row - 1)))
         return res
+
+    def find_closest_elements(self, arr: List[int], k: int, x: int) -> List[int]:
+        """658. Find K Closest Elements"""
+        right = bisect_left(arr, x)
+        left = right - 1
+        n = len(arr)
+        for _ in range(k):
+            if left < 0:
+                right += 1
+            elif right >= n or x - arr[left] <= arr[right] - x:
+                left -= 1
+            else:
+                right += 1
+        return arr[left + 1:right]
 
     def self_dividing_number(self, left: int, right: int) -> List[int]:
         """728. Self Dividing Numbers"""
