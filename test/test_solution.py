@@ -341,6 +341,17 @@ def test_self_dividing_number(arr: List[int], k: int, x: int, expect: List[int])
 
 
 @pytest.mark.parametrize(
+    "root, expect",
+    [(create_treenode([1, 3, 2, 5, 3, None, 9]), 4),
+     (create_treenode([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+     (create_treenode([1, 3, 2, 5]), 2)],
+)
+def test_self_dividing_number(root: Optional[TreeNode], expect: int):
+    actual = solution.width_of_binary_tree(root)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
     "left, right, expect",
     [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
 )

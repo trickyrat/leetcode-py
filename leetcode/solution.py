@@ -667,6 +667,20 @@ class Solution:
                 right += 1
         return arr[left + 1:right]
 
+    def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
+        """662. Maximum Width of Binary Tree"""
+        level_min = {}
+        def dfs(node: Optional[TreeNode], depth: int, index: int) -> int:
+            if node is None:
+                return 0
+            if depth not in level_min:
+                level_min[depth] = index
+            return max(index - level_min[depth] + 1,
+                       dfs(node.left, depth + 1, index * 2),
+                       dfs(node.right, depth + 1, index * 2 + 1))
+
+        return dfs(root, 1, 1)
+
     def self_dividing_number(self, left: int, right: int) -> List[int]:
         """728. Self Dividing Numbers"""
 
