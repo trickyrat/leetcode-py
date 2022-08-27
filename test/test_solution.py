@@ -150,8 +150,8 @@ def test_search_matrix(matrix: List[List[int]], target: int, expect: bool):
 @pytest.mark.parametrize(
     "test_input, expect",
     [
-        (create_treenode([3, 9, 20, None, None, 15, 7]), 2),
-        (create_treenode([2, None, 3, None, 4, None, 5, None, 6]), 5),
+        (create_treenode_iteratively([3, 9, 20, None, None, 15, 7]), 2),
+        (create_treenode_iteratively([2, None, 3, None, 4, None, 5, None, 6]), 5),
     ],
 )
 def test_min_depth(test_input: TreeNode, expect: int):
@@ -163,11 +163,11 @@ def test_min_depth(test_input: TreeNode, expect: int):
     "test_input, target_num, expect",
     [
         (
-                create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
+                create_treenode_iteratively([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
                 22,
                 [[5, 4, 11, 2], [5, 8, 4, 5]],
         ),
-        (create_treenode([1, 2, 3]), 5, []),
+        (create_treenode_iteratively([1, 2, 3]), 5, []),
     ],
 )
 def test_path_sum(test_input: TreeNode, target_num: int, expect: List[List[int]]):
@@ -309,8 +309,8 @@ def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
 
 @pytest.mark.parametrize(
     "root, val, depth, expect",
-    [(create_treenode([4, 2, 6, 3, 1, 5]), 1, 2, create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
-     (create_treenode([4, 2, None, 3, 1]), 1, 3, create_treenode([4, 2, None, 1, 1, 3, None, None, 1]))]
+    [(create_treenode_iteratively([4, 2, 6, 3, 1, 5]), 1, 2, create_treenode_iteratively([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
+     (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3, create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
 )
 def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNode | None):
     actual = solution.add_one_row(root, val, depth)
@@ -321,8 +321,8 @@ def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNo
 
 @pytest.mark.parametrize(
     "root, expect",
-    [(create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
-     (create_treenode([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
+    [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
+     (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
                                             ["", "2", "", "", "", "3", ""],
                                             ["", "", "4", "", "", "", ""]]
       )])
@@ -342,9 +342,9 @@ def test_self_dividing_number(arr: List[int], k: int, x: int, expect: List[int])
 
 @pytest.mark.parametrize(
     "root, expect",
-    [(create_treenode([1, 3, 2, 5, 3, None, 9]), 4),
-     (create_treenode([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
-     (create_treenode([1, 3, 2, 5]), 2)],
+    [(create_treenode_iteratively([1, 3, 2, 5, 3, None, 9]), 4),
+     (create_treenode_iteratively([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+     (create_treenode_iteratively([1, 3, 2, 5]), 2)],
 )
 def test_self_dividing_number(root: Optional[TreeNode], expect: int):
     actual = solution.width_of_binary_tree(root)

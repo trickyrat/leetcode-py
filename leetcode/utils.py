@@ -30,63 +30,45 @@ def list_node_to_list(head: ListNode) -> List[int]:
     return res
 
 
-def create_treenode_with_bfs(data: str) -> Optional[TreeNode]:
-    nums = data.split(",")
-    n = len(nums)
-    if n == 0:
-        return None
-    if nums[0] == "null":
-        return None
-    root = TreeNode(int(nums[0]))
-    q = queue.Queue()
-    q.put(root)
-    index = 1
-    while index < n:
-        node = q.get()
-        if index > len(nums) - 1 or nums[index] == "null":
-            node.left = None
-        else:
-            left_node = TreeNode(int(nums[index]))
-            if left_node:
-                node.left = left_node
-            q.put(left_node)
-        if index + 1 > len(nums) - 1 or nums[index + 1] == "null":
-            node.right = None
-        else:
-            right_node = TreeNode(int(nums[index + 1]))
-            if right_node:
-                node.right = right_node
-            q.put(right_node)
-        index += 2
-    return root
-
-
-def create_treenode(nums: List[int | None]) -> Optional[TreeNode]:
+def create_treenode_iteratively(nums: List[int | None]) -> Optional[TreeNode]:
+    """Create Binary Tree iteratively"""
     n = len(nums)
     if n == 0 or nums[0] is None:
         return None
     root = TreeNode(nums[0])
     q = queue.Queue()
     q.put(root)
-    index = 1
-    while index < n:
+    cursor = 1
+    while cursor < n:
         node = q.get()
-        if index > len(nums) - 1 or nums[index] is None:
+        if cursor > n - 1 or nums[cursor] is None:
             node.left = None
         else:
-            left_node = TreeNode(int(nums[index]))
+            left_node = TreeNode(nums[cursor])
             if left_node:
                 node.left = left_node
             q.put(left_node)
-        if index + 1 > len(nums) - 1 or nums[index + 1] is None:
+        if cursor + 1 > n - 1 or nums[cursor + 1] is None:
             node.right = None
         else:
-            right_node = TreeNode(int(nums[index + 1]))
+            right_node = TreeNode(nums[cursor + 1])
             if right_node:
                 node.right = right_node
             q.put(right_node)
-        index += 2
+        cursor += 2
     return root
+
+
+def create_treenode_recursively(nums: List[int | None]) -> Optional[TreeNode]:
+    def create_treenode(data: List[int | None], index: int) -> Optional[TreeNode]:
+        if index >= len(data) or data[index] is None:
+            return None
+        root = TreeNode(data[index])
+        root.left = create_treenode(data, 2 * index + 1)
+        root.right = create_treenode(data, 2 * index + 2)
+        return root
+
+    return create_treenode(nums, 0)
 
 
 def create_treenode_with_dfs(data: str) -> Optional[TreeNode]:
