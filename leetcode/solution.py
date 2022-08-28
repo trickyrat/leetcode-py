@@ -915,6 +915,14 @@ class Solution:
         arr.sort()
         return target == arr
 
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        """1470. Shuffle the Array"""
+        res = [0] * (2 * n)
+        for i in range(n):
+            res[2 * i] = nums[i]
+            res[2 * i + 1] = nums[n + i]
+        return res
+
     def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
         """1502. Can Make Arithmetic Progression From Sequence"""
         arr.sort()
