@@ -670,6 +670,7 @@ class Solution:
     def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
         """662. Maximum Width of Binary Tree"""
         level_min = {}
+
         def dfs(node: Optional[TreeNode], depth: int, index: int) -> int:
             if node is None:
                 return 0
@@ -697,6 +698,21 @@ class Solution:
     def next_greatest_letter(self, letters: List[str], target: str) -> str:
         """744. Find The Smallest Letter Greater Than Target"""
         return letters[bisect_right(letters, target)] if target < letters[-1] else letters[0]
+
+    def preimage_size_fzf(self, k: int) -> int:
+        """793. Preimage Size of Factorial Zeroes Function"""
+
+        def zeta(n: int) -> int:
+            res = 0
+            while n:
+                n //= 5
+                res += n
+            return res
+
+        def nx(n: int):
+            return bisect_left(range(5 * n), n, key=zeta)
+
+        return nx(k + 1) - nx(k)
 
     def unique_morse_representations(self, words: List[str]) -> int:
         """804. Unique Morse Code Words"""

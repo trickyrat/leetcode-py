@@ -309,8 +309,10 @@ def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
 
 @pytest.mark.parametrize(
     "root, val, depth, expect",
-    [(create_treenode_iteratively([4, 2, 6, 3, 1, 5]), 1, 2, create_treenode_iteratively([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
-     (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3, create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
+    [(create_treenode_iteratively([4, 2, 6, 3, 1, 5]), 1, 2,
+      create_treenode_iteratively([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
+     (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3,
+      create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
 )
 def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNode | None):
     actual = solution.add_one_row(root, val, depth)
@@ -323,8 +325,8 @@ def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNo
     "root, expect",
     [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
      (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
-                                            ["", "2", "", "", "", "3", ""],
-                                            ["", "", "4", "", "", "", ""]]
+                                                        ["", "2", "", "", "", "3", ""],
+                                                        ["", "", "4", "", "", "", ""]]
       )])
 def test_print_tree(root: TreeNode | None, expect: List[List[str]]):
     actual = solution.print_tree(root)
@@ -366,6 +368,15 @@ def test_self_dividing_number(left: int, right: int, expect: List[int]):
 )
 def test_next_greatest_letter(letters: List[str], target: str, expect: str):
     actual = solution.next_greatest_letter(letters, target)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "k, expect",
+    [(0, 5), (5, 0), (3, 5)],
+)
+def test_preimage_size_fzf(k: int, expect: int):
+    actual = solution.preimage_size_fzf(k)
     assert expect == actual
 
 
