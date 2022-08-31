@@ -1,7 +1,6 @@
 import pytest
-
-from Solution import Solution
-from Utils import *
+from leetcode.solution import Solution
+from leetcode.utils import *
 
 solution = Solution()
 
@@ -11,7 +10,7 @@ solution = Solution()
     [([2, 7, 11, 15], 9, [0, 1])],
 )
 def test_two_sum(test_input: List[int], target: int, expect: List[int]):
-    actual = solution.twoSum(test_input, target)
+    actual = solution.two_sum(test_input, target)
     assert actual == expect
 
 
@@ -26,7 +25,7 @@ def test_two_sum(test_input: List[int], target: int, expect: List[int]):
 def test_add_two_numbers(
         test_input1: ListNode, test_input2: ListNode, expect: List[int]
 ):
-    actual = list_node_to_list(solution.addTwoNumbers(test_input1, test_input2))
+    actual = list_node_to_list(solution.add_two_numbers(test_input1, test_input2))
     assert expect == actual
 
 
@@ -34,7 +33,7 @@ def test_add_two_numbers(
     "test_input, expect", [("abcabcbb", 3), ("bbbbb", 1), ("pwwkew", 3), ("", 0)]
 )
 def test_longest_substring_without_repeat(test_input: str, expect: int):
-    actual = solution.longestSubstringWithoutRepeat(test_input)
+    actual = solution.longest_substring_without_repeat(test_input)
     assert expect == actual
 
 
@@ -51,7 +50,7 @@ def test_longest_substring_without_repeat(test_input: str, expect: int):
 def test_find_median_sorted_arrays(
         test_input1: List[int], test_input2: List[int], expect: float
 ):
-    actual = solution.findMedianSortedArrays(test_input1, test_input2)
+    actual = solution.find_median_sorted_arrays(test_input1, test_input2)
     assert expect == actual
 
 
@@ -65,7 +64,7 @@ def test_find_median_sorted_arrays(
     ],
 )
 def test_longest_palindrome(test_input: str, expect: str):
-    actual = solution.longestPalindrome(test_input)
+    actual = solution.longest_palindrome(test_input)
     assert actual == expect
 
 
@@ -78,7 +77,7 @@ def test_longest_palindrome(test_input: str, expect: str):
     ],
 )
 def test_z_convert(test_input: str, num_rows: int, expect: str):
-    actual = solution.zconvert(test_input, num_rows)
+    actual = solution.z_convert(test_input, num_rows)
     assert actual == expect
 
 
@@ -95,7 +94,7 @@ def test_z_convert(test_input: str, num_rows: int, expect: str):
     ],
 )
 def test_reverse_int(test_input: int, expect: str):
-    actual = solution.reverseInt(test_input)
+    actual = solution.reverse_int(test_input)
     assert actual == expect
 
 
@@ -119,7 +118,7 @@ def test_merge(test_input: List[List[int]], expect: List[List[int]]):
     ],
 )
 def test_set_zeroes(test_input: List[List[int]], expect: List[List[int]]):
-    solution.setZeroes(test_input)
+    solution.set_zeroes(test_input)
     assert expect == test_input
 
 
@@ -144,19 +143,19 @@ def test_eval(test_input: List[int], target: int, expect: int):
     ],
 )
 def test_search_matrix(matrix: List[List[int]], target: int, expect: bool):
-    actual = solution.searchMatrix(matrix, target)
+    actual = solution.search_matrix(matrix, target)
     assert expect == actual
 
 
 @pytest.mark.parametrize(
     "test_input, expect",
     [
-        (create_treenode_with_bfs("3,9,20,null,null,15,7"), 2),
-        (create_treenode_with_bfs("2,null,3,null,4,null,5,null,6"), 5),
+        (create_treenode_iteratively([3, 9, 20, None, None, 15, 7]), 2),
+        (create_treenode_iteratively([2, None, 3, None, 4, None, 5, None, 6]), 5),
     ],
 )
 def test_min_depth(test_input: TreeNode, expect: int):
-    actual = solution.minDepth(test_input)
+    actual = solution.min_depth(test_input)
     assert actual == expect
 
 
@@ -164,15 +163,15 @@ def test_min_depth(test_input: TreeNode, expect: int):
     "test_input, target_num, expect",
     [
         (
-                create_treenode_with_bfs("5,4,8,11,null,13,4,7,2,null,null,5,1"),
+                create_treenode_iteratively([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
                 22,
                 [[5, 4, 11, 2], [5, 8, 4, 5]],
         ),
-        (create_treenode_with_bfs("1,2,3"), 5, []),
+        (create_treenode_iteratively([1, 2, 3]), 5, []),
     ],
 )
 def test_path_sum(test_input: TreeNode, target_num: int, expect: List[List[int]]):
-    actual = solution.pathSum(test_input, target_num)
+    actual = solution.path_sum(test_input, target_num)
     assert actual == expect
 
 
@@ -181,7 +180,7 @@ def test_path_sum(test_input: TreeNode, target_num: int, expect: List[List[int]]
     [([2, 7, 11, 15], 9, [1, 2]), ([2, 3, 4], 6, [1, 3]), ([-1, 0], -1, [1, 2])],
 )
 def test_two_sum(test_input: List[int], target: int, expect: List[int]):
-    actual = solution.twoSumII(test_input, target)
+    actual = solution.two_sum_ii(test_input, target)
     assert actual == expect
 
 
@@ -201,7 +200,7 @@ def test_rotate_array(actual: List[int], k: int, expect: List[int]):
     "test_input, expect", [([0], [0]), ([0, 1, 0, 3, 12], [1, 3, 12, 0, 0])]
 )
 def test_move_zeroes(test_input: List[int], expect: List[int]):
-    solution.moveZeroes(test_input)
+    solution.move_zeroes(test_input)
     assert test_input == expect
 
 
@@ -209,7 +208,7 @@ def test_move_zeroes(test_input: List[int], expect: List[int]):
     "test_input, expect", [([1, 3, 4, 2, 2], 2), ([3, 1, 3, 4, 2], 3)]
 )
 def test_find_duplicate(test_input: List[int], expect: int):
-    actual = solution.findDuplicate(test_input)
+    actual = solution.find_duplicate(test_input)
     assert expect == actual
 
 
@@ -217,7 +216,7 @@ def test_find_duplicate(test_input: List[int], expect: int):
     "test_input, expect", [(2, 91), (0, 1)]
 )
 def test_count_numbers_with_unique_digits(test_input: int, expect: int):
-    actual = solution.countNumbersWithUniqueDigits(test_input)
+    actual = solution.count_numbers_with_unique_digits(test_input)
     assert expect == actual
 
 
@@ -225,7 +224,7 @@ def test_count_numbers_with_unique_digits(test_input: int, expect: int):
     "test_input, expect", [([1, 9], 10), ([-1, 9], 8), ([1, 2], 3)]
 )
 def test_get_sum(test_input: List[int], expect: int):
-    actual = solution.getSum(test_input[0], test_input[1])
+    actual = solution.get_sum(test_input[0], test_input[1])
     assert expect == actual
 
 
@@ -233,25 +232,25 @@ def test_get_sum(test_input: List[int], expect: int):
     "test_input, expect", [(13, [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]), (2, [1, 2])]
 )
 def test_lexical_order(test_input: int, expect: List[int]):
-    actual = solution.lexicalOrder(test_input)
+    actual = solution.lexical_order(test_input)
     assert expect == actual
 
 
 @pytest.mark.parametrize("test_input, expect", [([197, 130, 1], True), ([235, 140, 4], False)])
 def test_valid_utf8(test_input: List[int], expect: bool):
-    actual = solution.validUtf8(test_input)
+    actual = solution.valid_utf8(test_input)
     assert expect == actual
 
 
 @pytest.mark.parametrize("test_input, expect", [("Hello, my name is John", 5)])
 def test_count_segment(test_input: str, expect: int):
-    actual = solution.countSegment(test_input)
+    actual = solution.count_segment(test_input)
     assert expect == actual
 
 
 @pytest.mark.parametrize("p, expect", [("a", 1), ("cac", 2), ("zab", 6)])
 def test_find_substring_wraparound_string(p: str, expect: int):
-    actual = solution.findSubstringWraparoundString(p)
+    actual = solution.find_substring_wraparound_string(p)
     assert expect == actual
 
 
@@ -261,13 +260,13 @@ def test_find_substring_wraparound_string(p: str, expect: int):
      ([[1, 2], [3, 4]], [1, 2, 3, 4])]
 )
 def test_find_diagonal_order(test_input: List[List[int]], expect: List[int]):
-    actual = solution.findDiagonalOrder(test_input)
+    actual = solution.find_diagonal_order(test_input)
     assert actual == expect
 
 
 @pytest.mark.parametrize("test_input, expect", [(100, "202"), (-7, "-10")])
 def test_convert_to_base7(test_input: int, expect: int):
-    actual = solution.convertToBase7(test_input)
+    actual = solution.convert_to_base7(test_input)
     assert expect == actual
 
 
@@ -275,7 +274,7 @@ def test_convert_to_base7(test_input: int, expect: int):
     "a, b, expect", [("aba", "cdc", 3), ("aaa", "bbb", 3), ("aaa", "aaa", -1)]
 )
 def test_find_lus_length(a: str, b: str, expect: int):
-    actual = solution.findLUSLength(a, b)
+    actual = solution.find_lus_length(a, b)
     assert expect == actual
 
 
@@ -284,7 +283,7 @@ def test_find_lus_length(a: str, b: str, expect: int):
     [("1+1i", "1+1i", "0+2i"), ("1+-1i", "1+-1i", "0+-2i")],
 )
 def test_complex_number_multiply(input1: str, input2: str, expect: str):
-    actual = solution.complexNumberMultiply(input1, input2)
+    actual = solution.complex_number_multiply(input1, input2)
     assert expect == actual
 
 
@@ -293,7 +292,7 @@ def test_complex_number_multiply(input1: str, input2: str, expect: str):
     [([1000, 100, 10, 2], "1000/(100/10/2)")],
 )
 def test_optimal_division(test_input: List[int], expect: str):
-    actual = solution.optimalDivision(test_input)
+    actual = solution.optimal_division(test_input)
     assert expect == actual
 
 
@@ -304,19 +303,51 @@ def test_optimal_division(test_input: List[int], expect: str):
      (["Shogun", "Tapioca Express", "Burger King", "KFC"], ["KFC", "Shogun", "Burger King"], ["Shogun"])],
 )
 def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
-    actual = solution.findRestaurant(l1, l2)
+    actual = solution.find_restaurant(l1, l2)
     assert expect == actual
 
 
 @pytest.mark.parametrize(
     "root, val, depth, expect",
-    [(create_treenode_with_bfs("4,2,6,3,1,5"), 1, 2, create_treenode_with_bfs("4,1,1,2,null,null,6,3,1,5")),
-     (create_treenode_with_bfs("4,2,null,3,1"), 1, 3, create_treenode_with_bfs("4,2,null,1,1,3,null,null,1"))]
+    [(create_treenode_iteratively([4, 2, 6, 3, 1, 5]), 1, 2,
+      create_treenode_iteratively([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
+     (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3,
+      create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
 )
-def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNode | None):
-    actual = solution.addOneRow(root, val, depth)
-    expect = preorder_traversal(expect)
-    actual = preorder_traversal(actual)
+def test_add_one_row(root: Optional[TreeNode], val: int, depth: int, expect: Optional[TreeNode]):
+    actual = solution.add_one_row(root, val, depth)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "root, expect",
+    [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
+     (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
+                                                        ["", "2", "", "", "", "3", ""],
+                                                        ["", "", "4", "", "", "", ""]]
+      )])
+def test_print_tree(root: Optional[TreeNode], expect: List[List[str]]):
+    actual = solution.print_tree(root)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "arr, k, x, expect",
+    [([1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4]), ([1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4])],
+)
+def test_self_dividing_number(arr: List[int], k: int, x: int, expect: List[int]):
+    actual = solution.find_closest_elements(arr, k, x)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "root, expect",
+    [(create_treenode_iteratively([1, 3, 2, 5, 3, None, 9]), 4),
+     (create_treenode_iteratively([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+     (create_treenode_iteratively([1, 3, 2, 5]), 2)],
+)
+def test_self_dividing_number(root: Optional[TreeNode], expect: int):
+    actual = solution.width_of_binary_tree(root)
     assert expect == actual
 
 
@@ -325,7 +356,7 @@ def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNo
     [(1, 22, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]), (47, 85, [48, 55, 66, 77])],
 )
 def test_self_dividing_number(left: int, right: int, expect: List[int]):
-    actual = solution.selfDividingNumber(left, right)
+    actual = solution.self_dividing_number(left, right)
     assert expect == actual
 
 
@@ -334,7 +365,16 @@ def test_self_dividing_number(left: int, right: int, expect: List[int]):
     [(["c", "f", "j"], "a", "c"), (["c", "f", "j"], "c", "f"), (["c", "f", "j"], "d", "f")],
 )
 def test_next_greatest_letter(letters: List[str], target: str, expect: str):
-    actual = solution.nextGreatestLetter(letters, target)
+    actual = solution.next_greatest_letter(letters, target)
+    assert expect == actual
+
+
+@pytest.mark.parametrize(
+    "k, expect",
+    [(0, 5), (5, 0), (3, 5)],
+)
+def test_preimage_size_fzf(k: int, expect: int):
+    actual = solution.preimage_size_fzf(k)
     assert expect == actual
 
 
@@ -343,7 +383,7 @@ def test_next_greatest_letter(letters: List[str], target: str, expect: str):
     [(["gin", "zen", "gig", "msg"], 2), (["a"], 1)],
 )
 def test_unique_morse_representations(words: List[str], expect: int):
-    actual = solution.uniqueMorseRepresentations(words)
+    actual = solution.unique_morse_representations(words)
     assert expect == actual
 
 
@@ -356,7 +396,7 @@ def test_unique_morse_representations(words: List[str], expect: int):
              "bbbcccdddaaa", [2, 4])],
 )
 def test_number_of_lines(widths: List[int], s: str, expect: List[int]):
-    actual = solution.numberOfLines(widths, s)
+    actual = solution.number_of_lines(widths, s)
     assert expect == actual
 
 
@@ -365,7 +405,7 @@ def test_number_of_lines(widths: List[int], s: str, expect: List[int]):
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )
 def test_middle_node(test_input: List[int], expect: List[int]):
-    actual = list_node_to_list(solution.middleNode(create_list_node(test_input)))
+    actual = list_node_to_list(solution.middle_node(create_list_node(test_input)))
     assert expect == actual
 
 
@@ -374,7 +414,7 @@ def test_middle_node(test_input: List[int], expect: List[int]):
     [([[1, 2], [3, 4]], 17), ([[2]], 5), ([[1, 0], [0, 2]], 8)],
 )
 def test_projection_area(test_input: List[List[int]], expect: int):
-    actual = solution.projectionArea(test_input)
+    actual = solution.projection_area(test_input)
     assert expect == actual
 
 
@@ -386,7 +426,7 @@ def test_projection_area(test_input: List[List[int]], expect: int):
     ],
 )
 def test_sorted_squares(test_input: List[int], expect: List[int]):
-    actual = solution.sortedSquares(test_input)
+    actual = solution.sorted_squares(test_input)
     assert actual == expect
 
 
@@ -398,8 +438,72 @@ def test_sorted_squares(test_input: List[int], expect: List[int]):
         ([6], [6]),
     ],
 )
-def test_minSubsequence(test_input: List[int], expect: List[int]):
-    actual = solution.minSubsequence(test_input)
+def test_min_subsequence(test_input: List[int], expect: List[int]):
+    actual = solution.min_subsequence(test_input)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "test_input, expect",
+    [
+        ("a0b1c2", ["0a1b2c", "a0b1c2", "0a1b2c", "0c2a1b"]),
+        ("leetcode", [""]),
+        ("1229857369", [""]),
+    ],
+)
+def test_reformat(test_input: str, expect: List[str]):
+    actual = solution.reformat(test_input)
+    assert actual in expect
+
+
+@pytest.mark.parametrize(
+    "start_time, end_time, query_time, expect",
+    [
+        ([1, 2, 3], [3, 2, 7], 4, 1),
+        ([4], [4], 4, 1),
+    ],
+)
+def test_busy_student(start_time: List[int], end_time: List[int], query_time: int, expect: int):
+    actual = solution.busy_student(start_time, end_time, query_time)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "sentence, search_word, expect",
+    [
+        ("i love eating burger", "burg", 4),
+        ("this problem is an easy problem", "pro", 2),
+        ("i am tired", "you", -1),
+    ],
+)
+def test_is_prefix_of_word(sentence: str, search_word: str, expect: int):
+    actual = solution.is_prefix_of_word(sentence, search_word)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "target, arr, expect",
+    [
+        ([1, 2, 3, 4], [2, 4, 1, 3], True),
+        ([7], [7], True),
+        ([3, 7, 9], [3, 7, 11], False),
+    ],
+)
+def test_can_be_equal(target: List[int], arr: List[int], expect: bool):
+    actual = solution.can_be_equal(target, arr)
+    assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "nums, n, expect",
+    [
+        ([2, 5, 1, 3, 4, 7], 3, [2, 3, 5, 4, 1, 7]),
+        ([1, 2, 3, 4, 4, 3, 2, 1], 4, [1, 4, 2, 3, 3, 2, 4, 1]),
+        ([1, 1, 2, 2], 2, [1, 2, 1, 2]),
+    ],
+)
+def test_shuffle(nums: List[int], n: int, expect: List[int]):
+    actual = solution.shuffle(nums, n)
     assert actual == expect
 
 
@@ -410,9 +514,25 @@ def test_minSubsequence(test_input: List[int], expect: List[int]):
         ([1, 2, 4], False),
     ],
 )
-def test_canMakeArithmeticProgression(test_input: List[int], expect: bool):
-    actual = solution.canMakeArithmeticProgression(test_input)
+def test_can_make_arithmetic_progression(test_input: List[int], expect: bool):
+    actual = solution.can_make_arithmetic_progression(test_input)
     assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "root, val, expect",
+    [
+        (create_treenode_iteratively([4, 1, 3, None, None, 2]), 5,
+         create_treenode_iteratively([5, 4, None, 1, 3, None, None, 2])),
+        (create_treenode_iteratively([5, 2, 4, None, 1]), 3,
+         create_treenode_iteratively([5, 2, 4, None, 1, None, 3])),
+        (create_treenode_iteratively([5, 2, 3, None, 1]), 4,
+         create_treenode_iteratively([5, 2, 4, None, 1, 3])),
+    ],
+)
+def test_insert_into_max_tree(root: Optional[TreeNode], val: int, expect: Optional[TreeNode]):
+    actual = solution.insert_into_max_tree(root, val)
+    assert expect == actual
 
 
 @pytest.mark.parametrize(
@@ -424,7 +544,7 @@ def test_canMakeArithmeticProgression(test_input: List[int], expect: bool):
     ],
 )
 def test_min_remove_to_make_valid(test_input: str, expect: str):
-    actual = solution.minRemoveToMakeValid(test_input)
+    actual = solution.min_remove_to_make_valid(test_input)
     assert expect == actual
 
 
@@ -436,7 +556,7 @@ def test_min_remove_to_make_valid(test_input: str, expect: str):
     ],
 )
 def test_find_the_winner(n: int, k: int, expect: int):
-    actual = solution.findTheWinner(n, k)
+    actual = solution.find_the_winner(n, k)
     assert expect == actual
 
 
@@ -449,7 +569,7 @@ def test_find_the_winner(n: int, k: int, expect: int):
     ],
 )
 def test_pivot_index(test_input: List[int], expect: int):
-    actual = solution.pivotIndex(test_input)
+    actual = solution.pivot_index(test_input)
     assert actual == expect
 
 
@@ -462,7 +582,7 @@ def test_pivot_index(test_input: List[int], expect: int):
     ],
 )
 def test_count_k_difference(test_input: List[int], k: int, expect: int):
-    actual = solution.countKDifference(test_input, k)
+    actual = solution.count_k_difference(test_input, k)
     assert actual == expect
 
 
@@ -475,7 +595,7 @@ def test_count_k_difference(test_input: List[int], k: int, expect: int):
     ],
 )
 def test_maximum_difference(test_input: List[int], expect: int):
-    actual = solution.maximumDifference(test_input)
+    actual = solution.maximum_difference(test_input)
     assert actual == expect
 
 
@@ -487,7 +607,7 @@ def test_maximum_difference(test_input: List[int], expect: int):
     ],
 )
 def test_sort_array_by_parity(test_input: List[int], expect: List[int]):
-    actual = solution.sortArrayByParity(test_input)
+    actual = solution.sort_array_by_parity(test_input)
     assert actual == expect
 
 
@@ -500,7 +620,7 @@ def test_sort_array_by_parity(test_input: List[int], expect: List[int]):
     ],
 )
 def test_di_string_match(s: str, expect: List[int]):
-    actual = solution.diStringMatch(s)
+    actual = solution.di_string_match(s)
     assert actual == expect
 
 
@@ -513,9 +633,20 @@ def test_di_string_match(s: str, expect: List[int]):
     ],
 )
 def test_min_deletion_size(strs: List[str], expect: int):
-    actual = solution.minDeletionSize(strs)
+    actual = solution.min_deletion_size(strs)
     assert actual == expect
 
+
+@pytest.mark.parametrize(
+    "pushed, popped, expect",
+    [
+        ([1, 2, 3, 4, 5], [4, 5, 3, 2, 1], True),
+        ([1, 2, 3, 4, 5], [4, 3, 5, 1, 2], False),
+    ],
+)
+def test_validate_stack_sequences(pushed: List[int], popped: List[int], expect: bool):
+    actual = solution.validate_stack_sequences(pushed, popped)
+    assert  expect == actual
 
 @pytest.mark.parametrize(
     "nums, expect",
@@ -526,7 +657,7 @@ def test_min_deletion_size(strs: List[str], expect: int):
     ],
 )
 def test_repeated_n_times(nums: List[int], expect: int):
-    actual = solution.repeatedNTimes(nums)
+    actual = solution.repeated_n_times(nums)
     assert actual == expect
 
 
@@ -539,7 +670,7 @@ def test_repeated_n_times(nums: List[int], expect: int):
     ],
 )
 def test_count_max_or_subsets(test_input: List[int], expect: int):
-    actual = solution.countMaxOrSubsets(test_input)
+    actual = solution.count_max_or_subsets(test_input)
     assert actual == expect
 
 
@@ -557,7 +688,7 @@ def test_count_max_or_subsets(test_input: List[int], expect: int):
 def test_plates_between_candles(
         test_input: str, queries: List[List[int]], expect: List[int]
 ):
-    actual = solution.platesBetweenCandles(test_input, queries)
+    actual = solution.plates_between_candles(test_input, queries)
     assert actual == expect
 
 

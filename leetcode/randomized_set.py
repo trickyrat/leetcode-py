@@ -23,5 +23,5 @@ class RandomizedSet(object):
         del self.indices[val]
         return True
 
-    def getRandom(self) -> int:
+    def get_random(self) -> int:
         return choice(self.nums)

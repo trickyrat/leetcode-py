@@ -1,24 +1,22 @@
 from itertools import pairwise
-from bisect import bisect_right
+from bisect import bisect_right, bisect_left
 from math import inf
 from typing import List, Optional
 import re
 
 from collections import Counter, deque, defaultdict
 
-from ListNode import ListNode
-from TreeNode import TreeNode
-from Node import Node
+from leetcode.data_structures.list_node import ListNode
+from leetcode.data_structures.tree_node import TreeNode
+from leetcode.data_structures.node import Node
 
 
 class Solution:
     def __init__(self) -> None:
         super().__init__()
 
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        """
-        1.Two sum
-        """
+    def two_sum(self, nums: List[int], target: int) -> List[int]:
+        """1. Two sum"""
         size = len(nums)
         for i in range(size):
             for j in range(i + 1, size):
@@ -26,10 +24,8 @@ class Solution:
                     return [i, j]
         return []
 
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        """
-        2.Add two Numbers
-        """
+    def add_two_numbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        """2. Add two Numbers"""
         carry = 0
         dummy_head: ListNode = ListNode(0, None)
         curr: ListNode = dummy_head
@@ -49,10 +45,8 @@ class Solution:
                 curr.next = ListNode(carry, None)
         return dummy_head.next
 
-    def longestSubstringWithoutRepeat(self, s: str) -> int:
-        """
-        3.Longest substring without repeat
-        """
+    def longest_substring_without_repeat(self, s: str) -> int:
+        """3. Longest substring without repeat"""
         size = len(s)
         i = ans = 0
         index = [0] * 128
@@ -62,12 +56,10 @@ class Solution:
             index[ord(s[j])] = j + 1
         return ans
 
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        """
-        4 Median of Two Sorted Arrays
-        """
+    def find_median_sorted_arrays(self, nums1: List[int], nums2: List[int]) -> float:
+        """4. Median of Two Sorted Arrays"""
 
-        def getKthElement(k) -> None:
+        def get_kth_element(k) -> int:
             index1, index2 = 0, 0
             while True:
                 if index1 == m:
@@ -76,29 +68,27 @@ class Solution:
                     return nums1[index1 + k - 1]
                 if k == 1:
                     return min(nums1[index1], nums2[index2])
-                newIndex1 = min(index1 + k // 2 - 1, m - 1)
-                newIndex2 = min(index2 + k // 2 - 1, n - 1)
-                pivot1, pivot2 = nums1[newIndex1], nums2[newIndex2]
+                new_index1 = min(index1 + k // 2 - 1, m - 1)
+                new_index2 = min(index2 + k // 2 - 1, n - 1)
+                pivot1, pivot2 = nums1[new_index1], nums2[new_index2]
                 if pivot1 <= pivot2:
-                    k -= newIndex1 - index1 + 1
-                    index1 = newIndex1 + 1
+                    k -= new_index1 - index1 + 1
+                    index1 = new_index1 + 1
                 else:
-                    k -= newIndex2 - index2 + 1
-                    index2 = newIndex2 + 1
+                    k -= new_index2 - index2 + 1
+                    index2 = new_index2 + 1
 
         m, n = len(nums1), len(nums2)
-        totalLength = m + n
-        if totalLength % 2 == 1:
-            return getKthElement((totalLength + 1) // 2)
+        total_length = m + n
+        if total_length % 2 == 1:
+            return get_kth_element((total_length + 1) // 2)
         else:
             return (
-                           getKthElement(totalLength // 2) + getKthElement(totalLength // 2 + 1)
+                           get_kth_element(total_length // 2) + get_kth_element(total_length // 2 + 1)
                    ) / 2
 
-    def longestPalindrome(self, s: str) -> str:
-        """
-        5.Longest Palindromic Substring
-        """
+    def longest_palindrome(self, s: str) -> str:
+        """5. Longest Palindromic Substring"""
         n = len(s)
         if n < 2:
             return s
@@ -124,11 +114,9 @@ class Solution:
                     begin = i
         return s[begin: begin + max_len]
 
-    def zconvert(self, s: str, numRows: int) -> str:
-        """
-        6 z字形转换
-        """
-        n, r = len(s), numRows
+    def z_convert(self, s: str, num_rows: int) -> str:
+        """6. Zigzag Conversion"""
+        n, r = len(s), num_rows
         if r == 1 or r >= n:
             return s
         t = r * 2 - 2
@@ -140,23 +128,23 @@ class Solution:
                     ans.append(s[j + t - i])
         return "".join(ans)
 
-    def reverseInt(self, x: int) -> int:
-        """
-        7 整数反转
-        """
+    def reverse_int(self, x: int) -> int:
+        """7. Reverse Integer"""
         res = 0
-        INT_MIN, INT_MAX = -(2 ** 31), 2 ** 31 - 1
+        int_min, int_max = -(2 ** 31), 2 ** 31 - 1
         while x != 0:
-            if res < INT_MIN // 10 + 1 or res > INT_MAX // 10:
+            if res < int_min // 10 + 1 or res > int_max // 10:
                 return 0
             digit = x % 10
-            if x < 0 and digit > 0:
+            if x >= 0 or digit <= 0:
+                pass
+            else:
                 digit -= 10
             x = (x - digit) // 10
             res = res * 10 + digit
         return res
 
-    def removeElement(self, nums: List[int], val: int) -> int:
+    def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
         """
@@ -168,36 +156,32 @@ class Solution:
         return slow
 
     def search(self, nums: List[int], target: int) -> int:
-        """
-        33 Search in Rotated Sorted Array
-        """
+        """33. Search in Rotated Sorted Array"""
         n = len(nums)
         if n == 0:
             return -1
         if n == 1:
             return 0 if nums[0] == target else -1
-        l = 0
-        r = n - 1
-        while l <= r:
-            mid = l + (r - l) // 2
+        left = 0
+        right = n - 1
+        while left <= right:
+            mid = left + (right - left) // 2
             if nums[mid] == target:
                 return mid
             if nums[0] <= nums[mid]:
-                if nums[0] <= target and target < nums[mid]:
-                    r = mid - 1
+                if nums[0] <= target < nums[mid]:
+                    right = mid - 1
                 else:
-                    l = mid + 1
+                    left = mid + 1
             else:
-                if nums[mid] < target and target <= nums[n - 1]:
-                    l = mid + 1
+                if nums[mid] < target <= nums[n - 1]:
+                    left = mid + 1
                 else:
-                    r = mid - 1
+                    right = mid - 1
         return -1
 
     def search_insert(self, nums: List[int], target: int):
-        """
-        35.Search Insert Position
-        """
+        """35. Search Insert Position"""
         left = 0
         right = len(nums) - 1
         while left < right:
@@ -209,9 +193,7 @@ class Solution:
         return left + 1 if nums[left] < target else left
 
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        """
-        56 合并区间
-        """
+        """56. Merge Intervals"""
         intervals.sort(key=lambda x: x[0])
         merged = []
         for interval in intervals:
@@ -221,10 +203,8 @@ class Solution:
                 merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
 
-    def setZeroes(self, matrix: List[List[int]]) -> None:
-        """
-        73 矩阵置零
-        """
+    def set_zeroes(self, matrix: List[List[int]]) -> None:
+        """73. Set Matrix Zeroes"""
         rows, cols = len(matrix), len(matrix[0])
         col0 = 1
         for i in range(0, rows):
@@ -240,29 +220,25 @@ class Solution:
             if col0 == 0:
                 matrix[i][0] = 0
 
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        """
-        74 Search in 2D Matrix
-        """
+    def search_matrix(self, matrix: List[List[int]], target: int) -> bool:
+        """74. Search in 2D Matrix"""
         m = len(matrix)
         n = len(matrix[0])
-        l = 0
-        r = m * n - 1
-        while l <= r:
-            mid = l + (r - l) // 2
+        left = 0
+        right = m * n - 1
+        while left <= right:
+            mid = left + (right - left) // 2
             x = matrix[mid // n][mid % n]
             if x > target:
-                r = mid - 1
+                right = mid - 1
             elif x < target:
-                l = mid + 1
+                left = mid + 1
             else:
                 return True
         return False
 
-    def minDepth(self, root: TreeNode) -> int:
-        """
-        111 二叉树的最小深度
-        """
+    def min_depth(self, root: TreeNode) -> int:
+        """111. Minimum Depth of Binary Tree"""
         if not root:
             return 0
         q = deque([(root, 1)])
@@ -276,47 +252,41 @@ class Solution:
                 q.append((curr.right, depth + 1))
         return 0
 
-    def pathSum(self, root: TreeNode, targetNum: int) -> List[List[int]]:
-        """
-        113 路径总和
-        """
+    def path_sum(self, root: TreeNode, target_num: int) -> List[List[int]]:
+        """113. Path Sum II"""
         ret = list()
         path = list()
 
-        def dfs(root: TreeNode, targetNum: int):
-            if not root:
+        def dfs(node: TreeNode, target: int):
+            if not node:
                 return
-            path.append(root.val)
-            targetNum -= root.val
-            if not root.left and not root.right and targetNum == 0:
+            path.append(node.val)
+            target -= node.val
+            if not node.left and not node.right and target == 0:
                 ret.append(path[:])
-            dfs(root.left, targetNum)
-            dfs(root.right, targetNum)
+            dfs(node.left, target)
+            dfs(node.right, target)
             path.pop()
 
-        dfs(root, targetNum)
+        dfs(root, target_num)
         return ret
 
-    def twoSumII(self, numbers: List[int], target: int) -> List[int]:
-        """
-        167 Two Sum II - Input array is sorted
-        """
+    def two_sum_ii(self, numbers: List[int], target: int) -> List[int]:
+        """167. Two Sum II - Input array is sorted"""
         left = 0
         right = len(numbers) - 1
         while left < right:
-            sum = numbers[left] + numbers[right]
-            if sum == target:
+            total = numbers[left] + numbers[right]
+            if total == target:
                 return [left + 1, right + 1]
-            elif sum > target:
+            elif total > target:
                 right -= 1
             else:
                 left += 1
         return [-1, -1]
 
     def rotate(self, nums: List[int], k: int) -> None:
-        """
-        189 Rotate Array
-        """
+        """189. Rotate Array"""
 
         # def reverse(nums: List[int], start: int, end: int):
         #     while start < end:
@@ -346,9 +316,7 @@ class Solution:
                     break
 
     def calculate(self, s: str) -> int:
-        """
-        224.Basic Calculator
-        """
+        """224.Basic Calculator"""
         ops = [1]
         i = 0
         n = len(s)
@@ -377,10 +345,8 @@ class Solution:
                 ret += num * sign
         return ret
 
-    def moveZeroes(self, nums: List[int]) -> None:
-        """
-        283 Move Zeroes
-        """
+    def move_zeroes(self, nums: List[int]) -> None:
+        """283 Move Zeroes"""
         n = len(nums)
         left = right = 0
         while right < n:
@@ -389,10 +355,8 @@ class Solution:
                 left += 1
             right += 1
 
-    def findDuplicate(self, nums: List[int]) -> int:
-        """
-        287 寻找重复数
-        """
+    def find_duplicate(self, nums: List[int]) -> int:
+        """287. Find the Duplicate Number"""
         slow = fast = 0
         while True:
             slow = nums[slow]
@@ -431,10 +395,8 @@ class Solution:
                 return mid
         return -1
 
-    def countNumbersWithUniqueDigits(self, n: int) -> int:
-        """
-        357 统计各位数字都不同的数字个数
-        """
+    def count_numbers_with_unique_digits(self, n: int) -> int:
+        """357. Count Numbers with Unique Digits"""
         if n == 0:
             return 1
         if n == 1:
@@ -445,26 +407,22 @@ class Solution:
             res += cur
         return res
 
-    def getSum(self, a: int, b: int) -> int:
-        """
-        371.Sum of Two Integers
-        """
-        MASK1 = 4294967296  # 2^32
-        MASK2 = 2147483648  # 2^31
-        MASK3 = 2147483647  # 2^31-1
+    def get_sum(self, a: int, b: int) -> int:
+        """371. Sum of Two Integers"""
+        mask1 = 4294967296  # 2^32
+        mask2 = 2147483648  # 2^31
+        mask3 = 2147483647  # 2^31-1
         while b != 0:
-            carry = ((a & b) << 1) % MASK1
-            a = (a ^ b) % MASK1
+            carry = ((a & b) << 1) % mask1
+            a = (a ^ b) % mask1
             b = carry
-        if a & MASK2:  # 负数
-            return ~((a ^ MASK2) ^ MASK3)
+        if a & mask2:  # negative
+            return ~((a ^ mask2) ^ mask3)
         else:
             return a
 
-    def lexicalOrder(self, n: int) -> List[int]:
-        """
-        386. 字典序排数
-        """
+    def lexical_order(self, n: int) -> List[int]:
+        """386. Lexicographical Numbers"""
         ret = [0] * n
         num = 1
         for i in range(n):
@@ -477,10 +435,8 @@ class Solution:
                 num += 1
         return ret
 
-    def validUtf8(self, data: List[int]) -> bool:
-        """
-        393 UTF-8编码验证
-        """
+    def valid_utf8(self, data: List[int]) -> bool:
+        """393. UTF-8 Validation"""
         n = 0
         for i in range(0, len(data)):
             if n > 0:
@@ -499,20 +455,16 @@ class Solution:
                 return False
         return n == 0
 
-    def countSegment(self, s: str) -> int:
-        """
-        434 Number of Segments in a String
-        """
-        segmentCount = 0
+    def count_segment(self, s: str) -> int:
+        """434. Number of Segments in a String"""
+        segment_count = 0
         for i in range(0, len(s)):
             if (i == 0 or s[i - 1] == " ") and s[i] != " ":
-                segmentCount += 1
-        return segmentCount
+                segment_count += 1
+        return segment_count
 
-    def findSubstringWraparoundString(self, p: str) -> int:
-        """
-        467. Unique Substrings in Wraparound String
-        """
+    def find_substring_wraparound_string(self, p: str) -> int:
+        """467. Unique Substrings in Wraparound String"""
         dp = defaultdict(int)
         k = 0
         for i, ch in enumerate(p):
@@ -523,53 +475,47 @@ class Solution:
             dp[ch] = max(dp[ch], k)
         return sum(dp.values())
 
-    def validIpAddress(self, IP: str) -> str:
-        """
-        468 Valid IP address
-        """
+    def valid_ip_address(self, ip: str) -> str:
+        """468. Valid IP address"""
         ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
         ipv6_chunk = r"([0-9a-fA-F]{1,4})"
         ipv4_pattern = re.compile(r"^(" + ipv4_chunk + r"\.){3}" + ipv4_chunk + r"$")
         ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r":){7}" + ipv6_chunk + r"$")
-        if "." in IP:
-            return "IPv4" if ipv4_pattern.match(IP) else "Neither"
-        if ":" in IP:
-            return "IPv6" if ipv6_pattern.match(IP) else "Neither"
+        if "." in ip:
+            return "IPv4" if ipv4_pattern.match(ip) else "Neither"
+        if ":" in ip:
+            return "IPv6" if ipv6_pattern.match(ip) else "Neither"
         return "Neither"
 
-    def findDiagonalOrder(self, matrix: List[List[int]]) -> List[int]:
-        """
-        498 对角线遍历
-        """
+    def find_diagonal_order(self, matrix: List[List[int]]) -> List[int]:
+        """498. Diagonal Traverse"""
         if matrix is None or len(matrix) == 0:
             return []
-        N, M = len(matrix), len(matrix[0])
+        n, m = len(matrix), len(matrix[0])
         row = col = 0
         direction = 1
-        res = [0] * N * M
+        res = [0] * n * m
         r = 0
-        while row < N and col < M:
+        while row < n and col < m:
             res[r] = matrix[row][col]
             r += 1
             new_row = row + (-1 if direction == 1 else 1)
             new_col = col + (1 if direction == 1 else -1)
-            if new_row < 0 or new_row == N or new_col < 0 or new_col == M:
+            if new_row < 0 or new_row == n or new_col < 0 or new_col == m:
                 if direction == 1:
-                    row += (1 if col == M - 1 else 0)
-                    col += (1 if col < M - 1 else 0)
+                    row += (1 if col == m - 1 else 0)
+                    col += (1 if col < m - 1 else 0)
                 else:
-                    col += (1 if row == N - 1 else 0)
-                    row += (1 if row < N - 1 else 0)
+                    col += (1 if row == n - 1 else 0)
+                    row += (1 if row < n - 1 else 0)
                 direction = 1 - direction
             else:
                 row = new_row
                 col = new_col
         return res
 
-    def convertToBase7(self, num: int) -> str:
-        """
-        504 七进制数
-        """
+    def convert_to_base7(self, num: int) -> str:
+        """504. Base 7"""
         if num == 0:
             return "0"
         negative = num < 0
@@ -582,32 +528,26 @@ class Solution:
             digits.append("-")
         return "".join(reversed(digits))
 
-    def findLUSLength(self, a: str, b: str) -> int:
-        """
-        521 最长特殊序列
-        """
+    def find_lus_length(self, a: str, b: str) -> int:
+        """521. Longest Uncommon Subsequence I"""
         return -1 if a == b else max(len(a), len(b))
 
-    def complexNumberMultiply(self, num1: str, num2: str) -> str:
-        """
-        537 Complex Number Multiply
-        """
+    def complex_number_multiply(self, num1: str, num2: str) -> str:
+        """537. Complex Number Multiply"""
         real1, imag1 = map(int, num1[:-1].split("+"))
         real2, imag2 = map(int, num2[:-1].split("+"))
         return f"{real1 * real2 - imag1 * imag2}+{real1 * imag2 + imag1 * real2}i"
 
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        """
-        547 Number of Provinces
-        """
+    def find_circle_num(self, is_connected: List[List[int]]) -> int:
+        """547. Number of Provinces"""
 
-        def dfs(i: int) -> None:
-            for j in range(provinces):
-                if isConnected[i][j] == 1 and j not in visited:
-                    visited.add(j)
-                    dfs(j)
+        def dfs(row: int) -> None:
+            for column in range(provinces):
+                if is_connected[row][column] == 1 and column not in visited:
+                    visited.add(column)
+                    dfs(column)
 
-        provinces = len(isConnected)
+        provinces = len(is_connected)
         visited: set = set()
         circles = 0
 
@@ -617,10 +557,8 @@ class Solution:
                 circles += 1
         return circles
 
-    def optimalDivision(self, nums: List[int]) -> str:
-        """
-        553 最优除法
-        """
+    def optimal_division(self, nums: List[int]) -> str:
+        """553. Optimal Division"""
         if len(nums) == 1:
             return str(nums[0])
         if len(nums) == 2:
@@ -628,9 +566,7 @@ class Solution:
         return str(nums[0]) + "/(" + "/".join(map(str, nums[1:])) + ")"
 
     def preorder(self, root: Node) -> List[int]:
-        """
-        589 N叉树的前序遍历
-        """
+        """589. N-ary Tree Preorder Traversal"""
         ans = []
 
         def dfs(node: Node) -> None:
@@ -644,9 +580,7 @@ class Solution:
         return ans
 
     def postorder(self, root: Node) -> List[int]:
-        """
-        590 N叉树的后序遍历
-        """
+        """590. N-ary Tree Postorder Traversal"""
         ans = []
 
         def dfs(node: Node):
@@ -659,27 +593,23 @@ class Solution:
         dfs(root)
         return ans
 
-    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
-        """
-        599.两个列表的最小索引和
-        """
+    def find_restaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        """599. Minimum Index Sum of Two Lists"""
         index = {s: i for i, s in enumerate(list1)}
         ans = []
-        indexSum = inf
+        index_sum = inf
         for i, s in enumerate(list2):
             if s in index:
                 j = index[s]
-                if i + j < indexSum:
-                    indexSum = i + j
+                if i + j < index_sum:
+                    index_sum = i + j
                     ans = [s]
-                elif i + j == indexSum:
+                elif i + j == index_sum:
                     ans.append(s)
         return ans
 
-    def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
-        """
-        623 Add One Row to Tree
-        """
+    def add_one_row(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+        """623. Add One Row to Tree"""
         if root is None:
             return
         if depth == 1:
@@ -688,16 +618,74 @@ class Solution:
             root.left = TreeNode(val, root.left, None)
             root.right = TreeNode(val, None, root.right)
         else:
-            root.left = self.addOneRow(root.left, val, depth - 1)
-            root.right = self.addOneRow(root.right, val, depth - 1)
+            root.left = self.add_one_row(root.left, val, depth - 1)
+            root.right = self.add_one_row(root.right, val, depth - 1)
         return root
 
-    def selfDividingNumber(self, left: int, right: int) -> List[int]:
-        """
-        728 自除数
-        """
+    def print_tree(self, root: Optional[TreeNode]) -> List[List[str]]:
+        """655. Print Binary Tree"""
 
-        def isSelfDividing(num: int) -> bool:
+        def calculate_depth(root: Optional[TreeNode]) -> int:
+            height = -1
+            queue = [root]
+            while queue:
+                height += 1
+                temp = queue
+                queue = []
+                for node in temp:
+                    if node.left:
+                        queue.append(node.left)
+                    if node.right:
+                        queue.append(node.right)
+            return height
+
+        height = calculate_depth(root)
+        m = height + 1
+        n = 2 ** m - 1
+        res = [[''] * n for _ in range(m)]
+        queue = deque([(root, 0, (n - 1) // 2)])
+        while queue:
+            node, row, column = queue.popleft()
+            res[row][column] = str(node.val)
+            if node.left:
+                queue.append((node.left, row + 1, column - 2 ** (height - row - 1)))
+            if node.right:
+                queue.append((node.right, row + 1, column + 2 ** (height - row - 1)))
+        return res
+
+    def find_closest_elements(self, arr: List[int], k: int, x: int) -> List[int]:
+        """658. Find K Closest Elements"""
+        right = bisect_left(arr, x)
+        left = right - 1
+        n = len(arr)
+        for _ in range(k):
+            if left < 0:
+                right += 1
+            elif right >= n or x - arr[left] <= arr[right] - x:
+                left -= 1
+            else:
+                right += 1
+        return arr[left + 1:right]
+
+    def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
+        """662. Maximum Width of Binary Tree"""
+        level_min = {}
+
+        def dfs(node: Optional[TreeNode], depth: int, index: int) -> int:
+            if node is None:
+                return 0
+            if depth not in level_min:
+                level_min[depth] = index
+            return max(index - level_min[depth] + 1,
+                       dfs(node.left, depth + 1, index * 2),
+                       dfs(node.right, depth + 1, index * 2 + 1))
+
+        return dfs(root, 1, 1)
+
+    def self_dividing_number(self, left: int, right: int) -> List[int]:
+        """728. Self Dividing Numbers"""
+
+        def is_self_dividing(num: int) -> bool:
             x = num
             while x:
                 x, d = divmod(x, 10)
@@ -705,61 +693,68 @@ class Solution:
                     return False
             return True
 
-        return [i for i in range(left, right + 1) if isSelfDividing(i)]
+        return [i for i in range(left, right + 1) if is_self_dividing(i)]
 
-    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        """
-        744.寻找比目标字母大的最小字母
-        """
+    def next_greatest_letter(self, letters: List[str], target: str) -> str:
+        """744. Find The Smallest Letter Greater Than Target"""
         return letters[bisect_right(letters, target)] if target < letters[-1] else letters[0]
 
-    def uniqueMorseRepresentations(self, words: List[str]) -> int:
-        """
-        804. 唯一摩尔斯密码词
-        """
+    def preimage_size_fzf(self, k: int) -> int:
+        """793. Preimage Size of Factorial Zeroes Function"""
+
+        def zeta(n: int) -> int:
+            res = 0
+            while n:
+                n //= 5
+                res += n
+            return res
+
+        def nx(n: int):
+            return bisect_left(range(5 * n), n, key=zeta)
+
+        return nx(k + 1) - nx(k)
+
+    def unique_morse_representations(self, words: List[str]) -> int:
+        """804. Unique Morse Code Words"""
         morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
                  "....", "..", ".---", "-.-", ".-..", "--", "-.",
                  "---", ".--.", "--.-", ".-.", "...", "-", "..-",
                  "...-", ".--", "-..-", "-.--", "--.."]
         return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
 
-    def numberOfLines(self, widths: List[int], s: str) -> List[int]:
-        """
-        806 写字符串需要的行数
-        """
-        MAX_WIDTH = 100
+    def number_of_lines(self, widths: List[int], s: str) -> List[int]:
+        """806. Number of Lines To Write String"""
+        max_width = 100
         lines, width = 1, 0
         for c in s:
             need = widths[ord(c) - ord('a')]
             width += need
-            if width > 100:
+            if width > max_width:
                 width = need
                 lines += 1
         return [lines, width]
 
-    def backspaceCompare(self, s: str, t: str) -> bool:
-        """ "
-        844 Backspace String Compare
-        """
+    def backspace_compare(self, s: str, t: str) -> bool:
+        """844. Backspace String Compare"""
         i = len(s) - 1
         j = len(t) - 1
-        skipS = skipT = 0
+        skip_s = skip_t = 0
         while i >= 0 or j >= 0:
             while i >= 0:
                 if s[i] == "#":
-                    skipS += 1
+                    skip_s += 1
                     i -= 1
-                elif skipS > 0:
-                    skipS -= 1
+                elif skip_s > 0:
+                    skip_s -= 1
                     i -= 1
                 else:
                     break
             while j >= 0:
                 if t[j] == "#":
-                    skipT += 1
+                    skip_t += 1
                     j -= 1
-                elif skipT > 0:
-                    skipT -= 1
+                elif skip_t > 0:
+                    skip_t -= 1
                     j -= 1
                 else:
                     break
@@ -773,29 +768,23 @@ class Solution:
             j -= 1
         return True
 
-    def middleNode(self, head: ListNode) -> ListNode:
-        """
-        876 Middle of the Linked List
-        """
+    def middle_node(self, head: ListNode) -> ListNode:
+        """876. Middle of the Linked List"""
         slow = fast = head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
         return slow
 
-    def projectionArea(self, grid: List[List[int]]) -> int:
-        """
-        883. 三维形体投影面积
-        """
-        xyArea = sum(v > 0 for row in grid for v in row)
-        yzArea = sum(map(max, zip(*grid)))
-        zxArea = sum(map(max, grid))
-        return xyArea + yzArea + zxArea
+    def projection_area(self, grid: List[List[int]]) -> int:
+        """883. Projection Area of 3D Shapes"""
+        xy_area = sum(v > 0 for row in grid for v in row)
+        yz_area = sum(map(max, zip(*grid)))
+        zx_area = sum(map(max, grid))
+        return xy_area + yz_area + zx_area
 
-    def sortArrayByParity(self, nums: List[int]) -> List[int]:
-        """
-        905. Sort Array By Parity
-        """
+    def sort_array_by_parity(self, nums: List[int]) -> List[int]:
+        """905. Sort Array By Parity"""
         left, right = 0, len(nums) - 1
         while left < right:
             while left < right and nums[left] % 2 == 0:
@@ -808,10 +797,8 @@ class Solution:
                 right -= 1
         return nums
 
-    def diStringMatch(self, s: str) -> List[int]:
-        """
-        942. DI String Match
-        """
+    def di_string_match(self, s: str) -> List[int]:
+        """942. DI String Match"""
         n = len(s)
         lo, hi = 0, n
         perm = [0] * (n + 1)
@@ -825,16 +812,23 @@ class Solution:
         perm[n] = lo
         return perm
 
-    def minDeletionSize(self, strs: List[str]) -> int:
-        """
-        944. Delete Columns to Make Sorted
-        """
+    def min_deletion_size(self, strs: List[str]) -> int:
+        """944. Delete Columns to Make Sorted"""
         return sum(any(x > y for x, y in pairwise(col)) for col in zip(*strs))
 
-    def repeatedNTimes(self, nums: List[int]) -> int:
-        """
-        961. N-Repeated Element in Size 2N Array
-        """
+    def validate_stack_sequences(self, pushed: List[int], popped: List[int]) -> bool:
+        """946. Validate Stack Sequences"""
+        stack, j = [], 0
+        for x in pushed:
+            stack.append(x)
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        return len(stack) == 0
+
+
+    def repeated_n_times(self, nums: List[int]) -> int:
+        """961. N-Repeated Element in Size 2N Array"""
         found = set()
         for num in nums:
             if num in found:
@@ -842,10 +836,8 @@ class Solution:
             found.add(num)
         return -1
 
-    def sortedSquares(self, nums: List[int]) -> List[int]:
-        """
-        977 Squares of a Sorted Array
-        """
+    def sorted_squares(self, nums: List[int]) -> List[int]:
+        """977. Squares of a Sorted Array"""
         n = len(nums)
         ans = [0] * n
         i, j, pos = 0, n - 1, n - 1
@@ -859,10 +851,23 @@ class Solution:
             pos -= 1
         return ans
 
-    def minRemoveToMakeValid(self, s: str) -> str:
-        """
-        1249 移除无效括号
-        """
+    def insert_into_max_tree(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        """998. Maximum Binary Tree II"""
+        parent, curr = None, root
+        while curr:
+            if val > curr.val:
+                if not parent:
+                    return TreeNode(val, root, None)
+                parent.right = TreeNode(val, curr, None)
+                return root
+            else:
+                parent = curr
+                curr = curr.right
+        parent.right = TreeNode(val)
+        return root
+
+    def min_remove_to_make_valid(self, s: str) -> str:
+        """1249 Minimum Remove to Make Valid Parentheses"""
         first_parse_chars = []
         balance = 0
         open_seen = 0
@@ -887,10 +892,8 @@ class Solution:
 
         return "".join(res)
 
-    def minSubsequence(self, nums: List[int]) -> List[int]:
-        """
-        1403 Minimum Subsequence in Non-Increasing Order
-        """
+    def min_subsequence(self, nums: List[int]) -> List[int]:
+        """1403. Minimum Subsequence in Non-Increasing Order"""
         nums.sort(reverse=True)
         total, curr = sum(nums), 0
         for i, num in enumerate(nums):
@@ -898,20 +901,64 @@ class Solution:
             if total - curr < curr:
                 return nums[:i + 1]
 
-    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
-        """
-        1502 Can Make Arithmetic Progression From Sequence
-        """
+    def reformat(self, s: str) -> str:
+        """1417. Reformat The String"""
+        sum_digit = sum(c.isdigit() for c in s)
+        sum_alpha = len(s) - sum_digit
+        if abs(sum_digit - sum_alpha) > 1:
+            return ""
+        flag = sum_digit > sum_alpha
+        t = list(s)
+        j = 1
+        for i in range(0, len(t), 2):
+            if t[i].isdigit() != flag:
+                while t[j].isdigit() != flag:
+                    j += 2
+                t[i], t[j] = t[j], t[i]
+        return "".join(t)
+
+    def busy_student(self, start_time: List[int], end_time: List[int], query_time: int) -> int:
+        """1450. Number of Students Doing Homework at a Given Time"""
+        return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
+
+    def is_prefix_of_word(self, sentence: str, search_word: str) -> int:
+        """1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence"""
+        i, index, n, = 0, 1, len(sentence)
+        while i < n:
+            start = i
+            while i < n and sentence[i] != ' ':
+                i += 1
+            end = i
+            if sentence[start:end].startswith(search_word):
+                return index
+            index += 1
+            i += 1
+        return -1
+
+    def can_be_equal(self, target: List[int], arr: List[int]) -> bool:
+        """1460. Make Two Arrays Equal by Reversing Sub-arrays"""
+        target.sort()
+        arr.sort()
+        return target == arr
+
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        """1470. Shuffle the Array"""
+        res = [0] * (2 * n)
+        for i in range(n):
+            res[2 * i] = nums[i]
+            res[2 * i + 1] = nums[n + i]
+        return res
+
+    def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
+        """1502. Can Make Arithmetic Progression From Sequence"""
         arr.sort()
         for i in range(1, len(arr) - 1):
             if arr[i] * 2 != arr[i - 1] + arr[i + 1]:
                 return False
         return True
 
-    def modifyString(self, s: str) -> str:
-        """
-        1576 替换所有的问号
-        """
+    def modify_string(self, s: str) -> str:
+        """1576. Replace All ?'s to Avoid Consecutive Repeating Characters"""
         n = len(s)
         arr = list(s)
         for i in range(n):
@@ -924,19 +971,15 @@ class Solution:
                         break
         return "".join(arr)
 
-    def findTheWinner(self, n: int, k: int) -> int:
-        """
-        1823. Find the Winner of the Circular Game
-        """
+    def find_the_winner(self, n: int, k: int) -> int:
+        """1823. Find the Winner of the Circular Game"""
         winner = 1
         for i in range(2, n + 1):
             winner = (winner + k - 1) % i + 1
         return winner
 
-    def pivotIndex(self, nums: List[int]) -> int:
-        """
-        1991 寻找数组的中位索引
-        """
+    def pivot_index(self, nums: List[int]) -> int:
+        """1991. Find the Middle Index in Array"""
         total = sum(nums)
         sum_tmp = 0
         for i, num in enumerate(nums):
@@ -945,10 +988,8 @@ class Solution:
             sum_tmp += num
         return -1
 
-    def countKDifference(self, nums: List[int], k: int) -> int:
-        """
-        2006 差值绝对值为k的数对数目
-        """
+    def count_k_difference(self, nums: List[int], k: int) -> int:
+        """2006. Count Number of Pairs With Absolute Difference K"""
         res = 0
         cnt = Counter()
         for num in nums:
@@ -956,52 +997,46 @@ class Solution:
             cnt[num] += 1
         return res
 
-    def maximumDifference(self, nums: List[int]) -> int:
-        """
-        2016 增量元素之间的最大差值
-        """
+    def maximum_difference(self, nums: List[int]) -> int:
+        """2016. Maximum Difference Between Increasing Elements"""
         n = len(nums)
-        ans, premin = -1, nums[0]
+        ans, pre_min = -1, nums[0]
         for i in range(1, n):
-            if nums[i] > premin:
-                ans = max(ans, nums[i] - premin)
+            if nums[i] > pre_min:
+                ans = max(ans, nums[i] - pre_min)
             else:
-                premin = nums[i]
+                pre_min = nums[i]
         return ans
 
-    def countMaxOrSubsets(self, nums: List[int]) -> int:
-        """
-        2044 统计按位或能得到最大值的子集数目
-        """
-        maxOr, cnt = 0, 0
+    def count_max_or_subsets(self, nums: List[int]) -> int:
+        """2044. Count Number of Maximum Bitwise-OR Subsets"""
+        max_or, cnt = 0, 0
 
-        def dfs(pos: int, orVal: int) -> None:
+        def dfs(pos: int, or_val: int) -> None:
             if pos == len(nums):
-                nonlocal maxOr, cnt
-                if orVal > maxOr:
-                    maxOr, cnt = orVal, 1
-                elif orVal == maxOr:
+                nonlocal max_or, cnt
+                if or_val > max_or:
+                    max_or, cnt = or_val, 1
+                elif or_val == max_or:
                     cnt += 1
                 return
-            dfs(pos + 1, orVal | nums[pos])
-            dfs(pos + 1, orVal)
+            dfs(pos + 1, or_val | nums[pos])
+            dfs(pos + 1, or_val)
 
         dfs(0, 0)
         return cnt
 
-    def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
-        """
-        2055 蜡烛之间的盘子
-        """
+    def plates_between_candles(self, s: str, queries: List[List[int]]) -> List[int]:
+        """2055. Plates Between Candles"""
         n = len(s)
-        preSum, sum = [0] * n, 0
+        pre_sum, total = [0] * n, 0
         left, l = [0] * n, -1
         for i, ch in enumerate(s):
             if ch == "*":
-                sum += 1
+                total += 1
             else:
                 l = i
-            preSum[i] = sum
+            pre_sum[i] = total
             left[i] = l
         right, r = [0] * n, -1
         for i in range(n - 1, -1, -1):
@@ -1011,19 +1046,17 @@ class Solution:
         ans = [0] * len(queries)
         for i, (x, y) in enumerate(queries):
             x, y = right[x], left[y]
-            if x >= 0 and y >= 0 and x < y:
-                ans[i] = preSum[y] - preSum[x]
+            if 0 <= x < y and y >= 0:
+                ans[i] = pre_sum[y] - pre_sum[x]
         return ans
 
     def rotate_matrix(self, matrix: List[List[int]]):
-        """
-        面试题01.07 Rotate Matrix LCCI
-        """
+        """Interview 01.07 Rotate Matrix LCCI"""
 
-        N = len(matrix)
-        for i in range(N):
+        n = len(matrix)
+        for i in range(n):
             for j in range(0, i):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-        for i in range(N):
+        for i in range(n):
             matrix[i][:] = matrix[i][::-1]
