@@ -314,10 +314,8 @@ def test_find_restaurant(l1: List[str], l2: List[str], expect: List[str]):
      (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3,
       create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
 )
-def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNode | None):
+def test_add_one_row(root: Optional[TreeNode], val: int, depth: int, expect: Optional[TreeNode]):
     actual = solution.add_one_row(root, val, depth)
-    expect = preorder_traversal(expect)
-    actual = preorder_traversal(actual)
     assert expect == actual
 
 
@@ -328,7 +326,7 @@ def test_add_one_row(root: TreeNode | None, val: int, depth: int, expect: TreeNo
                                                         ["", "2", "", "", "", "3", ""],
                                                         ["", "", "4", "", "", "", ""]]
       )])
-def test_print_tree(root: TreeNode | None, expect: List[List[str]]):
+def test_print_tree(root: Optional[TreeNode], expect: List[List[str]]):
     actual = solution.print_tree(root)
     assert expect == actual
 
@@ -519,6 +517,22 @@ def test_shuffle(nums: List[int], n: int, expect: List[int]):
 def test_can_make_arithmetic_progression(test_input: List[int], expect: bool):
     actual = solution.can_make_arithmetic_progression(test_input)
     assert actual == expect
+
+
+@pytest.mark.parametrize(
+    "root, val, expect",
+    [
+        (create_treenode_iteratively([4, 1, 3, None, None, 2]), 5,
+         create_treenode_iteratively([5, 4, None, 1, 3, None, None, 2])),
+        (create_treenode_iteratively([5, 2, 4, None, 1]), 3,
+         create_treenode_iteratively([5, 2, 4, None, 1, None, 3])),
+        (create_treenode_iteratively([5, 2, 3, None, 1]), 4,
+         create_treenode_iteratively([5, 2, 4, None, 1, 3])),
+    ],
+)
+def test_insert_into_max_tree(root: Optional[TreeNode], val: int, expect: Optional[TreeNode]):
+    actual = solution.insert_into_max_tree(root, val)
+    assert expect == actual
 
 
 @pytest.mark.parametrize(

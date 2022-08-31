@@ -840,6 +840,21 @@ class Solution:
             pos -= 1
         return ans
 
+    def insert_into_max_tree(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        """998. Maximum Binary Tree II"""
+        parent, curr = None, root
+        while curr:
+            if val > curr.val:
+                if not parent:
+                    return TreeNode(val, root, None)
+                parent.right = TreeNode(val, curr, None)
+                return root
+            else:
+                parent = curr
+                curr = curr.right
+        parent.right = TreeNode(val)
+        return root
+
     def min_remove_to_make_valid(self, s: str) -> str:
         """1249 Minimum Remove to Make Valid Parentheses"""
         first_parse_chars = []
