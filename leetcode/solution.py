@@ -816,6 +816,17 @@ class Solution:
         """944. Delete Columns to Make Sorted"""
         return sum(any(x > y for x, y in pairwise(col)) for col in zip(*strs))
 
+    def validate_stack_sequences(self, pushed: List[int], popped: List[int]) -> bool:
+        """946. Validate Stack Sequences"""
+        stack, j = [], 0
+        for x in pushed:
+            stack.append(x)
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        return len(stack) == 0
+
+
     def repeated_n_times(self, nums: List[int]) -> int:
         """961. N-Repeated Element in Size 2N Array"""
         found = set()

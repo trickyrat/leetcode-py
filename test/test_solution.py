@@ -638,6 +638,17 @@ def test_min_deletion_size(strs: List[str], expect: int):
 
 
 @pytest.mark.parametrize(
+    "pushed, popped, expect",
+    [
+        ([1, 2, 3, 4, 5], [4, 5, 3, 2, 1], True),
+        ([1, 2, 3, 4, 5], [4, 3, 5, 1, 2], False),
+    ],
+)
+def test_validate_stack_sequences(pushed: List[int], popped: List[int], expect: bool):
+    actual = solution.validate_stack_sequences(pushed, popped)
+    assert  expect == actual
+
+@pytest.mark.parametrize(
     "nums, expect",
     [
         ([1, 2, 3, 3], 3),
