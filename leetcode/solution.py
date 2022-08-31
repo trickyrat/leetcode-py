@@ -826,7 +826,6 @@ class Solution:
                 j += 1
         return len(stack) == 0
 
-
     def repeated_n_times(self, nums: List[int]) -> int:
         """961. N-Repeated Element in Size 2N Array"""
         found = set()
@@ -947,6 +946,19 @@ class Solution:
         for i in range(n):
             res[2 * i] = nums[i]
             res[2 * i + 1] = nums[n + i]
+        return res
+
+    def final_prices(self, prices: List[int]) -> List[int]:
+        """1475. Final Prices With a Special Discount in a Shop"""
+        n = len(prices)
+        res = [0] * n
+        stack = [0]
+        for i in range(n - 1, -1, -1):
+            p = prices[i]
+            while len(stack) > 1 and stack[-1] > p:
+                stack.pop()
+            res[i] = p - stack[-1]
+            stack.append(p)
         return res
 
     def can_make_arithmetic_progression(self, arr: List[int]) -> bool:
