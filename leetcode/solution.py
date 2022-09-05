@@ -1,3 +1,4 @@
+import collections
 from itertools import pairwise
 from bisect import bisect_right, bisect_left
 from math import inf
@@ -784,6 +785,19 @@ class Solution:
                 width = need
                 lines += 1
         return [lines, width]
+
+    def unique_letter_string(self, s: str) -> int:
+        """828. Count Unique Characters of All Substrings of a Given String"""
+        index = collections.defaultdict(list)
+        for i, c in enumerate(s):
+            index[c].append(i)
+
+        res = 0
+        for arr in index.values():
+            arr = [-1] + arr + [len(s)]
+            for i in range(1, len(arr) - 1):
+                res += (arr[i] - arr[i - 1]) * (arr[i + 1] - arr[i])
+        return res
 
     def backspace_compare(self, s: str, t: str) -> bool:
         """844. Backspace String Compare"""

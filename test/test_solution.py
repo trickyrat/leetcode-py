@@ -434,6 +434,15 @@ def test_number_of_lines(widths: List[int], s: str, expected: List[int]):
 
 
 @pytest.mark.parametrize(
+    "s, expected",
+    [("ABC", 10), ("ABA", 8), ("LEETCODE", 92)],
+)
+def test_unique_letter_string(s: str, expected: int):
+    actual = solution.unique_letter_string(s)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expected",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )
