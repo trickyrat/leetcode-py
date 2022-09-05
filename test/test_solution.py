@@ -580,6 +580,18 @@ def test_min_remove_to_make_valid(test_input: str, expected: str):
 
 
 @pytest.mark.parametrize(
+    "mat, expected",
+    [
+        ([[1, 0, 0], [0, 0, 1], [1, 0, 0]], 1),
+        ([[1, 0, 0], [0, 1, 0], [0, 0, 1]], 3),
+    ],
+)
+def test_num_special(mat: List[List[int]], expected: int):
+    actual = solution.num_special(mat)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "n, k, expected",
     [
         (5, 2, 3),

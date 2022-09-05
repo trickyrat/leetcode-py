@@ -1010,6 +1010,16 @@ class Solution:
                         break
         return "".join(arr)
 
+    def num_special(self, mat: List[List[int]]) -> int:
+        """1582. Special Positions in a Binary Matrix"""
+        for i, row in enumerate(mat):
+            count = sum(row) - (i == 0)
+            if count:
+                for j, x in enumerate(row):
+                    if x == 1:
+                        mat[0][j] += count
+        return sum(x == 1 for x in mat[0])
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
