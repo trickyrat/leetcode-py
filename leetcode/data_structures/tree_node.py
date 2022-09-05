@@ -1,4 +1,5 @@
 from collections import deque
+from typing import Optional
 
 
 class TreeNode(object):
@@ -7,9 +8,9 @@ class TreeNode(object):
     """
 
     def __init__(self, val=0, left=None, right=None) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+        self.val: int = val
+        self.left: Optional[TreeNode] = left
+        self.right: Optional[TreeNode] = right
 
     def __eq__(self, other):
         if not self and not other:

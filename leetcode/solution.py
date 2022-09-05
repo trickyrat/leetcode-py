@@ -682,6 +682,24 @@ class Solution:
 
         return dfs(root, 1, 1)
 
+    def longest_univalue_path(self, root: Optional[TreeNode]) -> int:
+        """687. Longest Univalue Path"""
+        res = 0
+
+        def dfs(node: Optional[TreeNode]) -> int:
+            if node is None:
+                return 0
+            left = dfs(node.left)
+            right = dfs(node.right)
+            left1 = left + 1 if node.left and node.left.val == node.val else 0
+            right1 = right + 1 if node.right and node.right.val == node.val else 0
+            nonlocal res
+            res = max(res, left1 + right1)
+            return max(left1, right1)
+
+        dfs(root)
+        return res
+
     def self_dividing_number(self, left: int, right: int) -> List[int]:
         """728. Self Dividing Numbers"""
 

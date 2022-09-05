@@ -332,6 +332,15 @@ def test_print_tree(root: Optional[TreeNode], expected: List[List[str]]):
 
 
 @pytest.mark.parametrize(
+    "root, expected",
+    [(create_treenode_iteratively([5, 4, 5, 1, 1, None, 5]), 2),
+     (create_treenode_iteratively([1, 4, 5, 4, 4, None, 5]), 2)])
+def test_longest_univalue_path(root: Optional[TreeNode], expected: int):
+    actual = solution.longest_univalue_path(root)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "arr, k, x, expected",
     [([1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4]), ([1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4])],
 )
