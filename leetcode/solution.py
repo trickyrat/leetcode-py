@@ -622,6 +622,15 @@ class Solution:
             root.right = self.add_one_row(root.right, val, depth - 1)
         return root
 
+    def find_longest_chain(self, pairs: List[List[int]]) -> int:
+        """646. Maximum Length of Pair Chain"""
+        curr, res = -inf, 0
+        for x, y in sorted(pairs, key=lambda p: p[1]):
+            if curr < x:
+                curr = y
+                res += 1
+        return res
+
     def print_tree(self, root: Optional[TreeNode]) -> List[List[str]]:
         """655. Print Binary Tree"""
 

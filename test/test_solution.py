@@ -320,6 +320,15 @@ def test_add_one_row(root: Optional[TreeNode], val: int, depth: int, expected: O
 
 
 @pytest.mark.parametrize(
+    "pairs, expected",
+    [([[1, 2], [2, 3], [3, 4]], 2), ([[1, 2], [7, 8], [4, 5]], 3)]
+)
+def test_find_longest_chain(pairs: List[List[int]], expected: int):
+    actual = solution.find_longest_chain(pairs)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "root, expected",
     [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
      (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
@@ -332,19 +341,10 @@ def test_print_tree(root: Optional[TreeNode], expected: List[List[str]]):
 
 
 @pytest.mark.parametrize(
-    "root, expected",
-    [(create_treenode_iteratively([5, 4, 5, 1, 1, None, 5]), 2),
-     (create_treenode_iteratively([1, 4, 5, 4, 4, None, 5]), 2)])
-def test_longest_univalue_path(root: Optional[TreeNode], expected: int):
-    actual = solution.longest_univalue_path(root)
-    assert expected == actual
-
-
-@pytest.mark.parametrize(
     "arr, k, x, expected",
     [([1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4]), ([1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4])],
 )
-def test_self_dividing_number(arr: List[int], k: int, x: int, expected: List[int]):
+def test_find_closest_elements(arr: List[int], k: int, x: int, expected: List[int]):
     actual = solution.find_closest_elements(arr, k, x)
     assert expected == actual
 
@@ -355,8 +355,17 @@ def test_self_dividing_number(arr: List[int], k: int, x: int, expected: List[int
      (create_treenode_iteratively([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
      (create_treenode_iteratively([1, 3, 2, 5]), 2)],
 )
-def test_self_dividing_number(root: Optional[TreeNode], expected: int):
+def test_width_of_binary_tree(root: Optional[TreeNode], expected: int):
     actual = solution.width_of_binary_tree(root)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "root, expected",
+    [(create_treenode_iteratively([5, 4, 5, 1, 1, None, 5]), 2),
+     (create_treenode_iteratively([1, 4, 5, 4, 4, None, 5]), 2)])
+def test_longest_univalue_path(root: Optional[TreeNode], expected: int):
+    actual = solution.longest_univalue_path(root)
     assert expected == actual
 
 
