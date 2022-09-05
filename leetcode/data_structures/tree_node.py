@@ -42,3 +42,6 @@ class TreeNode(object):
                 queue2.append(right2)
 
         return not queue1 and not queue2
+
+    def __hash__(self):
+        return hash((self.val, self.left, self.right))

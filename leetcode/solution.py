@@ -631,6 +631,30 @@ class Solution:
                 res += 1
         return res
 
+    def find_duplicate_subtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+        """652. Find Duplicate Subtrees"""
+        seen = dict()
+        repeat = set()
+        idx = 0
+
+        def dfs(node: Optional[TreeNode]) -> int:
+            if not node:
+                return 0
+
+            triple = (node.val, dfs(node.left), dfs(node.right))
+            if triple in seen:
+                (tree, index) = seen[triple]
+                repeat.add(tree)
+                return index
+            else:
+                nonlocal idx
+                idx += 1
+                seen[triple] = (node, idx)
+                return idx
+
+        dfs(root)
+        return list(repeat)
+
     def print_tree(self, root: Optional[TreeNode]) -> List[List[str]]:
         """655. Print Binary Tree"""
 

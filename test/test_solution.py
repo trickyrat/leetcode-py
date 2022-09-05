@@ -330,6 +330,21 @@ def test_find_longest_chain(pairs: List[List[int]], expected: int):
 
 @pytest.mark.parametrize(
     "root, expected",
+    [(create_treenode_iteratively([1, 2, 3, 4, None, 2, 4, None, None, 4]),
+      [create_treenode_iteratively([4]), create_treenode_iteratively([2, 4])
+       ]),
+     (create_treenode_iteratively([2, 1, 1]), [create_treenode_iteratively([1])]),
+     (create_treenode_iteratively([2, 2, 2, 3, None, 3, None]),
+      [create_treenode_iteratively([3]),
+       create_treenode_iteratively([2, 3])]),
+     ])
+def test_find_duplicate_subtrees(root: Optional[TreeNode], expected: List[Optional[TreeNode]]):
+    actual = solution.find_duplicate_subtrees(root)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "root, expected",
     [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
      (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
                                                         ["", "2", "", "", "", "3", ""],
