@@ -1058,6 +1058,15 @@ class Solution:
                         mat[0][j] += count
         return sum(x == 1 for x in mat[0])
 
+    def reorder_spaces(self, text: str) -> str:
+        """1592. Rearrange Spaces Between Words"""
+        words = text.split()
+        space = text.count(' ')
+        if len(words) == 1:
+            return words[0] + ' ' * space
+        per_space, rest_space = divmod(space, len(words) - 1)
+        return (' ' * per_space).join(words) + ' ' * rest_space
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1

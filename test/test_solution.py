@@ -616,6 +616,18 @@ def test_num_special(mat: List[List[int]], expected: int):
 
 
 @pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("  this   is  a sentence ", "this   is   a   sentence"),
+        (" practice   makes   perfect", "practice   makes   perfect "),
+    ],
+)
+def test_reorder_spaces(s: str, expected: str):
+    actual = solution.reorder_spaces(s)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "n, k, expected",
     [
         (5, 2, 3),
