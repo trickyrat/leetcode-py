@@ -374,6 +374,14 @@ def test_width_of_binary_tree(root: Optional[TreeNode], expected: int):
     actual = solution.width_of_binary_tree(root)
     assert expected == actual
 
+@pytest.mark.parametrize(
+    "n, k, expected",
+    [(3, 1, [1,2,3]),
+     (3, 2, [1,3,2])],
+)
+def test_construct_array(n: int, k: int, expected: List[int]):
+    actual = solution.construct_array(n, k)
+    assert expected == actual
 
 @pytest.mark.parametrize(
     "root, expected",

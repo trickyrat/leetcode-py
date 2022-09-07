@@ -716,6 +716,18 @@ class Solution:
 
         return dfs(root, 1, 1)
 
+    def construct_array(self, n: int, k: int) -> List[int]:
+        """667. Beautiful Arrangement II"""
+        res = list(range(1, n - k))
+        i, j = n - k, n
+        while i <= j:
+            res.append(i)
+            if i != j:
+                res.append(j)
+            i, j = i + 1, j - 1
+        return res
+
+
     def longest_univalue_path(self, root: Optional[TreeNode]) -> int:
         """687. Longest Univalue Path"""
         res = 0
