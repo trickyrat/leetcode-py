@@ -1079,6 +1079,19 @@ class Solution:
         per_space, rest_space = divmod(space, len(words) - 1)
         return (' ' * per_space).join(words) + ' ' * rest_space
 
+    def min_operations(self, logs: List[str]) -> int:
+        """1598. Crawler Log Folder"""
+        depth = 0
+        for _, log in enumerate(logs):
+            if log == "./":
+                continue
+            elif log == "../":
+                if depth > 0:
+                    depth -= 1
+            else:
+                depth += 1
+        return depth
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
