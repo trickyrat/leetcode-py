@@ -30,7 +30,7 @@ def list_node_to_list(head: ListNode) -> List[int]:
     return res
 
 
-def create_treenode_iteratively(nums: List[int | None]) -> Optional[TreeNode]:
+def create_treenode(nums: List[int | None]) -> Optional[TreeNode]:
     """Create Binary Tree iteratively"""
     n = len(nums)
     if n == 0 or nums[0] is None:
@@ -57,36 +57,6 @@ def create_treenode_iteratively(nums: List[int | None]) -> Optional[TreeNode]:
             q.put(right_node)
         cursor += 2
     return root
-
-
-def create_treenode_recursively(nums: List[int | None]) -> Optional[TreeNode]:
-    def create_treenode(data: List[int | None], index: int) -> Optional[TreeNode]:
-        if index >= len(data) or data[index] is None:
-            return None
-        root = TreeNode(data[index])
-        root.left = create_treenode(data, 2 * index + 1)
-        root.right = create_treenode(data, 2 * index + 2)
-        return root
-
-    return create_treenode(nums, 0)
-
-
-def create_treenode_with_dfs(data: str) -> Optional[TreeNode]:
-    str_list = data.split(",")
-
-    def dfs(data_list: List[str]):
-        if len(data_list) == 0:
-            return None
-        if data_list[0] == "null":
-            data_list.pop(0)
-            return None
-        root = TreeNode(int(data_list[0]))
-        data_list.pop(0)
-        root.left = dfs(data_list)
-        root.right = dfs(data_list)
-        return root
-
-    return dfs(str_list)
 
 
 def preorder_traversal(root: TreeNode) -> List[int]:

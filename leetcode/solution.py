@@ -727,6 +727,26 @@ class Solution:
             i, j = i + 1, j - 1
         return res
 
+    def trim_bst(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        """669. Trim a Binary Search Tree"""
+        while root and (root.val < low or root.val > high):
+            root = root.right if root.val < low else root.left
+        if root is None:
+            return None
+        node = root
+        while node.left:
+            if node.left.val < low:
+                node.left = node.left.right
+            else:
+                node = node.left
+        node = root
+        while node.right:
+            if node.right.val > high:
+                node.right = node.right.left
+            else:
+                node = node.right
+        return root
+
 
     def longest_univalue_path(self, root: Optional[TreeNode]) -> int:
         """687. Longest Univalue Path"""

@@ -150,8 +150,8 @@ def test_search_matrix(matrix: List[List[int]], target: int, expected: bool):
 @pytest.mark.parametrize(
     "test_input, expected",
     [
-        (create_treenode_iteratively([3, 9, 20, None, None, 15, 7]), 2),
-        (create_treenode_iteratively([2, None, 3, None, 4, None, 5, None, 6]), 5),
+        (create_treenode([3, 9, 20, None, None, 15, 7]), 2),
+        (create_treenode([2, None, 3, None, 4, None, 5, None, 6]), 5),
     ],
 )
 def test_min_depth(test_input: TreeNode, expected: int):
@@ -163,11 +163,11 @@ def test_min_depth(test_input: TreeNode, expected: int):
     "test_input, target_num, expected",
     [
         (
-                create_treenode_iteratively([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
+                create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
                 22,
                 [[5, 4, 11, 2], [5, 8, 4, 5]],
         ),
-        (create_treenode_iteratively([1, 2, 3]), 5, []),
+        (create_treenode([1, 2, 3]), 5, []),
     ],
 )
 def test_path_sum(test_input: TreeNode, target_num: int, expected: List[List[int]]):
@@ -309,10 +309,10 @@ def test_find_restaurant(l1: List[str], l2: List[str], expected: List[str]):
 
 @pytest.mark.parametrize(
     "root, val, depth, expected",
-    [(create_treenode_iteratively([4, 2, 6, 3, 1, 5]), 1, 2,
-      create_treenode_iteratively([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
-     (create_treenode_iteratively([4, 2, None, 3, 1]), 1, 3,
-      create_treenode_iteratively([4, 2, None, 1, 1, 3, None, None, 1]))]
+    [(create_treenode([4, 2, 6, 3, 1, 5]), 1, 2,
+      create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5])),
+     (create_treenode([4, 2, None, 3, 1]), 1, 3,
+      create_treenode([4, 2, None, 1, 1, 3, None, None, 1]))]
 )
 def test_add_one_row(root: Optional[TreeNode], val: int, depth: int, expected: Optional[TreeNode]):
     actual = solution.add_one_row(root, val, depth)
@@ -330,13 +330,13 @@ def test_find_longest_chain(pairs: List[List[int]], expected: int):
 
 @pytest.mark.parametrize(
     "root, expected",
-    [(create_treenode_iteratively([1, 2, 3, 4, None, 2, 4, None, None, 4]),
-      [create_treenode_iteratively([4]), create_treenode_iteratively([2, 4])
+    [(create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
+      [create_treenode([4]), create_treenode([2, 4])
        ]),
-     (create_treenode_iteratively([2, 1, 1]), [create_treenode_iteratively([1])]),
-     (create_treenode_iteratively([2, 2, 2, 3, None, 3, None]),
-      [create_treenode_iteratively([3]),
-       create_treenode_iteratively([2, 3])]),
+     (create_treenode([2, 1, 1]), [create_treenode([1])]),
+     (create_treenode([2, 2, 2, 3, None, 3, None]),
+      [create_treenode([3]),
+       create_treenode([2, 3])]),
      ])
 def test_find_duplicate_subtrees(root: Optional[TreeNode], expected: List[Optional[TreeNode]]):
     actual = solution.find_duplicate_subtrees(root)
@@ -345,10 +345,10 @@ def test_find_duplicate_subtrees(root: Optional[TreeNode], expected: List[Option
 
 @pytest.mark.parametrize(
     "root, expected",
-    [(create_treenode_iteratively([1, 2]), [["", "1", ""], ["2", "", ""]]),
-     (create_treenode_iteratively([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
-                                                        ["", "2", "", "", "", "3", ""],
-                                                        ["", "", "4", "", "", "", ""]]
+    [(create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
+     (create_treenode([1, 2, 3, None, 4]), [["", "", "", "1", "", "", ""],
+                                            ["", "2", "", "", "", "3", ""],
+                                            ["", "", "4", "", "", "", ""]]
       )])
 def test_print_tree(root: Optional[TreeNode], expected: List[List[str]]):
     actual = solution.print_tree(root)
@@ -366,9 +366,9 @@ def test_find_closest_elements(arr: List[int], k: int, x: int, expected: List[in
 
 @pytest.mark.parametrize(
     "root, expected",
-    [(create_treenode_iteratively([1, 3, 2, 5, 3, None, 9]), 4),
-     (create_treenode_iteratively([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
-     (create_treenode_iteratively([1, 3, 2, 5]), 2)],
+    [(create_treenode([1, 3, 2, 5, 3, None, 9]), 4),
+     (create_treenode([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+     (create_treenode([1, 3, 2, 5]), 2)],
 )
 def test_width_of_binary_tree(root: Optional[TreeNode], expected: int):
     actual = solution.width_of_binary_tree(root)
@@ -386,9 +386,19 @@ def test_construct_array(n: int, k: int, expected: List[int]):
 
 
 @pytest.mark.parametrize(
+    "root, low, high, expected",
+    [(create_treenode([1, 0, 2]), 1, 2, create_treenode([1, None, 2])),
+     (create_treenode([3, 0, 4, None, 2, None, None, 1]), 1, 2, create_treenode([3, 2, None, 1]))]
+)
+def test_trim_bst(root: Optional[TreeNode], low: int, high: int, expected: Optional[TreeNode]):
+    actual = solution.trim_bst(root, low, high)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "root, expected",
-    [(create_treenode_iteratively([5, 4, 5, 1, 1, None, 5]), 2),
-     (create_treenode_iteratively([1, 4, 5, 4, 4, None, 5]), 2)])
+    [(create_treenode([5, 4, 5, 1, 1, None, 5]), 2),
+     (create_treenode([1, 4, 5, 4, 4, None, 5]), 2)])
 def test_longest_univalue_path(root: Optional[TreeNode], expected: int):
     actual = solution.longest_univalue_path(root)
     assert expected == actual
@@ -587,12 +597,12 @@ def test_can_make_arithmetic_progression(test_input: List[int], expected: bool):
 @pytest.mark.parametrize(
     "root, val, expected",
     [
-        (create_treenode_iteratively([4, 1, 3, None, None, 2]), 5,
-         create_treenode_iteratively([5, 4, None, 1, 3, None, None, 2])),
-        (create_treenode_iteratively([5, 2, 4, None, 1]), 3,
-         create_treenode_iteratively([5, 2, 4, None, 1, None, 3])),
-        (create_treenode_iteratively([5, 2, 3, None, 1]), 4,
-         create_treenode_iteratively([5, 2, 4, None, 1, 3])),
+        (create_treenode([4, 1, 3, None, None, 2]), 5,
+         create_treenode([5, 4, None, 1, 3, None, None, 2])),
+        (create_treenode([5, 2, 4, None, 1]), 3,
+         create_treenode([5, 2, 4, None, 1, None, 3])),
+        (create_treenode([5, 2, 3, None, 1]), 4,
+         create_treenode([5, 2, 4, None, 1, 3])),
     ],
 )
 def test_insert_into_max_tree(root: Optional[TreeNode], val: int, expected: Optional[TreeNode]):
