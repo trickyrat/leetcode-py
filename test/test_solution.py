@@ -463,6 +463,17 @@ def test_unique_letter_string(s: str, expected: int):
 
 
 @pytest.mark.parametrize(
+    "quality, wage, k, expected",
+    [([10, 20, 5], [70, 50, 30], 2, 105.00000),
+     ([3, 1, 10, 10, 1], [4, 8, 2, 2, 7], 3, 30.66667)],
+)
+def test_min_cost_to_hire_worker(quality: List[int], wage: List[int], k: int, expected: float):
+    actual = solution.min_cost_to_hire_worker(quality, wage, k)
+    actual = round(actual, 5)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expected",
     [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
 )

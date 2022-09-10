@@ -1,4 +1,5 @@
 import collections
+from _heapq import heappop, heappush
 from itertools import pairwise
 from bisect import bisect_right, bisect_left
 from math import inf
@@ -747,7 +748,6 @@ class Solution:
                 node = node.right
         return root
 
-
     def longest_univalue_path(self, root: Optional[TreeNode]) -> int:
         """687. Longest Univalue Path"""
         res = 0
@@ -864,6 +864,22 @@ class Solution:
             i -= 1
             j -= 1
         return True
+
+    def min_cost_to_hire_worker(self, quality: List[int], wage: List[int], k: int) -> float:
+        """857. Minimum Cost to Hire K Workers"""
+        pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])
+        res = inf
+        total_quality = 0
+        hire = []
+        for q, w in pairs[:k - 1]:
+            total_quality += q
+            heappush(hire, -q)
+        for q, w in pairs[k - 1:]:
+            total_quality += q
+            heappush(hire, -q)
+            res = min(res, w / q * total_quality)
+            total_quality += heappop(hire)
+        return res
 
     def middle_node(self, head: ListNode) -> ListNode:
         """876. Middle of the Linked List"""
