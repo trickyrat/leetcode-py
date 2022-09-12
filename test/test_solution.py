@@ -112,6 +112,19 @@ def test_my_atoi(s: str, expected: int):
 
 
 @pytest.mark.parametrize(
+    "x, expected",
+    [
+        (121, True),
+        (-121, False),
+        (10, False)
+    ],
+)
+def test_is_palindrome(x: int, expected: bool):
+    actual = solution.is_palindrome(x)
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),
