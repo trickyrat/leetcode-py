@@ -125,6 +125,19 @@ def test_is_palindrome(x: int, expected: bool):
 
 
 @pytest.mark.parametrize(
+    "s, p, expected",
+    [
+        ("aa", "a", False),
+        ("aa", "a*", True),
+        ("aa", ".*", True)
+    ]
+)
+def test_is_match(s: str, p: str, expected: bool):
+    actual = solution.is_match(s, p)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),

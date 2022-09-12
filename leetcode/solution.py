@@ -164,6 +164,30 @@ class Solution:
             x /= 10
         return x == reverted_number or x == reverted_number / 10
 
+    def is_match(self, s: str, p: str) -> bool:
+        """10. Regular Expression Matching"""
+        m, n = len(s), len(p)
+
+        def matches(row: int, col: int) -> bool:
+            if row == 0:
+                return False
+            if p[col - 1] == ".":
+                return True
+            return s[row - 1] == p[col - 1]
+
+        f = [[False] * (n + 1) for _ in range(m + 1)]
+        f[0][0] = True
+        for i in range(m + 1):
+            for j in range(1, n + 1):
+                if p[j - 1] == "*":
+                    f[i][j] |= f[i][j - 2]
+                    if matches(i, j - 1):
+                        f[i][j] |= f[i - 1][j]
+                else:
+                    if matches(i, j):
+                        f[i][j] |= f[i - 1][j - 1]
+        return f[m][n]
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
@@ -663,6 +687,7 @@ class Solution:
 
     def find_duplicate_subtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         """652. Find Duplicate Subtrees"""
+
         def dfs(node: Optional[TreeNode]) -> int:
             if not node:
                 return 0
@@ -1159,8 +1184,8 @@ class Solution:
         """1608. Special Array With X Elements Greater Than or Equal X"""
         nums.sort(reverse=True)
         n = len(nums)
-        for i in range(1, n+1):
-            if nums[i-1] >= i and (i == n or nums[i] < i):
+        for i in range(1, n + 1):
+            if nums[i - 1] >= i and (i == n or nums[i] < i):
                 return i
         return -1
 
