@@ -99,6 +99,19 @@ def test_reverse_int(test_input: int, expected: str):
 
 
 @pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("42", 42),
+        ("   -42", -42),
+        ("4193 with words", 4193)
+    ],
+)
+def test_my_atoi(s: str, expected: int):
+    actual = solution.my_atoi(s)
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),

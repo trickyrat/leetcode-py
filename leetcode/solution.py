@@ -8,6 +8,7 @@ import re
 
 from collections import Counter, deque, defaultdict
 
+from leetcode.automation import Automation
 from leetcode.data_structures.list_node import ListNode
 from leetcode.data_structures.tree_node import TreeNode
 from leetcode.data_structures.node import Node
@@ -145,6 +146,13 @@ class Solution:
             x = (x - digit) // 10
             res = res * 10 + digit
         return res
+
+    def my_atoi(self, s: str) -> int:
+        """8. String to Integer (atoi)"""
+        automation = Automation()
+        for c in s:
+            automation.get(c)
+        return automation.sign * automation.res
 
     def remove_element(self, nums: List[int], val: int) -> int:
         """
