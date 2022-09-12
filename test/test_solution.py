@@ -99,6 +99,19 @@ def test_reverse_int(test_input: int, expected: str):
 
 
 @pytest.mark.parametrize(
+    "strs, expected",
+    [
+        (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),
+        ([""], [[""]]),
+        (["a"], [["a"]])
+    ],
+)
+def test_group_anagrams(strs: List[str], expected: List[List[str]]):
+    actual = solution.group_anagrams(strs)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "test_input, expected",
     [
         ([[1, 3], [2, 6], [8, 10], [15, 18]], [[1, 6], [8, 10], [15, 18]]),

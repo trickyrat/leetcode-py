@@ -194,6 +194,16 @@ class Solution:
                 right = mid
         return left + 1 if nums[left] < target else left
 
+    def group_anagrams(self, strs: List[str]) -> List[List[str]]:
+        """49. Group Anagrams"""
+        dic = collections.defaultdict(list)
+        for item in strs:
+            count = [0] * 26
+            for ch in item:
+                count[ord(ch) - ord('a')] += 1
+            dic[tuple(count)].append(item)
+        return list(dic.values())
+
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         """56. Merge Intervals"""
         intervals.sort(key=lambda x: x[0])
