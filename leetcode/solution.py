@@ -188,6 +188,19 @@ class Solution:
                         f[i][j] |= f[i - 1][j - 1]
         return f[m][n]
 
+    def max_area(self, height: List[int]) -> int:
+        """11. Container With Most Water"""
+        left, right = 0, len(height) - 1
+        res = 0
+        while left < right:
+            area = min(height[left], height[right]) * (right - left)
+            res = max(res, area)
+            if height[left] <= height[right]:
+                left += 1
+            else:
+                right -= 1
+        return res
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element

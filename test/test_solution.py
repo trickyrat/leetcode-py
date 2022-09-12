@@ -138,6 +138,18 @@ def test_is_match(s: str, p: str, expected: bool):
 
 
 @pytest.mark.parametrize(
+    "height, expected",
+    [
+        ([1, 8, 6, 2, 5, 4, 8, 3, 7], 49),
+        ([1, 1], 1)
+    ]
+)
+def test_max_area(height: List[int], expected: int):
+    actual = solution.max_area(height)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),
