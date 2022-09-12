@@ -150,6 +150,17 @@ def test_max_area(height: List[int], expected: int):
 
 
 @pytest.mark.parametrize(
+    "num, expected",
+    [(3, "III"),
+     (58, "LVIII"),
+     (1994, "MCMXCIV")]
+)
+def test_int_to_roman(num: int, expected: str):
+    actual = solution.int_to_roman(num)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),
