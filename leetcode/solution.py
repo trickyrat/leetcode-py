@@ -843,6 +843,22 @@ class Solution:
                 node = node.right
         return root
 
+    def maximum_swap(self, num: int) -> int:
+        """670. Maximum Swap"""
+        s = list(str(num))
+        n = len(s)
+        max_index = n - 1
+        index1 = index2 = -1
+        for i in range(n - 1, -1, -1):
+            if s[i] > s[max_index]:
+                max_index = i
+            elif s[i] < s[max_index]:
+                index1, index2 = i, max_index
+        if index1 < 0:
+            return num
+        s[index1], s[index2] = s[index2], s[index1]
+        return int(''.join(s))
+
     def longest_univalue_path(self, root: Optional[TreeNode]) -> int:
         """687. Longest Univalue Path"""
         res = 0

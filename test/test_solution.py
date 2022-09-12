@@ -482,6 +482,18 @@ def test_trim_bst(root: Optional[TreeNode], low: int, high: int, expected: Optio
 
 
 @pytest.mark.parametrize(
+    "num, expected",
+    [
+        (2736, 7236),
+        (9973, 9973)
+    ]
+)
+def test_maximum_swap(num: int, expected: int):
+    actual = solution.maximum_swap(num)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "root, expected",
     [(create_treenode([5, 4, 5, 1, 1, None, 5]), 2),
      (create_treenode([1, 4, 5, 4, 4, None, 5]), 2)])
