@@ -1,3 +1,4 @@
+import random
 from collections import deque
 from typing import Optional
 
@@ -44,4 +45,6 @@ class TreeNode(object):
         return not queue1 and not queue2
 
     def __hash__(self):
-        return hash((self.val, self.left, self.right))
+        left_value = self.left.val if self.left else 0
+        right_value = self.right.val if self.right else 0
+        return hash((self.val, left_value, right_value))

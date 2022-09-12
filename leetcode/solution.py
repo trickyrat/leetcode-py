@@ -635,10 +635,6 @@ class Solution:
 
     def find_duplicate_subtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         """652. Find Duplicate Subtrees"""
-        seen = dict()
-        repeat = set()
-        idx = 0
-
         def dfs(node: Optional[TreeNode]) -> int:
             if not node:
                 return 0
@@ -654,6 +650,9 @@ class Solution:
                 seen[triple] = (node, idx)
                 return idx
 
+        seen = dict()
+        repeat = set()
+        idx = 0
         dfs(root)
         return list(repeat)
 
@@ -1127,6 +1126,15 @@ class Solution:
             else:
                 depth += 1
         return depth
+
+    def special_array(self, nums: List[int]) -> int:
+        """1608. Special Array With X Elements Greater Than or Equal X"""
+        nums.sort(reverse=True)
+        n = len(nums)
+        for i in range(1, n+1):
+            if nums[i-1] >= i and (i == n or nums[i] < i):
+                return i
+        return -1
 
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""

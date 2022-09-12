@@ -331,7 +331,7 @@ def test_find_longest_chain(pairs: List[List[int]], expected: int):
 @pytest.mark.parametrize(
     "root, expected",
     [(create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
-      [create_treenode([4]), create_treenode([2, 4])
+      [create_treenode([2, 4]), create_treenode([4])
        ]),
      (create_treenode([2, 1, 1]), [create_treenode([1])]),
      (create_treenode([2, 2, 2, 3, None, 3, None]),
@@ -388,7 +388,7 @@ def test_construct_array(n: int, k: int, expected: List[int]):
 @pytest.mark.parametrize(
     "root, low, high, expected",
     [(create_treenode([1, 0, 2]), 1, 2, create_treenode([1, None, 2])),
-     (create_treenode([3, 0, 4, None, 2, None, None, 1]), 1, 2, create_treenode([3, 2, None, 1]))]
+     (create_treenode([3, 0, 4, None, 2, None, None, 1]), 1, 3, create_treenode([3, 2, None, 1]))]
 )
 def test_trim_bst(root: Optional[TreeNode], low: int, high: int, expected: Optional[TreeNode]):
     actual = solution.trim_bst(root, low, high)
@@ -668,6 +668,19 @@ def test_reorder_spaces(s: str, expected: str):
 )
 def test_min_operations(logs: List[str], expected: int):
     actual = solution.min_operations(logs)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([3, 5], 2),
+        ([0, 0], -1),
+        ([0, 4, 3, 0, 4], 3)
+    ]
+)
+def test_special_array(nums: List[int], expected: int):
+    actual = solution.special_array(nums)
     assert expected == actual
 
 
