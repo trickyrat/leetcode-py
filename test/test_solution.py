@@ -161,6 +161,17 @@ def test_int_to_roman(num: int, expected: str):
 
 
 @pytest.mark.parametrize(
+    "s, expected",
+    [("III", 3),
+     ("LVIII", 58),
+     ("MCMXCIV", 1994)]
+)
+def test_roman_to_int(s: str, expected: int):
+    actual = solution.roman_to_int(s)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "strs, expected",
     [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),

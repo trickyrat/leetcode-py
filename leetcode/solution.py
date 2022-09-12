@@ -210,6 +210,27 @@ class Solution:
 
         return thousands[num // 1000] + hundreds[num % 1000 // 100] + tens[num % 100 // 10] + ones[num % 10]
 
+    def roman_to_int(self, s: str) -> int:
+        """13. Roman to Integer"""
+        symbols = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+        res = 0
+        n = len(s)
+        for i, ch in enumerate(s):
+            value = symbols[ch]
+            if i < n - 1 and value < symbols[s[i + 1]]:
+                res -= value
+            else:
+                res += value
+        return res
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
