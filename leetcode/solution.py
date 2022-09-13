@@ -1248,6 +1248,12 @@ class Solution:
                 return i
         return -1
 
+    def trim_mean(self, arr: List[int]) -> float:
+        """1619. Mean of Array After Removing Some Elements"""
+        arr.sort()
+        n = len(arr)
+        return sum(arr[n // 20:-n // 20]) / (n * 0.9)
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
