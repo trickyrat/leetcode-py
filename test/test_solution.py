@@ -494,6 +494,19 @@ def test_maximum_swap(num: int, expected: int):
 
 
 @pytest.mark.parametrize(
+    "n, presses, expected",
+    [
+        (1, 1, 2),
+        (2, 1, 3),
+        (3, 1, 4),
+    ]
+)
+def test_flip_lights(n: int, presses: int, expected: int):
+    actual = solution.flip_lights(n, presses)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "root, expected",
     [(create_treenode([5, 4, 5, 1, 1, None, 5]), 2),
      (create_treenode([1, 4, 5, 4, 4, None, 5]), 2)])
