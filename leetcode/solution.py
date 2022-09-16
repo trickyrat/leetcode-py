@@ -231,6 +231,17 @@ class Solution:
                 res += value
         return res
 
+    def longest_common_prefix(self, strs: List[str]) -> str:
+        """14. Longest Common Prefix"""
+        if not strs:
+            return ""
+        length, count = len(strs[0]), len(strs)
+        for i in range(length):
+            c = strs[0][i]
+            if any(i == len(strs[j]) or strs[j][i] != c for j in range(1, count)):
+                return strs[0][:i]
+        return strs[0]
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
@@ -862,7 +873,7 @@ class Solution:
     def flip_lights(self, n: int, presses: int) -> int:
         """672. Bulb Switcher II"""
         seen = set()
-        for i in range(2**4):
+        for i in range(2 ** 4):
             press_arr = [(i >> j) & 1 for j in range(4)]
             if sum(press_arr) % 2 == presses % 2 and sum(press_arr) <= presses:
                 status = press_arr[0] ^ press_arr[1] ^ press_arr[3]

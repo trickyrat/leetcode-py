@@ -174,6 +174,18 @@ def test_roman_to_int(s: str, expected: int):
 @pytest.mark.parametrize(
     "strs, expected",
     [
+        (["flower", "flow", "flight"], "fl"),
+        (["dog", "racecar", "car"], "")
+    ]
+)
+def test_longest_common_prefix(strs: List[str], expected: str):
+    actual = solution.longest_common_prefix(strs)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
+    "strs, expected",
+    [
         (["eat", "tea", "tan", "ate", "nat", "bat"], [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),
         ([""], [[""]]),
         (["a"], [["a"]])
