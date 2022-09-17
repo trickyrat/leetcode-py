@@ -14,17 +14,17 @@ def create_list_node(nodes: List[int]) -> Optional[ListNode]:
     return head.next
 
 
-def print_list_node(head: ListNode) -> str:
+def print_list_node(head: Optional[ListNode]) -> str:
     """Convert a linked-list to string"""
     res = ""
     while head is not None:
-        res += head.val
+        res += str(head.val)
         if head is not None:
             res += "->"
     return res
 
 
-def list_node_to_list(head: ListNode) -> List[int]:
+def list_node_to_list(head: Optional[ListNode]) -> List[int]:
     """Convert a linked-list to a list"""
     res = []
     while head:

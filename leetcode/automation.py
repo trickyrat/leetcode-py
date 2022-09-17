@@ -1,5 +1,5 @@
-INT_MAX = 2 ** 31 - 1
-INT_MIN = -2 ** 31
+INT_MAX = 2**31 - 1
+INT_MIN = -(2**31)
 
 
 class Automation:
@@ -23,10 +23,12 @@ class Automation:
             return 2
         return 3
 
-    def get(self, c: str) -> int:
+    def get(self, c: str):
         self.state = self.table[self.state][self._get_col(c)]
         if self.state == "in_number":
             self.res = self.res * 10 + int(c)
-            self.res = min(self.res, INT_MAX) if self.sign == 1 else min(self.res, -INT_MIN)
+            self.res = (
+                min(self.res, INT_MAX) if self.sign == 1 else min(self.res, -INT_MIN)
+            )
         elif self.state == "signed":
             self.sign = 1 if c == "+" else -1

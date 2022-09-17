@@ -27,7 +27,9 @@ class Solution:
                     return [i, j]
         return []
 
-    def add_two_numbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def add_two_numbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         """2. Add two Numbers"""
         carry = 0
         dummy_head: ListNode = ListNode(0, None)
@@ -87,8 +89,9 @@ class Solution:
             return get_kth_element((total_length + 1) // 2)
         else:
             return (
-                           get_kth_element(total_length // 2) + get_kth_element(total_length // 2 + 1)
-                   ) / 2
+                get_kth_element(total_length // 2)
+                + get_kth_element(total_length // 2 + 1)
+            ) / 2
 
     def longest_palindrome(self, s: str) -> str:
         """5. Longest Palindromic Substring"""
@@ -115,7 +118,7 @@ class Solution:
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
                     begin = i
-        return s[begin: begin + max_len]
+        return s[begin : begin + max_len]
 
     def z_convert(self, s: str, num_rows: int) -> str:
         """6. Zigzag Conversion"""
@@ -134,7 +137,7 @@ class Solution:
     def reverse_int(self, x: int) -> int:
         """7. Reverse Integer"""
         res = 0
-        int_min, int_max = -(2 ** 31), 2 ** 31 - 1
+        int_min, int_max = -(2**31), 2**31 - 1
         while x != 0:
             if res < int_min // 10 + 1 or res > int_max // 10:
                 return 0
@@ -161,8 +164,8 @@ class Solution:
         reverted_number = 0
         while x > reverted_number:
             reverted_number = reverted_number * 10 + x % 10
-            x /= 10
-        return x == reverted_number or x == reverted_number / 10
+            x = x // 10
+        return x == reverted_number or x == reverted_number // 10
 
     def is_match(self, s: str, p: str) -> bool:
         """10. Regular Expression Matching"""
@@ -208,19 +211,16 @@ class Solution:
         tens = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
         ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
-        return thousands[num // 1000] + hundreds[num % 1000 // 100] + tens[num % 100 // 10] + ones[num % 10]
+        return (
+            thousands[num // 1000]
+            + hundreds[num % 1000 // 100]
+            + tens[num % 100 // 10]
+            + ones[num % 10]
+        )
 
     def roman_to_int(self, s: str) -> int:
         """13. Roman to Integer"""
-        symbols = {
-            'I': 1,
-            'V': 5,
-            'X': 10,
-            'L': 50,
-            'C': 100,
-            'D': 500,
-            'M': 1000
-        }
+        symbols = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
         res = 0
         n = len(s)
         for i, ch in enumerate(s):
@@ -296,7 +296,7 @@ class Solution:
         for item in strs:
             count = [0] * 26
             for ch in item:
-                count[ord(ch) - ord('a')] += 1
+                count[ord(ch) - ord("a")] += 1
             dic[tuple(count)].append(item)
         return list(dic.values())
 
@@ -345,7 +345,7 @@ class Solution:
                 return True
         return False
 
-    def min_depth(self, root: TreeNode) -> int:
+    def min_depth(self, root: Optional[TreeNode]) -> int:
         """111. Minimum Depth of Binary Tree"""
         if not root:
             return 0
@@ -360,12 +360,12 @@ class Solution:
                 q.append((curr.right, depth + 1))
         return 0
 
-    def path_sum(self, root: TreeNode, target_num: int) -> List[List[int]]:
+    def path_sum(self, root: Optional[TreeNode], target_num: int) -> List[List[int]]:
         """113. Path Sum II"""
         ret = list()
         path = list()
 
-        def dfs(node: TreeNode, target: int):
+        def dfs(node: Optional[TreeNode], target: int):
             if not node:
                 return
             path.append(node.val)
@@ -611,11 +611,11 @@ class Solution:
             new_col = col + (1 if direction == 1 else -1)
             if new_row < 0 or new_row == n or new_col < 0 or new_col == m:
                 if direction == 1:
-                    row += (1 if col == m - 1 else 0)
-                    col += (1 if col < m - 1 else 0)
+                    row += 1 if col == m - 1 else 0
+                    col += 1 if col < m - 1 else 0
                 else:
-                    col += (1 if row == n - 1 else 0)
-                    row += (1 if row < n - 1 else 0)
+                    col += 1 if row == n - 1 else 0
+                    row += 1 if row < n - 1 else 0
                 direction = 1 - direction
             else:
                 row = new_row
@@ -673,11 +673,11 @@ class Solution:
             return str(nums[0]) + "/" + str(nums[1])
         return str(nums[0]) + "/(" + "/".join(map(str, nums[1:])) + ")"
 
-    def preorder(self, root: Node) -> List[int]:
+    def preorder(self, root: Optional[Node]) -> List[int]:
         """589. N-ary Tree Preorder Traversal"""
         ans = []
 
-        def dfs(node: Node) -> None:
+        def dfs(node: Optional[Node]) -> None:
             if node is None:
                 return None
             ans.append(node.val)
@@ -687,11 +687,11 @@ class Solution:
         dfs(root)
         return ans
 
-    def postorder(self, root: Node) -> List[int]:
+    def postorder(self, root: Optional[Node]) -> List[int]:
         """590. N-ary Tree Postorder Traversal"""
         ans = []
 
-        def dfs(node: Node):
+        def dfs(node: Optional[Node]):
             if node is None:
                 return
             for ch in node.children:
@@ -716,7 +716,9 @@ class Solution:
                     ans.append(s)
         return ans
 
-    def add_one_row(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+    def add_one_row(
+        self, root: Optional[TreeNode], val: int, depth: int
+    ) -> Optional[TreeNode]:
         """623. Add One Row to Tree"""
         if root is None:
             return
@@ -739,7 +741,9 @@ class Solution:
                 res += 1
         return res
 
-    def find_duplicate_subtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+    def find_duplicate_subtrees(
+        self, root: Optional[TreeNode]
+    ) -> List[Optional[TreeNode]]:
         """652. Find Duplicate Subtrees"""
 
         def dfs(node: Optional[TreeNode]) -> int:
@@ -774,23 +778,23 @@ class Solution:
                 temp = queue
                 queue = []
                 for node in temp:
-                    if node.left:
+                    if node and node.left:
                         queue.append(node.left)
-                    if node.right:
+                    if node and node.right:
                         queue.append(node.right)
             return height
 
         height = calculate_depth(root)
         m = height + 1
-        n = 2 ** m - 1
-        res = [[''] * n for _ in range(m)]
+        n = 2**m - 1
+        res = [[""] * n for _ in range(m)]
         queue = deque([(root, 0, (n - 1) // 2)])
         while queue:
             node, row, column = queue.popleft()
             res[row][column] = str(node.val)
-            if node.left:
+            if node and node.left:
                 queue.append((node.left, row + 1, column - 2 ** (height - row - 1)))
-            if node.right:
+            if node and node.right:
                 queue.append((node.right, row + 1, column + 2 ** (height - row - 1)))
         return res
 
@@ -806,7 +810,7 @@ class Solution:
                 left -= 1
             else:
                 right += 1
-        return arr[left + 1:right]
+        return arr[left + 1 : right]
 
     def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
         """662. Maximum Width of Binary Tree"""
@@ -817,9 +821,11 @@ class Solution:
                 return 0
             if depth not in level_min:
                 level_min[depth] = index
-            return max(index - level_min[depth] + 1,
-                       dfs(node.left, depth + 1, index * 2),
-                       dfs(node.right, depth + 1, index * 2 + 1))
+            return max(
+                index - level_min[depth] + 1,
+                dfs(node.left, depth + 1, index * 2),
+                dfs(node.right, depth + 1, index * 2 + 1),
+            )
 
         return dfs(root, 1, 1)
 
@@ -834,7 +840,9 @@ class Solution:
             i, j = i + 1, j - 1
         return res
 
-    def trim_bst(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+    def trim_bst(
+        self, root: Optional[TreeNode], low: int, high: int
+    ) -> Optional[TreeNode]:
         """669. Trim a Binary Search Tree"""
         while root and (root.val < low or root.val > high):
             root = root.right if root.val < low else root.left
@@ -868,12 +876,12 @@ class Solution:
         if index1 < 0:
             return num
         s[index1], s[index2] = s[index2], s[index1]
-        return int(''.join(s))
+        return int("".join(s))
 
     def flip_lights(self, n: int, presses: int) -> int:
         """672. Bulb Switcher II"""
         seen = set()
-        for i in range(2 ** 4):
+        for i in range(2**4):
             press_arr = [(i >> j) & 1 for j in range(4)]
             if sum(press_arr) % 2 == presses % 2 and sum(press_arr) <= presses:
                 status = press_arr[0] ^ press_arr[1] ^ press_arr[3]
@@ -919,7 +927,11 @@ class Solution:
 
     def next_greatest_letter(self, letters: List[str], target: str) -> str:
         """744. Find The Smallest Letter Greater Than Target"""
-        return letters[bisect_right(letters, target)] if target < letters[-1] else letters[0]
+        return (
+            letters[bisect_right(letters, target)]
+            if target < letters[-1]
+            else letters[0]
+        )
 
     def preimage_size_fzf(self, k: int) -> int:
         """793. Preimage Size of Factorial Zeroes Function"""
@@ -938,18 +950,44 @@ class Solution:
 
     def unique_morse_representations(self, words: List[str]) -> int:
         """804. Unique Morse Code Words"""
-        morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
-                 "---", ".--.", "--.-", ".-.", "...", "-", "..-",
-                 "...-", ".--", "-..-", "-.--", "--.."]
-        return len(set("".join(morse[ord(ch) - ord('a')] for ch in word) for word in words))
+        morse = [
+            ".-",
+            "-...",
+            "-.-.",
+            "-..",
+            ".",
+            "..-.",
+            "--.",
+            "....",
+            "..",
+            ".---",
+            "-.-",
+            ".-..",
+            "--",
+            "-.",
+            "---",
+            ".--.",
+            "--.-",
+            ".-.",
+            "...",
+            "-",
+            "..-",
+            "...-",
+            ".--",
+            "-..-",
+            "-.--",
+            "--..",
+        ]
+        return len(
+            set("".join(morse[ord(ch) - ord("a")] for ch in word) for word in words)
+        )
 
     def number_of_lines(self, widths: List[int], s: str) -> List[int]:
         """806. Number of Lines To Write String"""
         max_width = 100
         lines, width = 1, 0
         for c in s:
-            need = widths[ord(c) - ord('a')]
+            need = widths[ord(c) - ord("a")]
             width += need
             if width > max_width:
                 width = need
@@ -1003,16 +1041,18 @@ class Solution:
             j -= 1
         return True
 
-    def min_cost_to_hire_worker(self, quality: List[int], wage: List[int], k: int) -> float:
+    def min_cost_to_hire_worker(
+        self, quality: List[int], wage: List[int], k: int
+    ) -> float:
         """857. Minimum Cost to Hire K Workers"""
         pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])
         res = inf
         total_quality = 0
         hire = []
-        for q, w in pairs[:k - 1]:
+        for q, w in pairs[: k - 1]:
             total_quality += q
             heappush(hire, -q)
-        for q, w in pairs[k - 1:]:
+        for q, w in pairs[k - 1 :]:
             total_quality += q
             heappush(hire, -q)
             res = min(res, w / q * total_quality)
@@ -1054,7 +1094,7 @@ class Solution:
         lo, hi = 0, n
         perm = [0] * (n + 1)
         for i, ch in enumerate(s):
-            if ch == 'I':
+            if ch == "I":
                 perm[i] = lo
                 lo += 1
             else:
@@ -1101,7 +1141,9 @@ class Solution:
             pos -= 1
         return ans
 
-    def insert_into_max_tree(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    def insert_into_max_tree(
+        self, root: Optional[TreeNode], val: int
+    ) -> Optional[TreeNode]:
         """998. Maximum Binary Tree II"""
         parent, curr = None, root
         while curr:
@@ -1122,10 +1164,10 @@ class Solution:
         balance = 0
         open_seen = 0
         for c in s:
-            if c == '(':
+            if c == "(":
                 balance += 1
                 open_seen += 1
-            if c == ')':
+            if c == ")":
                 if balance == 0:
                     continue
                 balance -= 1
@@ -1134,7 +1176,7 @@ class Solution:
         res = []
         open_to_keep = open_seen - balance
         for c in first_parse_chars:
-            if c == '(':
+            if c == "(":
                 open_to_keep -= 1
                 if open_to_keep < 0:
                     continue
@@ -1149,7 +1191,7 @@ class Solution:
         for i, num in enumerate(nums):
             curr += num
             if total - curr < curr:
-                return nums[:i + 1]
+                return nums[: i + 1]
 
     def reformat(self, s: str) -> str:
         """1417. Reformat The String"""
@@ -1167,16 +1209,22 @@ class Solution:
                 t[i], t[j] = t[j], t[i]
         return "".join(t)
 
-    def busy_student(self, start_time: List[int], end_time: List[int], query_time: int) -> int:
+    def busy_student(
+        self, start_time: List[int], end_time: List[int], query_time: int
+    ) -> int:
         """1450. Number of Students Doing Homework at a Given Time"""
         return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
 
     def is_prefix_of_word(self, sentence: str, search_word: str) -> int:
         """1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence"""
-        i, index, n, = 0, 1, len(sentence)
+        i, index, n, = (
+            0,
+            1,
+            len(sentence),
+        )
         while i < n:
             start = i
-            while i < n and sentence[i] != ' ':
+            while i < n and sentence[i] != " ":
                 i += 1
             end = i
             if sentence[start:end].startswith(search_word):
@@ -1228,7 +1276,7 @@ class Solution:
             if arr[i] == "?":
                 for ch in "abc":
                     if not (
-                            i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
                     ):
                         arr[i] = ch
                         break
@@ -1247,11 +1295,11 @@ class Solution:
     def reorder_spaces(self, text: str) -> str:
         """1592. Rearrange Spaces Between Words"""
         words = text.split()
-        space = text.count(' ')
+        space = text.count(" ")
         if len(words) == 1:
-            return words[0] + ' ' * space
+            return words[0] + " " * space
         per_space, rest_space = divmod(space, len(words) - 1)
-        return (' ' * per_space).join(words) + ' ' * rest_space
+        return (" " * per_space).join(words) + " " * rest_space
 
     def min_operations(self, logs: List[str]) -> int:
         """1598. Crawler Log Folder"""
@@ -1279,7 +1327,7 @@ class Solution:
         """1619. Mean of Array After Removing Some Elements"""
         arr.sort()
         n = len(arr)
-        return sum(arr[n // 20:-n // 20]) / (n * 0.9)
+        return sum(arr[n // 20 : -n // 20]) / (n * 0.9)
 
     def max_length_between_equal_characters(self, s: str) -> int:
         """1624. Largest Substring Between Two Equal Characters"""
