@@ -822,6 +822,19 @@ def test_trim_mean(arr: List[int], expected: float):
 
 
 @pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("aa", 0),
+        ("abca", 2),
+        ("cbzxy", -1),
+    ],
+)
+def test_max_length_between_equal_characters(s: str, expected: int):
+    actual = solution.max_length_between_equal_characters(s)
+    assert expected == actual
+
+
+@pytest.mark.parametrize(
     "n, k, expected",
     [
         (5, 2, 3),

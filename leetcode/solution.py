@@ -1281,6 +1281,17 @@ class Solution:
         n = len(arr)
         return sum(arr[n // 20:-n // 20]) / (n * 0.9)
 
+    def max_length_between_equal_characters(self, s: str) -> int:
+        """1624. Largest Substring Between Two Equal Characters"""
+        res = -1
+        dic = {}
+        for i, ch in enumerate(s):
+            if ch not in dic:
+                dic[ch] = i
+            else:
+                res = max(res, i - dic[ch] - 1)
+        return res
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
