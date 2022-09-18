@@ -1340,6 +1340,12 @@ class Solution:
                 res = max(res, i - dic[ch] - 1)
         return res
 
+    def frequency_sort(self, nums: List[int]) -> List[int]:
+        """1636. Sort Array by Increasing Frequency"""
+        count = Counter(nums)
+        nums.sort(key=lambda x: (count[x], -x))
+        return nums
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
