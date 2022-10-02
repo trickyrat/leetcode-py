@@ -1346,6 +1346,28 @@ class Solution:
         nums.sort(key=lambda x: (count[x], -x))
         return nums
 
+    def reformat_number(self, number: str) -> str:
+        """1694. Reformat Phone Number"""
+        digits = []
+        for ch in number:
+            if ch.isdigit():
+                digits.append(ch)
+        n, pt = len(digits), 0
+        res = []
+        while n > 0:
+            if n > 4:
+                res.append("".join(digits[pt:pt+3]))
+                pt += 3
+                n -= 3
+            else:
+                if n == 4:
+                    res.append("".join(digits[pt:pt+2]))
+                    res.append("".join(digits[pt+2:pt+4]))
+                else:
+                    res.append("".join(digits[pt:pt+n]))
+                break
+        return "-".join(res)
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
