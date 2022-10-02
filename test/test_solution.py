@@ -953,6 +953,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "number, expected",
+        [
+            ("1-23-45 6", "123-456"),
+            ("123 4-567", "123-45-67"),
+            ("123 4-5678", "123-456-78"),
+        ],
+    )
+    def test_reformat_number(self, number: str, expected: str):
+        actual = self.solution.reformat_number(number)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "n, k, expected",
         [
             (5, 2, 3),
