@@ -1036,6 +1036,17 @@ class TestSolution:
     @pytest.mark.parametrize(
         "s, expected",
         [
+            ("())", 1),
+            ("(((", 3),
+        ],
+    )
+    def test_min_add_to_make_valid(self, s: str, expected: int):
+        actual = self.solution.min_add_to_make_valid(s)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        "s, expected",
+        [
             ("IDID", [0, 4, 1, 3, 2]),
             ("III", [0, 1, 2, 3]),
             ("DDI", [3, 2, 0, 1]),
