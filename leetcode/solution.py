@@ -1088,6 +1088,18 @@ class Solution:
                 right -= 1
         return nums
 
+    def min_add_to_make_valid(self, s: str) -> int:
+        """921. Minimum Add to Make Parentheses Valid"""
+        res = count = 0
+        for c in s:
+            if c == '(':
+                count += 1
+            elif count > 0:
+                count -= 1
+            else:
+                res += 1
+        return res + count
+
     def di_string_match(self, s: str) -> List[int]:
         """942. DI String Match"""
         n = len(s)
