@@ -994,6 +994,19 @@ class Solution:
                 lines += 1
         return [lines, width]
 
+    def subdomain_visits(self, cpdomains: List[str]) -> List[str]:
+        """811. Subdomain Visit Count"""
+        count = Counter()
+        for domain in cpdomains:
+            c, s = domain.split()
+            c = int(c)
+            count[s] += c
+            while '.' in s:
+                s = s[s.index('.')+1:]
+                count[s] += c
+        return [f"{c} {s}" for s, c in count.items()]
+
+
     def unique_letter_string(self, s: str) -> int:
         """828. Count Unique Characters of All Substrings of a Given String"""
         index = collections.defaultdict(list)
