@@ -645,6 +645,16 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "cpdomains, expected",
+        [(["9001 discuss.leetcode.com"], ["9001 leetcode.com","9001 discuss.leetcode.com","9001 com"]),
+         (["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"], ["901 mail.com","50 yahoo.com","900 google.mail.com","5 wiki.org","5 org","1 intel.mail.com","951 com"])]
+    )
+    def test_subdomain_in_visits(self, cpdomains: List[str], expected: List[str]):
+        actual = self.solution.subdomain_visits(cpdomains)
+        assert expected == actual
+
+
+    @pytest.mark.parametrize(
         "s, expected",
         [("ABC", 10), ("ABA", 8), ("LEETCODE", 92)],
     )
