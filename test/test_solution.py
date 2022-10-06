@@ -646,10 +646,10 @@ class TestSolution:
 
     @pytest.mark.parametrize(
         "cpdomains, expected",
-        [(["9001 discuss.leetcode.com"], ["9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"]),
+        [(["9001 discuss.leetcode.com"], ["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"]),
          (["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"],
-          ["901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org", "1 intel.mail.com",
-           "951 com"])]
+          ["900 google.mail.com", "901 mail.com", "951 com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org",
+           "5 org"])]
     )
     def test_subdomain_in_visits(self, cpdomains: List[str], expected: List[str]):
         actual = self.solution.subdomain_visits(cpdomains)
