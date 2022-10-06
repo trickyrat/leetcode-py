@@ -646,10 +646,10 @@ class TestSolution:
 
     @pytest.mark.parametrize(
         "cpdomains, expected",
-        [(["9001 discuss.leetcode.com"], ["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"]),
+        [(["9001 discuss.leetcode.com"], ["9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"]),
          (["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"],
-          ["900 google.mail.com", "901 mail.com", "951 com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org",
-           "5 org"])]
+          ["901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org", "1 intel.mail.com",
+           "951 com"])]
     )
     def test_subdomain_in_visits(self, cpdomains: List[str], expected: List[str]):
         actual = self.solution.subdomain_visits(cpdomains)
@@ -987,6 +987,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([10, 20, 30, 5, 10, 50], 65),
+            ([10, 20, 30, 40, 50], 150),
+            ([12, 17, 15, 13, 10, 11, 12], 33),
+        ],
+    )
+    def test_max_ascending_sum(self, nums: List[int], expected: int):
+        actual = self.solution.max_ascending_sum(nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "n, k, expected",
         [
             (5, 2, 3),
@@ -1053,18 +1065,6 @@ class TestSolution:
     )
     def test_min_add_to_make_valid(self, s: str, expected: int):
         actual = self.solution.min_add_to_make_valid(s)
-        assert actual == expected
-
-    @pytest.mark.parametrize(
-        "arr, expected",
-        [
-            ([1, 0, 1, 0, 1], [0, 3]),
-            ([1, 1, 0, 1, 1], [-1, -1]),
-            ([1, 1, 0, 0, 1], [0, 2]),
-        ],
-    )
-    def test_three_equal_parts(self, arr: List[int], expected: List[int]):
-        actual = self.solution.three_equal_parts(arr)
         assert actual == expected
 
     @pytest.mark.parametrize(
