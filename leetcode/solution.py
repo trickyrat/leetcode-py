@@ -1426,6 +1426,20 @@ class Solution:
         """1784. Check if Binary String Has at Most One Segment of Ones"""
         return "01" not in s
 
+    def max_ascending_sum(self, nums: List[int]) -> int:
+        """1800. Maximum Ascending Subarray Sum"""
+        res = i = 0
+        n = len(nums)
+        while i < n:
+            curr = nums[i]
+            i += 1
+            while i < n and nums[i] > nums[i-1]:
+                curr += nums[i]
+                i += 1
+            res = max(res, curr)
+        return res
+
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1
