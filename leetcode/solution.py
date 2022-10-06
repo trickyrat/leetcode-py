@@ -1002,10 +1002,9 @@ class Solution:
             c = int(c)
             count[s] += c
             while '.' in s:
-                s = s[s.index('.')+1:]
+                s = s[s.index('.') + 1:]
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
-
 
     def unique_letter_string(self, s: str) -> int:
         """828. Count Unique Characters of All Substrings of a Given String"""
@@ -1112,6 +1111,36 @@ class Solution:
             else:
                 res += 1
         return res + count
+
+    def three_equal_parts(self, arr: List[int]) -> List[int]:
+        """927. Three Equal Parts"""
+        total = sum(arr)
+        if total % 3:
+            return [-1, -1]
+        if total == 0:
+            return [0, 2]
+
+        partial = total // 3
+        first = second = third = curr = 0
+        for i, x in enumerate(arr):
+            if x:
+                if curr == 0:
+                    first = i
+                elif curr == partial:
+                    second = i
+                elif curr == 2 * partial:
+                    third = i
+                curr += 1
+        n = len(arr)
+        length = n - third
+        if first + length <= second and second + length <= third:
+            i = 0
+            while third + i < n:
+                if arr[first + i] != arr[second + i] or arr[first + i] != arr[third + i]:
+                    return [-1, -1]
+                i += 1
+            return [first + length - 1, second + length]
+        return [-1, -1]
 
     def di_string_match(self, s: str) -> List[int]:
         """942. DI String Match"""
