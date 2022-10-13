@@ -1053,6 +1053,15 @@ class Solution:
             j -= 1
         return True
 
+    def score_of_parentheses(self, s: str) -> int:
+        """856. Score of Parentheses"""
+        res = bal = 0
+        for i, c in enumerate(s):
+            bal += 1 if c == '(' else -1
+            if c == ')' and s[i - 1] == '(':
+                res += 1 << bal
+        return res
+
     def min_cost_to_hire_worker(
             self, quality: List[int], wage: List[int], k: int
     ) -> float:
@@ -1077,7 +1086,7 @@ class Solution:
         index1, index2 = list(range(n)), list(range(n))
         index1.sort(key=lambda x: nums1[x])
         index2.sort(key=lambda x: nums2[x])
-        res = [0]*n
+        res = [0] * n
         left, right = 0, n - 1
         for i in range(n):
             if nums1[index1[i]] > nums2[index2[left]]:
@@ -1450,12 +1459,11 @@ class Solution:
         while i < n:
             curr = nums[i]
             i += 1
-            while i < n and nums[i] > nums[i-1]:
+            while i < n and nums[i] > nums[i - 1]:
                 curr += nums[i]
                 i += 1
             res = max(res, curr)
         return res
-
 
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
