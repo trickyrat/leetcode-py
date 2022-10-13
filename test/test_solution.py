@@ -664,6 +664,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [("()", 1), ("(())", 2), ("()()", 2)],
+    )
+    def test_score_of_parentheses(self, s: str, expected: int):
+        actual = self.solution.score_of_parentheses(s)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "quality, wage, k, expected",
         [
             ([10, 20, 5], [70, 50, 30], 2, 105.00000),
