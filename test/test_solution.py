@@ -668,6 +668,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "head, nums, expected",
+        [
+            (create_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
+            (create_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
+        ]
+    )
+    def test_num_components(self, head: Optional[ListNode], nums: List[int], expected: int):
+        actual = self.solution.num_components(head, nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [("ABC", 10), ("ABA", 8), ("LEETCODE", 92)],
     )
