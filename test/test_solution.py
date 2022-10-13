@@ -678,6 +678,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums1, nums2, expected",
+        [
+            ([2, 7, 11, 15], [1, 10, 4, 11], [2, 11, 7, 15]),
+            ([12, 24, 8, 32], [13, 25, 32, 11], [24, 32, 8, 12]),
+        ],
+
+    )
+    def test_advantage_count(self, nums1: List[int], nums2: List[int], expected: List[int]):
+        actual = self.solution.advantage_count(nums1, nums2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [([1, 2, 3, 4, 5, 6], [4, 5, 6]), ([1, 2, 3, 4, 5], [3, 4, 5])],
     )
