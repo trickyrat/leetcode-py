@@ -1071,6 +1071,23 @@ class Solution:
             total_quality += heappop(hire)
         return res
 
+    def advantage_count(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """870. Advantage Shuffle"""
+        n = len(nums1)
+        index1, index2 = list(range(n)), list(range(n))
+        index1.sort(key=lambda x: nums1[x])
+        index2.sort(key=lambda x: nums2[x])
+        res = [0]*n
+        left, right = 0, n - 1
+        for i in range(n):
+            if nums1[index1[i]] > nums2[index2[left]]:
+                res[index2[left]] = nums1[index1[i]]
+                left += 1
+            else:
+                res[index2[right]] = nums1[index1[i]]
+                right -= 1
+        return res
+
     def middle_node(self, head: ListNode) -> ListNode:
         """876. Middle of the Linked List"""
         slow = fast = head
