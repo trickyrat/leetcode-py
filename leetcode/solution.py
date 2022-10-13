@@ -933,6 +933,14 @@ class Solution:
             else letters[0]
         )
 
+    def max_chunks_to_sorted(self, arr: List[int]) -> int:
+        """769. Max Chunks To Make Sorted"""
+        res = maximum = 0
+        for i, x in enumerate(arr):
+            maximum = max(maximum, x)
+            res += maximum == i
+        return res
+
     def preimage_size_fzf(self, k: int) -> int:
         """793. Preimage Size of Factorial Zeroes Function"""
 
