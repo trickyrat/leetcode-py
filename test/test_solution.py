@@ -556,6 +556,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "arr, expected",
+        [([4, 3, 2, 1, 0], 1), ([1, 0, 2, 3, 4], 4)],
+    )
+    def test_max_chunks_to_sorted(self, arr: List[int], expected: int):
+        actual = self.solution.max_chunks_to_sorted(arr)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )
