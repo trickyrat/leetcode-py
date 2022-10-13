@@ -1467,6 +1467,19 @@ class Solution:
         """1784. Check if Binary String Has at Most One Segment of Ones"""
         return "01" not in s
 
+    def are_almost_equal(self, s1: str, s2: str) -> bool:
+        """1790. Check if One String Swap Can Make Strings Equal"""
+        i = j = -1
+        for index, (x, y) in enumerate(zip(s1, s2)):
+            if x != y:
+                if i < 0:
+                    i = index
+                elif j < 0:
+                    j = index
+                else:
+                    return False
+        return i < 0 or j >= 0 and s1[i] == s2[j] and s1[j] == s2[i]
+
     def max_ascending_sum(self, nums: List[int]) -> int:
         """1800. Maximum Ascending Subarray Sum"""
         res = i = 0
