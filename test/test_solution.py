@@ -564,6 +564,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums1, nums2, expected",
+        [
+            ([1, 3, 5, 4], [1, 2, 3, 7], 1),
+            ([0, 3, 5, 8, 9], [2, 1, 4, 6, 9], 1),
+        ],
+
+    )
+    def test_min_swap(self, nums1: List[int], nums2: List[int], expected: int):
+        actual = self.solution.min_swap(nums1, nums2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "words, expected",
         [(["gin", "zen", "gig", "msg"], 2), (["a"], 1)],
     )
