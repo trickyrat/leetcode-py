@@ -1021,6 +1021,20 @@ class Solution:
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
 
+    def num_components(self, head: Optional[ListNode], nums: List[int]) -> int:
+        """817. Linked List Components"""
+        nums_set = set(nums)
+        in_set = False
+        res = 0
+        while head:
+            if head.val not in nums_set:
+                in_set = False
+            elif not in_set:
+                in_set = True
+                res += 1
+            head = head.next
+        return res
+
     def unique_letter_string(self, s: str) -> int:
         """828. Count Unique Characters of All Substrings of a Given String"""
         index = collections.defaultdict(list)
