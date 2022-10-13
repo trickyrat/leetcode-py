@@ -1019,6 +1019,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s1, s2, expected",
+        [
+            ("bank", "kanb", True),
+            ("attack", "defend", False),
+            ("kelb", "kelb", True),
+        ],
+    )
+    def test_are_almost_equal(self, s1: str, s2: str, expected: bool):
+        actual = self.solution.are_almost_equal(s1, s2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "nums, expected",
         [
             ([10, 20, 30, 5, 10, 50], 65),
