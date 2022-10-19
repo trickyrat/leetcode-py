@@ -1217,7 +1217,7 @@ class Solution:
             index = ord(s[i]) - ord("a")
             alphas[index], res = (res + 1) % mod, (res * 2 + 1 - alphas[index]) % mod
         return res
-    
+
     def di_string_match(self, s: str) -> List[int]:
         """942. DI String Match"""
         n = len(s)
@@ -1338,6 +1338,18 @@ class Solution:
                     j += 2
                 t[i], t[j] = t[j], t[i]
         return "".join(t)
+
+    def build_array(self, target: List[int], n: int) -> List[str]:
+        """1441. Build an Array With Stack Operations"""
+        res = []
+        prev = 0
+        for num in target:
+            for _ in range(num - prev - 1):
+                res.append("Push")
+                res.append("Pop")
+            res.append("Push")
+            prev = num
+        return res
 
     def busy_student(
             self, start_time: List[int], end_time: List[int], query_time: int

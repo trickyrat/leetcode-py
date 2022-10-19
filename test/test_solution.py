@@ -782,6 +782,20 @@ class TestSolution:
         assert actual in expected
 
     @pytest.mark.parametrize(
+        "target, n, expected",
+        [
+            ([1, 3], 3, ["Push", "Push", "Pop", "Push"]),
+            ([1, 2, 3], 3, ["Push", "Push", "Push"]),
+            ([1, 2], 4, ["Push", "Push"]),
+        ],
+    )
+    def test_build_array(
+            self, target: List[int], n: int, expected: int
+    ):
+        actual = self.solution.build_array(target, n)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "start_time, end_time, query_time, expected",
         [
             ([1, 2, 3], [3, 2, 7], 4, 1),
