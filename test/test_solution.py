@@ -1041,6 +1041,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "students, sandwiches, expected",
+        [
+            ([1, 1, 0, 0], [0, 1, 0, 1], 0),
+            ([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1], 3),
+        ],
+    )
+    def test_count_students(self, students: List[int], sandwiches: List[int], expected: int):
+        actual = self.solution.count_students(students, sandwiches)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("1001", False),

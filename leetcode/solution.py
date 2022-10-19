@@ -1538,6 +1538,19 @@ class Solution:
                 break
         return "-".join(res)
 
+    def count_students(self, students: List[int], sandwiches: List[int]) -> int:
+        """1700. Number of Students Unable to Eat Lunch"""
+        square = sum(students)
+        circular = len(students) - square
+        for sandwich in sandwiches:
+            if sandwich == 1 and square:
+                square -= 1
+            elif sandwich == 0 and circular:
+                circular -= 1
+            else:
+                break
+        return square + circular
+
     def check_ones_segment(self, s: str) -> bool:
         """1784. Check if Binary String Has at Most One Segment of Ones"""
         return "01" not in s
