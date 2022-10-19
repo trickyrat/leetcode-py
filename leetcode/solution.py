@@ -1149,6 +1149,20 @@ class Solution:
         zx_area = sum(map(max, grid))
         return xy_area + yz_area + zx_area
 
+    def possible_bipartition(self, n: int, dislikes: List[List[int]]) -> bool:
+        """886. Possible Bipartition"""
+        group = [[] for _ in range(n)]
+        for x, y in dislikes:
+            group[x - 1].append(y - 1)
+            group[y - 1].append(x - 1)
+        color = [0] * n
+
+        def dfs(x: int, c: int) -> bool:
+            color[x] = c
+            return all(color[y] != c and (color[y] or dfs(y, -c)) for y in group[x])
+
+        return all(c or dfs(i, 1) for i, c in enumerate(color))
+
     def sort_array_by_parity(self, nums: List[int]) -> List[int]:
         """905. Sort Array By Parity"""
         left, right = 0, len(nums) - 1
