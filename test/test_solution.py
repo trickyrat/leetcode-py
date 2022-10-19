@@ -1135,6 +1135,18 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "fruits, expected",
+        [
+            ([1, 2, 1], 3),
+            ([0, 1, 2, 2], 3),
+            ([1, 2, 3, 2, 2], 4),
+        ],
+    )
+    def test_total_fruit(self, fruits: List[int], expected: int):
+        actual = self.solution.total_fruit(fruits)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ([3, 1, 4, 2], [2, 4, 1, 3]),

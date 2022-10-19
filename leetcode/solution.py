@@ -1163,6 +1163,20 @@ class Solution:
 
         return all(c or dfs(i, 1) for i, c in enumerate(color))
 
+    def total_fruit(self, fruits: List[int]) -> int:
+        """904. Fruit Into Baskets"""
+        counter = Counter()
+        left = res = 0
+        for right, x in enumerate(fruits):
+            counter[x] += 1
+            while len(counter) > 2:
+                counter[fruits[left]] -= 1
+                if counter[fruits[left]] == 0:
+                    counter.pop(fruits[left])
+                left += 1
+            res = max(res, right - left + 1)
+        return res
+
     def sort_array_by_parity(self, nums: List[int]) -> List[int]:
         """905. Sort Array By Parity"""
         left, right = 0, len(nums) - 1
