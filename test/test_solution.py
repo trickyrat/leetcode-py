@@ -1133,6 +1133,18 @@ class TestSolution:
     @pytest.mark.parametrize(
         "s, expected",
         [
+            ("abc", 7),
+            ("aba", 6),
+            ("aaa", 3),
+        ],
+    )
+    def test_distinct_subseq_ii(self, s: str, expected: int):
+        actual = self.solution.distinct_subseq_ii(s)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        "s, expected",
+        [
             ("IDID", [0, 4, 1, 3, 2]),
             ("III", [0, 1, 2, 3]),
             ("DDI", [3, 2, 0, 1]),

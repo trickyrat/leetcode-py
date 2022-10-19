@@ -1024,8 +1024,8 @@ class Solution:
             c, s = domain.split()
             c = int(c)
             count[s] += c
-            while '.' in s:
-                s = s[s.index('.') + 1:]
+            while "." in s:
+                s = s[s.index(".") + 1:]
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
 
@@ -1094,8 +1094,8 @@ class Solution:
         """856. Score of Parentheses"""
         res = bal = 0
         for i, c in enumerate(s):
-            bal += 1 if c == '(' else -1
-            if c == ')' and s[i - 1] == '(':
+            bal += 1 if c == "(" else -1
+            if c == ")" and s[i - 1] == "(":
                 res += 1 << bal
         return res
 
@@ -1167,7 +1167,7 @@ class Solution:
         """921. Minimum Add to Make Parentheses Valid"""
         res = count = 0
         for c in s:
-            if c == '(':
+            if c == "(":
                 count += 1
             elif count > 0:
                 count -= 1
@@ -1199,12 +1199,25 @@ class Solution:
         if first + length <= second and second + length <= third:
             i = 0
             while third + i < n:
-                if arr[first + i] != arr[second + i] or arr[first + i] != arr[third + i]:
+                if (
+                        arr[first + i] != arr[second + i]
+                        or arr[first + i] != arr[third + i]
+                ):
                     return [-1, -1]
                 i += 1
             return [first + length - 1, second + length]
         return [-1, -1]
 
+    def distinct_subseq_ii(self, s: str) -> int:
+        """940. Distinct Subsequences II"""
+        mod = 10 ** 9 + 7
+        alphas = [0] * 26
+        res = 0
+        for i, ch in enumerate(s):
+            index = ord(s[i]) - ord("a")
+            alphas[index], res = (res + 1) % mod, (res * 2 + 1 - alphas[index]) % mod
+        return res
+    
     def di_string_match(self, s: str) -> List[int]:
         """942. DI String Match"""
         n = len(s)
@@ -1473,15 +1486,15 @@ class Solution:
         res = []
         while n > 0:
             if n > 4:
-                res.append("".join(digits[pt:pt + 3]))
+                res.append("".join(digits[pt: pt + 3]))
                 pt += 3
                 n -= 3
             else:
                 if n == 4:
-                    res.append("".join(digits[pt:pt + 2]))
-                    res.append("".join(digits[pt + 2:pt + 4]))
+                    res.append("".join(digits[pt: pt + 2]))
+                    res.append("".join(digits[pt + 2: pt + 4]))
                 else:
-                    res.append("".join(digits[pt:pt + n]))
+                    res.append("".join(digits[pt: pt + n]))
                 break
         return "-".join(res)
 
