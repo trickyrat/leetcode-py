@@ -20,17 +20,17 @@ class TestSolution:
             (create_list_node([2, 4, 3]), create_list_node([5, 6, 4]), [7, 0, 8]),
             (create_list_node([0]), create_list_node([0]), [0]),
             (
-                    create_list_node([9, 9, 9, 9, 9, 9, 9]),
-                    create_list_node([9, 9, 9, 9]),
-                    [8, 9, 9, 9, 0, 0, 0, 1],
+                create_list_node([9, 9, 9, 9, 9, 9, 9]),
+                create_list_node([9, 9, 9, 9]),
+                [8, 9, 9, 9, 0, 0, 0, 1],
             ),
         ],
     )
     def test_add_two_numbers(
-            self,
-            test_input1: Optional[ListNode],
-            test_input2: Optional[ListNode],
-            expected: List[int],
+        self,
+        test_input1: Optional[ListNode],
+        test_input2: Optional[ListNode],
+        expected: List[int],
     ):
         actual = list_node_to_list(
             self.solution.add_two_numbers(test_input1, test_input2)
@@ -55,7 +55,7 @@ class TestSolution:
         ],
     )
     def test_find_median_sorted_arrays(
-            self, test_input1: List[int], test_input2: List[int], expected: float
+        self, test_input1: List[int], test_input2: List[int], expected: float
     ):
         actual = self.solution.find_median_sorted_arrays(test_input1, test_input2)
         assert expected == actual
@@ -93,8 +93,8 @@ class TestSolution:
             (120, 21),
             (100, 1),
             (120, 21),
-            (-(2 ** 31), 0),
-            (2 ** 31 - 1, 0),
+            (-(2**31), 0),
+            (2**31 - 1, 0),
         ],
     )
     def test_reverse_int(self, test_input: int, expected: str):
@@ -157,8 +157,8 @@ class TestSolution:
         "strs, expected",
         [
             (
-                    ["eat", "tea", "tan", "ate", "nat", "bat"],
-                    [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
+                ["eat", "tea", "tan", "ate", "nat", "bat"],
+                [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
             ),
             ([""], [[""]]),
             (["a"], [["a"]]),
@@ -184,8 +184,8 @@ class TestSolution:
         [
             ([[1, 1, 1], [1, 0, 1], [1, 1, 1]], [[1, 0, 1], [0, 0, 0], [1, 0, 1]]),
             (
-                    [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]],
-                    [[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]],
+                [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]],
+                [[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]],
             ),
         ],
     )
@@ -231,15 +231,15 @@ class TestSolution:
         "test_input, target_num, expected",
         [
             (
-                    create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
-                    22,
-                    [[5, 4, 11, 2], [5, 8, 4, 5]],
+                create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
+                22,
+                [[5, 4, 11, 2], [5, 8, 4, 5]],
             ),
             (create_treenode([1, 2, 3]), 5, []),
         ],
     )
     def test_path_sum(
-            self, test_input: TreeNode, target_num: int, expected: List[List[int]]
+        self, test_input: TreeNode, target_num: int, expected: List[List[int]]
     ):
         actual = self.solution.path_sum(test_input, target_num)
         assert actual == expected
@@ -322,7 +322,7 @@ class TestSolution:
         ],
     )
     def test_find_diagonal_order(
-            self, test_input: List[List[int]], expected: List[int]
+        self, test_input: List[List[int]], expected: List[int]
     ):
         actual = self.solution.find_diagonal_order(test_input)
         assert actual == expected
@@ -359,19 +359,19 @@ class TestSolution:
         "l1, l2, expected",
         [
             (
-                    ["Shogun", "Tapioca Express", "Burger King", "KFC"],
-                    [
-                        "Piatti",
-                        "The Grill at Torrey Pines",
-                        "Hungry Hunter Steakhouse",
-                        "Shogun",
-                    ],
-                    ["Shogun"],
+                ["Shogun", "Tapioca Express", "Burger King", "KFC"],
+                [
+                    "Piatti",
+                    "The Grill at Torrey Pines",
+                    "Hungry Hunter Steakhouse",
+                    "Shogun",
+                ],
+                ["Shogun"],
             ),
             (
-                    ["Shogun", "Tapioca Express", "Burger King", "KFC"],
-                    ["KFC", "Shogun", "Burger King"],
-                    ["Shogun"],
+                ["Shogun", "Tapioca Express", "Burger King", "KFC"],
+                ["KFC", "Shogun", "Burger King"],
+                ["Shogun"],
             ),
         ],
     )
@@ -383,25 +383,25 @@ class TestSolution:
         "root, val, depth, expected",
         [
             (
-                    create_treenode([4, 2, 6, 3, 1, 5]),
-                    1,
-                    2,
-                    create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
+                create_treenode([4, 2, 6, 3, 1, 5]),
+                1,
+                2,
+                create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
             ),
             (
-                    create_treenode([4, 2, None, 3, 1]),
-                    1,
-                    3,
-                    create_treenode([4, 2, None, 1, 1, 3, None, None, 1]),
+                create_treenode([4, 2, None, 3, 1]),
+                1,
+                3,
+                create_treenode([4, 2, None, 1, 1, 3, None, None, 1]),
             ),
         ],
     )
     def test_add_one_row(
-            self,
-            root: Optional[TreeNode],
-            val: int,
-            depth: int,
-            expected: Optional[TreeNode],
+        self,
+        root: Optional[TreeNode],
+        val: int,
+        depth: int,
+        expected: Optional[TreeNode],
     ):
         actual = self.solution.add_one_row(root, val, depth)
         assert expected == actual
@@ -418,18 +418,18 @@ class TestSolution:
         "root, expected",
         [
             (
-                    create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
-                    [create_treenode([2, 4]), create_treenode([4])],
+                create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
+                [create_treenode([2, 4]), create_treenode([4])],
             ),
             (create_treenode([2, 1, 1]), [create_treenode([1])]),
             (
-                    create_treenode([2, 2, 2, 3, None, 3, None]),
-                    [create_treenode([3]), create_treenode([2, 3])],
+                create_treenode([2, 2, 2, 3, None, 3, None]),
+                [create_treenode([3]), create_treenode([2, 3])],
             ),
         ],
     )
     def test_find_duplicate_subtrees(
-            self, root: Optional[TreeNode], expected: List[Optional[TreeNode]]
+        self, root: Optional[TreeNode], expected: List[Optional[TreeNode]]
     ):
         actual = self.solution.find_duplicate_subtrees(root)
         assert expected == actual
@@ -439,12 +439,12 @@ class TestSolution:
         [
             (create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
             (
-                    create_treenode([1, 2, 3, None, 4]),
-                    [
-                        ["", "", "", "1", "", "", ""],
-                        ["", "2", "", "", "", "3", ""],
-                        ["", "", "4", "", "", "", ""],
-                    ],
+                create_treenode([1, 2, 3, None, 4]),
+                [
+                    ["", "", "", "1", "", "", ""],
+                    ["", "2", "", "", "", "3", ""],
+                    ["", "", "4", "", "", "", ""],
+                ],
             ),
         ],
     )
@@ -457,7 +457,7 @@ class TestSolution:
         [([1, 2, 3, 4, 5], 4, 3, [1, 2, 3, 4]), ([1, 2, 3, 4, 5], 4, -1, [1, 2, 3, 4])],
     )
     def test_find_closest_elements(
-            self, arr: List[int], k: int, x: int, expected: List[int]
+        self, arr: List[int], k: int, x: int, expected: List[int]
     ):
         actual = self.solution.find_closest_elements(arr, k, x)
         assert expected == actual
@@ -487,19 +487,19 @@ class TestSolution:
         [
             (create_treenode([1, 0, 2]), 1, 2, create_treenode([1, None, 2])),
             (
-                    create_treenode([3, 0, 4, None, 2, None, None, 1]),
-                    1,
-                    3,
-                    create_treenode([3, 2, None, 1]),
+                create_treenode([3, 0, 4, None, 2, None, None, 1]),
+                1,
+                3,
+                create_treenode([3, 2, None, 1]),
             ),
         ],
     )
     def test_trim_bst(
-            self,
-            root: Optional[TreeNode],
-            low: int,
-            high: int,
-            expected: Optional[TreeNode],
+        self,
+        root: Optional[TreeNode],
+        low: int,
+        high: int,
+        expected: Optional[TreeNode],
     ):
         actual = self.solution.trim_bst(root, low, high)
         assert expected == actual
@@ -564,6 +564,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "n, k, expected",
+        [(1, 1, 0), (2, 1, 0), (2, 2, 1)],
+    )
+    def test_kth_grammar(self, n: int, k: int, expected: int):
+        actual = self.solution.kth_grammar(n, k)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )
@@ -577,7 +585,6 @@ class TestSolution:
             ([1, 3, 5, 4], [1, 2, 3, 7], 1),
             ([0, 3, 5, 8, 9], [2, 1, 4, 6, 9], 1),
         ],
-
     )
     def test_min_swap(self, nums1: List[int], nums2: List[int], expected: int):
         actual = self.solution.min_swap(nums1, nums2)
@@ -595,68 +602,68 @@ class TestSolution:
         "widths, s, expected",
         [
             (
-                    [
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                    ],
-                    "abcdefghijklmnopqrstuvwxyz",
-                    [3, 60],
+                [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                ],
+                "abcdefghijklmnopqrstuvwxyz",
+                [3, 60],
             ),
             (
-                    [
-                        4,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                        10,
-                    ],
-                    "bbbcccdddaaa",
-                    [2, 4],
+                [
+                    4,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                    10,
+                ],
+                "bbbcccdddaaa",
+                [2, 4],
             ),
         ],
     )
@@ -666,10 +673,29 @@ class TestSolution:
 
     @pytest.mark.parametrize(
         "cpdomains, expected",
-        [(["9001 discuss.leetcode.com"], {"9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"}),
-         (["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"],
-          {"901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org", "1 intel.mail.com",
-           "951 com"})]
+        [
+            (
+                ["9001 discuss.leetcode.com"],
+                {"9001 leetcode.com", "9001 discuss.leetcode.com", "9001 com"},
+            ),
+            (
+                [
+                    "900 google.mail.com",
+                    "50 yahoo.com",
+                    "1 intel.mail.com",
+                    "5 wiki.org",
+                ],
+                {
+                    "901 mail.com",
+                    "50 yahoo.com",
+                    "900 google.mail.com",
+                    "5 wiki.org",
+                    "5 org",
+                    "1 intel.mail.com",
+                    "951 com",
+                },
+            ),
+        ],
     )
     def test_subdomain_in_visits(self, cpdomains: List[str], expected: set[str]):
         actual = set(self.solution.subdomain_visits(cpdomains))
@@ -680,9 +706,11 @@ class TestSolution:
         [
             (create_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
             (create_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
-        ]
+        ],
     )
-    def test_num_components(self, head: Optional[ListNode], nums: List[int], expected: int):
+    def test_num_components(
+        self, head: Optional[ListNode], nums: List[int], expected: int
+    ):
         actual = self.solution.num_components(head, nums)
         assert expected == actual
 
@@ -710,7 +738,7 @@ class TestSolution:
         ],
     )
     def test_min_cost_to_hire_worker(
-            self, quality: List[int], wage: List[int], k: int, expected: float
+        self, quality: List[int], wage: List[int], k: int, expected: float
     ):
         actual = self.solution.min_cost_to_hire_worker(quality, wage, k)
         actual = round(actual, 5)
@@ -722,9 +750,10 @@ class TestSolution:
             ([2, 7, 11, 15], [1, 10, 4, 11], [2, 11, 7, 15]),
             ([12, 24, 8, 32], [13, 25, 32, 11], [24, 32, 8, 12]),
         ],
-
     )
-    def test_advantage_count(self, nums1: List[int], nums2: List[int], expected: List[int]):
+    def test_advantage_count(
+        self, nums1: List[int], nums2: List[int], expected: List[int]
+    ):
         actual = self.solution.advantage_count(nums1, nums2)
         assert expected == actual
 
@@ -789,9 +818,7 @@ class TestSolution:
             ([1, 2], 4, ["Push", "Push"]),
         ],
     )
-    def test_build_array(
-            self, target: List[int], n: int, expected: int
-    ):
+    def test_build_array(self, target: List[int], n: int, expected: int):
         actual = self.solution.build_array(target, n)
         assert actual == expected
 
@@ -803,7 +830,7 @@ class TestSolution:
         ],
     )
     def test_busy_student(
-            self, start_time: List[int], end_time: List[int], query_time: int, expected: int
+        self, start_time: List[int], end_time: List[int], query_time: int, expected: int
     ):
         actual = self.solution.busy_student(start_time, end_time, query_time)
         assert actual == expected
@@ -864,7 +891,7 @@ class TestSolution:
         ],
     )
     def test_can_make_arithmetic_progression(
-            self, test_input: List[int], expected: bool
+        self, test_input: List[int], expected: bool
     ):
         actual = self.solution.can_make_arithmetic_progression(test_input)
         assert actual == expected
@@ -873,24 +900,24 @@ class TestSolution:
         "root, val, expected",
         [
             (
-                    create_treenode([4, 1, 3, None, None, 2]),
-                    5,
-                    create_treenode([5, 4, None, 1, 3, None, None, 2]),
+                create_treenode([4, 1, 3, None, None, 2]),
+                5,
+                create_treenode([5, 4, None, 1, 3, None, None, 2]),
             ),
             (
-                    create_treenode([5, 2, 4, None, 1]),
-                    3,
-                    create_treenode([5, 2, 4, None, 1, None, 3]),
+                create_treenode([5, 2, 4, None, 1]),
+                3,
+                create_treenode([5, 2, 4, None, 1, None, 3]),
             ),
             (
-                    create_treenode([5, 2, 3, None, 1]),
-                    4,
-                    create_treenode([5, 2, 4, None, 1, 3]),
+                create_treenode([5, 2, 3, None, 1]),
+                4,
+                create_treenode([5, 2, 4, None, 1, 3]),
             ),
         ],
     )
     def test_insert_into_max_tree(
-            self, root: Optional[TreeNode], val: int, expected: Optional[TreeNode]
+        self, root: Optional[TreeNode], val: int, expected: Optional[TreeNode]
     ):
         actual = self.solution.insert_into_max_tree(root, val)
         assert expected == actual
@@ -954,49 +981,49 @@ class TestSolution:
             ([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3], 2.00000),
             ([6, 2, 7, 5, 1, 2, 0, 3, 10, 2, 5, 0, 5, 5, 0, 8, 7, 6, 8, 0], 4.00000),
             (
-                    [
-                        6,
-                        0,
-                        7,
-                        0,
-                        7,
-                        5,
-                        7,
-                        8,
-                        3,
-                        4,
-                        0,
-                        7,
-                        8,
-                        1,
-                        6,
-                        8,
-                        1,
-                        1,
-                        2,
-                        4,
-                        8,
-                        1,
-                        9,
-                        5,
-                        4,
-                        3,
-                        8,
-                        5,
-                        10,
-                        8,
-                        6,
-                        6,
-                        1,
-                        0,
-                        6,
-                        10,
-                        8,
-                        2,
-                        3,
-                        4,
-                    ],
-                    4.77778,
+                [
+                    6,
+                    0,
+                    7,
+                    0,
+                    7,
+                    5,
+                    7,
+                    8,
+                    3,
+                    4,
+                    0,
+                    7,
+                    8,
+                    1,
+                    6,
+                    8,
+                    1,
+                    1,
+                    2,
+                    4,
+                    8,
+                    1,
+                    9,
+                    5,
+                    4,
+                    3,
+                    8,
+                    5,
+                    10,
+                    8,
+                    6,
+                    6,
+                    1,
+                    0,
+                    6,
+                    10,
+                    8,
+                    2,
+                    3,
+                    4,
+                ],
+                4.77778,
             ),
         ],
     )
@@ -1047,7 +1074,9 @@ class TestSolution:
             ([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1], 3),
         ],
     )
-    def test_count_students(self, students: List[int], sandwiches: List[int], expected: int):
+    def test_count_students(
+        self, students: List[int], sandwiches: List[int], expected: int
+    ):
         actual = self.solution.count_students(students, sandwiches)
         assert expected == actual
 
@@ -1141,7 +1170,9 @@ class TestSolution:
             (5, [[1, 2], [2, 3], [3, 4], [4, 5], [1, 5]], False),
         ],
     )
-    def test_possible_bipartition(self, n: int, dislikes: List[List[int]], expected: bool):
+    def test_possible_bipartition(
+        self, n: int, dislikes: List[List[int]], expected: bool
+    ):
         actual = self.solution.possible_bipartition(n, dislikes)
         assert actual == expected
 
@@ -1223,7 +1254,7 @@ class TestSolution:
         ],
     )
     def test_validate_stack_sequences(
-            self, pushed: List[int], popped: List[int], expected: bool
+        self, pushed: List[int], popped: List[int], expected: bool
     ):
         actual = self.solution.validate_stack_sequences(pushed, popped)
         assert expected == actual
@@ -1257,14 +1288,14 @@ class TestSolution:
         [
             ("**|**|***|", [[2, 5], [5, 9]], [2, 3]),
             (
-                    "***|**|*****|**||**|*",
-                    [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]],
-                    [9, 0, 0, 0, 0],
+                "***|**|*****|**||**|*",
+                [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]],
+                [9, 0, 0, 0, 0],
             ),
         ],
     )
     def test_plates_between_candles(
-            self, test_input: str, queries: List[List[int]], expected: List[int]
+        self, test_input: str, queries: List[List[int]], expected: List[int]
     ):
         actual = self.solution.plates_between_candles(test_input, queries)
         assert actual == expected
@@ -1273,8 +1304,10 @@ class TestSolution:
         "test_input, expected",
         [
             ([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[7, 4, 1], [8, 5, 2], [9, 6, 3]]),
-            ([[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]],
-             [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]])
+            (
+                [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]],
+                [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]],
+            ),
         ],
     )
     def test_rotate(self, test_input: List[List[int]], expected: List[List[int]]):
