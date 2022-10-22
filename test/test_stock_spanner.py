@@ -11,10 +11,10 @@ class TestStockSpanner:
             (100, 1),
             (80, 1),
             (60, 1),
-            (70, 1),
+            (70, 2),
             (60, 1),
-            (75, 1),
-            (85, 1),
+            (75, 4),
+            (85, 6),
         ],
     )
     def test_stock_spanner(self, price: int, expected: int):
