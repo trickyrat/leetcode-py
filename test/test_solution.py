@@ -1099,7 +1099,7 @@ class TestSolution:
             ("110", True),
         ],
     )
-    def test_reformat_number(self, s: str, expected: bool):
+    def test_check_ones_segment(self, s: str, expected: bool):
         actual = self.solution.check_ones_segment(s)
         assert expected == actual
 
