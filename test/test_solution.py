@@ -1081,6 +1081,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "word1, word2, expected",
+        [
+            ("abc", "pqr", "apbqcr"),
+            ("ab", "pqrs", "apbqrs"),
+            ("abcd", "pq", "apbqcd"),
+        ],
+    )
+    def test_merge_alternately(self, word1: str, word2: str, expected: str):
+        actual = self.solution.merge_alternately(word1, word2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("1001", False),

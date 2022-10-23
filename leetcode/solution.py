@@ -1,6 +1,6 @@
 import collections
 from _heapq import heappop, heappush
-from itertools import pairwise
+from itertools import pairwise, zip_longest
 from bisect import bisect_right, bisect_left
 from math import inf
 from typing import List, Optional
@@ -1559,6 +1559,16 @@ class Solution:
             else:
                 break
         return square + circular
+
+    def merge_alternately(self, word1: str, word2: str) -> str:
+        """1768. Merge Strings Alternately"""
+        res = []
+        for i, j in zip_longest(word1, word2):
+            if i:
+                res.append(i)
+            if j:
+                res.append(j)
+        return "".join(res)
 
     def check_ones_segment(self, s: str) -> bool:
         """1784. Check if Binary String Has at Most One Segment of Ones"""
