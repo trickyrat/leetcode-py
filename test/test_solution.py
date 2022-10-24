@@ -1212,6 +1212,17 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([5, 0, 3, 8, 6], 3),
+            ([1, 1, 1, 0, 6, 12], 4),
+        ],
+    )
+    def test_partition_disjoint(self, nums: List[int], expected: int):
+        actual = self.solution.partition_disjoint(nums)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("())", 1),

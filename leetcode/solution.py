@@ -1200,6 +1200,17 @@ class Solution:
                 right -= 1
         return nums
 
+    def partition_disjoint(self, nums: List[int]) -> int:
+        """915. Partition Array into Disjoint Intervals"""
+        n = len(nums)
+        curr_max = left_max = nums[0]
+        index = 0;
+        for i in range(1, n - 1):
+            curr_max = max(curr_max, nums[i]);
+            if nums[i] < left_max:
+                left_max, index = curr_max, i
+        return index + 1
+
     def min_add_to_make_valid(self, s: str) -> int:
         """921. Minimum Add to Make Parentheses Valid"""
         res = count = 0
