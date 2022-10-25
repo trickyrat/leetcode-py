@@ -1234,6 +1234,18 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "arr, expected",
+        [
+            ([1, 0, 1, 0, 1], [0, 3]),
+            ([1, 1, 0, 1, 1], [-1, -1]),
+            ([1, 1, 0, 0, 1], [0, 2]),
+        ],
+    )
+    def test_min_three_equal_parts(self, arr: List[int], expected: List[int]):
+        actual = self.solution.three_equal_parts(arr)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "grid, expected",
         [
             ([[0, 1], [1, 0]], 1),
