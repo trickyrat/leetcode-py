@@ -745,6 +745,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, k, expected",
+        [
+            ([1], 1, 1),
+            ([1, 2], 4, -1),
+            ([2, -1, 2], 3, 3),
+        ],
+    )
+    def test_min_shortest_subarray(self, nums: List[int], k: int, expected: int):
+        actual = self.solution.shortest_subarray(nums, k)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "nums1, nums2, expected",
         [
             ([2, 7, 11, 15], [1, 10, 4, 11], [2, 11, 7, 15]),

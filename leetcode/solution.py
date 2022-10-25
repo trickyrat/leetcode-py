@@ -1126,6 +1126,23 @@ class Solution:
             total_quality += heappop(hire)
         return res
 
+    def shortest_subarray(self, nums: List[int], k: int) -> int:
+        """862. Shortest Subarray with Sum at Least K"""
+        pre_sum_array = [0]
+        res = len(nums)+1
+        for num in nums:
+            pre_sum_array.append(pre_sum_array[-1] + num)
+
+        q = deque()
+        for i, curr_sum in enumerate(pre_sum_array):
+            while q and curr_sum - pre_sum_array[q[0]] >= k:
+                res = min(res, i - q.popleft())
+            while q and pre_sum_array[q[-1]] >= curr_sum:
+                q.pop()
+            q.append(i)
+        return res if res < len(nums) + 1 else -1
+
+
     def advantage_count(self, nums1: List[int], nums2: List[int]) -> List[int]:
         """870. Advantage Shuffle"""
         n = len(nums1)
