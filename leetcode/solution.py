@@ -1660,6 +1660,16 @@ class Solution:
             res = max(res, curr)
         return res
 
+    def array_sign(self, nums: List[int]) -> int:
+        """1822. Sign of the Product of an Array"""
+        sign = 1
+        for num in nums:
+            if num == 0:
+                return 0
+            if num < 0:
+                sign = -sign
+        return sign
+
     def find_the_winner(self, n: int, k: int) -> int:
         """1823. Find the Winner of the Circular Game"""
         winner = 1

@@ -1140,6 +1140,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([-1, -2, -3, -4, 3, 2, 1], 1),
+            ([1, 5, 0, 2, -3], 0),
+            ([-1, 1, -1, 1, -1], -1),
+        ],
+    )
+    def test_array_sign(self, nums: List[int], expected: int):
+        actual = self.solution.array_sign(nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "n, k, expected",
         [
             (5, 2, 3),
