@@ -1236,6 +1236,17 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "arr, expected",
+        [
+            ([3, 1, 2, 4], 17),
+            ([11, 81, 94, 43, 3], 444),
+        ],
+    )
+    def test_sum_subarray_mins(self, arr: List[int], expected: int):
+        actual = self.solution.sum_subarray_mins(arr)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "nums, expected",
         [
             ([5, 0, 3, 8, 6], 3),
