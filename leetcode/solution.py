@@ -1645,6 +1645,11 @@ class Solution:
                 res.append(j)
         return "".join(res)
 
+    def count_matches(self, items: List[List[str]], rule_key: str, rule_value: str) -> int:
+        """1773. Count Items Matching a Rule"""
+        key_index = {"type": 0, "color": 1, "name": 2}[rule_key]
+        return sum(item[key_index] == rule_value for item in items)
+
     def check_ones_segment(self, s: str) -> bool:
         """1784. Check if Binary String Has at Most One Segment of Ones"""
         return "01" not in s

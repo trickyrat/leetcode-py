@@ -1105,6 +1105,20 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "items, rule_key, rule_value, expected",
+        [
+            ([["phone", "blue", "pixel"], ["computer", "silver", "lenovo"], ["phone", "gold", "iphone"]], "color",
+             "silver", 1),
+            (
+            [["phone", "blue", "pixel"], ["computer", "silver", "phone"], ["phone", "gold", "iphone"]], "type", "phone",
+            2),
+        ],
+    )
+    def test_count_matches(self, items: List[List[str]], rule_key: str, rule_value: str, expected: int):
+        actual = self.solution.count_matches(items, rule_key, rule_value)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("1001", False),
