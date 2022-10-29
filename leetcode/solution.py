@@ -950,6 +950,21 @@ class Solution:
             res ^= 1
         return res
 
+    def letter_case_permutation(self, s: str) -> List[str]:
+        """784. Letter Case Permutation"""
+        res = []
+        m = sum(c.isalpha() for c in s)
+        for mask in range(1 << m):
+            t, k = [], 0
+            for c in s:
+                if c.isalpha():
+                    t.append(c.upper() if mask >> k & 1 else c.lower())
+                    k += 1
+                else:
+                    t.append(c)
+            res.append(''.join(t))
+        return res
+
     def preimage_size_fzf(self, k: int) -> int:
         """793. Preimage Size of Factorial Zeroes Function"""
 

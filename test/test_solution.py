@@ -572,6 +572,16 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [("a1b2", ["a1b2", "a1B2", "A1b2", "A1B2"]), ("3z4", ["3z4", "3Z4"])],
+    )
+    def test_letter_case_permutation(self, s: str, expected: List[str]):
+        actual = self.solution.letter_case_permutation(s)
+        actual.sort()
+        expected.sort()
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )
@@ -1110,8 +1120,9 @@ class TestSolution:
             ([["phone", "blue", "pixel"], ["computer", "silver", "lenovo"], ["phone", "gold", "iphone"]], "color",
              "silver", 1),
             (
-            [["phone", "blue", "pixel"], ["computer", "silver", "phone"], ["phone", "gold", "iphone"]], "type", "phone",
-            2),
+                    [["phone", "blue", "pixel"], ["computer", "silver", "phone"], ["phone", "gold", "iphone"]], "type",
+                    "phone",
+                    2),
         ],
     )
     def test_count_matches(self, items: List[List[str]], rule_key: str, rule_value: str, expected: int):
