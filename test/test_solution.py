@@ -314,6 +314,13 @@ class TestSolution:
         actual = self.solution.find_substring_wraparound_string(p)
         assert expected == actual
 
+    @pytest.mark.parametrize("queryIP, expected",
+                             [("172.16.254.1", "IPv4"), ("2001:0db8:85a3:0:0:8A2E:0370:7334", "IPv6"),
+                              ("256.256.256.256", "Neither")])
+    def test_valid_ip_address(self, queryIP: str, expected: str):
+        actual = self.solution.valid_ip_address(queryIP)
+        assert expected == actual
+
     @pytest.mark.parametrize(
         "n, expected",
         [

@@ -585,15 +585,38 @@ class Solution:
 
     def valid_ip_address(self, ip: str) -> str:
         """468. Valid IP address"""
-        ipv4_chunk = r"([0-9][1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])"
-        ipv6_chunk = r"([0-9a-fA-F]{1,4})"
-        ipv4_pattern = re.compile(r"^(" + ipv4_chunk + r"\.){3}" + ipv4_chunk + r"$")
-        ipv6_pattern = re.compile(r"^(" + ipv6_chunk + r":){7}" + ipv6_chunk + r"$")
-        if "." in ip:
-            return "IPv4" if ipv4_pattern.match(ip) else "Neither"
-        if ":" in ip:
-            return "IPv6" if ipv6_pattern.match(ip) else "Neither"
-        return "Neither"
+        def valid_ipv4(IP: str) -> str:
+            chunks = IP.split('.')
+            for chunk in chunks:
+                length = len(chunk)
+                if length == 0 or length > 3:
+                    return "Neither"
+                if chunk[0] == '0' and length != 1:
+                    return "Neither"
+                if not chunk.isnumeric():
+                    return "Neither"
+                if int(chunk) > 255:
+                    return "Neither"
+            return "IPv4"
+
+        def valid_ipv6(IP: str) -> str:
+            chunks = IP.split(':')
+            hex_digits = "0123456789abcdefABCDEF"
+            for chunk in chunks:
+                length = len(chunk)
+                if length == 0 or length > 4:
+                    return "Neither"
+                for c in chunk:
+                    if hex_digits.find(c) == -1:
+                        return "Neither"
+            return "IPv6"
+
+        if ip.count(".") == 3:
+            return valid_ipv4(ip)
+        elif ip.count(":") == 7:
+            return valid_ipv6(ip)
+        else:
+            return "Neither"
 
     def magical_string(self, n: int) -> int:
         """481. Magical String"""
