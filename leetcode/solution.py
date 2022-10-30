@@ -595,6 +595,26 @@ class Solution:
             return "IPv6" if ipv6_pattern.match(ip) else "Neither"
         return "Neither"
 
+    def magical_string(self, n: int) -> int:
+        """481. Magical String"""
+        if n < 4:
+            return 1
+        s = [""]*n
+        s[:3] = "122"
+        res = 1
+        i, j = 2, 3
+        while j < n:
+            size = int(s[i])
+            num = 3 - int(s[j-1])
+            while size and j < n:
+                s[j] = str(num)
+                if num == 1:
+                    res += 1
+                j += 1
+                size -= 1
+            i += 1
+        return res
+
     def find_diagonal_order(self, matrix: List[List[int]]) -> List[int]:
         """498. Diagonal Traverse"""
         if matrix is None or len(matrix) == 0:
