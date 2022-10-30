@@ -1,7 +1,8 @@
 from random import randrange
 
-from solution import ListNode
 from typing import Optional
+
+from leetcode.data_structures.list_node import ListNode
 
 
 class RandomNode(object):
