@@ -2,9 +2,14 @@
 
 ## Requirements
 
-> pytest
-> pytest-html
+> pytest  
+> coverage
 
 ## Run
 
-> pytest --html=unittestresult.html
+just run test cases
+> pytest
+
+run test cases with coverage
+
+> coverage report -m 
