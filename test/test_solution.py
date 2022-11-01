@@ -1072,6 +1072,18 @@ class TestSolution:
         assert actual - expected <= 0.00001
 
     @pytest.mark.parametrize(
+        "towers, radius, expected",
+        [
+            ([[1, 2, 5], [2, 1, 7], [3, 1, 9]], 2, [2, 1]),
+            ([[23, 11, 21]], 9, [23, 11]),
+            ([[1, 2, 13], [2, 1, 7], [0, 1, 9]], 2, [1, 2]),
+        ]
+    )
+    def test_best_coordinate(self, towers: List[List[int]], radius: int, expected: List[int]):
+        actual = self.solution.best_coordinate(towers, radius)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("aa", 0),
