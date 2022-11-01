@@ -28,7 +28,7 @@ class Solution:
         return []
 
     def add_two_numbers(
-        self, l1: Optional[ListNode], l2: Optional[ListNode]
+            self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
         """2. Add two Numbers"""
         carry = 0
@@ -89,9 +89,9 @@ class Solution:
             return get_kth_element((total_length + 1) // 2)
         else:
             return (
-                get_kth_element(total_length // 2)
-                + get_kth_element(total_length // 2 + 1)
-            ) / 2
+                           get_kth_element(total_length // 2)
+                           + get_kth_element(total_length // 2 + 1)
+                   ) / 2
 
     def longest_palindrome(self, s: str) -> str:
         """5. Longest Palindromic Substring"""
@@ -118,7 +118,7 @@ class Solution:
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
                     begin = i
-        return s[begin : begin + max_len]
+        return s[begin: begin + max_len]
 
     def z_convert(self, s: str, num_rows: int) -> str:
         """6. Zigzag Conversion"""
@@ -137,7 +137,7 @@ class Solution:
     def reverse_int(self, x: int) -> int:
         """7. Reverse Integer"""
         res = 0
-        int_min, int_max = -(2**31), 2**31 - 1
+        int_min, int_max = -(2 ** 31), 2 ** 31 - 1
         while x != 0:
             if res < int_min // 10 + 1 or res > int_max // 10:
                 return 0
@@ -212,10 +212,10 @@ class Solution:
         ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
         return (
-            thousands[num // 1000]
-            + hundreds[num % 1000 // 100]
-            + tens[num % 100 // 10]
-            + ones[num % 10]
+                thousands[num // 1000]
+                + hundreds[num % 1000 // 100]
+                + tens[num % 100 // 10]
+                + ones[num % 10]
         )
 
     def roman_to_int(self, s: str) -> int:
@@ -585,6 +585,7 @@ class Solution:
 
     def valid_ip_address(self, ip: str) -> str:
         """468. Valid IP address"""
+
         def valid_ipv4(IP: str) -> str:
             chunks = IP.split('.')
             for chunk in chunks:
@@ -622,13 +623,13 @@ class Solution:
         """481. Magical String"""
         if n < 4:
             return 1
-        s = [""]*n
+        s = [""] * n
         s[:3] = "122"
         res = 1
         i, j = 2, 3
         while j < n:
             size = int(s[i])
-            num = 3 - int(s[j-1])
+            num = 3 - int(s[j - 1])
             while size and j < n:
                 s[j] = str(num)
                 if num == 1:
@@ -760,7 +761,7 @@ class Solution:
         return ans
 
     def add_one_row(
-        self, root: Optional[TreeNode], val: int, depth: int
+            self, root: Optional[TreeNode], val: int, depth: int
     ) -> Optional[TreeNode]:
         """623. Add One Row to Tree"""
         if root is None:
@@ -785,7 +786,7 @@ class Solution:
         return res
 
     def find_duplicate_subtrees(
-        self, root: Optional[TreeNode]
+            self, root: Optional[TreeNode]
     ) -> List[Optional[TreeNode]]:
         """652. Find Duplicate Subtrees"""
 
@@ -829,7 +830,7 @@ class Solution:
 
         height = calculate_depth(root)
         m = height + 1
-        n = 2**m - 1
+        n = 2 ** m - 1
         res = [[""] * n for _ in range(m)]
         queue = deque([(root, 0, (n - 1) // 2)])
         while queue:
@@ -853,7 +854,7 @@ class Solution:
                 left -= 1
             else:
                 right += 1
-        return arr[left + 1 : right]
+        return arr[left + 1: right]
 
     def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
         """662. Maximum Width of Binary Tree"""
@@ -884,7 +885,7 @@ class Solution:
         return res
 
     def trim_bst(
-        self, root: Optional[TreeNode], low: int, high: int
+            self, root: Optional[TreeNode], low: int, high: int
     ) -> Optional[TreeNode]:
         """669. Trim a Binary Search Tree"""
         while root and (root.val < low or root.val > high):
@@ -924,7 +925,7 @@ class Solution:
     def flip_lights(self, n: int, presses: int) -> int:
         """672. Bulb Switcher II"""
         seen = set()
-        for i in range(2**4):
+        for i in range(2 ** 4):
             press_arr = [(i >> j) & 1 for j in range(4)]
             if sum(press_arr) % 2 == presses % 2 and sum(press_arr) <= presses:
                 status = press_arr[0] ^ press_arr[1] ^ press_arr[3]
@@ -1092,7 +1093,7 @@ class Solution:
             c = int(c)
             count[s] += c
             while "." in s:
-                s = s[s.index(".") + 1 :]
+                s = s[s.index(".") + 1:]
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
 
@@ -1167,7 +1168,7 @@ class Solution:
         return res
 
     def min_cost_to_hire_worker(
-        self, quality: List[int], wage: List[int], k: int
+            self, quality: List[int], wage: List[int], k: int
     ) -> float:
         """857. Minimum Cost to Hire K Workers"""
         pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])
@@ -1177,7 +1178,7 @@ class Solution:
         for q, w in pairs[: k - 1]:
             total_quality += q
             heappush(hire, -q)
-        for q, w in pairs[k - 1 :]:
+        for q, w in pairs[k - 1:]:
             total_quality += q
             heappush(hire, -q)
             res = min(res, w / q * total_quality)
@@ -1276,7 +1277,7 @@ class Solution:
 
     def sum_subarray_mins(self, arr: List[int]) -> int:
         """907. Sum of Subarray Minimums"""
-        MOD = 10**9 + 7
+        MOD = 10 ** 9 + 7
         n = len(arr)
         mono_stack = []
         dp = [0] * n
@@ -1338,8 +1339,8 @@ class Solution:
             i = 0
             while third + i < n:
                 if (
-                    arr[first + i] != arr[second + i]
-                    or arr[first + i] != arr[third + i]
+                        arr[first + i] != arr[second + i]
+                        or arr[first + i] != arr[third + i]
                 ):
                     return [-1, -1]
                 i += 1
@@ -1380,7 +1381,7 @@ class Solution:
 
     def distinct_subseq_ii(self, s: str) -> int:
         """940. Distinct Subsequences II"""
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         alphas = [0] * 26
         res = 0
         for i, ch in enumerate(s):
@@ -1442,7 +1443,7 @@ class Solution:
         return ans
 
     def insert_into_max_tree(
-        self, root: Optional[TreeNode], val: int
+            self, root: Optional[TreeNode], val: int
     ) -> Optional[TreeNode]:
         """998. Maximum Binary Tree II"""
         parent, curr = None, root
@@ -1525,7 +1526,7 @@ class Solution:
         return res
 
     def busy_student(
-        self, start_time: List[int], end_time: List[int], query_time: int
+            self, start_time: List[int], end_time: List[int], query_time: int
     ) -> int:
         """1450. Number of Students Doing Homework at a Given Time"""
         return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
@@ -1591,7 +1592,7 @@ class Solution:
             if arr[i] == "?":
                 for ch in "abc":
                     if not (
-                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                            i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
                     ):
                         arr[i] = ch
                         break
@@ -1642,7 +1643,7 @@ class Solution:
         """1619. Mean of Array After Removing Some Elements"""
         arr.sort()
         n = len(arr)
-        return sum(arr[n // 20 : -n // 20]) / (n * 0.9)
+        return sum(arr[n // 20: -n // 20]) / (n * 0.9)
 
     def max_length_between_equal_characters(self, s: str) -> int:
         """1624. Largest Substring Between Two Equal Characters"""
@@ -1661,6 +1662,23 @@ class Solution:
         nums.sort(key=lambda x: (count[x], -x))
         return nums
 
+    def array_strings_are_equal(self, word1: List[str], word2: List[str]) -> bool:
+        """1662. Check If Two String Arrays are Equivalent"""
+        p1 = p2 = 0  # index of word
+        i = j = 0  # index of character
+        while p1 < len(word1) and p2 < len(word2):
+            if word1[p1][i] != word2[p2][j]:
+                return False
+            i += 1
+            if i == len(word1[p1]):
+                p1 += 1
+                i = 0
+            j += 1
+            if j == len(word2[p2]):
+                p2 += 1
+                j = 0
+        return p1 == len(word1) and p2 == len(word2)
+
     def reformat_number(self, number: str) -> str:
         """1694. Reformat Phone Number"""
         digits = []
@@ -1671,15 +1689,15 @@ class Solution:
         res = []
         while n > 0:
             if n > 4:
-                res.append("".join(digits[pt : pt + 3]))
+                res.append("".join(digits[pt: pt + 3]))
                 pt += 3
                 n -= 3
             else:
                 if n == 4:
-                    res.append("".join(digits[pt : pt + 2]))
-                    res.append("".join(digits[pt + 2 : pt + 4]))
+                    res.append("".join(digits[pt: pt + 2]))
+                    res.append("".join(digits[pt + 2: pt + 4]))
                 else:
-                    res.append("".join(digits[pt : pt + n]))
+                    res.append("".join(digits[pt: pt + n]))
                 break
         return "-".join(res)
 
@@ -1707,7 +1725,7 @@ class Solution:
         return "".join(res)
 
     def count_matches(
-        self, items: List[List[str]], rule_key: str, rule_value: str
+            self, items: List[List[str]], rule_key: str, rule_value: str
     ) -> int:
         """1773. Count Items Matching a Rule"""
         key_index = {"type": 0, "color": 1, "name": 2}[rule_key]

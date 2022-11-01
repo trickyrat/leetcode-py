@@ -1096,6 +1096,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "word1, word2, expected",
+        [
+            (["ab", "c"], ["a", "bc"], True),
+            (["a", "cb"], ["ab", "c"], False),
+            (["abc", "d", "defg"], ["abcddefg"], True),
+        ],
+    )
+    def test_array_strings_are_equal(self, word1: List[str], word2: List[str], expected: bool):
+        actual = self.solution.array_strings_are_equal(word1, word2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "number, expected",
         [
             ("1-23-45 6", "123-456"),
