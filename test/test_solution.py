@@ -1120,6 +1120,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "sequence, word, expected",
+        [
+            ("ababc", "ab", 2),
+            ("ababc", "ba", 1),
+            ("ababc", "ac", 0),
+        ],
+    )
+    def test_max_repeating(self, sequence: str, word: str, expected: int):
+        actual = self.solution.max_repeating(sequence, word)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "number, expected",
         [
             ("1-23-45 6", "123-456"),

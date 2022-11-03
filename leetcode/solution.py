@@ -1695,6 +1695,31 @@ class Solution:
                 j = 0
         return p1 == len(word1) and p2 == len(word2)
 
+    def max_repeating(self, sequence: str, word: str) -> int:
+        """1668. Maximum Repeating Substring"""
+        m, n = len(sequence), len(word)
+        if m < n:
+            return 0
+        fail = [-1] * n
+        for i in range(1, n):
+            j = fail[i - 1]
+            while j != -1 and word[j + 1] != word[i]:
+                j = fail[j]
+            if word[j + 1] == word[i]:
+                fail[i] = j + 1
+
+        f = [0] * m
+        j = -1
+        for i in range(m):
+            while j != -1 and word[j + 1] != sequence[i]:
+                j = fail[j]
+            if word[j + 1] == sequence[i]:
+                j += 1
+                if j == n - 1:
+                    f[i] = (0 if i == n - 1 else f[i - n]) + 1
+                    j = fail[j]
+        return max(f)
+
     def reformat_number(self, number: str) -> str:
         """1694. Reformat Phone Number"""
         digits = []
