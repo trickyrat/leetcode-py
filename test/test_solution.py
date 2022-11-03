@@ -574,6 +574,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "target, expected",
+        [(2, 3), (3, 2)],
+    )
+    def test_reach_number(self, target: int, expected: int):
+        actual = self.solution.reach_number(target)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "arr, expected",
         [([4, 3, 2, 1, 0], 1), ([1, 0, 2, 3, 4], 4)],
     )

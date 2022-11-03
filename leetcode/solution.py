@@ -977,6 +977,15 @@ class Solution:
             else letters[0]
         )
 
+    def reach_number(self, target: int) -> int:
+        """754. Reach a Number"""
+        target = abs(target)
+        res = 0
+        while target > 0:
+            res += 1
+            target -= res
+        return res if target % 2 == 0 else res + 1 + res % 2
+
     def max_chunks_to_sorted(self, arr: List[int]) -> int:
         """769. Max Chunks To Make Sorted"""
         res = maximum = 0
