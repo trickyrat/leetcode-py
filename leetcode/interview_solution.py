@@ -1,4 +1,18 @@
+from typing import List
+
+
 class InterviewSolution:
+    def rotate_matrix(self, matrix: List[List[int]]):
+        """Interview 01.07 Rotate Matrix LCCI"""
+
+        n = len(matrix)
+        for i in range(n):
+            for j in range(0, i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+        for i in range(n):
+            matrix[i][:] = matrix[i][::-1]
+
     def is_flipped_string(self, s1: str, s2: str) -> bool:
         """01.09. String Rotation LCCI"""
         return len(s1) == len(s2) and s2 in (s1 + s1)

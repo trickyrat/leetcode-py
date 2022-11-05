@@ -971,6 +971,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "expression, expected",
+        [
+            ("&(|(f))", False),
+            ("|(f,f,f,t)", True),
+            ("!(&(f,t))", True),
+        ],
+    )
+    def test_parse_bool_expr(self, expression: str, expected: bool):
+        actual = self.solution.parse_bool_expr(expression)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ("lee(t(c)o)de)", "lee(t(c)o)de"),
@@ -1468,17 +1480,3 @@ class TestSolution:
     ):
         actual = self.solution.plates_between_candles(test_input, queries)
         assert actual == expected
-
-    @pytest.mark.parametrize(
-        "test_input, expected",
-        [
-            ([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[7, 4, 1], [8, 5, 2], [9, 6, 3]]),
-            (
-                    [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]],
-                    [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]],
-            ),
-        ],
-    )
-    def test_rotate(self, test_input: List[List[int]], expected: List[List[int]]):
-        self.solution.rotate_matrix(test_input)
-        assert test_input == expected

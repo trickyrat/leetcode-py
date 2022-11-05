@@ -1468,6 +1468,31 @@ class Solution:
         parent.right = TreeNode(val)
         return root
 
+    def parse_bool_expr(self, expression: str) -> bool:
+        """1106. Parsing A Boolean Expression"""
+        stk = []
+        for c in expression:
+            if c == ',':
+                continue
+            if c != ")":
+                stk.append(c)
+                continue
+            t = f = 0
+            while stk[-1] != '(':
+                if stk.pop() == 't':
+                    t += 1
+                else:
+                    f += 1
+            stk.pop()
+            op = stk.pop()
+            if op == '!':
+                stk.append('t' if f == 1 else 'f')
+            elif op == '&':
+                stk.append('t' if f == 0 else 'f')
+            elif op == '|':
+                stk.append('t' if t else 'f')
+        return stk[-1] == 't'
+
     def min_remove_to_make_valid(self, s: str) -> str:
         """1249 Minimum Remove to Make Valid Parentheses"""
         first_parse_chars = []
@@ -1899,14 +1924,3 @@ class Solution:
             if 0 <= x < y and y >= 0:
                 ans[i] = pre_sum[y] - pre_sum[x]
         return ans
-
-    def rotate_matrix(self, matrix: List[List[int]]):
-        """Interview 01.07 Rotate Matrix LCCI"""
-
-        n = len(matrix)
-        for i in range(n):
-            for j in range(0, i):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-
-        for i in range(n):
-            matrix[i][:] = matrix[i][::-1]
