@@ -1754,6 +1754,16 @@ class Solution:
                     j = fail[j]
         return max(f)
 
+    def interpret(self, command: str) -> str:
+        """1678. Goal Parser Interpretation"""
+        res = []
+        for i, c in enumerate(command):
+            if c == 'G':
+                res.append(c)
+            elif c == '(':
+                res.append('o' if command[i + 1] == ')' else "al")
+        return "".join(res)
+
     def reformat_number(self, number: str) -> str:
         """1694. Reformat Phone Number"""
         digits = []

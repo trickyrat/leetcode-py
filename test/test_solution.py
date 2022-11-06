@@ -1152,6 +1152,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "command, expected",
+        [
+            ("G()(al)", "Goal"),
+            ("G()()()()(al)", "Gooooal"),
+            ("(al)G(al)()()G", "alGalooG"),
+        ],
+    )
+    def test_interpret(self, command: str, expected: str):
+        actual = self.solution.interpret(command)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "number, expected",
         [
             ("1-23-45 6", "123-456"),
