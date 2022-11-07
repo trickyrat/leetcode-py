@@ -738,6 +738,20 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("(123)", ["(1, 2.3)", "(1, 23)", "(1.2, 3)", "(12, 3)"]),
+            ("(0123)", ["(0, 1.23)", "(0, 12.3)", "(0, 123)", "(0.1, 2.3)", "(0.1, 23)", "(0.12, 3)"]),
+            ("(00011)", ["(0, 0.011)", "(0.001, 1)"]),
+        ]
+    )
+    def test_ambiguous_coordinates(self, s: str, expected: List[str]):
+        actual = self.solution.ambiguous_coordinates(s)
+        expected.sort()
+        actual.sort()
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "head, nums, expected",
         [
             (create_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
