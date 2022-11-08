@@ -1178,6 +1178,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "allowed, words, expected",
+        [
+            ("ab", ["ad", "bd", "aaab", "baa", "badab"], 2),
+            ("abc", ["a", "b", "c", "ab", "ac", "bc", "abc"], 7),
+            ("cad", ["cc", "acd", "b", "ba", "bac", "bad", "ac", "d"], 4),
+        ],
+    )
+    def test_count_consistent_strings(self, allowed: str, words: List[str], expected: int):
+        actual = self.solution.count_consistent_strings(allowed, words)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "number, expected",
         [
             ("1-23-45 6", "123-456"),

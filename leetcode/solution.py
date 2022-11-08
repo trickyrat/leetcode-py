@@ -1791,6 +1791,20 @@ class Solution:
                 res.append('o' if command[i + 1] == ')' else "al")
         return "".join(res)
 
+    def count_consistent_strings(self, allowed: str, words: List[str]) -> int:
+        """1684. Count the Number of Consistent Strings"""
+        mask = 0
+        for c in allowed:
+            mask |= 1 << (ord(c) - ord('a'))
+        res = 0
+        for word in words:
+            mask1 = 0
+            for c in word:
+                mask1 |= 1 << (ord(c) - ord('a'))
+            if (mask | mask1) == mask:
+                res += 1
+        return res
+
     def reformat_number(self, number: str) -> str:
         """1694. Reformat Phone Number"""
         digits = []
