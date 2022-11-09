@@ -986,6 +986,35 @@ class Solution:
             target -= res
         return res if target % 2 == 0 else res + 1 + res % 2
 
+    def order_of_largest_plus_sign(self, n: int, mines: List[List[int]]) -> int:
+        """764. Largest Plus Sign"""
+        dp = [[n]*n for _ in range(n)]
+        banned = set(map(tuple, mines))
+
+        for i in range(n):
+            count = 0
+            for j in range(n):
+                count = 0 if (i,j) in banned else count + 1
+                dp[i][j] = min(dp[i][j], count)
+
+            count = 0
+            for j in range(n-1, -1, -1):
+                count = 0 if (i, j) in banned else count + 1
+                dp[i][j] = min(dp[i][j], count)
+
+        for j in range(n):
+            count = 0
+            for i in range(n):
+                count = 0 if (i,j) in banned else count + 1
+                dp[i][j] = min(dp[i][j], count)
+
+            count = 0
+            for i in range(n-1,-1,-1):
+                count = 0 if (i, j) in banned else count + 1
+                dp[i][j] = min(dp[i][j], count)
+
+        return max(map(max, dp))
+
     def max_chunks_to_sorted(self, arr: List[int]) -> int:
         """769. Max Chunks To Make Sorted"""
         res = maximum = 0

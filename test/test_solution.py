@@ -582,6 +582,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "n, mines, expected",
+        [(5, [[4, 2]], 2), (1, [[0, 0]], 0)],
+    )
+    def test_order_of_largest_plus_sign(self, n: int, mines: List[List[int]], expected: int):
+        actual = self.solution.order_of_largest_plus_sign(n, mines)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "arr, expected",
         [([4, 3, 2, 1, 0], 1), ([1, 0, 2, 3, 4], 4)],
     )
