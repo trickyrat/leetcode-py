@@ -1223,6 +1223,19 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("book", True),
+            ("textbook", False),
+        ],
+    )
+    def test_halves_are_alike(
+            self, s: str, expected: bool
+    ):
+        actual = self.solution.halves_are_alike(s)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "word1, word2, expected",
         [
             ("abc", "pqr", "apbqcr"),

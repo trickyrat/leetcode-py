@@ -988,28 +988,28 @@ class Solution:
 
     def order_of_largest_plus_sign(self, n: int, mines: List[List[int]]) -> int:
         """764. Largest Plus Sign"""
-        dp = [[n]*n for _ in range(n)]
+        dp = [[n] * n for _ in range(n)]
         banned = set(map(tuple, mines))
 
         for i in range(n):
             count = 0
             for j in range(n):
-                count = 0 if (i,j) in banned else count + 1
+                count = 0 if (i, j) in banned else count + 1
                 dp[i][j] = min(dp[i][j], count)
 
             count = 0
-            for j in range(n-1, -1, -1):
+            for j in range(n - 1, -1, -1):
                 count = 0 if (i, j) in banned else count + 1
                 dp[i][j] = min(dp[i][j], count)
 
         for j in range(n):
             count = 0
             for i in range(n):
-                count = 0 if (i,j) in banned else count + 1
+                count = 0 if (i, j) in banned else count + 1
                 dp[i][j] = min(dp[i][j], count)
 
             count = 0
-            for i in range(n-1,-1,-1):
+            for i in range(n - 1, -1, -1):
                 count = 0 if (i, j) in banned else count + 1
                 dp[i][j] = min(dp[i][j], count)
 
@@ -1868,6 +1868,12 @@ class Solution:
             else:
                 break
         return square + circular
+
+    def halves_are_alike(self, s: str) -> bool:
+        """1704. Determine if String Halves Are Alike"""
+        vowels = "aeiouAEIOU"
+        a, b = s[:len(s) // 2], s[len(s) // 2:]
+        return sum(c in vowels for c in a) == sum(c in vowels for c in b)
 
     def merge_alternately(self, word1: str, word2: str) -> str:
         """1768. Merge Strings Alternately"""
