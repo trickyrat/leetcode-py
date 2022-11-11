@@ -616,6 +616,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "n, expected",
+        [(3, 5), (1, 1)],
+    )
+    def test_num_tilings(self, n: int, expected: int):
+        actual = self.solution.num_tilings(n)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )
