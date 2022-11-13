@@ -1083,6 +1083,19 @@ class Solution:
         res = matrix_power(mat, n)
         return res[3][3]
 
+    def custom_sort_string(self, order: str, s: str) -> str:
+        """791. Custom Sort String"""
+        alphas = Counter(s)
+        ans = list()
+        for ch in order:
+            if ch in alphas:
+                ans.extend([ch] * alphas[ch])
+                alphas[ch] = 0
+        for (ch, k) in alphas.items():
+            if k > 0:
+                ans.extend([ch] * k)
+        return "".join(ans)
+
     def preimage_size_fzf(self, k: int) -> int:
         """793. Preimage Size of Factorial Zeroes Function"""
 

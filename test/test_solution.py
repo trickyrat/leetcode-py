@@ -624,6 +624,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "order, s, expected",
+        [("cba", "abcd", "cbad"), ("cbafg", "abcd", "cbad")],
+    )
+    def test_custom_sort_string(self, order: str, s: str, expected: str):
+        actual = self.solution.custom_sort_string(order, s)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )
