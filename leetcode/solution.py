@@ -4,7 +4,6 @@ from itertools import pairwise, zip_longest, product
 from bisect import bisect_right, bisect_left
 from math import inf
 from typing import List, Optional
-import re
 
 from collections import Counter, deque, defaultdict
 
@@ -28,7 +27,7 @@ class Solution:
         return []
 
     def add_two_numbers(
-            self, l1: Optional[ListNode], l2: Optional[ListNode]
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
         """2. Add two Numbers"""
         carry = 0
@@ -89,9 +88,9 @@ class Solution:
             return get_kth_element((total_length + 1) // 2)
         else:
             return (
-                           get_kth_element(total_length // 2)
-                           + get_kth_element(total_length // 2 + 1)
-                   ) / 2
+                get_kth_element(total_length // 2)
+                + get_kth_element(total_length // 2 + 1)
+            ) / 2
 
     def longest_palindrome(self, s: str) -> str:
         """5. Longest Palindromic Substring"""
@@ -118,7 +117,7 @@ class Solution:
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
                     begin = i
-        return s[begin: begin + max_len]
+        return s[begin : begin + max_len]
 
     def z_convert(self, s: str, num_rows: int) -> str:
         """6. Zigzag Conversion"""
@@ -137,7 +136,7 @@ class Solution:
     def reverse_int(self, x: int) -> int:
         """7. Reverse Integer"""
         res = 0
-        int_min, int_max = -(2 ** 31), 2 ** 31 - 1
+        int_min, int_max = -(2**31), 2**31 - 1
         while x != 0:
             if res < int_min // 10 + 1 or res > int_max // 10:
                 return 0
@@ -212,10 +211,10 @@ class Solution:
         ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
         return (
-                thousands[num // 1000]
-                + hundreds[num % 1000 // 100]
-                + tens[num % 100 // 10]
-                + ones[num % 10]
+            thousands[num // 1000]
+            + hundreds[num % 1000 // 100]
+            + tens[num % 100 // 10]
+            + ones[num % 10]
         )
 
     def roman_to_int(self, s: str) -> int:
@@ -587,12 +586,12 @@ class Solution:
         """468. Valid IP address"""
 
         def valid_ipv4(IP: str) -> str:
-            chunks = IP.split('.')
+            chunks = IP.split(".")
             for chunk in chunks:
                 length = len(chunk)
                 if length == 0 or length > 3:
                     return "Neither"
-                if chunk[0] == '0' and length != 1:
+                if chunk[0] == "0" and length != 1:
                     return "Neither"
                 if not chunk.isnumeric():
                     return "Neither"
@@ -601,7 +600,7 @@ class Solution:
             return "IPv4"
 
         def valid_ipv6(IP: str) -> str:
-            chunks = IP.split(':')
+            chunks = IP.split(":")
             hex_digits = "0123456789abcdefABCDEF"
             for chunk in chunks:
                 length = len(chunk)
@@ -761,7 +760,7 @@ class Solution:
         return ans
 
     def add_one_row(
-            self, root: Optional[TreeNode], val: int, depth: int
+        self, root: Optional[TreeNode], val: int, depth: int
     ) -> Optional[TreeNode]:
         """623. Add One Row to Tree"""
         if root is None:
@@ -786,7 +785,7 @@ class Solution:
         return res
 
     def find_duplicate_subtrees(
-            self, root: Optional[TreeNode]
+        self, root: Optional[TreeNode]
     ) -> List[Optional[TreeNode]]:
         """652. Find Duplicate Subtrees"""
 
@@ -830,7 +829,7 @@ class Solution:
 
         height = calculate_depth(root)
         m = height + 1
-        n = 2 ** m - 1
+        n = 2**m - 1
         res = [[""] * n for _ in range(m)]
         queue = deque([(root, 0, (n - 1) // 2)])
         while queue:
@@ -854,7 +853,7 @@ class Solution:
                 left -= 1
             else:
                 right += 1
-        return arr[left + 1: right]
+        return arr[left + 1 : right]
 
     def width_of_binary_tree(self, root: Optional[TreeNode]) -> int:
         """662. Maximum Width of Binary Tree"""
@@ -885,7 +884,7 @@ class Solution:
         return res
 
     def trim_bst(
-            self, root: Optional[TreeNode], low: int, high: int
+        self, root: Optional[TreeNode], low: int, high: int
     ) -> Optional[TreeNode]:
         """669. Trim a Binary Search Tree"""
         while root and (root.val < low or root.val > high):
@@ -925,7 +924,7 @@ class Solution:
     def flip_lights(self, n: int, presses: int) -> int:
         """672. Bulb Switcher II"""
         seen = set()
-        for i in range(2 ** 4):
+        for i in range(2**4):
             press_arr = [(i >> j) & 1 for j in range(4)]
             if sum(press_arr) % 2 == presses % 2 and sum(press_arr) <= presses:
                 status = press_arr[0] ^ press_arr[1] ^ press_arr[3]
@@ -1049,7 +1048,7 @@ class Solution:
 
     def num_tilings(self, n: int) -> int:
         """790. Domino and Tromino Tiling"""
-        mod = 10 ** 9 + 7
+        mod = 10**9 + 7
 
         def multiply(a: List[List[int]], b: List[List[int]]) -> List[List[int]]:
             rows, columns, temp = len(a), len(b[0]), len(b)
@@ -1160,6 +1159,25 @@ class Solution:
             set("".join(morse[ord(ch) - ord("a")] for ch in word) for word in words)
         )
 
+    def split_array_same_average(self, nums: List[int]) -> bool:
+        """805. Split Array With Same Average"""
+        n = len(nums)
+        m = n // 2
+        s = sum(nums)
+        if all(s * i % n for i in range(1, m + 1)):
+            return False
+
+        dp = [set() for _ in range(m + 1)]
+        dp[0].add(0)
+        for num in nums:
+            for i in range(m, 0, -1):
+                for x in dp[i - 1]:
+                    curr = x + num
+                    if curr * n == s * i:
+                        return True
+                    dp[i].add(curr)
+        return False
+
     def number_of_lines(self, widths: List[int], s: str) -> List[int]:
         """806. Number of Lines To Write String"""
         max_width = 100
@@ -1180,7 +1198,7 @@ class Solution:
             c = int(c)
             count[s] += c
             while "." in s:
-                s = s[s.index(".") + 1:]
+                s = s[s.index(".") + 1 :]
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
 
@@ -1189,17 +1207,17 @@ class Solution:
 
         def get_pos(s: str) -> List[str]:
             pos = []
-            if s[0] != '0' or s == '0':
+            if s[0] != "0" or s == "0":
                 pos.append(s)
             for p in range(1, len(s)):
-                if p != 1 and s[0] == '0' or s[-1] == '0':
+                if p != 1 and s[0] == "0" or s[-1] == "0":
                     continue
-                pos.append(s[:p] + '.' + s[p:])
+                pos.append(s[:p] + "." + s[p:])
             return pos
 
         n = len(s) - 2
         res = []
-        s = s[1:len(s) - 1]
+        s = s[1 : len(s) - 1]
         for l in range(1, n):
             lt = get_pos(s[:l])
             if len(lt) == 0:
@@ -1208,7 +1226,7 @@ class Solution:
             if len(rt) == 0:
                 continue
             for i, j in product(lt, rt):
-                res.append('(' + i + ', ' + j + ')')
+                res.append("(" + i + ", " + j + ")")
         return res
 
     def num_components(self, head: Optional[ListNode], nums: List[int]) -> int:
@@ -1282,7 +1300,7 @@ class Solution:
         return res
 
     def min_cost_to_hire_worker(
-            self, quality: List[int], wage: List[int], k: int
+        self, quality: List[int], wage: List[int], k: int
     ) -> float:
         """857. Minimum Cost to Hire K Workers"""
         pairs = sorted(zip(quality, wage), key=lambda p: p[1] / p[0])
@@ -1292,7 +1310,7 @@ class Solution:
         for q, w in pairs[: k - 1]:
             total_quality += q
             heappush(hire, -q)
-        for q, w in pairs[k - 1:]:
+        for q, w in pairs[k - 1 :]:
             total_quality += q
             heappush(hire, -q)
             res = min(res, w / q * total_quality)
@@ -1391,7 +1409,7 @@ class Solution:
 
     def sum_subarray_mins(self, arr: List[int]) -> int:
         """907. Sum of Subarray Minimums"""
-        MOD = 10 ** 9 + 7
+        MOD = 10**9 + 7
         n = len(arr)
         mono_stack = []
         dp = [0] * n
@@ -1453,8 +1471,8 @@ class Solution:
             i = 0
             while third + i < n:
                 if (
-                        arr[first + i] != arr[second + i]
-                        or arr[first + i] != arr[third + i]
+                    arr[first + i] != arr[second + i]
+                    or arr[first + i] != arr[third + i]
                 ):
                     return [-1, -1]
                 i += 1
@@ -1495,7 +1513,7 @@ class Solution:
 
     def distinct_subseq_ii(self, s: str) -> int:
         """940. Distinct Subsequences II"""
-        mod = 10 ** 9 + 7
+        mod = 10**9 + 7
         alphas = [0] * 26
         res = 0
         for i, ch in enumerate(s):
@@ -1557,7 +1575,7 @@ class Solution:
         return ans
 
     def insert_into_max_tree(
-            self, root: Optional[TreeNode], val: int
+        self, root: Optional[TreeNode], val: int
     ) -> Optional[TreeNode]:
         """998. Maximum Binary Tree II"""
         parent, curr = None, root
@@ -1577,26 +1595,26 @@ class Solution:
         """1106. Parsing A Boolean Expression"""
         stk = []
         for c in expression:
-            if c == ',':
+            if c == ",":
                 continue
             if c != ")":
                 stk.append(c)
                 continue
             t = f = 0
-            while stk[-1] != '(':
-                if stk.pop() == 't':
+            while stk[-1] != "(":
+                if stk.pop() == "t":
                     t += 1
                 else:
                     f += 1
             stk.pop()
             op = stk.pop()
-            if op == '!':
-                stk.append('t' if f == 1 else 'f')
-            elif op == '&':
-                stk.append('t' if f == 0 else 'f')
-            elif op == '|':
-                stk.append('t' if t else 'f')
-        return stk[-1] == 't'
+            if op == "!":
+                stk.append("t" if f == 1 else "f")
+            elif op == "&":
+                stk.append("t" if f == 0 else "f")
+            elif op == "|":
+                stk.append("t" if t else "f")
+        return stk[-1] == "t"
 
     def min_remove_to_make_valid(self, s: str) -> str:
         """1249 Minimum Remove to Make Valid Parentheses"""
@@ -1665,7 +1683,7 @@ class Solution:
         return res
 
     def busy_student(
-            self, start_time: List[int], end_time: List[int], query_time: int
+        self, start_time: List[int], end_time: List[int], query_time: int
     ) -> int:
         """1450. Number of Students Doing Homework at a Given Time"""
         return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
@@ -1731,7 +1749,7 @@ class Solution:
             if arr[i] == "?":
                 for ch in "abc":
                     if not (
-                            i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
                     ):
                         arr[i] = ch
                         break
@@ -1782,7 +1800,7 @@ class Solution:
         """1619. Mean of Array After Removing Some Elements"""
         arr.sort()
         n = len(arr)
-        return sum(arr[n // 20: -n // 20]) / (n * 0.9)
+        return sum(arr[n // 20 : -n // 20]) / (n * 0.9)
 
     def best_coordinate(self, towers: List[List[int]], radius: int) -> List[int]:
         """1620. Coordinate With Maximum Network Quality"""
@@ -1794,8 +1812,8 @@ class Solution:
                 quality = 0
                 for tx, ty, q in towers:
                     d = (x - tx) ** 2 + (y - ty) ** 2
-                    if d <= radius ** 2:
-                        quality += int(q / (1 + d ** 0.5))
+                    if d <= radius**2:
+                        quality += int(q / (1 + d**0.5))
                 if quality > max_quality:
                     cx, cy, max_quality = x, y, quality
         return [cx, cy]
@@ -1863,22 +1881,22 @@ class Solution:
         """1678. Goal Parser Interpretation"""
         res = []
         for i, c in enumerate(command):
-            if c == 'G':
+            if c == "G":
                 res.append(c)
-            elif c == '(':
-                res.append('o' if command[i + 1] == ')' else "al")
+            elif c == "(":
+                res.append("o" if command[i + 1] == ")" else "al")
         return "".join(res)
 
     def count_consistent_strings(self, allowed: str, words: List[str]) -> int:
         """1684. Count the Number of Consistent Strings"""
         mask = 0
         for c in allowed:
-            mask |= 1 << (ord(c) - ord('a'))
+            mask |= 1 << (ord(c) - ord("a"))
         res = 0
         for word in words:
             mask1 = 0
             for c in word:
-                mask1 |= 1 << (ord(c) - ord('a'))
+                mask1 |= 1 << (ord(c) - ord("a"))
             if (mask | mask1) == mask:
                 res += 1
         return res
@@ -1893,15 +1911,15 @@ class Solution:
         res = []
         while n > 0:
             if n > 4:
-                res.append("".join(digits[pt: pt + 3]))
+                res.append("".join(digits[pt : pt + 3]))
                 pt += 3
                 n -= 3
             else:
                 if n == 4:
-                    res.append("".join(digits[pt: pt + 2]))
-                    res.append("".join(digits[pt + 2: pt + 4]))
+                    res.append("".join(digits[pt : pt + 2]))
+                    res.append("".join(digits[pt + 2 : pt + 4]))
                 else:
-                    res.append("".join(digits[pt: pt + n]))
+                    res.append("".join(digits[pt : pt + n]))
                 break
         return "-".join(res)
 
@@ -1921,7 +1939,7 @@ class Solution:
     def halves_are_alike(self, s: str) -> bool:
         """1704. Determine if String Halves Are Alike"""
         vowels = "aeiouAEIOU"
-        a, b = s[:len(s) // 2], s[len(s) // 2:]
+        a, b = s[: len(s) // 2], s[len(s) // 2 :]
         return sum(c in vowels for c in a) == sum(c in vowels for c in b)
 
     def merge_alternately(self, word1: str, word2: str) -> str:
@@ -1935,7 +1953,7 @@ class Solution:
         return "".join(res)
 
     def count_matches(
-            self, items: List[List[str]], rule_key: str, rule_value: str
+        self, items: List[List[str]], rule_key: str, rule_value: str
     ) -> int:
         """1773. Count Items Matching a Rule"""
         key_index = {"type": 0, "color": 1, "name": 2}[rule_key]
