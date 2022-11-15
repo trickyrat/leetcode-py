@@ -1942,6 +1942,18 @@ class Solution:
         a, b = s[: len(s) // 2], s[len(s) // 2 :]
         return sum(c in vowels for c in a) == sum(c in vowels for c in b)
 
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        """1710. Maximum Units on a Truck"""
+        boxTypes.sort(key=lambda x: x[1], reverse=True)
+        res = 0
+        for numberOfBoxes, numberOfUnitsPerBox in boxTypes:
+            if numberOfBoxes >= truckSize:
+                res += truckSize * numberOfUnitsPerBox
+                break
+            res += numberOfBoxes * numberOfUnitsPerBox
+            truckSize -= numberOfBoxes
+        return res
+
     def merge_alternately(self, word1: str, word2: str) -> str:
         """1768. Merge Strings Alternately"""
         res = []

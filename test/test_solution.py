@@ -1281,6 +1281,19 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "boxTypes, truckSize, expected",
+        [
+            ([[1, 3], [2, 2], [3, 1]], 4, 8),
+            ([[5, 10], [2, 5], [4, 7], [3, 9]], 10, 91),
+        ],
+    )
+    def test_maximumUnits(
+        self, boxTypes: List[List[int]], truckSize: int, expected: int
+    ):
+        actual = self.solution.maximumUnits(boxTypes, truckSize)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "word1, word2, expected",
         [
             ("abc", "pqr", "apbqcr"),
