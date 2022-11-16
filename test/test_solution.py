@@ -597,6 +597,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [([1, 0, 2], True), ([1, 2, 0], False)],
+    )
+    def test_is_ideal_permutation(self, nums: List[int], expected: bool):
+        actual = self.solution.is_ideal_permutation(nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "arr, expected",
         [([4, 3, 2, 1, 0], 1), ([1, 0, 2, 3, 4], 4)],
     )

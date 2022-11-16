@@ -1022,6 +1022,10 @@ class Solution:
             res += maximum == i
         return res
 
+    def is_ideal_permutation(self, nums: List[int]) -> bool:
+        """775. Global and Local Inversions"""
+        return all(abs(x - i) <= 1 for i, x in enumerate(nums))
+
     def kth_grammar(self, n: int, k: int) -> int:
         """779. K-th Symbol in Grammar"""
         k -= 1
