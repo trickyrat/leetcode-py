@@ -647,6 +647,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, words, expected",
+        [
+            ("abcde", ["a", "bb", "acd", "ace"], 3),
+            ("dsahjpjauf", ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"], 2),
+        ],
+    )
+    def test_numMatchingSubseq(self, s: str, words: List[str], expected: int):
+        actual = self.solution.numMatchingSubseq(s, words)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "k, expected",
         [(0, 5), (5, 0), (3, 5)],
     )

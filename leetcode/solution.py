@@ -1099,6 +1099,23 @@ class Solution:
                 ans.extend([ch] * k)
         return "".join(ans)
 
+    def numMatchingSubseq(self, s: str, words: List[str]) -> int:
+        """792. Number of Matching Subsequences"""
+        p = defaultdict(list)
+        for i, w in enumerate(words):
+            p[w[0]].append((i, 0))
+        res = 0
+        for c in s:
+            q = p[c]
+            p[c] = []
+            for i, j in q:
+                j += 1
+                if j == len(words[i]):
+                    res += 1
+                else:
+                    p[words[i][j]].append((i, j))
+        return res
+
     def preimage_size_fzf(self, k: int) -> int:
         """793. Preimage Size of Factorial Zeroes Function"""
 
