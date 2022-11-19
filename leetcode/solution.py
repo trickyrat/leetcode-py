@@ -1099,7 +1099,7 @@ class Solution:
                 ans.extend([ch] * k)
         return "".join(ans)
 
-    def numMatchingSubseq(self, s: str, words: List[str]) -> int:
+    def num_matching_subseq(self, s: str, words: List[str]) -> int:
         """792. Number of Matching Subsequences"""
         p = defaultdict(list)
         for i, w in enumerate(words):
@@ -1963,7 +1963,7 @@ class Solution:
         a, b = s[: len(s) // 2], s[len(s) // 2 :]
         return sum(c in vowels for c in a) == sum(c in vowels for c in b)
 
-    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+    def maximum_units(self, boxTypes: List[List[int]], truckSize: int) -> int:
         """1710. Maximum Units on a Truck"""
         boxTypes.sort(key=lambda x: x[1], reverse=True)
         res = 0
@@ -1973,6 +1973,14 @@ class Solution:
                 break
             res += numberOfBoxes * numberOfUnitsPerBox
             truckSize -= numberOfBoxes
+        return res
+
+    def largest_altitude(self, gain: List[int]) -> int:
+        """1732. Find the Highest Altitude"""
+        res, start = 0, 0
+        for item in gain:
+            start = start + item
+            res = max(res, start)
         return res
 
     def merge_alternately(self, word1: str, word2: str) -> str:

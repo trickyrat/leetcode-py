@@ -653,8 +653,8 @@ class TestSolution:
             ("dsahjpjauf", ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax"], 2),
         ],
     )
-    def test_numMatchingSubseq(self, s: str, words: List[str], expected: int):
-        actual = self.solution.numMatchingSubseq(s, words)
+    def test_num_matching_subseq(self, s: str, words: List[str], expected: int):
+        actual = self.solution.num_matching_subseq(s, words)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1306,10 +1306,21 @@ class TestSolution:
             ([[5, 10], [2, 5], [4, 7], [3, 9]], 10, 91),
         ],
     )
-    def test_maximumUnits(
+    def test_maximum_units(
         self, boxTypes: List[List[int]], truckSize: int, expected: int
     ):
-        actual = self.solution.maximumUnits(boxTypes, truckSize)
+        actual = self.solution.maximum_units(boxTypes, truckSize)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
+        "gain, expected",
+        [
+            ([-5, 1, 5, 0, -7], 1),
+            ([-4, -3, -2, -1, 4, 3, 2], 0),
+        ],
+    )
+    def test_largest_altitude(self, gain: List[int], expected: int):
+        actual = self.solution.largest_altitude(gain)
         assert expected == actual
 
     @pytest.mark.parametrize(
