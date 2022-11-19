@@ -666,6 +666,16 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "poured, query_row, query_glass, expected",
+        [(1, 1, 1, 0.00000), (2, 1, 1, 0.50000), (100000009, 33, 17, 1.00000)],
+    )
+    def test_champagne_tower(
+        self, poured: int, query_row: int, query_glass: int, expected: float
+    ):
+        actual = self.solution.champagne_tower(poured, query_row, query_glass)
+        assert abs(expected - actual) <= 0.0000001
+
+    @pytest.mark.parametrize(
         "nums1, nums2, expected",
         [
             ([1, 3, 5, 4], [1, 2, 3, 7], 1),

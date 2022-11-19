@@ -1131,6 +1131,18 @@ class Solution:
 
         return nx(k + 1) - nx(k)
 
+    def champagne_tower(self, poured: int, query_row: int, query_glass: int) -> float:
+        """799. Champagne Tower"""
+        row = [poured]
+        for i in range(1, query_row + 1):
+            next_row = [0.0] * (i + 1)
+            for j, volume in enumerate(row):
+                if volume > 1:
+                    next_row[j] += (volume - 1) / 2
+                    next_row[j + 1] += (volume - 1) / 2
+            row = next_row
+        return min(1, row[query_glass])
+
     def min_swap(self, nums1: List[int], nums2: List[int]) -> int:
         """801. Minimum Swaps To Make Sequences Increasing"""
         n = len(nums1)
