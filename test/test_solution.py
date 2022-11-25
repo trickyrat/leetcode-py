@@ -1334,6 +1334,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "low_limit, high_limit, expected",
+        [
+            (1, 10, 2),
+            (5, 15, 2),
+            (19, 28, 2),
+        ],
+    )
+    def test_count_balls(self, low_limit: int, high_limit: int, expected: int):
+        actual = self.solution.count_balls(low_limit, high_limit)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "word1, word2, expected",
         [
             ("abc", "pqr", "apbqcr"),

@@ -1995,6 +1995,11 @@ class Solution:
             res = max(res, start)
         return res
 
+    def count_balls(self, low_limit: int, high_limit: int) -> int:
+        """1742. Maximum Number of Balls in a Box"""
+        count = Counter(sum(map(int, str(i))) for i in range(low_limit, high_limit + 1))
+        return max(count.values())
+
     def merge_alternately(self, word1: str, word2: str) -> str:
         """1768. Merge Strings Alternately"""
         res = []
