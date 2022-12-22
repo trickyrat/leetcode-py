@@ -1647,6 +1647,18 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "operations, expected",
+        [
+            (["--X", "X++", "X++"], 1),
+            (["++X", "++X", "X++"], 3),
+            (["X++", "++X", "--X", "X--"], 0),
+        ],
+    )
+    def test_final_value_after_operations(self, operations: List[str], expected: int):
+        actual = self.solution.final_value_after_operations(operations)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ([3, 1], 2),

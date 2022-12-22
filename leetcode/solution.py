@@ -2083,6 +2083,10 @@ class Solution:
             cnt[num] += 1
         return res
 
+    def final_value_after_operations(self, operations: List[str]) -> int:
+        """2011. Final Value of Variable After Performing Operations"""
+        return sum(1 if op[1] == "+" else -1 for op in operations)
+
     def maximum_difference(self, nums: List[int]) -> int:
         """2016. Maximum Difference Between Increasing Elements"""
         n = len(nums)
