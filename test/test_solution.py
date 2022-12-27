@@ -1659,6 +1659,18 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("XXX", 1),
+            ("XXOX", 2),
+            ("OOOO", 0),
+        ],
+    )
+    def test_minimum_moves(self, s: str, expected: int):
+        actual = self.solution.minimum_moves(s)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ([3, 1], 2),

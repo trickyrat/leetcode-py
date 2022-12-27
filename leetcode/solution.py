@@ -2098,6 +2098,16 @@ class Solution:
                 pre_min = nums[i]
         return ans
 
+    def minimum_moves(self, s: str) -> int:
+        """2027. Minimum Moves to Convert String"""
+        count = -1
+        res = 0
+        for i, ch in enumerate(s):
+            if ch == 'X' and i > count:
+                res += 1
+                count = i + 2
+        return res
+
     def count_max_or_subsets(self, nums: List[int]) -> int:
         """2044. Count Number of Maximum Bitwise-OR Subsets"""
         max_or, cnt = 0, 0
