@@ -1346,6 +1346,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("ca", 2),
+            ("cabaabac",  0),
+            ("aabccabba",  3),
+        ],
+    )
+    def test_minimum_length(self, s: str, expected: int):
+        actual = self.solution.minimum_length(s)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "word1, word2, expected",
         [
             ("abc", "pqr", "apbqcr"),

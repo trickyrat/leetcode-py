@@ -2000,6 +2000,18 @@ class Solution:
         count = Counter(sum(map(int, str(i))) for i in range(low_limit, high_limit + 1))
         return max(count.values())
 
+    def minimum_length(self, s: str) -> int:
+        """1750. Minimum Length of String After Deleting Similar Ends"""
+        n = len(s)
+        left, right = 0, n - 1
+        while left < right and s[left] == s[right]:
+            c = s[left]
+            while left <= right and s[left] == c:
+                left += 1
+            while left <= right and s[right] == c:
+                right -= 1
+        return right - left + 1
+
     def merge_alternately(self, word1: str, word2: str) -> str:
         """1768. Merge Strings Alternately"""
         res = []
