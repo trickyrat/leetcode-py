@@ -2120,6 +2120,14 @@ class Solution:
                 count = i + 2
         return res
 
+    def two_out_of_three(self, nums1: List[int], nums2: List[int], nums3: List[int]) -> List[int]:
+        """2032. Two Out of Three"""
+        mask = defaultdict(int)
+        for i, nums in enumerate((nums1, nums2, nums3)):
+            for x in nums:
+                mask[x] |= 1 << i
+        return [x for x, m in mask.items() if m & (m - 1)]
+
     def count_max_or_subsets(self, nums: List[int]) -> int:
         """2044. Count Number of Maximum Bitwise-OR Subsets"""
         max_or, cnt = 0, 0

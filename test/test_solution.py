@@ -1683,6 +1683,20 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "nums1, nums2, nums3, expected",
+        [
+            ([1,1,3,2],[2,3],[3],[3,2]),
+            ([3,1],[2,3],[1,2],[2,3,1]),
+            ([1,2,2],[4,3,3],[5],[])
+        ]
+    )
+    def test_two_out_of_three(self, nums1: List[int], nums2: List[int], nums3: List[int], expected: List[int]):
+        actual = self.solution.two_out_of_three(nums1, nums2, nums3)
+        actual.sort()
+        expected.sort()
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ([3, 1], 2),
