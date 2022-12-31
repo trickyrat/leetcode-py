@@ -2128,6 +2128,12 @@ class Solution:
                 mask[x] |= 1 << i
         return [x for x, m in mask.items() if m & (m - 1)]
 
+    def min_moves_to_seat(self, seats: List[int], students: List[int]) -> int:
+        """2037. Minimum Number of Moves to Seat Everyone"""
+        seats.sort()
+        students.sort()
+        return sum(abs(x - y) for x, y in zip(seats, students))
+
     def count_max_or_subsets(self, nums: List[int]) -> int:
         """2044. Count Number of Maximum Bitwise-OR Subsets"""
         max_or, cnt = 0, 0
