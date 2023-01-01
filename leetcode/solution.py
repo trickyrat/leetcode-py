@@ -2175,3 +2175,11 @@ class Solution:
             if 0 <= x < y and y >= 0:
                 ans[i] = pre_sum[y] - pre_sum[x]
         return ans
+
+    def repeated_character(self, s: str) -> str:
+        """2351. First Letter to Appear Twice"""
+        seen = set()
+        for ch in s:
+            if ch in seen:
+                return ch
+            seen.add(ch)

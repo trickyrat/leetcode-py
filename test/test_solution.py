@@ -1736,3 +1736,16 @@ class TestSolution:
     ):
         actual = self.solution.plates_between_candles(test_input, queries)
         assert actual == expected
+
+    @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("abccbaacz", "c"),
+            ("abcdd", "d"),
+            ("aa", "a"),
+            ("zz", "z"),
+        ]
+    )
+    def test_repeated_character(self, s: str, expected: str):
+        actual = self.solution.repeated_character(s)
+        assert expected == actual
