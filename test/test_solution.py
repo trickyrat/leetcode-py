@@ -1709,6 +1709,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("1 box has 3 blue 4 red 6 green and 12 yellow marbles", True),
+            ("hello world 5 x 5", False),
+            ("sunset is at 7 51 pm overnight lows will be in the low 50 and 60 s", False)
+        ]
+    )
+    def test_are_number_ascending(self, s: str, expected: bool):
+        actual = self.solution.are_number_ascending(s)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             ([3, 1], 2),

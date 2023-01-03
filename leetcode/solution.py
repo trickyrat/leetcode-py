@@ -2134,6 +2134,24 @@ class Solution:
         students.sort()
         return sum(abs(x - y) for x, y in zip(seats, students))
 
+    def are_number_ascending(self, s: str) -> bool:
+        """2042. Check if Numbers Are Ascending in a Sentence"""
+        prev = pos = 0
+        n = len(s)
+        while pos < n:
+            if s[pos].isdigit():
+                curr = 0
+                while pos < n and s[pos].isdigit():
+                    curr = curr * 10 + int(s[pos])
+                    pos += 1
+                if curr <= prev:
+                    return False
+                prev = curr
+            else:
+                pos += 1
+        return True
+
+
     def count_max_or_subsets(self, nums: List[int]) -> int:
         """2044. Count Number of Maximum Bitwise-OR Subsets"""
         max_or, cnt = 0, 0
