@@ -1436,6 +1436,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "n, index, max_sum, expected",
+        [
+            (4, 2, 6, 2),
+            (6, 1, 10, 3),
+        ],
+    )
+    def test_max_value(self, n: int, index: int, max_sum: int, expected: int):
+        actual = self.solution.max_value(n, index, max_sum)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "nums, expected",
         [
             ([-1, -2, -3, -4, 3, 2, 1], 1),
