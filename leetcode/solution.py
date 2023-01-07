@@ -1868,6 +1868,26 @@ class Solution:
         nums.sort(key=lambda x: (count[x], -x))
         return nums
 
+    def min_operations(self, nums: List[int], x: int) -> int:
+        """1658. Minimum Operations to Reduce X to Zero"""
+        n = len(nums)
+        total = sum(nums)
+        if total < x:
+            return -1
+
+        right = 0
+        left_sum, right_sum = 0, total
+        res = n + 1
+        for left in range(-1, n - 1):
+            if left != -1:
+                left_sum += nums[left]
+            while right < n and left_sum + right_sum > x:
+                right_sum -= nums[right]
+                right += 1
+            if left_sum + right_sum == x:
+                res = min(res, (left + 1) + (n - right_sum))
+        return -1 if res > n else res
+
     def array_strings_are_equal(self, word1: List[str], word2: List[str]) -> bool:
         """1662. Check If Two String Arrays are Equivalent"""
         p1 = p2 = 0  # index of word
