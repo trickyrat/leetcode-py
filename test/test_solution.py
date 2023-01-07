@@ -1761,6 +1761,17 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "num, expected",
+        [
+            (4, 2),
+            (30, 14),
+        ]
+    )
+    def test_count_even(self, num: int, expected: int):
+        actual = self.solution.count_even(num)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "s, expected",
         [
             ("abccbaacz", "c"),

@@ -2067,14 +2067,14 @@ class Solution:
             left, right = right, left
 
         upper = ((left + 1) ** 2 - 3 * (left + 1)) // 2 + left + 1 + (left + 1) + (
-                    (left + 1) ** 2 - 3 * (left + 1)) // 2 + right + 1
+                (left + 1) ** 2 - 3 * (left + 1)) // 2 + right + 1
         if upper >= max_sum:
             a = 1
             b = -2
             c = left + right + 2 - max_sum
             return floor(((-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)))
         upper = (2 * (right + 1) - left - 1) * left // 2 + (right + 1) + (
-                    (right + 1) ** 2 - 3 * (right + 1)) // 2 + right + 1
+                (right + 1) ** 2 - 3 * (right + 1)) // 2 + right + 1
         if upper >= max_sum:
             a = 1 / 2
             b = left + 1 - 3 / 2
@@ -2218,6 +2218,19 @@ class Solution:
             if 0 <= x < y and y >= 0:
                 ans[i] = pre_sum[y] - pre_sum[x]
         return ans
+
+    def count_even(self, num: int) -> int:
+        """2180. Count Integers With Even Digit Sum"""
+        y, x = num // 10, num % 10
+        res, y_sum = y * 5, 0
+        while y > 0:
+            y_sum += y % 10
+            y //= 10
+        if y_sum % 2 == 0:
+            res += x // 2 + 1
+        else:
+            res += (x + 1) // 2
+        return res - 1
 
     def repeated_character(self, s: str) -> str:
         """2351. First Letter to Appear Twice"""
