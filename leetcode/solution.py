@@ -2252,6 +2252,10 @@ class Solution:
             res += (x + 1) // 2
         return res - 1
 
+    def prefix_count(self, words: List[str], pref: str) -> int:
+        """2185. Counting Words With a Given Prefix"""
+        return sum(word.startswith(pref) for word in words)
+
     def repeated_character(self, s: str) -> str:
         """2351. First Letter to Appear Twice"""
         seen = set()

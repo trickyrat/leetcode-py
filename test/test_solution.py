@@ -1774,6 +1774,17 @@ class TestSolution:
     @pytest.mark.parametrize(
         "s, expected",
         [
+            (["pay", "attention", "practice", "attend"], "at", 2),
+            (["leetcode", "win", "loops", "success"], "code", 0),
+        ]
+    )
+    def test_prefix_count(self, words: List[str], pref: str, expected: int):
+        actual = self.solution.prefix_count(words, pref)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
+        "s, expected",
+        [
             ("abccbaacz", "c"),
             ("abcdd", "d"),
             ("aa", "a"),
