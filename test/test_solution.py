@@ -17,24 +17,22 @@ class TestSolution:
     @pytest.mark.parametrize(
         "test_input1, test_input2, expected",
         [
-            (create_list_node([2, 4, 3]), create_list_node([5, 6, 4]), [7, 0, 8]),
-            (create_list_node([0]), create_list_node([0]), [0]),
+            (create_list_node([2, 4, 3]), create_list_node([5, 6, 4]), create_list_node([7, 0, 8])),
+            (create_list_node([0]), create_list_node([0]), create_list_node([0])),
             (
                     create_list_node([9, 9, 9, 9, 9, 9, 9]),
                     create_list_node([9, 9, 9, 9]),
-                    [8, 9, 9, 9, 0, 0, 0, 1],
+                    create_list_node([8, 9, 9, 9, 0, 0, 0, 1]),
             ),
-        ],
+        ]
     )
     def test_add_two_numbers(
             self,
             test_input1: Optional[ListNode],
             test_input2: Optional[ListNode],
-            expected: List[int],
+            expected: Optional[ListNode],
     ):
-        actual = list_node_to_list(
-            self.solution.add_two_numbers(test_input1, test_input2)
-        )
+        actual = self.solution.add_two_numbers(test_input1, test_input2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -151,6 +149,18 @@ class TestSolution:
     )
     def test_longest_common_prefix(self, strs: List[str], expected: str):
         actual = self.solution.longest_common_prefix(strs)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
+        "head, n, expected",
+        [
+            (create_list_node([1, 2, 3, 4, 5]), 2, create_list_node([1, 2, 3, 5])),
+            (create_list_node([1]), 1, None),
+            (create_list_node([1, 2]), 1, create_list_node([1])),
+        ]
+    )
+    def test_remove_nth_from_end(self, head: Optional[ListNode], n: int, expected: Optional[ListNode]):
+        actual = self.solution.remove_nth_from_end(head, n)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -315,15 +325,15 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
-        "queryIP, expected",
+        "query_ip, expected",
         [
             ("172.16.254.1", "IPv4"),
             ("2001:0db8:85a3:0:0:8A2E:0370:7334", "IPv6"),
             ("256.256.256.256", "Neither"),
         ],
     )
-    def test_valid_ip_address(self, queryIP: str, expected: str):
-        actual = self.solution.valid_ip_address(queryIP)
+    def test_valid_ip_address(self, query_ip: str, expected: str):
+        actual = self.solution.valid_ip_address(query_ip)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1310,16 +1320,16 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
-        "boxTypes, truckSize, expected",
+        "box_types, truck_size, expected",
         [
             ([[1, 3], [2, 2], [3, 1]], 4, 8),
             ([[5, 10], [2, 5], [4, 7], [3, 9]], 10, 91),
         ],
     )
     def test_maximum_units(
-            self, boxTypes: List[List[int]], truckSize: int, expected: int
+            self, box_types: List[List[int]], truck_size: int, expected: int
     ):
-        actual = self.solution.maximum_units(boxTypes, truckSize)
+        actual = self.solution.maximum_units(box_types, truck_size)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1772,7 +1782,7 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
-        "s, expected",
+        "words, pref, expected",
         [
             (["pay", "attention", "practice", "attend"], "at", 2),
             (["leetcode", "win", "loops", "success"], "code", 0),

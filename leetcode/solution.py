@@ -241,6 +241,19 @@ class Solution:
                 return strs[0][:i]
         return strs[0]
 
+    def remove_nth_from_end(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        """19. Remove Nth Node From End of List"""
+        dummy = ListNode(-1, head)
+        fast = head
+        slow = dummy
+        for _ in range(n):
+            fast = fast.next
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next
+        return dummy.next
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
@@ -1868,7 +1881,7 @@ class Solution:
         nums.sort(key=lambda x: (count[x], -x))
         return nums
 
-    def min_operations(self, nums: List[int], x: int) -> int:
+    def min_operations2(self, nums: List[int], x: int) -> int:
         """1658. Minimum Operations to Reduce X to Zero"""
         n = len(nums)
         total = sum(nums)
