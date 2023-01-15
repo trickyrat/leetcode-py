@@ -164,6 +164,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "list1, list2, expected",
+        [
+            (create_list_node([1, 2, 4]), create_list_node([1, 3, 4]), create_list_node([1, 1, 2, 3, 4, 4])),
+            (create_list_node([]), create_list_node([]), None),
+            (create_list_node([]), create_list_node([0]), create_list_node([0])),
+        ]
+    )
+    def test_merge_two_lists(self, list1: Optional[ListNode], list2: Optional[ListNode], expected: Optional[ListNode]):
+        actual = self.solution.merge_two_lists(list1, list2)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "strs, expected",
         [
             (

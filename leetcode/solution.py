@@ -254,6 +254,25 @@ class Solution:
         slow.next = slow.next.next
         return dummy.next
 
+    def merge_two_lists(self, list1: Optional[ListNode], list2: Optional[ListNode]):
+        """21. Merge Two Sorted Lists"""
+        dummy = ListNode(-1)
+        p1, p2 = list1, list2
+        p = dummy
+        while p1 and p2:
+            if p1.val > p2.val:
+                p.next = p2
+                p2 = p2.next
+            else:
+                p.next = p1
+                p1 = p1.next
+            p = p.next
+        if p1:
+            p.next = p1
+        if p2:
+            p.next = p2
+        return dummy.next
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
