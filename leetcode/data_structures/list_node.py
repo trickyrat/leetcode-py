@@ -18,3 +18,6 @@ class ListNode(object):
             dummy_head2 = dummy_head2.next
 
         return True if dummy_head1 is None and dummy_head2 is None else False
+
+    def __lt__(self, other):
+        return True if self.val < other.val else False

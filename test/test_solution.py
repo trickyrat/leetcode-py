@@ -176,6 +176,19 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "lists, expected",
+        [
+            ([create_list_node([1, 4, 5]), create_list_node([1, 3, 4]), create_list_node([2, 6])],
+             create_list_node([1, 1, 2, 3, 4, 4, 5, 6])),
+            ([], None),
+            ([create_list_node([])], None),
+        ]
+    )
+    def test_merge_k_lists(self, lists: List[Optional[ListNode]], expected: Optional[ListNode]):
+        actual = self.solution.merge_k_lists(lists)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "strs, expected",
         [
             (

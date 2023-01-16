@@ -273,6 +273,29 @@ class Solution:
             p.next = p2
         return dummy.next
 
+    def merge_k_lists(self, lists: List[Optional[ListNode]]):
+        """23. Merge k Sorted Lists"""
+        if len(lists) == 0:
+            return None
+        pq = []
+        dummy = ListNode(-1)
+        p = dummy
+        for head in lists:
+            if head:
+                heappush(pq, head)
+
+        while len(pq) != 0:
+            curr = heappop(pq)
+            p.next = curr
+            if curr.next:
+                heappush(pq, curr.next)
+            p = p.next
+
+        return dummy.next
+
+
+
+
     def remove_element(self, nums: List[int], val: int) -> int:
         """
         27 Remove Element
