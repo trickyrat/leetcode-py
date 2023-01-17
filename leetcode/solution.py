@@ -433,6 +433,16 @@ class Solution:
         dfs(root, target_num)
         return ret
 
+    def has_cycle(self, head: Optional[ListNode]) -> bool:
+        """141. Linked List Cycle"""
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next
+            if slow == fast:
+                return True
+        return False
+
     def two_sum_ii(self, numbers: List[int], target: int) -> List[int]:
         """167. Two Sum II - Input array is sorted"""
         left = 0
