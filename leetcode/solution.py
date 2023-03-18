@@ -293,7 +293,18 @@ class Solution:
 
         return dummy.next
 
-
+    def remove_duplicates(self, nums: List[int]) -> int:
+        """26. Remove Duplicates from Sorted Array"""
+        if not nums:
+            return 0
+        n = len(nums)
+        fast = slow = 1
+        while fast < n:
+            if nums[fast] != nums[fast-1]:
+                nums[slow] = nums[fast]
+                slow += 1
+            fast += 1
+        return slow
 
 
     def remove_element(self, nums: List[int], val: int) -> int:

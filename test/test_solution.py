@@ -189,6 +189,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([1, 1, 2], 2),
+            ([0, 0, 1, 1, 1, 2, 2, 3, 3, 4], 5),
+        ]
+    )
+    def test_remove_duplicates(self, nums: List[int], expected: int):
+        actual = self.solution.remove_duplicates(nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "strs, expected",
         [
             (
