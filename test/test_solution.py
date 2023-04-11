@@ -544,6 +544,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([4, 2, 3], True),
+            ([4, 2, 1], False),
+        ],
+    )
+    def test_check_possibility(self, nums: list[int], expected: bool):
+        actual = self.solution.check_possibility(nums)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "n, k, expected",
         [(3, 1, [1, 2, 3]), (3, 2, [1, 3, 2])],
     )

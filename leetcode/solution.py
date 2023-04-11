@@ -948,6 +948,19 @@ class Solution:
 
         return dfs(root, 1, 1)
 
+    def check_possibility(self, nums: list[int]) -> bool:
+        """665. Non-decreasing Array"""
+        count = 0
+        for i in range(0, len(nums) - 1):
+            x, y = nums[i], nums[i + 1]
+            if x > y:
+                count += 1
+                if count > 1:
+                    return False
+                if i > 0 and y < nums[i - 1]:
+                    nums[i + 1] = x
+        return True
+
     def construct_array(self, n: int, k: int) -> List[int]:
         """667. Beautiful Arrangement II"""
         res = list(range(1, n - k))
