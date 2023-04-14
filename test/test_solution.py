@@ -200,6 +200,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, val, expected",
+        [
+            ([3, 2, 2, 3], 3, 2),
+            ([0, 1, 2, 2, 3, 0, 4, 2], 2, 5),
+        ]
+    )
+    def test_remove_element(self, nums: List[int], val: int, expected: int):
+        actual = self.solution.remove_element(nums, val)
+        assert expected == actual
+        assert val not in nums[0:actual]
+
+    @pytest.mark.parametrize(
         "strs, expected",
         [
             (
