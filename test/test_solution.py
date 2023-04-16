@@ -362,6 +362,17 @@ class TestSolution:
         actual = self.solution.valid_utf8(test_input)
         assert expected == actual
 
+    @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([4, 3, 2, 6], 26),
+            ([100], 0),
+        ]
+    )
+    def test_max_rotate_function(self, nums: list[int], expected: int):
+        actual = self.solution.max_rotate_function(nums)
+        assert expected == actual
+
     @pytest.mark.parametrize("test_input, expected", [("Hello, my name is John", 5)])
     def test_count_segment(self, test_input: str, expected: int):
         actual = self.solution.count_segment(test_input)

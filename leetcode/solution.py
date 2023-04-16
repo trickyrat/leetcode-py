@@ -300,12 +300,11 @@ class Solution:
         n = len(nums)
         fast = slow = 1
         while fast < n:
-            if nums[fast] != nums[fast-1]:
+            if nums[fast] != nums[fast - 1]:
                 nums[slow] = nums[fast]
                 slow += 1
             fast += 1
         return slow
-
 
     def remove_element(self, nums: List[int], val: int) -> int:
         """
@@ -637,6 +636,17 @@ class Solution:
             else:
                 return False
         return n == 0
+
+    def max_rotate_function(self, nums: list[int]) -> int:
+        """396. Rotate Function"""
+        f, n, nums_sum = 0, len(nums), sum(nums)
+        for i, num in enumerate(nums):
+            f += i * num
+        res = f
+        for i in range(n - 1, 0, -1):
+            f = f + nums_sum - n * nums[i]
+            res = max(res, f)
+        return res
 
     def count_segment(self, s: str) -> int:
         """434. Number of Segments in a String"""
