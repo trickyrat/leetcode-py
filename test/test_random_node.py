@@ -16,4 +16,3 @@ class TestRandomNode:
         assert actual in expected
         actual = node.get_random()
         assert actual in expected
-
