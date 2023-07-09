@@ -1,4 +1,4 @@
-# Leetcode solution with Python3
+# LeetCode solution with Python3
 
 ## Requirements
 
@@ -7,9 +7,13 @@
 
 ## Run
 
-just run test cases
+run unittest
 > pytest
 
-run test cases with coverage
+run unittest with coverage
 
 > coverage report -m 
+
+generate html report
+
+> coverage html
