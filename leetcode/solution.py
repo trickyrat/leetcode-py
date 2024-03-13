@@ -1644,6 +1644,16 @@ class Solution:
                                     q.append((nx, ny))
                     step += 1
         return 0
+    
+    def rangeSumBST(self, root: TreeNode, low: int, high: int):
+        """938. Range Sum of BST"""
+        if not root:
+            return 0
+        if root.val > high:
+            return self.rangeSumBST(root.left, low, high)
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+        return root.val + self.rangeSumBST(root.left, low, high) + self.rangeSumBST(root.right, low, high)
 
     def distinct_subseq_ii(self, s: str) -> int:
         """940. Distinct Subsequences II"""
