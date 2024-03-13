@@ -1,7 +1,6 @@
 .pytest_cache
 __pycache__
-htmlcov
 .coverage
 .idea/
-reports/
 .venv/
+test_results/
