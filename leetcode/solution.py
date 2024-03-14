@@ -444,7 +444,21 @@ class Solution:
 
         dfs(root, target_num)
         return ret
+    
+    def generate(self, num_rows: int) -> List[List[int]]:
+        """118. Pascal's Triangle"""
+        ret = list()
+        for i in range(num_rows):
+            row = list()
+            for j in range(0, i + 1):
+                if j == 0 or j == i:
+                    row.append(1)
+                else:
+                    row.append(ret[i - 1][j - 1] + ret[i - 1][j])
+            ret.append(row)
+        return ret
 
+ 
     def has_cycle(self, head: Optional[ListNode]) -> bool:
         """141. Linked List Cycle"""
         slow = fast = head

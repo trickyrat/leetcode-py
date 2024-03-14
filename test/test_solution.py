@@ -336,6 +336,17 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "row_number, expected",
+        [
+            (5, [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]),
+            (1, [[1]]),
+        ],
+    )
+    def test_generate(self, row_number: int, expected: List[List[int]]):
+        actual = self.solution.generate(row_number)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, target, expected",
         [([2, 7, 11, 15], 9, [1, 2]), ([2, 3, 4], 6, [1, 3]), ([-1, 0], -1, [1, 2])],
     )
