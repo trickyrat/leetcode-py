@@ -308,6 +308,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "head, left, right, expected",
+        [
+            (create_list_node([1, 2, 3, 4, 5]), 2, 4, create_list_node([1, 4, 3, 2, 5])),
+            (create_list_node([1, 2, 3, 4, 5]), 1, 5, create_list_node([5, 4, 3, 2, 1])),
+        ]
+    )
+    def test_reverse_between(self, head: ListNode, left: int, right: int, expected: ListNode):
+        actual = self.solution.reverse_between(head, left, right)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [
             (create_treenode([3, 9, 20, None, None, 15, 7]), 2),
