@@ -7,13 +7,18 @@
 
 ## Run
 
-run unittest
+### Install packages
+
+> pip install -r requirements.txt
+
+### Run unit test
+
 > pytest .
 
-run unittest with coverage
+### Run unit test with coverage
 
 > coverage run -m pytest .
 
-generate html report
+### Generate coverage html report
 
 > coverage html -d ./test_results
