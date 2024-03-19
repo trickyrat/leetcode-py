@@ -410,9 +410,10 @@ class Solution:
             else:
                 return True
         return False
-    
+
     def reverse_between(self, head: ListNode, left: int, right: int) -> ListNode:
         """92.Reverse Linked List II"""
+
         def reverse_linked_list(head: ListNode) -> ListNode:
             pre = None
             curr = head
@@ -443,7 +444,6 @@ class Solution:
         pre.next = right_node
         left_node.next = curr
         return dummy_node.next
-        
 
     def min_depth(self, root: Optional[TreeNode]) -> int:
         """111. Minimum Depth of Binary Tree"""
@@ -478,7 +478,7 @@ class Solution:
 
         dfs(root, target_num)
         return ret
-    
+
     def generate(self, num_rows: int) -> List[List[int]]:
         """118. Pascal's Triangle"""
         ret = list()
@@ -492,7 +492,6 @@ class Solution:
             ret.append(row)
         return ret
 
- 
     def has_cycle(self, head: Optional[ListNode]) -> bool:
         """141. Linked List Cycle"""
         slow = fast = head
@@ -1692,7 +1691,7 @@ class Solution:
                                     q.append((nx, ny))
                     step += 1
         return 0
-    
+
     def rangeSumBST(self, root: TreeNode, low: int, high: int):
         """938. Range Sum of BST"""
         if not root:
@@ -1701,7 +1700,11 @@ class Solution:
             return self.rangeSumBST(root.left, low, high)
         if root.val < low:
             return self.rangeSumBST(root.right, low, high)
-        return root.val + self.rangeSumBST(root.left, low, high) + self.rangeSumBST(root.right, low, high)
+        return (
+            root.val
+            + self.rangeSumBST(root.left, low, high)
+            + self.rangeSumBST(root.right, low, high)
+        )
 
     def distinct_subseq_ii(self, s: str) -> int:
         """940. Distinct Subsequences II"""
