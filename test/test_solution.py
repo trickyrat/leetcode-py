@@ -1,10 +1,14 @@
+from typing import List, Optional
 import pytest
+from leetcode.data_structures.list_node import ListNode
+from leetcode.data_structures.tree_node import TreeNode
 from leetcode.solution import Solution
-from leetcode.utils import *
+from leetcode.util import Util
 
 
 class TestSolution:
     solution = Solution()
+    util = Util()
 
     @pytest.mark.parametrize(
         "test_input, target, expected",
@@ -23,15 +27,15 @@ class TestSolution:
         "test_input1, test_input2, expected",
         [
             (
-                create_list_node([2, 4, 3]),
-                create_list_node([5, 6, 4]),
-                create_list_node([7, 0, 8]),
+                util.create_list_node([2, 4, 3]),
+                util.create_list_node([5, 6, 4]),
+                util.create_list_node([7, 0, 8]),
             ),
-            (create_list_node([0]), create_list_node([0]), create_list_node([0])),
+            (util.create_list_node([0]), util.create_list_node([0]), util.create_list_node([0])),
             (
-                create_list_node([9, 9, 9, 9, 9, 9, 9]),
-                create_list_node([9, 9, 9, 9]),
-                create_list_node([8, 9, 9, 9, 0, 0, 0, 1]),
+                util.create_list_node([9, 9, 9, 9, 9, 9, 9]),
+                util.create_list_node([9, 9, 9, 9]),
+                util.create_list_node([8, 9, 9, 9, 0, 0, 0, 1]),
             ),
         ],
     )
@@ -168,9 +172,9 @@ class TestSolution:
     @pytest.mark.parametrize(
         "head, n, expected",
         [
-            (create_list_node([1, 2, 3, 4, 5]), 2, create_list_node([1, 2, 3, 5])),
-            (create_list_node([1]), 1, None),
-            (create_list_node([1, 2]), 1, create_list_node([1])),
+            (util.create_list_node([1, 2, 3, 4, 5]), 2, util.create_list_node([1, 2, 3, 5])),
+            (util.create_list_node([1]), 1, None),
+            (util.create_list_node([1, 2]), 1, util.create_list_node([1])),
         ],
     )
     def test_remove_nth_from_end(
@@ -183,12 +187,12 @@ class TestSolution:
         "list1, list2, expected",
         [
             (
-                create_list_node([1, 2, 4]),
-                create_list_node([1, 3, 4]),
-                create_list_node([1, 1, 2, 3, 4, 4]),
+                util.create_list_node([1, 2, 4]),
+                util.create_list_node([1, 3, 4]),
+                util.create_list_node([1, 1, 2, 3, 4, 4]),
             ),
-            (create_list_node([]), create_list_node([]), None),
-            (create_list_node([]), create_list_node([0]), create_list_node([0])),
+            (util.create_list_node([]), util.create_list_node([]), None),
+            (util.create_list_node([]), util.create_list_node([0]), util.create_list_node([0])),
         ],
     )
     def test_merge_two_lists(
@@ -205,14 +209,14 @@ class TestSolution:
         [
             (
                 [
-                    create_list_node([1, 4, 5]),
-                    create_list_node([1, 3, 4]),
-                    create_list_node([2, 6]),
+                    util.create_list_node([1, 4, 5]),
+                    util.create_list_node([1, 3, 4]),
+                    util.create_list_node([2, 6]),
                 ],
-                create_list_node([1, 1, 2, 3, 4, 4, 5, 6]),
+                util.create_list_node([1, 1, 2, 3, 4, 4, 5, 6]),
             ),
             ([], None),
-            ([create_list_node([])], None),
+            ([util.create_list_node([])], None),
         ],
     )
     def test_merge_k_lists(
@@ -321,8 +325,8 @@ class TestSolution:
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            (create_treenode([3, 9, 20, None, None, 15, 7]), 2),
-            (create_treenode([2, None, 3, None, 4, None, 5, None, 6]), 5),
+            (util.create_treenode([3, 9, 20, None, None, 15, 7]), 2),
+            (util.create_treenode([2, None, 3, None, 4, None, 5, None, 6]), 5),
         ],
     )
     def test_min_depth(self, test_input: TreeNode, expected: int):
@@ -333,11 +337,11 @@ class TestSolution:
         "test_input, target_num, expected",
         [
             (
-                create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
+                util.create_treenode([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
                 22,
                 [[5, 4, 11, 2], [5, 8, 4, 5]],
             ),
-            (create_treenode([1, 2, 3]), 5, []),
+            (util.create_treenode([1, 2, 3]), 5, []),
         ],
     )
     def test_path_sum(
@@ -530,16 +534,16 @@ class TestSolution:
         "root, val, depth, expected",
         [
             (
-                create_treenode([4, 2, 6, 3, 1, 5]),
+                util.create_treenode([4, 2, 6, 3, 1, 5]),
                 1,
                 2,
-                create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
+                util.create_treenode([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
             ),
             (
-                create_treenode([4, 2, None, 3, 1]),
+                util.create_treenode([4, 2, None, 3, 1]),
                 1,
                 3,
-                create_treenode([4, 2, None, 1, 1, 3, None, None, 1]),
+                util.create_treenode([4, 2, None, 1, 1, 3, None, None, 1]),
             ),
         ],
     )
@@ -565,13 +569,13 @@ class TestSolution:
         "root, expected",
         [
             (
-                create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
-                [create_treenode([2, 4]), create_treenode([4])],
+                util.create_treenode([1, 2, 3, 4, None, 2, 4, None, None, 4]),
+                [util.create_treenode([2, 4]), util.create_treenode([4])],
             ),
-            (create_treenode([2, 1, 1]), [create_treenode([1])]),
+            (util.create_treenode([2, 1, 1]), [util.create_treenode([1])]),
             (
-                create_treenode([2, 2, 2, 3, None, 3, None]),
-                [create_treenode([3]), create_treenode([2, 3])],
+                util.create_treenode([2, 2, 2, 3, None, 3, None]),
+                [util.create_treenode([3]), util.create_treenode([2, 3])],
             ),
         ],
     )
@@ -584,9 +588,9 @@ class TestSolution:
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
+            (util.create_treenode([1, 2]), [["", "1", ""], ["2", "", ""]]),
             (
-                create_treenode([1, 2, 3, None, 4]),
+                util.create_treenode([1, 2, 3, None, 4]),
                 [
                     ["", "", "", "1", "", "", ""],
                     ["", "2", "", "", "", "3", ""],
@@ -612,9 +616,9 @@ class TestSolution:
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (create_treenode([1, 3, 2, 5, 3, None, 9]), 4),
-            (create_treenode([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
-            (create_treenode([1, 3, 2, 5]), 2),
+            (util.create_treenode([1, 3, 2, 5, 3, None, 9]), 4),
+            (util.create_treenode([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+            (util.create_treenode([1, 3, 2, 5]), 2),
         ],
     )
     def test_width_of_binary_tree(self, root: Optional[TreeNode], expected: int):
@@ -643,12 +647,12 @@ class TestSolution:
     @pytest.mark.parametrize(
         "root, low, high, expected",
         [
-            (create_treenode([1, 0, 2]), 1, 2, create_treenode([1, None, 2])),
+            (util.create_treenode([1, 0, 2]), 1, 2, util.create_treenode([1, None, 2])),
             (
-                create_treenode([3, 0, 4, None, 2, None, None, 1]),
+                util.create_treenode([3, 0, 4, None, 2, None, None, 1]),
                 1,
                 3,
-                create_treenode([3, 2, None, 1]),
+                util.create_treenode([3, 2, None, 1]),
             ),
         ],
     )
@@ -682,8 +686,8 @@ class TestSolution:
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (create_treenode([5, 4, 5, 1, 1, None, 5]), 2),
-            (create_treenode([1, 4, 5, 4, 4, None, 5]), 2),
+            (util.create_treenode([5, 4, 5, 1, 1, None, 5]), 2),
+            (util.create_treenode([1, 4, 5, 4, 4, None, 5]), 2),
         ],
     )
     def test_longest_univalue_path(self, root: Optional[TreeNode], expected: int):
@@ -967,8 +971,8 @@ class TestSolution:
     @pytest.mark.parametrize(
         "head, nums, expected",
         [
-            (create_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
-            (create_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
+            (util.create_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
+            (util.create_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
         ],
     )
     def test_num_components(
@@ -1035,12 +1039,12 @@ class TestSolution:
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            (create_list_node([1, 2, 3, 4, 5, 6]), [4, 5, 6]),
-            (create_list_node([1, 2, 3, 4, 5]), [3, 4, 5]),
+            (util.create_list_node([1, 2, 3, 4, 5, 6]), util.create_list_node([4, 5, 6])),
+            (util.create_list_node([1, 2, 3, 4, 5]), util.create_list_node([3, 4, 5])),
         ],
     )
-    def test_middle_node(self, test_input: ListNode, expected: List[int]):
-        actual = list_node_to_list(self.solution.middle_node(test_input))
+    def test_middle_node(self, test_input: ListNode, expected: ListNode):
+        actual = self.solution.middle_node(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1176,19 +1180,19 @@ class TestSolution:
         "root, val, expected",
         [
             (
-                create_treenode([4, 1, 3, None, None, 2]),
+                util.create_treenode([4, 1, 3, None, None, 2]),
                 5,
-                create_treenode([5, 4, None, 1, 3, None, None, 2]),
+                util.create_treenode([5, 4, None, 1, 3, None, None, 2]),
             ),
             (
-                create_treenode([5, 2, 4, None, 1]),
+                util.create_treenode([5, 2, 4, None, 1]),
                 3,
-                create_treenode([5, 2, 4, None, 1, None, 3]),
+                util.create_treenode([5, 2, 4, None, 1, None, 3]),
             ),
             (
-                create_treenode([5, 2, 3, None, 1]),
+                util.create_treenode([5, 2, 3, None, 1]),
                 4,
-                create_treenode([5, 2, 4, None, 1, 3]),
+                util.create_treenode([5, 2, 4, None, 1, 3]),
             ),
         ],
     )
