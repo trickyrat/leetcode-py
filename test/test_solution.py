@@ -408,6 +408,14 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "test_input, expected",
+        [("1 + 1", 2), (" 2-1 + 2 ", 3), ("(1+(4+5+2)-3)+(6+8)", 23)],
+    )
+    def test_calculate(self, test_input: str, expected: int):
+        actual = self.solution.calculate(test_input)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected", [([0], [0]), ([0, 1, 0, 3, 12], [1, 3, 12, 0, 0])]
     )
     def test_move_zeroes(self, test_input: List[int], expected: List[int]):

@@ -20,8 +20,9 @@ class Util:
         res = ""
         while head is not None:
             res += str(head.val)
-            if head is not None:
+            if head.next is not None:
                 res += "->"
+            head = head.next
         return res
 
     def list_node_to_list(self, head: Optional[ListNode]) -> List[int]:
@@ -34,47 +35,27 @@ class Util:
 
     def create_tree_node(self, nums: List[int | None]) -> Optional[TreeNode]:
         """Create Binary Tree Node"""
-        n = len(nums)
-        if n == 0 or nums[0] is None:
+        if nums is None or len(nums) == 0 or nums[0] is None:
             return None
+        
         root = TreeNode(nums[0])
-        q = deque()
-        q.appendleft(root)
-        cursor = 1
-        while cursor < n:
-            node = q.pop()
-            if cursor > n - 1 or nums[cursor] is None:
-                node.left = None
+        q = [root]
+        fill_left = True
+        for i in range(1, len(nums)):
+            node = TreeNode(nums[i]) if nums[i] is not None else None
+            if fill_left:
+                q[0].left = node
+                fill_left = False
             else:
-                left_node = TreeNode(nums[cursor])
-                if left_node:
-                    node.left = left_node
-                q.appendleft(left_node)
-            if cursor + 1 > n - 1 or nums[cursor + 1] is None:
-                node.right = None
-            else:
-                right_node = TreeNode(nums[cursor + 1])
-                if right_node:
-                    node.right = right_node
-                q.appendleft(right_node)
-            cursor += 2
-        return root
+                q[0].right = node
+                fill_left = True
 
-    def preorder_traversal(self, root: TreeNode) -> List[int]:
-        """Traversal a binary tree node with preoder"""
-        res = list()
-        if not root:
-            return res
-        stack = []
-        node = root
-        while stack or node:
-            while node:
-                res.append(node.val)
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            node = node.right
-        return res
+            if node is not None:
+                q.append(node)
+            
+            if fill_left:
+                q.pop(0)
+        return root
 
     def create_n_tree_node(self, nums: List[Optional[int]]) -> Optional[Node]:
         """Create a n-ary tree node with a list"""

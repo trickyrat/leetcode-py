@@ -6,15 +6,24 @@ class TestAllOne:
         all_one = AllOne()
         all_one.inc("hello")
         all_one.inc("hello")
-        actual_max_key1 = all_one.get_max_key()
-        actual_min_key1 = all_one.get_min_key()
+        max_key = all_one.get_max_key()
+        min_key = all_one.get_min_key()
 
-        assert actual_max_key1 == "hello"
-        assert actual_min_key1 == "hello"
+        assert max_key == "hello"
+        assert min_key == "hello"
 
         all_one.inc("leet")
-        actual_max_key2 = all_one.get_max_key()
-        actual_min_key2 = all_one.get_min_key()
+        max_key = all_one.get_max_key()
+        min_key = all_one.get_min_key()
 
-        assert actual_max_key2 == "hello"
-        assert actual_min_key2 == "leet"
+        assert max_key == "hello"
+        assert min_key == "leet"
+
+        all_one.inc("leet")
+        all_one.dec("hello")
+        max_key = all_one.get_max_key()
+        min_key = all_one.get_min_key()
+
+        assert max_key == "leet"
+        assert min_key == "hello"
+
