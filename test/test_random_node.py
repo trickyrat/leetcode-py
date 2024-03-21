@@ -7,6 +7,7 @@ class TestRandomNode:
     @pytest.fixture(autouse=True)
     def setup(self):
         self.util = Util()
+
     def test_random_node(self):
         node = RandomNode(self.util.generate_list_node([1, 2, 3]))
         expected = [1, 2, 3]

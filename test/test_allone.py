@@ -26,4 +26,3 @@ class TestAllOne:
 
         assert max_key == "leet"
         assert min_key == "hello"
-

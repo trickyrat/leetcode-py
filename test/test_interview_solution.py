@@ -5,7 +5,9 @@ import pytest
 
 
 class TestInterviewSolution:
-    solution = InterviewSolution()
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.solution = InterviewSolution()
 
     @pytest.mark.parametrize(
         "test_input, expected",

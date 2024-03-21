@@ -5,11 +5,11 @@ from typing import List, Optional
 
 
 class Util:
-    def generate_list_node(self, nodes: List[int]) -> Optional[ListNode]:
+    @staticmethod
+    def generate_list_node(nodes: List[int]) -> Optional[ListNode]:
         """
-        
         Generate a linked-list with a list
-        
+
         Args:
 
         nodes List[int]: The list of nodes
@@ -26,7 +26,8 @@ class Util:
             dummy = dummy.next
         return head.next
 
-    def list_node_to_string(self, head: Optional[ListNode], sep: str = "->") -> str:
+    @staticmethod
+    def list_node_to_string(head: Optional[ListNode], sep: str = "->") -> str:
         """
         
         Convert a linked-list to string
@@ -43,11 +44,11 @@ class Util:
         
         """
 
-        def detect_cycle(head: Optional[ListNode]) -> Optional[ListNode]:
-            if head is None:
+        def detect_cycle(node: Optional[ListNode]) -> Optional[ListNode]:
+            if node is None:
                 return None
 
-            slow = fast = head
+            slow = fast = node
             while fast is not None:
                 slow = slow.next
                 if fast.next is not None:
@@ -55,7 +56,7 @@ class Util:
                 else:
                     return None
                 if fast == slow:
-                    ptr = head
+                    ptr = node
                     while ptr != slow:
                         ptr = ptr.next
                         slow = slow.next
@@ -75,15 +76,25 @@ class Util:
                 break
         return res
 
-    def list_node_to_list(self, head: Optional[ListNode]) -> List[int]:
-        """Convert a linked-list to a list"""
+    @staticmethod
+    def list_node_to_list(head: Optional[ListNode]) -> List[int]:
+        """
+        Convert a linked-list to a list
+
+        Args:
+            head (Optional[ListNode]): The head of the linked-list
+
+        Returns:
+            List[int]: The list of node values
+        """
         res = []
         while head:
             res.append(head.val)
             head = head.next
         return res
 
-    def generate_tree_node(self, nums: List[int | None]) -> Optional[TreeNode]:
+    @staticmethod
+    def generate_tree_node(nums: List[int | None]) -> Optional[TreeNode]:
         """
         
         Generate a binary tree node
@@ -119,10 +130,11 @@ class Util:
                 q.pop(0)
         return root
 
-    def generate_n_tree_node(self, nums: List[Optional[int]]) -> Optional[Node]:
+    @staticmethod
+    def generate_n_tree_node(nums: List[Optional[int]]) -> Optional[Node]:
         """
         
-        Generate a n-ary tree node with a list
+        Generate an n-ary tree node with a list
 
         Args:
 
