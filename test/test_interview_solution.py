@@ -1,6 +1,6 @@
 from typing import List
 
-from leetcode.interview_solution import InterviewSolution
+from src.leetcode.interview_solution import InterviewSolution
 import pytest
 
 

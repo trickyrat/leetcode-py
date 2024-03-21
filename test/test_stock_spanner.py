@@ -1,22 +1,29 @@
+from typing import List
 import pytest
-from leetcode.stock_spanner import StockSpanner
+from src.leetcode.stock_spanner import StockSpanner
 
 
 class TestStockSpanner:
-    stock_spanner = StockSpanner()
-
     @pytest.mark.parametrize(
-        "price, expected",
+        "prices, expected",
         [
-            (100, 1),
-            (80, 1),
-            (60, 1),
-            (70, 2),
-            (60, 1),
-            (75, 4),
-            (85, 6),
+            (
+                [
+                    100,
+                    80,
+                    60,
+                    70,
+                    60,
+                    75,
+                    85,
+                ],
+                [1, 1, 1, 2, 1, 4, 6],
+            ),
         ],
     )
-    def test_stock_spanner(self, price: int, expected: int):
-        actual = self.stock_spanner.next(price)
+    def test_stock_spanner(self, prices: List[int], expected: List[int]):
+        stock_spanner = StockSpanner()
+        actual = []
+        for price in prices:
+            actual.append(stock_spanner.next(price))
         assert expected == actual

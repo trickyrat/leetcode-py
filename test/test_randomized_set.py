@@ -1,4 +1,4 @@
-from leetcode.randomized_set import RandomizedSet
+from src.leetcode.randomized_set import RandomizedSet
 
 
 class TestRandomizedSet:

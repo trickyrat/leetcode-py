@@ -1,4 +1,4 @@
-from leetcode.all_one import AllOne
+from src.leetcode.all_one import AllOne
 
 
 class TestAllOne:

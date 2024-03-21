@@ -1,11 +1,14 @@
-from leetcode.random_node import RandomNode
-from leetcode.util import Util
+import pytest
+from src.leetcode.random_node import RandomNode
+from src.util import Util
 
 
 class TestRandomNode:
-    util = Util()
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        self.util = Util()
     def test_random_node(self):
-        node = RandomNode(self.util.create_list_node([1, 2, 3]))
+        node = RandomNode(self.util.generate_list_node([1, 2, 3]))
         expected = [1, 2, 3]
         actual = node.get_random()
         assert actual in expected
