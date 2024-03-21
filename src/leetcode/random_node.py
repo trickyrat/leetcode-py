@@ -2,7 +2,7 @@ from random import randrange
 
 from typing import Optional
 
-from leetcode.data_structures.list_node import ListNode
+from src.data_structures.list_node import ListNode
 
 
 class RandomNode(object):

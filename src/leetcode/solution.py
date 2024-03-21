@@ -7,10 +7,10 @@ from typing import List, Optional
 
 from collections import Counter, deque, defaultdict
 
-from leetcode.automation import Automation
-from leetcode.data_structures.list_node import ListNode
-from leetcode.data_structures.tree_node import TreeNode
-from leetcode.data_structures.node import Node
+from src.leetcode.automation import Automation
+from src.data_structures.list_node import ListNode
+from src.data_structures.tree_node import TreeNode
+from src.data_structures.node import Node
 
 
 class Solution:
