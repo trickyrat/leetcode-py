@@ -1,11 +1,14 @@
+from typing import Optional
+
+
 class Node(object):
     def __init__(self, key="", count=0):
-        self.prev = None
-        self.next = None
+        self.prev = Optional[Node]
+        self.next = Optional[Node]
         self.keys = {key}
         self.count = count
 
-    def insert(self, node: 'Node') -> 'Node':
+    def insert(self, node: "Node") -> "Node":
         node.prev = self
         node.next = self.next
         node.prev.next = node
@@ -59,9 +62,11 @@ class AllOne(object):
             curr.remove()
 
     def get_max_key(self) -> str:
-        return next(iter(self.root.prev.keys)) if self.root.prev is not self.root else ""
+        return (
+            next(iter(self.root.prev.keys)) if self.root.prev is not self.root else ""
+        )
 
     def get_min_key(self) -> str:
-        return next(iter(self.root.next.keys)) if self.root.next is not self.root else ""
-
-
+        return (
+            next(iter(self.root.next.keys)) if self.root.next is not self.root else ""
+        )

@@ -1,4 +1,5 @@
 from collections import deque
+from typing import Optional
 
 
 class TreeNode(object):
@@ -6,12 +7,17 @@ class TreeNode(object):
     Definition for a binary tree node.
     """
 
-    def __init__(self, val=0, left=None, right=None) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(
+        self,
+        val: int = 0,
+        left: Optional["TreeNode"] = None,
+        right: Optional["TreeNode"] = None,
+    ) -> None:
+        self.val: int = val
+        self.left: Optional[TreeNode] = left
+        self.right: Optional[TreeNode] = right
 
-    def __eq__(self, other):
+    def __eq__(self, other: Optional["TreeNode"]):
         if not self and not other:
             return True
         if not self or not other:
@@ -41,3 +47,8 @@ class TreeNode(object):
                 queue2.append(right2)
 
         return not queue1 and not queue2
+
+    def __hash__(self):
+        left_value = self.left.val if self.left else 0
+        right_value = self.right.val if self.right else 0
+        return hash((self.val, left_value, right_value))

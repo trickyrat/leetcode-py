@@ -1,10 +1,24 @@
-# Leetcode solution with Python3
+# LeetCode solution implemented in Python3
 
 ## Requirements
 
-> pytest
-> pytest-html
+> pytest  
+> coverage
 
 ## Run
 
-> pytest --html=unittestresult.html
+### Install packages
+
+> pip install -r requirements.txt
+
+### Run unit test
+
+> pytest .
+
+### Run unit test with coverage
+
+> coverage run -m pytest .
+
+### Generate coverage html report
+
+> coverage html -d ./test_results
