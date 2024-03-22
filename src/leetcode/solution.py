@@ -376,6 +376,26 @@ class Solution:
             else:
                 merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
+    
+    def get_permutation(self, n: int, k: int) -> str:
+        """60. Permutation Sequence"""
+        factorial = [1]
+        for i in range(1, n):
+            factorial.append(i * factorial[-1])
+
+        k -= 1
+        ans = list()
+        valid = [1] * (n + 1)
+        for i in range(1, n + 1):
+            order = k // factorial[n - i] + 1
+            for j in range(1, n + 1):
+                order -= valid[j]
+                if order == 0:
+                    ans.append(str(j))
+                    valid[j] = 0
+                    break
+            k %= factorial[n - i]
+        return "".join(ans)
 
     def set_zeroes(self, matrix: List[List[int]]) -> None:
         """73. Set Matrix Zeroes"""

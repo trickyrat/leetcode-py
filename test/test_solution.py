@@ -11,7 +11,7 @@ class TestSolution:
     util = Util()
 
     @pytest.fixture(autouse=True)
-    def setup(self):   
+    def setup(self):
         self.solution = Solution()
         self.util = Util()
 
@@ -191,9 +191,7 @@ class TestSolution:
             (util.generate_list_node([1, 2]), 1, "1"),
         ],
     )
-    def test_remove_nth_from_end(
-        self, head: Optional[ListNode], n: int, expected: str
-    ):
+    def test_remove_nth_from_end(self, head: Optional[ListNode], n: int, expected: str):
         head = self.solution.remove_nth_from_end(head, n)
         actual = self.util.list_node_to_string(head)
         assert expected == actual
@@ -239,9 +237,7 @@ class TestSolution:
             ([util.generate_list_node([])], ""),
         ],
     )
-    def test_merge_k_lists(
-        self, lists: List[Optional[ListNode]], expected: str
-    ):
+    def test_merge_k_lists(self, lists: List[Optional[ListNode]], expected: str):
         head = self.solution.merge_k_lists(lists)
         actual = self.util.list_node_to_string(head)
         assert expected == actual
@@ -293,6 +289,18 @@ class TestSolution:
     )
     def test_merge(self, test_input: List[List[int]], expected: List[List[int]]):
         actual = self.solution.merge(test_input)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
+        "n, k, expected",
+        [
+            (3, 3, "213"),
+            (4, 9, "2314"),
+            (3, 1, "123"),
+        ],
+    )
+    def test_get_permutation(self, n: int, k: int, expected: str):
+        actual = self.solution.get_permutation(n, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
