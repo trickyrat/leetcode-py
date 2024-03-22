@@ -72,7 +72,7 @@ class Util:
                 res += sep
             head = head.next
             if head == cycle_node and head and cycle_node:
-                res += f"{cycle_node.val}"
+                res += f"{cycle_node.val}{sep}..."
                 break
         return res
 

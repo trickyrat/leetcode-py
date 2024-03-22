@@ -77,7 +77,7 @@ class TestUtil:
         head.next = ListNode(2)
         head.next.next = ListNode(3)
         head.next.next.next = head
-        expected = "1->2->3->1"
+        expected = "1->2->3->1->..."
         assert Util.list_node_to_string(head) == expected
 
     def test_list_node_to_string_circular_start_in_middle(self):
@@ -85,7 +85,7 @@ class TestUtil:
         head.next = ListNode(3)
         head.next.next = ListNode(1)
         head.next.next.next = head
-        assert Util.list_node_to_string(head) == "2->3->1->2"
+        assert Util.list_node_to_string(head) == "2->3->1->2->..."
 
     def test_list_node_to_string_non_circular_same_values(self):
         head = ListNode(1)
