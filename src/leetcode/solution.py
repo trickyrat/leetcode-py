@@ -376,7 +376,7 @@ class Solution:
             else:
                 merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
-    
+
     def get_permutation(self, n: int, k: int) -> str:
         """60. Permutation Sequence"""
         factorial = [1]
@@ -833,6 +833,15 @@ class Solution:
         if negative:
             digits.append("-")
         return "".join(reversed(digits))
+
+    def change(self, amount: int, coins: List[int]) -> int:
+        """518. Coin Change II"""
+        dp = [0] * (amount + 1)
+        dp[0] = 1
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] += dp[i - coin]
+        return dp[amount]
 
     def find_lus_length(self, a: str, b: str) -> int:
         """521. Longest Uncommon Subsequence I"""
