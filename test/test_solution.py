@@ -536,6 +536,13 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "amount, coins, expected", [(5, [1, 2, 5], 4), (3, [2], 0), (10, [10], 1)]
+    )
+    def test_change(self, amount: int, coins: List[int], expected: int):
+        actual = self.solution.change(amount, coins)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "a, b, expected", [("aba", "cdc", 3), ("aaa", "bbb", 3), ("aaa", "aaa", -1)]
     )
     def test_find_lus_length(self, a: str, b: str, expected: int):
