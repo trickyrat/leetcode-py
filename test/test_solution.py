@@ -2099,3 +2099,14 @@ class TestSolution:
     def test_repeated_character(self, s: str, expected: str):
         actual = self.solution.repeated_character(s)
         assert expected == actual
+
+    @pytest.mark.parametrize(
+        "ranges, expected",
+        [
+            ([[6, 10], [5, 15]], 2),
+            ([[1, 3], [10, 20], [2, 5], [4, 8]], 4),
+        ],
+    )
+    def test_count_ways(self, ranges: List[List[int]], expected: int):
+        actual = self.solution.count_ways(ranges)
+        assert expected == actual
