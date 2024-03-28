@@ -2339,6 +2339,20 @@ class Solution:
             sum_tmp += num
         return -1
 
+    def first_daya_been_in_all_rooms(self, next_visit: List[int]) -> int:
+        """1997. First Day When You Have Been in All the Rooms"""
+        n = len(next_visit)
+        mod = 10 ** 9 + 7
+        dp = [0] * n
+        dp[0] = 2
+        for i in range(1, n):
+            to = next_visit[i]
+            dp[i] = 2 + dp[i - 1]
+            if to != 0:
+                dp[i] = (dp[i] - dp[to - 1]) % mod
+            dp[i] = (dp[i] + dp[i - 1]) % mod
+        return dp[n - 2]
+
     def count_k_difference(self, nums: List[int], k: int) -> int:
         """2006. Count Number of Pairs With Absolute Difference K"""
         res = 0
