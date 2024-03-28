@@ -1780,6 +1780,18 @@ class TestSolution:
         assert actual == expected
 
     @pytest.mark.parametrize(
+        "next_visit, expected",
+        [
+            ([0, 0], 2),
+            ([0, 0, 2], 6),
+            ([0, 1, 2, 0], 6),
+        ],
+    )
+    def test_first_daya_been_in_all_rooms(self, next_visit: List[int], expected: int):
+        actual = self.solution.first_daya_been_in_all_rooms(next_visit)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
         "test_input, k, expected",
         [
             ([1, 2, 2, 1], 1, 4),
