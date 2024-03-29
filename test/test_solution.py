@@ -2122,3 +2122,15 @@ class TestSolution:
     def test_count_ways(self, ranges: List[List[int]], expected: int):
         actual = self.solution.count_ways(ranges)
         assert expected == actual
+
+    @pytest.mark.parametrize(
+        "nums, expected",
+        [
+            ([8, 6, 1, 5, 3], 9),
+            ([5, 4, 8, 7, 10, 2], 13),
+            ([6, 5, 4, 3, 4, 5], -1),
+        ],
+    )
+    def test_count_ways(self, nums: List[int], expected: int):
+        actual = self.solution.minimum_sum(nums)
+        assert expected == actual

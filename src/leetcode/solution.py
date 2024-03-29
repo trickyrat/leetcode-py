@@ -2342,7 +2342,7 @@ class Solution:
     def first_daya_been_in_all_rooms(self, next_visit: List[int]) -> int:
         """1997. First Day When You Have Been in All the Rooms"""
         n = len(next_visit)
-        mod = 10 ** 9 + 7
+        mod = 10**9 + 7
         dp = [0] * n
         dp[0] = 2
         for i in range(1, n):
@@ -2503,3 +2503,17 @@ class Solution:
             res = (res * 2) % MOD
             i = j
         return res
+
+    def minimum_sum(self, nums: List[int]) -> int:
+        """2908. Minimum Sum of Mountain Triplets I"""
+        n = len(nums)
+        res = mini = 1000
+        left = [0]
+        for i in range(1, n):
+            left[i] = mini = min(mini, nums[i - 1])
+        right = nums[n - 1]
+        for i in range(n - 2, 0, -1):
+            if left[i] < nums[i] and nums[i] > right:
+                res = min(res, left[i] + nums[i] + right)
+            right = min(right, nums[i])
+        return res if res < 1000 else -1
