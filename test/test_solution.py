@@ -2127,3 +2127,15 @@ class TestSolution:
     def test_count_ways(self, nums: List[int], expected: int):
         actual = Solution.minimum_sum(nums)
         assert expected == actual
+
+    @pytest.mark.parametrize(
+        "coins, target, expected",
+        [
+            ([1, 4, 10], 19, 2),
+            ([1, 4, 10, 5, 7, 19], 19, 1),
+            ([1, 1, 1], 3),
+        ],
+    )
+    def test_minimum_added_coins(self, coins: List[int], target: int, expected: int):
+        actual = Solution.minimum_added_coins(coins, target)
+        assert expected == actual
