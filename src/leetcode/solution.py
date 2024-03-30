@@ -2667,3 +2667,19 @@ class Solution:
                 res = min(res, left[i] + nums[i] + right)
             right = min(right, nums[i])
         return res if res < 1000 else -1
+
+    @staticmethod
+    def minimum_added_coins(coins: List[int], target: int) -> int:
+        """2952. Minimum Number of Coins to be Added"""
+        coins.sort()
+        res, x = 0, 1
+        n, index = len(coins), 0
+
+        while x <= target:
+            if index < n and coins[index] <= x:
+                x += coins[index]
+                index += 1
+            else:
+                x <<= 1
+                res += 1
+        return res
