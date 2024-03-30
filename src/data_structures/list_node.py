@@ -12,4 +12,3 @@ class ListNode(object):
 
     def __lt__(self, other):
         return True if self.val < other.val else False
-    

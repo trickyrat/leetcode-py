@@ -15,9 +15,7 @@ class TestUtil:
             ([3, 3], "3->3"),
         ],
     )
-    def test_generate_list_node(
-        self, test_input: List[int], expected: str
-    ):
+    def test_generate_list_node(self, test_input: List[int], expected: str):
         head = Util.generate_list_node(test_input)
         actual = Util.list_node_to_string(head)
         assert expected == actual
