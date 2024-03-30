@@ -8,13 +8,6 @@ from src.util import Util
 
 
 class TestSolution:
-    util = Util()
-
-    @pytest.fixture(autouse=True)
-    def setup(self):
-        self.solution = Solution()
-        self.util = Util()
-
     @pytest.mark.parametrize(
         "test_input, target, expected",
         [
@@ -25,25 +18,25 @@ class TestSolution:
         ],
     )
     def test_two_sum(self, test_input: List[int], target: int, expected: List[int]):
-        actual = self.solution.two_sum(test_input, target)
+        actual = Solution.two_sum(test_input, target)
         assert actual == expected
 
     @pytest.mark.parametrize(
         "test_input1, test_input2, expected",
         [
             (
-                util.generate_list_node([2, 4, 3]),
-                util.generate_list_node([5, 6, 4]),
+                Util.generate_list_node([2, 4, 3]),
+                Util.generate_list_node([5, 6, 4]),
                 "7->0->8",
             ),
             (
-                util.generate_list_node([0]),
-                util.generate_list_node([0]),
+                Util.generate_list_node([0]),
+                Util.generate_list_node([0]),
                 "0",
             ),
             (
-                util.generate_list_node([9, 9, 9, 9, 9, 9, 9]),
-                util.generate_list_node([9, 9, 9, 9]),
+                Util.generate_list_node([9, 9, 9, 9, 9, 9, 9]),
+                Util.generate_list_node([9, 9, 9, 9]),
                 "8->9->9->9->0->0->0->1",
             ),
         ],
@@ -54,15 +47,15 @@ class TestSolution:
         test_input2: Optional[ListNode],
         expected: str,
     ):
-        head = self.solution.add_two_numbers(test_input1, test_input2)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.add_two_numbers(test_input1, test_input2)
+        actual = Util.list_node_to_string(head)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "test_input, expected", [("abcabcbb", 3), ("bbbbb", 1), ("pwwkew", 3), ("", 0)]
     )
     def test_longest_substring_without_repeat(self, test_input: str, expected: int):
-        actual = self.solution.longest_substring_without_repeat(test_input)
+        actual = Solution.longest_substring_without_repeat(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -78,7 +71,7 @@ class TestSolution:
     def test_find_median_sorted_arrays(
         self, test_input1: List[int], test_input2: List[int], expected: float
     ):
-        actual = self.solution.find_median_sorted_arrays(test_input1, test_input2)
+        actual = Solution.find_median_sorted_arrays(test_input1, test_input2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -91,7 +84,7 @@ class TestSolution:
         ],
     )
     def test_longest_palindrome(self, test_input: str, expected: str):
-        actual = self.solution.longest_palindrome(test_input)
+        actual = Solution.longest_palindrome(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -103,7 +96,7 @@ class TestSolution:
         ],
     )
     def test_z_convert(self, test_input: str, num_rows: int, expected: str):
-        actual = self.solution.z_convert(test_input, num_rows)
+        actual = Solution.z_convert(test_input, num_rows)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -119,7 +112,7 @@ class TestSolution:
         ],
     )
     def test_reverse_int(self, test_input: int, expected: str):
-        actual = self.solution.reverse_int(test_input)
+        actual = Solution.reverse_int(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -127,7 +120,7 @@ class TestSolution:
         [("42", 42), ("   -42", -42), ("4193 with words", 4193)],
     )
     def test_my_atoi(self, s: str, expected: int):
-        actual = self.solution.my_atoi(s)
+        actual = Solution.my_atoi(s)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -135,35 +128,35 @@ class TestSolution:
         [(121, True), (-121, False), (10, False)],
     )
     def test_is_palindrome(self, x: int, expected: bool):
-        actual = self.solution.is_palindrome(x)
+        actual = Solution.is_palindrome(x)
         assert actual == expected
 
     @pytest.mark.parametrize(
         "s, p, expected", [("aa", "a", False), ("aa", "a*", True), ("aa", ".*", True)]
     )
     def test_is_match(self, s: str, p: str, expected: bool):
-        actual = self.solution.is_match(s, p)
+        actual = Solution.is_match(s, p)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "height, expected", [([1, 8, 6, 2, 5, 4, 8, 3, 7], 49), ([1, 1], 1)]
     )
     def test_max_area(self, height: List[int], expected: int):
-        actual = self.solution.max_area(height)
+        actual = Solution.max_area(height)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "num, expected", [(3, "III"), (58, "LVIII"), (1994, "MCMXCIV")]
     )
     def test_int_to_roman(self, num: int, expected: str):
-        actual = self.solution.int_to_roman(num)
+        actual = Solution.int_to_roman(num)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "s, expected", [("III", 3), ("LVIII", 58), ("MCMXCIV", 1994)]
     )
     def test_roman_to_int(self, s: str, expected: int):
-        actual = self.solution.roman_to_int(s)
+        actual = Solution.roman_to_int(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -176,38 +169,38 @@ class TestSolution:
         ],
     )
     def test_longest_common_prefix(self, strs: List[str], expected: str):
-        actual = self.solution.longest_common_prefix(strs)
+        actual = Solution.longest_common_prefix(strs)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "head, n, expected",
         [
             (
-                util.generate_list_node([1, 2, 3, 4, 5]),
+                Util.generate_list_node([1, 2, 3, 4, 5]),
                 2,
                 "1->2->3->5",
             ),
-            (util.generate_list_node([1]), 1, ""),
-            (util.generate_list_node([1, 2]), 1, "1"),
+            (Util.generate_list_node([1]), 1, ""),
+            (Util.generate_list_node([1, 2]), 1, "1"),
         ],
     )
     def test_remove_nth_from_end(self, head: Optional[ListNode], n: int, expected: str):
-        head = self.solution.remove_nth_from_end(head, n)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.remove_nth_from_end(head, n)
+        actual = Util.list_node_to_string(head)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "list1, list2, expected",
         [
             (
-                util.generate_list_node([1, 2, 4]),
-                util.generate_list_node([1, 3, 4]),
+                Util.generate_list_node([1, 2, 4]),
+                Util.generate_list_node([1, 3, 4]),
                 "1->1->2->3->4->4",
             ),
-            (util.generate_list_node([]), util.generate_list_node([]), ""),
+            (Util.generate_list_node([]), Util.generate_list_node([]), ""),
             (
-                util.generate_list_node([]),
-                util.generate_list_node([0]),
+                Util.generate_list_node([]),
+                Util.generate_list_node([0]),
                 "0",
             ),
         ],
@@ -218,8 +211,8 @@ class TestSolution:
         list2: Optional[ListNode],
         expected: str,
     ):
-        head = self.solution.merge_two_lists(list1, list2)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.merge_two_lists(list1, list2)
+        actual = Util.list_node_to_string(head)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -227,19 +220,19 @@ class TestSolution:
         [
             (
                 [
-                    util.generate_list_node([1, 4, 5]),
-                    util.generate_list_node([1, 3, 4]),
-                    util.generate_list_node([2, 6]),
+                    Util.generate_list_node([1, 4, 5]),
+                    Util.generate_list_node([1, 3, 4]),
+                    Util.generate_list_node([2, 6]),
                 ],
                 "1->1->2->3->4->4->5->6",
             ),
             ([], ""),
-            ([util.generate_list_node([])], ""),
+            ([Util.generate_list_node([])], ""),
         ],
     )
     def test_merge_k_lists(self, lists: List[Optional[ListNode]], expected: str):
-        head = self.solution.merge_k_lists(lists)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.merge_k_lists(lists)
+        actual = Util.list_node_to_string(head)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -250,7 +243,7 @@ class TestSolution:
         ],
     )
     def test_remove_duplicates(self, nums: List[int], expected: int):
-        actual = self.solution.remove_duplicates(nums)
+        actual = Solution.remove_duplicates(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -261,7 +254,7 @@ class TestSolution:
         ],
     )
     def test_remove_element(self, nums: List[int], val: int, expected: int):
-        actual = self.solution.remove_element(nums, val)
+        actual = Solution.remove_element(nums, val)
         assert expected == actual
         assert val not in nums[0:actual]
 
@@ -277,7 +270,7 @@ class TestSolution:
         ],
     )
     def test_group_anagrams(self, strs: List[str], expected: List[List[str]]):
-        actual = self.solution.group_anagrams(strs)
+        actual = Solution.group_anagrams(strs)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -288,7 +281,7 @@ class TestSolution:
         ],
     )
     def test_merge(self, test_input: List[List[int]], expected: List[List[int]]):
-        actual = self.solution.merge(test_input)
+        actual = Solution.merge(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -300,7 +293,7 @@ class TestSolution:
         ],
     )
     def test_get_permutation(self, n: int, k: int, expected: str):
-        actual = self.solution.get_permutation(n, k)
+        actual = Solution.get_permutation(n, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -314,7 +307,7 @@ class TestSolution:
         ],
     )
     def test_set_zeroes(self, test_input: List[List[int]], expected: List[List[int]]):
-        self.solution.set_zeroes(test_input)
+        Solution.set_zeroes(test_input)
         assert expected == test_input
 
     @pytest.mark.parametrize(
@@ -326,7 +319,7 @@ class TestSolution:
         ],
     )
     def test_eval(self, test_input: List[int], target: int, expected: int):
-        actual = self.solution.search(test_input, target)
+        actual = Solution.search(test_input, target)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -337,20 +330,20 @@ class TestSolution:
         ],
     )
     def test_search_matrix(self, matrix: List[List[int]], target: int, expected: bool):
-        actual = self.solution.search_matrix(matrix, target)
+        actual = Solution.search_matrix(matrix, target)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "head, left, right, expected",
         [
             (
-                util.generate_list_node([1, 2, 3, 4, 5]),
+                Util.generate_list_node([1, 2, 3, 4, 5]),
                 2,
                 4,
                 "1->4->3->2->5",
             ),
             (
-                util.generate_list_node([1, 2, 3, 4, 5]),
+                Util.generate_list_node([1, 2, 3, 4, 5]),
                 1,
                 5,
                 "5->4->3->2->1",
@@ -360,38 +353,38 @@ class TestSolution:
     def test_reverse_between(
         self, head: ListNode, left: int, right: int, expected: str
     ):
-        head = self.solution.reverse_between(head, left, right)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.reverse_between(head, left, right)
+        actual = Util.list_node_to_string(head)
         assert actual == expected
 
     @pytest.mark.parametrize(
         "test_input, expected",
         [
-            (util.generate_tree_node([3, 9, 20, None, None, 15, 7]), 2),
-            (util.generate_tree_node([2, None, 3, None, 4, None, 5, None, 6]), 5),
+            (Util.generate_tree_node([3, 9, 20, None, None, 15, 7]), 2),
+            (Util.generate_tree_node([2, None, 3, None, 4, None, 5, None, 6]), 5),
         ],
     )
     def test_min_depth(self, test_input: TreeNode, expected: int):
-        actual = self.solution.min_depth(test_input)
+        actual = Solution.min_depth(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
         "test_input, target_num, expected",
         [
             (
-                util.generate_tree_node(
+                Util.generate_tree_node(
                     [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]
                 ),
                 22,
                 [[5, 4, 11, 2], [5, 8, 4, 5]],
             ),
-            (util.generate_tree_node([1, 2, 3]), 5, []),
+            (Util.generate_tree_node([1, 2, 3]), 5, []),
         ],
     )
     def test_path_sum(
         self, test_input: TreeNode, target_num: int, expected: List[List[int]]
     ):
-        actual = self.solution.path_sum(test_input, target_num)
+        actual = Solution.path_sum(test_input, target_num)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -402,7 +395,7 @@ class TestSolution:
         ],
     )
     def test_generate(self, row_number: int, expected: List[List[int]]):
-        actual = self.solution.generate(row_number)
+        actual = Solution.generate(row_number)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -410,7 +403,7 @@ class TestSolution:
         [([2, 7, 11, 15], 9, [1, 2]), ([2, 3, 4], 6, [1, 3]), ([-1, 0], -1, [1, 2])],
     )
     def test_two_sum_ii(self, test_input: List[int], target: int, expected: List[int]):
-        actual = self.solution.two_sum_ii(test_input, target)
+        actual = Solution.two_sum_ii(test_input, target)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -421,7 +414,7 @@ class TestSolution:
         ],
     )
     def test_rotate_array(self, actual: List[int], k: int, expected: List[int]):
-        self.solution.rotate(actual, k)
+        Solution.rotate(actual, k)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -429,33 +422,33 @@ class TestSolution:
         [("1 + 1", 2), (" 2-1 + 2 ", 3), ("(1+(4+5+2)-3)+(6+8)", 23)],
     )
     def test_calculate(self, test_input: str, expected: int):
-        actual = self.solution.calculate(test_input)
+        actual = Solution.calculate(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "test_input, expected", [([0], [0]), ([0, 1, 0, 3, 12], [1, 3, 12, 0, 0])]
     )
     def test_move_zeroes(self, test_input: List[int], expected: List[int]):
-        self.solution.move_zeroes(test_input)
+        Solution.move_zeroes(test_input)
         assert test_input == expected
 
     @pytest.mark.parametrize(
         "test_input, expected", [([1, 3, 4, 2, 2], 2), ([3, 1, 3, 4, 2], 3)]
     )
     def test_find_duplicate(self, test_input: List[int], expected: int):
-        actual = self.solution.find_duplicate(test_input)
+        actual = Solution.find_duplicate(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize("test_input, expected", [(2, 91), (0, 1)])
     def test_count_numbers_with_unique_digits(self, test_input: int, expected: int):
-        actual = self.solution.count_numbers_with_unique_digits(test_input)
+        actual = Solution.count_numbers_with_unique_digits(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "test_input, expected", [([1, 9], 10), ([-1, 9], 8), ([1, 2], 3)]
     )
     def test_get_sum(self, test_input: List[int], expected: int):
-        actual = self.solution.get_sum(test_input[0], test_input[1])
+        actual = Solution.get_sum(test_input[0], test_input[1])
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -463,14 +456,14 @@ class TestSolution:
         [(13, [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]), (2, [1, 2])],
     )
     def test_lexical_order(self, test_input: int, expected: List[int]):
-        actual = self.solution.lexical_order(test_input)
+        actual = Solution.lexical_order(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "test_input, expected", [([197, 130, 1], True), ([235, 140, 4], False)]
     )
     def test_valid_utf8(self, test_input: List[int], expected: bool):
-        actual = self.solution.valid_utf8(test_input)
+        actual = Solution.valid_utf8(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -481,17 +474,17 @@ class TestSolution:
         ],
     )
     def test_max_rotate_function(self, nums: list[int], expected: int):
-        actual = self.solution.max_rotate_function(nums)
+        actual = Solution.max_rotate_function(nums)
         assert expected == actual
 
     @pytest.mark.parametrize("test_input, expected", [("Hello, my name is John", 5)])
     def test_count_segment(self, test_input: str, expected: int):
-        actual = self.solution.count_segment(test_input)
+        actual = Solution.count_segment(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize("p, expected", [("a", 1), ("cac", 2), ("zab", 6)])
     def test_find_substring_wraparound_string(self, p: str, expected: int):
-        actual = self.solution.find_substring_wraparound_string(p)
+        actual = Solution.find_substring_wraparound_string(p)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -503,7 +496,7 @@ class TestSolution:
         ],
     )
     def test_valid_ip_address(self, query_ip: str, expected: str):
-        actual = self.solution.valid_ip_address(query_ip)
+        actual = Solution.valid_ip_address(query_ip)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -514,7 +507,7 @@ class TestSolution:
         ],
     )
     def test_magical_string(self, n: int, expected: int):
-        actual = self.solution.magical_string(n)
+        actual = Solution.magical_string(n)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -527,26 +520,26 @@ class TestSolution:
     def test_find_diagonal_order(
         self, test_input: List[List[int]], expected: List[int]
     ):
-        actual = self.solution.find_diagonal_order(test_input)
+        actual = Solution.find_diagonal_order(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize("test_input, expected", [(100, "202"), (-7, "-10")])
     def test_convert_to_base7(self, test_input: int, expected: int):
-        actual = self.solution.convert_to_base7(test_input)
+        actual = Solution.convert_to_base7(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "amount, coins, expected", [(5, [1, 2, 5], 4), (3, [2], 0), (10, [10], 1)]
     )
     def test_change(self, amount: int, coins: List[int], expected: int):
-        actual = self.solution.change(amount, coins)
+        actual = Solution.change(amount, coins)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "a, b, expected", [("aba", "cdc", 3), ("aaa", "bbb", 3), ("aaa", "aaa", -1)]
     )
     def test_find_lus_length(self, a: str, b: str, expected: int):
-        actual = self.solution.find_lus_length(a, b)
+        actual = Solution.find_lus_length(a, b)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -554,7 +547,7 @@ class TestSolution:
         [("1+1i", "1+1i", "0+2i"), ("1+-1i", "1+-1i", "0+-2i")],
     )
     def test_complex_number_multiply(self, input1: str, input2: str, expected: str):
-        actual = self.solution.complex_number_multiply(input1, input2)
+        actual = Solution.complex_number_multiply(input1, input2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -562,18 +555,18 @@ class TestSolution:
         [([1000, 100, 10, 2], "1000/(100/10/2)")],
     )
     def test_optimal_division(self, test_input: List[int], expected: str):
-        actual = self.solution.optimal_division(test_input)
+        actual = Solution.optimal_division(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
             (
-                util.generate_n_tree_node([1, None, 3, 2, 4, None, 5, 6]),
+                Util.generate_n_tree_node([1, None, 3, 2, 4, None, 5, 6]),
                 [1, 3, 5, 6, 2, 4],
             ),
             (
-                util.generate_n_tree_node(
+                Util.generate_n_tree_node(
                     [
                         1,
                         None,
@@ -607,18 +600,18 @@ class TestSolution:
         ],
     )
     def test_n_preorder(self, root: Node, expected: List[int]):
-        actual = self.solution.preorder(root)
+        actual = Solution.preorder(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
             (
-                util.generate_n_tree_node([1, None, 3, 2, 4, None, 5, 6]),
+                Util.generate_n_tree_node([1, None, 3, 2, 4, None, 5, 6]),
                 [5, 6, 3, 2, 4, 1],
             ),
             (
-                util.generate_n_tree_node(
+                Util.generate_n_tree_node(
                     [
                         1,
                         None,
@@ -652,7 +645,7 @@ class TestSolution:
         ],
     )
     def test_n_postorder(self, root: Node, expected: List[int]):
-        actual = self.solution.postorder(root)
+        actual = Solution.postorder(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -676,23 +669,23 @@ class TestSolution:
         ],
     )
     def test_find_restaurant(self, l1: List[str], l2: List[str], expected: List[str]):
-        actual = self.solution.find_restaurant(l1, l2)
+        actual = Solution.find_restaurant(l1, l2)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, val, depth, expected",
         [
             (
-                util.generate_tree_node([4, 2, 6, 3, 1, 5]),
+                Util.generate_tree_node([4, 2, 6, 3, 1, 5]),
                 1,
                 2,
-                util.generate_tree_node([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
+                Util.generate_tree_node([4, 1, 1, 2, None, None, 6, 3, 1, 5]),
             ),
             (
-                util.generate_tree_node([4, 2, None, 3, 1]),
+                Util.generate_tree_node([4, 2, None, 3, 1]),
                 1,
                 3,
-                util.generate_tree_node([4, 2, None, 1, 1, 3, None, None, 1]),
+                Util.generate_tree_node([4, 2, None, 1, 1, 3, None, None, 1]),
             ),
         ],
     )
@@ -703,7 +696,7 @@ class TestSolution:
         depth: int,
         expected: Optional[TreeNode],
     ):
-        actual = self.solution.add_one_row(root, val, depth)
+        actual = Solution.add_one_row(root, val, depth)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -711,35 +704,35 @@ class TestSolution:
         [([[1, 2], [2, 3], [3, 4]], 2), ([[1, 2], [7, 8], [4, 5]], 3)],
     )
     def test_find_longest_chain(self, pairs: List[List[int]], expected: int):
-        actual = self.solution.find_longest_chain(pairs)
+        actual = Solution.find_longest_chain(pairs)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
             (
-                util.generate_tree_node([1, 2, 3, 4, None, 2, 4, None, None, 4]),
-                [util.generate_tree_node([2, 4]), util.generate_tree_node([4])],
+                Util.generate_tree_node([1, 2, 3, 4, None, 2, 4, None, None, 4]),
+                [Util.generate_tree_node([2, 4]), Util.generate_tree_node([4])],
             ),
-            (util.generate_tree_node([2, 1, 1]), [util.generate_tree_node([1])]),
+            (Util.generate_tree_node([2, 1, 1]), [Util.generate_tree_node([1])]),
             (
-                util.generate_tree_node([2, 2, 2, 3, None, 3, None]),
-                [util.generate_tree_node([3]), util.generate_tree_node([2, 3])],
+                Util.generate_tree_node([2, 2, 2, 3, None, 3, None]),
+                [Util.generate_tree_node([3]), Util.generate_tree_node([2, 3])],
             ),
         ],
     )
     def test_find_duplicate_subtrees(
         self, root: Optional[TreeNode], expected: List[Optional[TreeNode]]
     ):
-        actual = self.solution.find_duplicate_subtrees(root)
+        actual = Solution.find_duplicate_subtrees(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (util.generate_tree_node([1, 2]), [["", "1", ""], ["2", "", ""]]),
+            (Util.generate_tree_node([1, 2]), [["", "1", ""], ["2", "", ""]]),
             (
-                util.generate_tree_node([1, 2, 3, None, 4]),
+                Util.generate_tree_node([1, 2, 3, None, 4]),
                 [
                     ["", "", "", "1", "", "", ""],
                     ["", "2", "", "", "", "3", ""],
@@ -749,7 +742,7 @@ class TestSolution:
         ],
     )
     def test_print_tree(self, root: Optional[TreeNode], expected: List[List[str]]):
-        actual = self.solution.print_tree(root)
+        actual = Solution.print_tree(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -759,19 +752,19 @@ class TestSolution:
     def test_find_closest_elements(
         self, arr: List[int], k: int, x: int, expected: List[int]
     ):
-        actual = self.solution.find_closest_elements(arr, k, x)
+        actual = Solution.find_closest_elements(arr, k, x)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (util.generate_tree_node([1, 3, 2, 5, 3, None, 9]), 4),
-            (util.generate_tree_node([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
-            (util.generate_tree_node([1, 3, 2, 5]), 2),
+            (Util.generate_tree_node([1, 3, 2, 5, 3, None, 9]), 4),
+            (Util.generate_tree_node([1, 3, 2, 5, None, None, 9, 6, None, 7]), 7),
+            (Util.generate_tree_node([1, 3, 2, 5]), 2),
         ],
     )
     def test_width_of_binary_tree(self, root: Optional[TreeNode], expected: int):
-        actual = self.solution.width_of_binary_tree(root)
+        actual = Solution.width_of_binary_tree(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -782,7 +775,7 @@ class TestSolution:
         ],
     )
     def test_check_possibility(self, nums: list[int], expected: bool):
-        actual = self.solution.check_possibility(nums)
+        actual = Solution.check_possibility(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -790,23 +783,23 @@ class TestSolution:
         [(3, 1, [1, 2, 3]), (3, 2, [1, 3, 2])],
     )
     def test_construct_array(self, n: int, k: int, expected: List[int]):
-        actual = self.solution.construct_array(n, k)
+        actual = Solution.construct_array(n, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, low, high, expected",
         [
             (
-                util.generate_tree_node([1, 0, 2]),
+                Util.generate_tree_node([1, 0, 2]),
                 1,
                 2,
-                util.generate_tree_node([1, None, 2]),
+                Util.generate_tree_node([1, None, 2]),
             ),
             (
-                util.generate_tree_node([3, 0, 4, None, 2, None, None, 1]),
+                Util.generate_tree_node([3, 0, 4, None, 2, None, None, 1]),
                 1,
                 3,
-                util.generate_tree_node([3, 2, None, 1]),
+                Util.generate_tree_node([3, 2, None, 1]),
             ),
         ],
     )
@@ -817,12 +810,12 @@ class TestSolution:
         high: int,
         expected: Optional[TreeNode],
     ):
-        actual = self.solution.trim_bst(root, low, high)
+        actual = Solution.trim_bst(root, low, high)
         assert expected == actual
 
     @pytest.mark.parametrize("num, expected", [(2736, 7236), (9973, 9973)])
     def test_maximum_swap(self, num: int, expected: int):
-        actual = self.solution.maximum_swap(num)
+        actual = Solution.maximum_swap(num)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -834,18 +827,18 @@ class TestSolution:
         ],
     )
     def test_flip_lights(self, n: int, presses: int, expected: int):
-        actual = self.solution.flip_lights(n, presses)
+        actual = Solution.flip_lights(n, presses)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "root, expected",
         [
-            (util.generate_tree_node([5, 4, 5, 1, 1, None, 5]), 2),
-            (util.generate_tree_node([1, 4, 5, 4, 4, None, 5]), 2),
+            (Util.generate_tree_node([5, 4, 5, 1, 1, None, 5]), 2),
+            (Util.generate_tree_node([1, 4, 5, 4, 4, None, 5]), 2),
         ],
     )
     def test_longest_univalue_path(self, root: Optional[TreeNode], expected: int):
-        actual = self.solution.longest_univalue_path(root)
+        actual = Solution.longest_univalue_path(root)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -856,7 +849,7 @@ class TestSolution:
         ],
     )
     def test_self_dividing_number(self, left: int, right: int, expected: List[int]):
-        actual = self.solution.self_dividing_number(left, right)
+        actual = Solution.self_dividing_number(left, right)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -868,7 +861,7 @@ class TestSolution:
         ],
     )
     def test_next_greatest_letter(self, letters: List[str], target: str, expected: str):
-        actual = self.solution.next_greatest_letter(letters, target)
+        actual = Solution.next_greatest_letter(letters, target)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -876,7 +869,7 @@ class TestSolution:
         [(2, 3), (3, 2)],
     )
     def test_reach_number(self, target: int, expected: int):
-        actual = self.solution.reach_number(target)
+        actual = Solution.reach_number(target)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -886,7 +879,7 @@ class TestSolution:
     def test_order_of_largest_plus_sign(
         self, n: int, mines: List[List[int]], expected: int
     ):
-        actual = self.solution.order_of_largest_plus_sign(n, mines)
+        actual = Solution.order_of_largest_plus_sign(n, mines)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -894,7 +887,7 @@ class TestSolution:
         [([1, 0, 2], True), ([1, 2, 0], False)],
     )
     def test_is_ideal_permutation(self, nums: List[int], expected: bool):
-        actual = self.solution.is_ideal_permutation(nums)
+        actual = Solution.is_ideal_permutation(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -902,7 +895,7 @@ class TestSolution:
         [([4, 3, 2, 1, 0], 1), ([1, 0, 2, 3, 4], 4)],
     )
     def test_max_chunks_to_sorted(self, arr: List[int], expected: int):
-        actual = self.solution.max_chunks_to_sorted(arr)
+        actual = Solution.max_chunks_to_sorted(arr)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -910,7 +903,7 @@ class TestSolution:
         [(1, 1, 0), (2, 1, 0), (2, 2, 1)],
     )
     def test_kth_grammar(self, n: int, k: int, expected: int):
-        actual = self.solution.kth_grammar(n, k)
+        actual = Solution.kth_grammar(n, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -918,7 +911,7 @@ class TestSolution:
         [("a1b2", ["a1b2", "a1B2", "A1b2", "A1B2"]), ("3z4", ["3z4", "3Z4"])],
     )
     def test_letter_case_permutation(self, s: str, expected: List[str]):
-        actual = self.solution.letter_case_permutation(s)
+        actual = Solution.letter_case_permutation(s)
         actual.sort()
         expected.sort()
         assert expected == actual
@@ -928,7 +921,7 @@ class TestSolution:
         [(3, 5), (1, 1)],
     )
     def test_num_tilings(self, n: int, expected: int):
-        actual = self.solution.num_tilings(n)
+        actual = Solution.num_tilings(n)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -936,7 +929,7 @@ class TestSolution:
         [("cba", "abcd", "cbad"), ("cbafg", "abcd", "cbad")],
     )
     def test_custom_sort_string(self, order: str, s: str, expected: str):
-        actual = self.solution.custom_sort_string(order, s)
+        actual = Solution.custom_sort_string(order, s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -947,7 +940,7 @@ class TestSolution:
         ],
     )
     def test_num_matching_subseq(self, s: str, words: List[str], expected: int):
-        actual = self.solution.num_matching_subseq(s, words)
+        actual = Solution.num_matching_subseq(s, words)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -955,7 +948,7 @@ class TestSolution:
         [(0, 5), (5, 0), (3, 5)],
     )
     def test_preimage_size_fzf(self, k: int, expected: int):
-        actual = self.solution.preimage_size_fzf(k)
+        actual = Solution.preimage_size_fzf(k)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -965,7 +958,7 @@ class TestSolution:
     def test_champagne_tower(
         self, poured: int, query_row: int, query_glass: int, expected: float
     ):
-        actual = self.solution.champagne_tower(poured, query_row, query_glass)
+        actual = Solution.champagne_tower(poured, query_row, query_glass)
         assert abs(expected - actual) <= 0.0000001
 
     @pytest.mark.parametrize(
@@ -976,7 +969,7 @@ class TestSolution:
         ],
     )
     def test_min_swap(self, nums1: List[int], nums2: List[int], expected: int):
-        actual = self.solution.min_swap(nums1, nums2)
+        actual = Solution.min_swap(nums1, nums2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -984,7 +977,7 @@ class TestSolution:
         [(["gin", "zen", "gig", "msg"], 2), (["a"], 1)],
     )
     def test_unique_morse_representations(self, words: List[str], expected: int):
-        actual = self.solution.unique_morse_representations(words)
+        actual = Solution.unique_morse_representations(words)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -992,7 +985,7 @@ class TestSolution:
         [([1, 2, 3, 4, 5, 6, 7, 8], True), ([3, 1], False)],
     )
     def test_split_array_same_average(self, nums: List[int], expected: bool):
-        actual = self.solution.split_array_same_average(nums)
+        actual = Solution.split_array_same_average(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1065,7 +1058,7 @@ class TestSolution:
         ],
     )
     def test_number_of_lines(self, widths: List[int], s: str, expected: List[int]):
-        actual = self.solution.number_of_lines(widths, s)
+        actual = Solution.number_of_lines(widths, s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1095,7 +1088,7 @@ class TestSolution:
         ],
     )
     def test_subdomain_in_visits(self, cpdomains: List[str], expected: set[str]):
-        actual = set(self.solution.subdomain_visits(cpdomains))
+        actual = set(Solution.subdomain_visits(cpdomains))
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1117,7 +1110,7 @@ class TestSolution:
         ],
     )
     def test_ambiguous_coordinates(self, s: str, expected: List[str]):
-        actual = self.solution.ambiguous_coordinates(s)
+        actual = Solution.ambiguous_coordinates(s)
         expected.sort()
         actual.sort()
         assert expected == actual
@@ -1125,14 +1118,14 @@ class TestSolution:
     @pytest.mark.parametrize(
         "head, nums, expected",
         [
-            (util.generate_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
-            (util.generate_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
+            (Util.generate_list_node([0, 1, 2, 3]), [0, 1, 3], 2),
+            (Util.generate_list_node([0, 1, 2, 3, 4]), [0, 3, 1, 4], 2),
         ],
     )
     def test_num_components(
         self, head: Optional[ListNode], nums: List[int], expected: int
     ):
-        actual = self.solution.num_components(head, nums)
+        actual = Solution.num_components(head, nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1140,7 +1133,7 @@ class TestSolution:
         [("ABC", 10), ("ABA", 8), ("LEETCODE", 92)],
     )
     def test_unique_letter_string(self, s: str, expected: int):
-        actual = self.solution.unique_letter_string(s)
+        actual = Solution.unique_letter_string(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1148,7 +1141,7 @@ class TestSolution:
         [("()", 1), ("(())", 2), ("()()", 2)],
     )
     def test_score_of_parentheses(self, s: str, expected: int):
-        actual = self.solution.score_of_parentheses(s)
+        actual = Solution.score_of_parentheses(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1161,7 +1154,7 @@ class TestSolution:
     def test_min_cost_to_hire_worker(
         self, quality: List[int], wage: List[int], k: int, expected: float
     ):
-        actual = self.solution.min_cost_to_hire_worker(quality, wage, k)
+        actual = Solution.min_cost_to_hire_worker(quality, wage, k)
         actual = round(actual, 5)
         assert expected == actual
 
@@ -1174,7 +1167,7 @@ class TestSolution:
         ],
     )
     def test_min_shortest_subarray(self, nums: List[int], k: int, expected: int):
-        actual = self.solution.shortest_subarray(nums, k)
+        actual = Solution.shortest_subarray(nums, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1187,22 +1180,22 @@ class TestSolution:
     def test_advantage_count(
         self, nums1: List[int], nums2: List[int], expected: List[int]
     ):
-        actual = self.solution.advantage_count(nums1, nums2)
+        actual = Solution.advantage_count(nums1, nums2)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "test_input, expected",
         [
             (
-                util.generate_list_node([1, 2, 3, 4, 5, 6]),
+                Util.generate_list_node([1, 2, 3, 4, 5, 6]),
                 "4->5->6",
             ),
-            (util.generate_list_node([1, 2, 3, 4, 5]), "3->4->5"),
+            (Util.generate_list_node([1, 2, 3, 4, 5]), "3->4->5"),
         ],
     )
     def test_middle_node(self, test_input: ListNode, expected: str):
-        head = self.solution.middle_node(test_input)
-        actual = self.util.list_node_to_string(head)
+        head = Solution.middle_node(test_input)
+        actual = Util.list_node_to_string(head)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1210,7 +1203,7 @@ class TestSolution:
         [([[1, 2], [3, 4]], 17), ([[2]], 5), ([[1, 0], [0, 2]], 8)],
     )
     def test_projection_area(self, test_input: List[List[int]], expected: int):
-        actual = self.solution.projection_area(test_input)
+        actual = Solution.projection_area(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1221,7 +1214,7 @@ class TestSolution:
         ],
     )
     def test_sorted_squares(self, test_input: List[int], expected: List[int]):
-        actual = self.solution.sorted_squares(test_input)
+        actual = Solution.sorted_squares(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1233,7 +1226,7 @@ class TestSolution:
         ],
     )
     def test_min_subsequence(self, test_input: List[int], expected: List[int]):
-        actual = self.solution.min_subsequence(test_input)
+        actual = Solution.min_subsequence(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1245,7 +1238,7 @@ class TestSolution:
         ],
     )
     def test_reformat(self, test_input: str, expected: List[str]):
-        actual = self.solution.reformat(test_input)
+        actual = Solution.reformat(test_input)
         assert actual in expected
 
     @pytest.mark.parametrize(
@@ -1257,7 +1250,7 @@ class TestSolution:
         ],
     )
     def test_build_array(self, target: List[int], n: int, expected: int):
-        actual = self.solution.build_array(target, n)
+        actual = Solution.build_array(target, n)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1270,7 +1263,7 @@ class TestSolution:
     def test_busy_student(
         self, start_time: List[int], end_time: List[int], query_time: int, expected: int
     ):
-        actual = self.solution.busy_student(start_time, end_time, query_time)
+        actual = Solution.busy_student(start_time, end_time, query_time)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1282,7 +1275,7 @@ class TestSolution:
         ],
     )
     def test_is_prefix_of_word(self, sentence: str, search_word: str, expected: int):
-        actual = self.solution.is_prefix_of_word(sentence, search_word)
+        actual = Solution.is_prefix_of_word(sentence, search_word)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1294,7 +1287,7 @@ class TestSolution:
         ],
     )
     def test_can_be_equal(self, target: List[int], arr: List[int], expected: bool):
-        actual = self.solution.can_be_equal(target, arr)
+        actual = Solution.can_be_equal(target, arr)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1306,7 +1299,7 @@ class TestSolution:
         ],
     )
     def test_shuffle(self, nums: List[int], n: int, expected: List[int]):
-        actual = self.solution.shuffle(nums, n)
+        actual = Solution.shuffle(nums, n)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1318,7 +1311,7 @@ class TestSolution:
         ],
     )
     def test_final_prices(self, prices: List[int], expected: List[int]):
-        actual = self.solution.final_prices(prices)
+        actual = Solution.final_prices(prices)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1331,33 +1324,33 @@ class TestSolution:
     def test_can_make_arithmetic_progression(
         self, test_input: List[int], expected: bool
     ):
-        actual = self.solution.can_make_arithmetic_progression(test_input)
+        actual = Solution.can_make_arithmetic_progression(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
         "root, val, expected",
         [
             (
-                util.generate_tree_node([4, 1, 3, None, None, 2]),
+                Util.generate_tree_node([4, 1, 3, None, None, 2]),
                 5,
-                util.generate_tree_node([5, 4, None, 1, 3, None, None, 2]),
+                Util.generate_tree_node([5, 4, None, 1, 3, None, None, 2]),
             ),
             (
-                util.generate_tree_node([5, 2, 4, None, 1]),
+                Util.generate_tree_node([5, 2, 4, None, 1]),
                 3,
-                util.generate_tree_node([5, 2, 4, None, 1, None, 3]),
+                Util.generate_tree_node([5, 2, 4, None, 1, None, 3]),
             ),
             (
-                util.generate_tree_node([5, 2, 3, None, 1]),
+                Util.generate_tree_node([5, 2, 3, None, 1]),
                 4,
-                util.generate_tree_node([5, 2, 4, None, 1, 3]),
+                Util.generate_tree_node([5, 2, 4, None, 1, 3]),
             ),
         ],
     )
     def test_insert_into_max_tree(
         self, root: Optional[TreeNode], val: int, expected: Optional[TreeNode]
     ):
-        actual = self.solution.insert_into_max_tree(root, val)
+        actual = Solution.insert_into_max_tree(root, val)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1369,7 +1362,7 @@ class TestSolution:
         ],
     )
     def test_parse_bool_expr(self, expression: str, expected: bool):
-        actual = self.solution.parse_bool_expr(expression)
+        actual = Solution.parse_bool_expr(expression)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1381,7 +1374,7 @@ class TestSolution:
         ],
     )
     def test_min_remove_to_make_valid(self, test_input: str, expected: str):
-        actual = self.solution.min_remove_to_make_valid(test_input)
+        actual = Solution.min_remove_to_make_valid(test_input)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1392,7 +1385,7 @@ class TestSolution:
         ],
     )
     def test_num_special(self, mat: List[List[int]], expected: int):
-        actual = self.solution.num_special(mat)
+        actual = Solution.num_special(mat)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1403,7 +1396,7 @@ class TestSolution:
         ],
     )
     def test_reorder_spaces(self, s: str, expected: str):
-        actual = self.solution.reorder_spaces(s)
+        actual = Solution.reorder_spaces(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1415,14 +1408,14 @@ class TestSolution:
         ],
     )
     def test_min_operations(self, logs: List[str], expected: int):
-        actual = self.solution.min_operations(logs)
+        actual = Solution.min_operations(logs)
         assert expected == actual
 
     @pytest.mark.parametrize(
         "nums, expected", [([3, 5], 2), ([0, 0], -1), ([0, 4, 3, 0, 4], 3)]
     )
     def test_special_array(self, nums: List[int], expected: int):
-        actual = self.solution.special_array(nums)
+        actual = Solution.special_array(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1478,7 +1471,7 @@ class TestSolution:
         ],
     )
     def test_trim_mean(self, arr: List[int], expected: float):
-        actual = self.solution.trim_mean(arr)
+        actual = Solution.trim_mean(arr)
         assert actual - expected <= 0.00001
 
     @pytest.mark.parametrize(
@@ -1492,7 +1485,7 @@ class TestSolution:
     def test_best_coordinate(
         self, towers: List[List[int]], radius: int, expected: List[int]
     ):
-        actual = self.solution.best_coordinate(towers, radius)
+        actual = Solution.best_coordinate(towers, radius)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1504,7 +1497,7 @@ class TestSolution:
         ],
     )
     def test_max_length_between_equal_characters(self, s: str, expected: int):
-        actual = self.solution.max_length_between_equal_characters(s)
+        actual = Solution.max_length_between_equal_characters(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1516,7 +1509,7 @@ class TestSolution:
         ],
     )
     def test_frequency_sort(self, nums: List[int], expected: List[int]):
-        actual = self.solution.frequency_sort(nums)
+        actual = Solution.frequency_sort(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1530,7 +1523,7 @@ class TestSolution:
     def test_array_strings_are_equal(
         self, word1: List[str], word2: List[str], expected: bool
     ):
-        actual = self.solution.array_strings_are_equal(word1, word2)
+        actual = Solution.array_strings_are_equal(word1, word2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1542,7 +1535,7 @@ class TestSolution:
         ],
     )
     def test_max_repeating(self, sequence: str, word: str, expected: int):
-        actual = self.solution.max_repeating(sequence, word)
+        actual = Solution.max_repeating(sequence, word)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1554,7 +1547,7 @@ class TestSolution:
         ],
     )
     def test_interpret(self, command: str, expected: str):
-        actual = self.solution.interpret(command)
+        actual = Solution.interpret(command)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1568,7 +1561,7 @@ class TestSolution:
     def test_count_consistent_strings(
         self, allowed: str, words: List[str], expected: int
     ):
-        actual = self.solution.count_consistent_strings(allowed, words)
+        actual = Solution.count_consistent_strings(allowed, words)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1580,7 +1573,7 @@ class TestSolution:
         ],
     )
     def test_reformat_number(self, number: str, expected: str):
-        actual = self.solution.reformat_number(number)
+        actual = Solution.reformat_number(number)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1593,7 +1586,7 @@ class TestSolution:
     def test_count_students(
         self, students: List[int], sandwiches: List[int], expected: int
     ):
-        actual = self.solution.count_students(students, sandwiches)
+        actual = Solution.count_students(students, sandwiches)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1604,7 +1597,7 @@ class TestSolution:
         ],
     )
     def test_halves_are_alike(self, s: str, expected: bool):
-        actual = self.solution.halves_are_alike(s)
+        actual = Solution.halves_are_alike(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1617,7 +1610,7 @@ class TestSolution:
     def test_maximum_units(
         self, box_types: List[List[int]], truck_size: int, expected: int
     ):
-        actual = self.solution.maximum_units(box_types, truck_size)
+        actual = Solution.maximum_units(box_types, truck_size)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1628,7 +1621,7 @@ class TestSolution:
         ],
     )
     def test_largest_altitude(self, gain: List[int], expected: int):
-        actual = self.solution.largest_altitude(gain)
+        actual = Solution.largest_altitude(gain)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1640,7 +1633,7 @@ class TestSolution:
         ],
     )
     def test_count_balls(self, low_limit: int, high_limit: int, expected: int):
-        actual = self.solution.count_balls(low_limit, high_limit)
+        actual = Solution.count_balls(low_limit, high_limit)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1652,7 +1645,7 @@ class TestSolution:
         ],
     )
     def test_minimum_length(self, s: str, expected: int):
-        actual = self.solution.minimum_length(s)
+        actual = Solution.minimum_length(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1664,7 +1657,7 @@ class TestSolution:
         ],
     )
     def test_merge_alternately(self, word1: str, word2: str, expected: str):
-        actual = self.solution.merge_alternately(word1, word2)
+        actual = Solution.merge_alternately(word1, word2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1695,7 +1688,7 @@ class TestSolution:
     def test_count_matches(
         self, items: List[List[str]], rule_key: str, rule_value: str, expected: int
     ):
-        actual = self.solution.count_matches(items, rule_key, rule_value)
+        actual = Solution.count_matches(items, rule_key, rule_value)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1706,7 +1699,7 @@ class TestSolution:
         ],
     )
     def test_check_ones_segment(self, s: str, expected: bool):
-        actual = self.solution.check_ones_segment(s)
+        actual = Solution.check_ones_segment(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1718,7 +1711,7 @@ class TestSolution:
         ],
     )
     def test_are_almost_equal(self, s1: str, s2: str, expected: bool):
-        actual = self.solution.are_almost_equal(s1, s2)
+        actual = Solution.are_almost_equal(s1, s2)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1730,7 +1723,7 @@ class TestSolution:
         ],
     )
     def test_max_ascending_sum(self, nums: List[int], expected: int):
-        actual = self.solution.max_ascending_sum(nums)
+        actual = Solution.max_ascending_sum(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1741,7 +1734,7 @@ class TestSolution:
         ],
     )
     def test_max_value(self, n: int, index: int, max_sum: int, expected: int):
-        actual = self.solution.max_value(n, index, max_sum)
+        actual = Solution.max_value(n, index, max_sum)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1753,7 +1746,7 @@ class TestSolution:
         ],
     )
     def test_array_sign(self, nums: List[int], expected: int):
-        actual = self.solution.array_sign(nums)
+        actual = Solution.array_sign(nums)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1764,7 +1757,7 @@ class TestSolution:
         ],
     )
     def test_find_the_winner(self, n: int, k: int, expected: int):
-        actual = self.solution.find_the_winner(n, k)
+        actual = Solution.find_the_winner(n, k)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1776,7 +1769,7 @@ class TestSolution:
         ],
     )
     def test_pivot_index(self, test_input: List[int], expected: int):
-        actual = self.solution.pivot_index(test_input)
+        actual = Solution.pivot_index(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1788,7 +1781,7 @@ class TestSolution:
         ],
     )
     def test_first_daya_been_in_all_rooms(self, next_visit: List[int], expected: int):
-        actual = self.solution.first_daya_been_in_all_rooms(next_visit)
+        actual = Solution.first_daya_been_in_all_rooms(next_visit)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1800,7 +1793,7 @@ class TestSolution:
         ],
     )
     def test_count_k_difference(self, test_input: List[int], k: int, expected: int):
-        actual = self.solution.count_k_difference(test_input, k)
+        actual = Solution.count_k_difference(test_input, k)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1812,7 +1805,7 @@ class TestSolution:
         ],
     )
     def test_maximum_difference(self, test_input: List[int], expected: int):
-        actual = self.solution.maximum_difference(test_input)
+        actual = Solution.maximum_difference(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1826,7 +1819,7 @@ class TestSolution:
     def test_possible_bipartition(
         self, n: int, dislikes: List[List[int]], expected: bool
     ):
-        actual = self.solution.possible_bipartition(n, dislikes)
+        actual = Solution.possible_bipartition(n, dislikes)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1838,7 +1831,7 @@ class TestSolution:
         ],
     )
     def test_total_fruit(self, fruits: List[int], expected: int):
-        actual = self.solution.total_fruit(fruits)
+        actual = Solution.total_fruit(fruits)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1849,7 +1842,7 @@ class TestSolution:
         ],
     )
     def test_sort_array_by_parity(self, test_input: List[int], expected: List[int]):
-        actual = self.solution.sort_array_by_parity(test_input)
+        actual = Solution.sort_array_by_parity(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1860,7 +1853,7 @@ class TestSolution:
         ],
     )
     def test_sum_subarray_mins(self, arr: List[int], expected: int):
-        actual = self.solution.sum_subarray_mins(arr)
+        actual = Solution.sum_subarray_mins(arr)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1871,7 +1864,7 @@ class TestSolution:
         ],
     )
     def test_partition_disjoint(self, nums: List[int], expected: int):
-        actual = self.solution.partition_disjoint(nums)
+        actual = Solution.partition_disjoint(nums)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1882,7 +1875,7 @@ class TestSolution:
         ],
     )
     def test_min_add_to_make_valid(self, s: str, expected: int):
-        actual = self.solution.min_add_to_make_valid(s)
+        actual = Solution.min_add_to_make_valid(s)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1894,7 +1887,7 @@ class TestSolution:
         ],
     )
     def test_min_three_equal_parts(self, arr: List[int], expected: List[int]):
-        actual = self.solution.three_equal_parts(arr)
+        actual = Solution.three_equal_parts(arr)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1915,7 +1908,7 @@ class TestSolution:
         ],
     )
     def test_shortest_bridge(self, grid: List[List[int]], expected: int):
-        actual = self.solution.shortest_bridge(grid)
+        actual = Solution.shortest_bridge(grid)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1927,7 +1920,7 @@ class TestSolution:
         ],
     )
     def test_distinct_subseq_ii(self, s: str, expected: int):
-        actual = self.solution.distinct_subseq_ii(s)
+        actual = Solution.distinct_subseq_ii(s)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1939,7 +1932,7 @@ class TestSolution:
         ],
     )
     def test_di_string_match(self, s: str, expected: List[int]):
-        actual = self.solution.di_string_match(s)
+        actual = Solution.di_string_match(s)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1951,7 +1944,7 @@ class TestSolution:
         ],
     )
     def test_min_deletion_size(self, strs: List[str], expected: int):
-        actual = self.solution.min_deletion_size(strs)
+        actual = Solution.min_deletion_size(strs)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1964,7 +1957,7 @@ class TestSolution:
     def test_validate_stack_sequences(
         self, pushed: List[int], popped: List[int], expected: bool
     ):
-        actual = self.solution.validate_stack_sequences(pushed, popped)
+        actual = Solution.validate_stack_sequences(pushed, popped)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -1976,7 +1969,7 @@ class TestSolution:
         ],
     )
     def test_repeated_n_times(self, nums: List[int], expected: int):
-        actual = self.solution.repeated_n_times(nums)
+        actual = Solution.repeated_n_times(nums)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -1988,7 +1981,7 @@ class TestSolution:
         ],
     )
     def test_final_value_after_operations(self, operations: List[str], expected: int):
-        actual = self.solution.final_value_after_operations(operations)
+        actual = Solution.final_value_after_operations(operations)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -2000,7 +1993,7 @@ class TestSolution:
         ],
     )
     def test_minimum_moves(self, s: str, expected: int):
-        actual = self.solution.minimum_moves(s)
+        actual = Solution.minimum_moves(s)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -2014,7 +2007,7 @@ class TestSolution:
     def test_two_out_of_three(
         self, nums1: List[int], nums2: List[int], nums3: List[int], expected: List[int]
     ):
-        actual = self.solution.two_out_of_three(nums1, nums2, nums3)
+        actual = Solution.two_out_of_three(nums1, nums2, nums3)
         actual.sort()
         expected.sort()
         assert expected == actual
@@ -2030,7 +2023,7 @@ class TestSolution:
     def test_min_moves_to_seat(
         self, seats: List[int], students: List[int], expected: int
     ):
-        actual = self.solution.min_moves_to_seat(seats, students)
+        actual = Solution.min_moves_to_seat(seats, students)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2045,7 +2038,7 @@ class TestSolution:
         ],
     )
     def test_are_number_ascending(self, s: str, expected: bool):
-        actual = self.solution.are_number_ascending(s)
+        actual = Solution.are_number_ascending(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2057,7 +2050,7 @@ class TestSolution:
         ],
     )
     def test_count_max_or_subsets(self, test_input: List[int], expected: int):
-        actual = self.solution.count_max_or_subsets(test_input)
+        actual = Solution.count_max_or_subsets(test_input)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -2074,7 +2067,7 @@ class TestSolution:
     def test_plates_between_candles(
         self, test_input: str, queries: List[List[int]], expected: List[int]
     ):
-        actual = self.solution.plates_between_candles(test_input, queries)
+        actual = Solution.plates_between_candles(test_input, queries)
         assert actual == expected
 
     @pytest.mark.parametrize(
@@ -2085,7 +2078,7 @@ class TestSolution:
         ],
     )
     def test_count_even(self, num: int, expected: int):
-        actual = self.solution.count_even(num)
+        actual = Solution.count_even(num)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2096,7 +2089,7 @@ class TestSolution:
         ],
     )
     def test_prefix_count(self, words: List[str], pref: str, expected: int):
-        actual = self.solution.prefix_count(words, pref)
+        actual = Solution.prefix_count(words, pref)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2109,7 +2102,7 @@ class TestSolution:
         ],
     )
     def test_repeated_character(self, s: str, expected: str):
-        actual = self.solution.repeated_character(s)
+        actual = Solution.repeated_character(s)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2120,7 +2113,7 @@ class TestSolution:
         ],
     )
     def test_count_ways(self, ranges: List[List[int]], expected: int):
-        actual = self.solution.count_ways(ranges)
+        actual = Solution.count_ways(ranges)
         assert expected == actual
 
     @pytest.mark.parametrize(
@@ -2132,5 +2125,5 @@ class TestSolution:
         ],
     )
     def test_count_ways(self, nums: List[int], expected: int):
-        actual = self.solution.minimum_sum(nums)
+        actual = Solution.minimum_sum(nums)
         assert expected == actual
