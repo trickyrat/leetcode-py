@@ -29,7 +29,7 @@ class Util:
     @staticmethod
     def list_node_to_string(head: Optional[ListNode], sep: str = "->") -> str:
         """
-        
+
         Convert a linked-list to string
 
         Args:
@@ -41,7 +41,7 @@ class Util:
         Returns:
 
         str: The string representation of the linked-list
-        
+
         """
 
         def detect_cycle(node: Optional[ListNode]) -> Optional[ListNode]:
@@ -96,9 +96,9 @@ class Util:
     @staticmethod
     def generate_tree_node(nums: List[int | None]) -> Optional[TreeNode]:
         """
-        
+
         Generate a binary tree node
-        
+
         Args:
 
         nums: (List[int | None]): List of values
@@ -133,15 +133,15 @@ class Util:
     @staticmethod
     def generate_n_tree_node(nums: List[Optional[int]]) -> Optional[Node]:
         """
-        
+
         Generate an n-ary tree node with a list
 
         Args:
 
         nums: (List[Optional[int]]): List of values
 
-        Returns: 
-        
+        Returns:
+
         Optional[Node]: The root node of n-ary tree
         """
         if not nums or len(nums) == 0 or not nums[0]:
