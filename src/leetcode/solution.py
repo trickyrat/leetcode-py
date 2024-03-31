@@ -682,6 +682,26 @@ class Solution:
         return -1
 
     @staticmethod
+    def is_valid_serialization(preorder: str) -> bool:
+        """331. Verify Preorder Serialization of a Binary Tree"""
+        n = len(preorder)
+        i, slots = 0, 1
+        while i < n:
+            if slots == 0:
+                return False
+
+            if preorder[i] == ',':
+                i += 1
+            elif preorder[i] == '#':
+                slots -= 1
+                i += 1
+            else:
+                while i < n and preorder[i] != ',':
+                    i += 1
+                slots += 1
+        return slots == 0
+
+    @staticmethod
     def count_numbers_with_unique_digits(n: int) -> int:
         """357.Count Numbers with Unique Digits"""
         if n == 0:
