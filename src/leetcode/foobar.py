@@ -7,7 +7,7 @@ class Foobar:
         self.n = n
         self.FooLock = Lock()
         self.BarLock = Lock()
-        self.FooLock.acquire()
+        self.BarLock.acquire()
 
     def foo(self, print_foo: "Callable[[], None]") -> None:
         for i in range(self.n):
