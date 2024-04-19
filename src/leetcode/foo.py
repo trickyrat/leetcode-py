@@ -1,23 +1,21 @@
-from threading import Lock
 from typing import Callable
+from asyncio import Semaphore
 
 
 class Foo:
     def __init__(self):
-        self.firstJobDone = Lock()
-        self.secondJobDone = Lock()
-        self.firstJobDone.acquire()
-        self.secondJobDone.acquire()
+        self.first_job_done_semaphore = Semaphore(0)
+        self.second_job_done_semaphore = Semaphore(0)
 
-    def first(self, print_first: "Callable[[], None]") -> None:
+    async def first(self, print_first: "Callable[[], None]") -> None:
         print_first()
-        self.firstJobDone.release()
+        self.first_job_done_semaphore.release()
 
-    def second(self, print_second: "Callable[[], None]") -> None:
-        with self.firstJobDone:
-            print_second()
-            self.secondJobDone.release()
+    async def second(self, print_second: "Callable[[], None]") -> None:
+        await self.first_job_done_semaphore.acquire()
+        print_second()
+        self.second_job_done_semaphore.release()
 
-    def third(self, print_third: "Callable[[], None]") -> None:
-        with self.secondJobDone:
-            print_third()
+    async def third(self, print_third: "Callable[[], None]") -> None:
+        await self.second_job_done_semaphore.acquire()
+        print_third()
