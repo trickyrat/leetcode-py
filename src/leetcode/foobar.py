@@ -1,22 +1,21 @@
-from threading import Lock
 from typing import Callable
+import asyncio
 
 
 class Foobar:
     def __init__(self, n: int) -> None:
         self.n = n
-        self.FooLock = Lock()
-        self.BarLock = Lock()
-        self.BarLock.acquire()
+        self.foo_lock = asyncio.Semaphore(1)
+        self.bar_lock = asyncio.Semaphore(0)
 
-    def foo(self, print_foo: "Callable[[], None]") -> None:
+    async def foo(self, print_foo: "Callable[[], None]") -> None:
         for i in range(self.n):
-            self.FooLock.acquire()
+            await self.foo_lock.acquire()
             print_foo()
-            self.BarLock.release()
+            self.bar_lock.release()
 
-    def bar(self, print_bar: "Callable[[], None]") -> None:
+    async def bar(self, print_bar: "Callable[[], None]") -> None:
         for i in range(self.n):
-            self.BarLock.acquire()
+            await self.bar_lock.acquire()
             print_bar()
-            self.FooLock.release()
+            self.foo_lock.release()
