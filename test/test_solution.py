@@ -323,13 +323,16 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
-            "candidates, target, expected", 
-            [
-                ([2,3,6,7], 7, [[2,2,3],[7]]),
-                ([2,3,5], 8, [[2,2,2,2],[2,3,3],[3,5]]),
-                ([2], 1, [])
-            ])
-    def test_combination_sum(self, candidates: List[int], target: int, expected: List[List[int]]):
+        "candidates, target, expected",
+        [
+            ([2, 3, 6, 7], 7, [[2, 2, 3], [7]]),
+            ([2, 3, 5], 8, [[2, 2, 2, 2], [2, 3, 3], [3, 5]]),
+            ([2], 1, []),
+        ],
+    )
+    def test_combination_sum(
+        self, candidates: List[int], target: int, expected: List[List[int]]
+    ):
         actual = Solution.combination_sum(candidates, target)
         actual.sort()
         expected.sort()
