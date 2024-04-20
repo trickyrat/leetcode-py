@@ -376,7 +376,13 @@ class Solution:
 
     @staticmethod
     def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
-        def dfs(nums: List[int], target: int, ans: List[List[int]], combination: List[int], index: int):
+        def dfs(
+            nums: List[int],
+            target: int,
+            ans: List[List[int]],
+            combination: List[int],
+            index: int,
+        ):
             if index == len(nums):
                 return
             if target == 0:
@@ -387,7 +393,7 @@ class Solution:
                 combination.append(nums[index])
                 dfs(nums, target - nums[index], ans, combination, index)
                 combination.pop()
-        
+
         ans = []
         combine = []
         dfs(candidates, target, ans, combine, 0)
@@ -709,13 +715,13 @@ class Solution:
             if slots == 0:
                 return False
 
-            if preorder[i] == ',':
+            if preorder[i] == ",":
                 i += 1
-            elif preorder[i] == '#':
+            elif preorder[i] == "#":
                 slots -= 1
                 i += 1
             else:
-                while i < n and preorder[i] != ',':
+                while i < n and preorder[i] != ",":
                     i += 1
                 slots += 1
         return slots == 0
