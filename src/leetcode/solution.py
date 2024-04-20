@@ -375,6 +375,25 @@ class Solution:
         return left + 1 if nums[left] < target else left
 
     @staticmethod
+    def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(nums: List[int], target: int, ans: List[List[int]], combination: List[int], index: int):
+            if index == len(nums):
+                return
+            if target == 0:
+                ans.append(list(combination))
+                return
+            dfs(nums, target, ans, combination, index + 1)
+            if target - nums[index] >= 0:
+                combination.append(nums[index])
+                dfs(nums, target - nums[index], ans, combination, index)
+                combination.pop()
+        
+        ans = []
+        combine = []
+        dfs(candidates, target, ans, combine, 0)
+        return ans
+
+    @staticmethod
     def group_anagrams(strs: List[str]) -> List[List[str]]:
         """49.Group Anagrams"""
         dic = collections.defaultdict(list)
