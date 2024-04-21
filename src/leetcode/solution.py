@@ -622,6 +622,27 @@ class Solution:
                     break
 
     @staticmethod
+    def combination_sum3(k: int, n: int) -> List[List[int]]:
+        """216.Combination Sum III"""
+        temp = []
+        ans = []
+
+        def dfs(curr: int, n: int, k: int, current_sum: int):
+            length_of_temp = len(temp)
+            if length_of_temp + (n - curr + 1) < k or length_of_temp > k:
+                return
+            if length_of_temp == k and sum(temp) == current_sum:
+                ans.append(list(temp))
+                return
+            temp.append(curr)
+            dfs(curr + 1, n, k, current_sum)
+            temp.pop()
+            dfs(curr + 1, n, k, current_sum)
+
+        dfs(1, 9, k, n)
+        return ans
+
+    @staticmethod
     def calculate(s: str) -> int:
         """224.Basic Calculator"""
         ops = [1]
@@ -654,7 +675,7 @@ class Solution:
 
     @staticmethod
     def move_zeroes(nums: List[int]) -> None:
-        """283 Move Zeroes"""
+        """283.Move Zeroes"""
         n = len(nums)
         left = right = 0
         while right < n:
