@@ -2718,6 +2718,16 @@ class Solution:
             res = (res * 2) % MOD
             i = j
         return res
+    
+    def max_div_score(nums: List[int], divisors: List[int]) -> int:
+        """2644.Find the Maximum Divisibility Score"""
+        cnt, res = -1, 0
+        for i in range(0, len(divisors)):
+            tmp = sum(1 for num in nums if num % divisors[i] == 0)
+            if (tmp > cnt) or tmp == cnt and divisors[i] < res:
+                cnt = tmp
+                res = divisors[i]
+        return res
 
     @staticmethod
     def minimum_sum(nums: List[int]) -> int:
