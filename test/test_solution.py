@@ -2155,6 +2155,18 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "nums, divisors, expected",
+        [
+            ([4, 7, 9, 3, 9], [5, 2, 3], 3),
+            ([20, 14, 21, 10], [5, 7, 5], 5),
+            ([12], [10, 16], 10),
+        ],
+    )
+    def test_max_div_score(self, nums: List[int], divisors: List[int], expected: int):
+        actual = Solution.max_div_score(nums, divisors)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "nums, expected",
         [
             ([8, 6, 1, 5, 3], 9),
