@@ -2167,6 +2167,17 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "num, t, expected",
+        [
+            (4, 1, 6),
+            (3, 2, 7),
+        ],
+    )
+    def test_the_maximum_achievable_x(self, num: int, t: int, expected: int):
+        actual = Solution.the_maximum_achievable_x(num, t)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "nums, expected",
         [
             ([8, 6, 1, 5, 3], 9),

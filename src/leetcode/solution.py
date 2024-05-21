@@ -2719,6 +2719,7 @@ class Solution:
             i = j
         return res
     
+    @staticmethod
     def max_div_score(nums: List[int], divisors: List[int]) -> int:
         """2644.Find the Maximum Divisibility Score"""
         cnt, res = -1, 0
@@ -2728,6 +2729,12 @@ class Solution:
                 cnt = tmp
                 res = divisors[i]
         return res
+    
+    @staticmethod
+    def the_maximum_achievable_x(num: int, t: int) -> int:
+        """2769. Find the Maximum Achievable Number"""
+        return num + 2 * t
+
 
     @staticmethod
     def minimum_sum(nums: List[int]) -> int:
