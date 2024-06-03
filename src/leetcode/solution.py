@@ -998,6 +998,11 @@ class Solution:
         return str(nums[0]) + "/(" + "/".join(map(str, nums[1:])) + ")"
 
     @staticmethod
+    def distribute_candies(candy_type: List[int]) -> int:
+        """575.Distribute Candies"""
+        return min(len(candy_type) // 2, len(set(candy_type)))
+
+    @staticmethod
     def preorder(root: Optional[Node]) -> List[int]:
         """589.N-ary Tree Preorder Traversal"""
         ans = []

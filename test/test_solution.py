@@ -597,6 +597,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "candy_type, expected",
+        [([1, 1, 2, 2, 3, 3], 3), ([1, 1, 2, 3], 2), ([6, 6, 6, 6], 1)],
+    )
+    def test_distribute_candies(self, candy_type: List[int], expected: int):
+        actual = Solution.distribute_candies(candy_type)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "root, expected",
         [
             (
