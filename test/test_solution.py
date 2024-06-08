@@ -2197,6 +2197,11 @@ class TestSolution:
         actual = Solution.minimum_sum(nums)
         assert expected == actual
 
+    @pytest.mark.parametrize("s, expected", [("101", 1), ("100", 2), ("0111", 0)])
+    def test_minimum_steps(self, s: str, expected: int):
+        actual = Solution.minimum_steps(s)
+        assert expected == actual
+
     @pytest.mark.parametrize(
         "coins, target, expected",
         [

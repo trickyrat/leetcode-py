@@ -2755,6 +2755,17 @@ class Solution:
                 res = min(res, left[i] + nums[i] + right)
             right = min(right, nums[i])
         return res if res < 1000 else -1
+    
+    @staticmethod
+    def minimum_steps(s: str) -> int:
+        """2938. Separate Black and White Balls"""
+        res, sum = 0, 0
+        for i in range(len(s)):
+            if s[i] == "1":
+                sum += 1
+            else:
+                res += sum
+        return res
 
     @staticmethod
     def minimum_added_coins(coins: List[int], target: int) -> int:
