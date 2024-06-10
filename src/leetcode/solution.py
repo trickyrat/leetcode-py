@@ -1726,6 +1726,21 @@ class Solution:
         return slow
 
     @staticmethod
+    def num_rescue_boats(people: List[int], limit: int) -> int:
+        """881.Boats to Save People"""
+        people.sort()
+        left, right = 0, len(people) - 1
+        res = 0
+        while left <= right:
+            if people[left] + people[right] <= limit:
+                left += 1
+                right -= 1
+            else:
+                right -= 1
+            res += 1
+        return res
+
+    @staticmethod
     def projection_area(grid: List[List[int]]) -> int:
         """883.Projection Area of 3D Shapes"""
         xy_area = sum(v > 0 for row in grid for v in row)
