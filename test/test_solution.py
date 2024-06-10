@@ -1245,6 +1245,14 @@ class TestSolution:
         assert expected == actual
 
     @pytest.mark.parametrize(
+        "people, limit, expected",
+        [([1, 2], 3, 1), ([3, 2, 2, 1], 3, 3), ([3, 5, 3, 4], 5, 4)],
+    )
+    def test_num_rescue_boats(self, people: List[int], limit: int, expected: int):
+        actual = Solution.num_rescue_boats(people, limit)
+        assert expected == actual
+
+    @pytest.mark.parametrize(
         "test_input, expected",
         [([[1, 2], [3, 4]], 17), ([[2]], 5), ([[1, 0], [0, 2]], 8)],
     )
