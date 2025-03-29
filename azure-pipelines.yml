@@ -4,16 +4,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
-- dev
+- main
 
 pool:
   vmImage: ubuntu-latest
+
 strategy:
   matrix:
-    Python311:
-      python.version: '3.11'
-    Python312:
-      python.version: '3.12'
     Python313:
       python.version: '3.13'
 
