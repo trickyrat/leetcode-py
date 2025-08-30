@@ -3,3 +3,4 @@ __pycache__
 .coverage
 .venv/
 test_results/
+coverage_reports/
