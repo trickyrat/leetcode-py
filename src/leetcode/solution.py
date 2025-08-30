@@ -4,7 +4,7 @@ from heapq import heapify
 from itertools import pairwise, zip_longest, product
 from bisect import bisect_right, bisect_left
 from math import inf, floor, sqrt
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from collections import Counter, deque, defaultdict
 
@@ -13,7 +13,7 @@ from src.data_structures.list_node import ListNode
 from src.data_structures.tree_node import TreeNode
 from src.data_structures.node import Node
 
-MOD = 10**9 + 7
+MOD = 10 ** 9 + 7
 
 
 class Solution:
@@ -29,7 +29,7 @@ class Solution:
 
     @staticmethod
     def add_two_numbers(
-        l1: Optional[ListNode], l2: Optional[ListNode]
+            l1: Optional[ListNode], l2: Optional[ListNode]
     ) -> Optional[ListNode]:
         """2.Add two Numbers"""
         carry = 0
@@ -92,37 +92,29 @@ class Solution:
             return get_kth_element((total_length + 1) // 2)
         else:
             return (
-                get_kth_element(total_length // 2)
-                + get_kth_element(total_length // 2 + 1)
+                    get_kth_element(total_length // 2)
+                    + get_kth_element(total_length // 2 + 1)
             ) / 2
 
     @staticmethod
     def longest_palindrome(s: str) -> str:
         """5.Longest Palindromic Substring"""
-        n = len(s)
-        if n < 2:
-            return s
-        max_len = 1
-        begin = 0
-        dp = [[False] * n for _ in range(n)]
-        for i in range(n):
-            dp[i][i] = True
-        for L in range(2, n + 1):
-            for i in range(n):
-                j = L + i - 1
-                if j >= n:
-                    break
-                if s[i] != s[j]:
-                    dp[i][j] = False
-                else:
-                    if j - i < 3:
-                        dp[i][j] = True
-                    else:
-                        dp[i][j] = dp[i + 1][j - 1]
-                if dp[i][j] and j - i + 1 > max_len:
-                    max_len = j - i + 1
-                    begin = i
-        return s[begin : begin + max_len]
+        def expand_around_center(input_str: str, left: int, right: int) -> tuple[int, int]:
+            while left >= 0 and right < len(input_str) and input_str[left] == input_str[right]:
+                left -= 1
+                right += 1
+            return left + 1, right - 1
+
+        start, end = 0, 0
+        for i in range(len(s)):
+            left1, right1 = expand_around_center(s, i, i)
+            left2, right2 = expand_around_center(s, i, i + 1)
+
+            if right1 - left1 > end - start:
+                start, end = left1, right1
+            if right2 - left2 > end - start:
+                start, end = left2, right2
+        return s[start: end + 1]
 
     @staticmethod
     def z_convert(s: str, num_rows: int) -> str:
@@ -143,7 +135,7 @@ class Solution:
     def reverse_int(x: int) -> int:
         """7.Reverse Integer"""
         res = 0
-        int_min, int_max = -(2**31), 2**31 - 1
+        int_min, int_max = -(2 ** 31), 2 ** 31 - 1
         while x != 0:
             if res < int_min // 10 + 1 or res > int_max // 10:
                 return 0
@@ -223,10 +215,10 @@ class Solution:
         ones = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
         return (
-            thousands[num // 1000]
-            + hundreds[num % 1000 // 100]
-            + tens[num % 100 // 10]
-            + ones[num % 10]
+                thousands[num // 1000]
+                + hundreds[num % 1000 // 100]
+                + tens[num % 100 // 10]
+                + ones[num % 10]
         )
 
     @staticmethod
@@ -378,11 +370,11 @@ class Solution:
     @staticmethod
     def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
         def dfs(
-            nums: List[int],
-            target: int,
-            ans: List[List[int]],
-            combination: List[int],
-            index: int,
+                nums: List[int],
+                target: int,
+                ans: List[List[int]],
+                combination: List[int],
+                index: int,
         ):
             if index == len(nums):
                 return
@@ -443,6 +435,16 @@ class Solution:
                     break
             k %= factorial[n - i]
         return "".join(ans)
+
+    @staticmethod
+    def climb_stairs(n: int) -> int:
+        """70.Climb Stairs"""
+        p, q, r = 0, 0, 1
+        for i in range(1, n+1):
+            p = q
+            q = r
+            r = p + q
+        return r
 
     @staticmethod
     def set_zeroes(matrix: List[List[int]]) -> None:
@@ -1051,7 +1053,7 @@ class Solution:
 
     @staticmethod
     def add_one_row(
-        root: Optional[TreeNode], val: int, depth: int
+            root: Optional[TreeNode], val: int, depth: int
     ) -> Optional[TreeNode]:
         """623.Add One Row to Tree"""
         if root is None:
@@ -1121,7 +1123,7 @@ class Solution:
 
         height = calculate_depth(root)
         m = height + 1
-        n = 2**m - 1
+        n = 2 ** m - 1
         res = [[""] * n for _ in range(m)]
         queue = deque([(root, 0, (n - 1) // 2)])
         while queue:
@@ -1146,7 +1148,7 @@ class Solution:
                 left -= 1
             else:
                 right += 1
-        return arr[left + 1 : right]
+        return arr[left + 1: right]
 
     @staticmethod
     def width_of_binary_tree(root: Optional[TreeNode]) -> int:
@@ -1234,7 +1236,7 @@ class Solution:
     def flip_lights(n: int, presses: int) -> int:
         """672.Bulb Switcher II"""
         seen = set()
-        for i in range(2**4):
+        for i in range(2 ** 4):
             press_arr = [(i >> j) & 1 for j in range(4)]
             if sum(press_arr) % 2 == presses % 2 and sum(press_arr) <= presses:
                 status = press_arr[0] ^ press_arr[1] ^ press_arr[3]
@@ -1559,7 +1561,7 @@ class Solution:
             c = int(c)
             count[s] += c
             while "." in s:
-                s = s[s.index(".") + 1 :]
+                s = s[s.index(".") + 1:]
                 count[s] += c
         return [f"{c} {s}" for s, c in count.items()]
 
@@ -1579,7 +1581,7 @@ class Solution:
 
         n = len(s) - 2
         res = []
-        s = s[1 : len(s) - 1]
+        s = s[1: len(s) - 1]
         for l in range(1, n):
             lt = get_pos(s[:l])
             if len(lt) == 0:
@@ -1675,7 +1677,7 @@ class Solution:
         for q, w in pairs[: k - 1]:
             total_quality += q
             heappush(hire, -q)
-        for q, w in pairs[k - 1 :]:
+        for q, w in pairs[k - 1:]:
             total_quality += q
             heappush(hire, -q)
             res = min(res, w / q * total_quality)
@@ -1861,8 +1863,8 @@ class Solution:
             i = 0
             while third + i < n:
                 if (
-                    arr[first + i] != arr[second + i]
-                    or arr[first + i] != arr[third + i]
+                        arr[first + i] != arr[second + i]
+                        or arr[first + i] != arr[third + i]
                 ):
                     return [-1, -1]
                 i += 1
@@ -1911,9 +1913,9 @@ class Solution:
         if root.val < low:
             return Solution.range_sum_bst(root.right, low, high)
         return (
-            root.val
-            + Solution.range_sum_bst(root.left, low, high)
-            + Solution.range_sum_bst(root.right, low, high)
+                root.val
+                + Solution.range_sum_bst(root.left, low, high)
+                + Solution.range_sum_bst(root.right, low, high)
         )
 
     @staticmethod
@@ -2098,7 +2100,7 @@ class Solution:
 
     @staticmethod
     def busy_student(
-        start_time: List[int], end_time: List[int], query_time: int
+            start_time: List[int], end_time: List[int], query_time: int
     ) -> int:
         """1450.Number of Students Doing Homework at a Given Time"""
         return sum(s <= query_time <= e for s, e in zip(start_time, end_time))
@@ -2174,7 +2176,7 @@ class Solution:
             if arr[i] == "?":
                 for ch in "abc":
                     if not (
-                        i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
+                            i > 0 and arr[i - 1] == ch or i < n - 1 and arr[i + 1] == ch
                     ):
                         arr[i] = ch
                         break
@@ -2230,7 +2232,7 @@ class Solution:
         """1619.Mean of Array After Removing Some Elements"""
         arr.sort()
         n = len(arr)
-        return sum(arr[n // 20 : -n // 20]) / (n * 0.9)
+        return sum(arr[n // 20: -n // 20]) / (n * 0.9)
 
     @staticmethod
     def best_coordinate(towers: List[List[int]], radius: int) -> List[int]:
@@ -2243,8 +2245,8 @@ class Solution:
                 quality = 0
                 for tx, ty, q in towers:
                     d = (x - tx) ** 2 + (y - ty) ** 2
-                    if d <= radius**2:
-                        quality += int(q / (1 + d**0.5))
+                    if d <= radius ** 2:
+                        quality += int(q / (1 + d ** 0.5))
                 if quality > max_quality:
                     cx, cy, max_quality = x, y, quality
         return [cx, cy]
@@ -2370,15 +2372,15 @@ class Solution:
         res = []
         while n > 0:
             if n > 4:
-                res.append("".join(digits[pt : pt + 3]))
+                res.append("".join(digits[pt: pt + 3]))
                 pt += 3
                 n -= 3
             else:
                 if n == 4:
-                    res.append("".join(digits[pt : pt + 2]))
-                    res.append("".join(digits[pt + 2 : pt + 4]))
+                    res.append("".join(digits[pt: pt + 2]))
+                    res.append("".join(digits[pt + 2: pt + 4]))
                 else:
-                    res.append("".join(digits[pt : pt + n]))
+                    res.append("".join(digits[pt: pt + n]))
                 break
         return "-".join(res)
 
@@ -2400,7 +2402,7 @@ class Solution:
     def halves_are_alike(s: str) -> bool:
         """1704.Determine if String Halves Are Alike"""
         vowels = "aeiouAEIOU"
-        a, b = s[: len(s) // 2], s[len(s) // 2 :]
+        a, b = s[: len(s) // 2], s[len(s) // 2:]
         return sum(c in vowels for c in a) == sum(c in vowels for c in b)
 
     @staticmethod
@@ -2503,34 +2505,34 @@ class Solution:
             left, right = right, left
 
         upper = (
-            ((left + 1) ** 2 - 3 * (left + 1)) // 2
-            + left
-            + 1
-            + (left + 1)
-            + ((left + 1) ** 2 - 3 * (left + 1)) // 2
-            + right
-            + 1
+                ((left + 1) ** 2 - 3 * (left + 1)) // 2
+                + left
+                + 1
+                + (left + 1)
+                + ((left + 1) ** 2 - 3 * (left + 1)) // 2
+                + right
+                + 1
         )
         if upper >= max_sum:
             a = 1
             b = -2
             c = left + right + 2 - max_sum
-            return floor(((-b + (b**2 - 4 * a * c) ** 0.5) / (2 * a)))
+            return floor(((-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)))
         upper = (
-            (2 * (right + 1) - left - 1) * left // 2
-            + (right + 1)
-            + ((right + 1) ** 2 - 3 * (right + 1)) // 2
-            + right
-            + 1
+                (2 * (right + 1) - left - 1) * left // 2
+                + (right + 1)
+                + ((right + 1) ** 2 - 3 * (right + 1)) // 2
+                + right
+                + 1
         )
         if upper >= max_sum:
             a = 1 / 2
             b = left + 1 - 3 / 2
             c = right + 1 + (-left - 1) * left / 2 - max_sum
-            return floor(((-b + (b**2 - 4 * a * c) ** 0.5) / (2 * a)))
+            return floor(((-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)))
         else:
             a = left + right + 1
-            b = (-(left**2) - left - right**2 - right) / 2 - max_sum
+            b = (-(left ** 2) - left - right ** 2 - right) / 2 - max_sum
             return floor(-b / a)
 
     @staticmethod
@@ -2617,7 +2619,7 @@ class Solution:
 
     @staticmethod
     def two_out_of_three(
-        nums1: List[int], nums2: List[int], nums3: List[int]
+            nums1: List[int], nums2: List[int], nums3: List[int]
     ) -> List[int]:
         """2032.Two Out of Three"""
         mask = defaultdict(int)
